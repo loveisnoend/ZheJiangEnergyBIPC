@@ -27,6 +27,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 	},
 	// 获取三级页面数据
 	_loadData01 : function () {
+	    // TODO
 	    if (isInternetPowerVolumeLoad == false) {
             busy = new sap.m.BusyDialog({
 				close: function(event) {}
@@ -1114,6 +1115,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
                 // 为echarts对象加载数据 
                 myChart7.setOption(option7); 
                 
+                // TODO
                 if (isInternetPowerVolumeLoad == false) {
                     if (busy) {
             			busy.close();
