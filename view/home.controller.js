@@ -187,7 +187,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
             }
 		}, this);
 		mParameters['error'] = jQuery.proxy(function(eRes) {
-			sap.m.MessageToast.show("网络连接失败，请重试", {
+			sap.m.MessageToast.show("数据分析中,请稍后......", {
 				offset: '0 -110'
 			});
 		}, this);

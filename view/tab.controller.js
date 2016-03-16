@@ -131,11 +131,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
     				} 
 			    }
 			}
-			this.loadChart();
+			this.loadChart('');
 			this.loadData_weather(year,month_true,day);
     		if (busy) {
     			busy.close();
     		} 
+    // 		alert('---cityName---'+cityName+'---xName----'+dataXName+'----温度----'+data01+'-----气象-----'+data02+'----社会用电量----'+data03);
 		}, this);
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
@@ -190,7 +191,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 			day01 = "0" + day01;
 		}
 		final_daytime01 = year01 + '' + month_true_01 + '' + day01 + '';
-		
+
         var mParameters = {};
 		mParameters['async'] = true;
 		mParameters['success'] = jQuery.proxy(function(sRes) {
@@ -201,7 +202,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 				    data02_01.push(sRes.results[i].KPI_VALUE);    
 				}
 			}
-			this.loadChart();
+			this.loadChart('发电量或利用小时');
 			this.loadData_weather(year,month_true,day);
     		if (busy) {
     			busy.close();
@@ -210,7 +211,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-		
 		if(window.cordova && appContext && !window.sap_webide_companion) {
             var usrid = appContext.registrationContext.user.toUpperCase();
 		} else {
@@ -297,7 +297,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
     }
     },
 
-	loadChart: function() {
+	loadChart: function(lineType) {
 	    // 温度
 		var data_x1 = data01;
 		var data_x2 = data01;
@@ -316,8 +316,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
             ],
 			draw);
 		function draw(e) {
-			drawline01(e);
-			drawline02(e);
+            if (data_xname != '' && data_x1 != '') {
+                drawline01(e);
+            }
+            if (data_xname != '' && data_x3 != '' && data_x4 != '') {
+           		drawline02(e);	     
+            }
+		
 			if (usetime_v02 == "发电量") {
 			    $("#barplace").css("display","");
 			  	drawbar01(e);
@@ -350,6 +355,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 		}
 
 		function drawline(e, id, datax1, datax2, data_xname, y1, y2, y3, y4, n, color1, color2,usetime_v02) {
+		  //  alert('---datax1----'+datax1+'---datax2---'+datax2+'---data_xname---'+data_xname);
 			mychart = e.init(document.getElementById(id));
 			var option="";
 			if(id == "line02"){

@@ -9,41 +9,71 @@
             if (value == 1) {
                 cityName = '杭州';
             }
-            if (value == 4) {
-                cityName = '淮南';
-            }
             if (value == 2) {
                 cityName = '台州';
             }
             if (value == 3) {
                 cityName = '金华';
             }
+            if (value == 4) {
+                cityName = '淮南';
+            }
+            if (value == 5) {
+                cityName = '湖州';
+            }
+            if (value == 6) {
+                cityName = '嘉兴';
+            }
+            if (value == 7) {
+                cityName = '舟山';
+            }
+            if (value == 8) {
+                cityName = '绍兴';
+            }
+            if (value == 9) {
+                cityName = '宁波';
+            }
+            if (value == 10) {
+                cityName = '衢州';
+            }
+            if (value == 11) {
+                cityName = '温州';
+            }
+            if (value == 12) {
+                cityName = '阿克苏';
+            }
+            if (value == 13) {
+                cityName = '银川';
+            }
 	        switch(true)
 	        {
-	           // case value==1:
-	           //     $("#select2div").empty();
-	           //     var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
-	           //         selectCon += "<option value='杭州'>杭州电厂一</option>";
-	           //         selectCon += "<option value='杭州'>杭州电厂二</option>";
-	           //         selectCon += "</select>";
-	           //     $("#select2div").append(selectCon);
-            //         tab.getController().loadChart01(cityName,'杭州');
-            //         break;
-	            case value==3:
+	            case value==1:
 	                $("#select2div").empty();
-                	var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
-                        selectCon += "<option value='兰溪发电'>兰溪电厂</option>";
-                        selectCon += "</select>";
+	                var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+	                    selectCon += "<option value='集团'>集团</option>";
+	                    selectCon += "<option value='电力股份本部'>浙能电力股份有限公司</option>";
+	                    selectCon += "<option value='萧山发电'>萧山发电厂</option>";
+	                    selectCon += "</select>";
 	                $("#select2div").append(selectCon);
-                    tab.getController().loadChart01(cityName,'兰溪发电');
+                    tab.getController().loadChart01(cityName,'杭州');
                     break;
                 case value==2:
                     $("#select2div").empty();
                     var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
                         selectCon += "<option value='台二发电'>台二电厂</option>";
+                        selectCon += "<option value='台州发电'>台州发电厂</option>";
                         selectCon += "</select>";
                     $("#select2div").append(selectCon);
                     tab.getController().loadChart01(cityName,'台二发电');
+                    break;
+	            case value==3:
+	                $("#select2div").empty();
+                	var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='兰溪发电'>兰溪电厂</option>";
+                        selectCon += "<option value='金华燃机'>浙江浙能金华燃机发电有限责任公司</option>";
+                        selectCon += "</select>";
+	                $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'兰溪发电');
                     break;
                 case value==4:
                     $("#select2div").empty();
@@ -52,6 +82,88 @@
                         selectCon += "</select>";
                     $("#select2div").append(selectCon);
                     tab.getController().loadChart01(cityName,'凤台发电');
+                    break;
+                case value==5:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='长兴发电'>浙江浙能长兴发电有限公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'长兴发电');
+                    break;
+                case value==6:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='嘉兴发电'>浙江浙能嘉兴发电有限公司</option>";
+                        selectCon += "<option value='嘉华发电'>浙江浙能嘉华发电有限公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'嘉兴发电');
+                    break;
+                case value==7:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='舟山煤电'>浙江浙能中煤舟山煤电有限责任公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'舟山煤电');
+                    break;
+                case value==8:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='钱清发电'>浙江浙能钱清发电有限责任公司</option>";
+                        selectCon += "<option value='滨海发电'>浙江浙能绍兴滨海热电有限责任公司</option>";
+                        selectCon += "<option value='绍兴滨海热力'>浙江浙能绍兴滨海热力有限公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'钱清发电');
+                    break;
+                case value==9:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='镇海发电'>浙江浙能镇海发电有限责任公司</option>";
+                        selectCon += "<option value='镇海联合'>浙江浙能镇海联合发电有限公司</option>";
+                        selectCon += "<option value='镇海燃气'>浙江浙能镇海天然气发电有限责任公司</option>";
+                        selectCon += "<option value='镇海燃热'>浙江浙能镇海燃气热电有限责任公司</option>";
+                        selectCon += "<option value='北仑发电'>浙江浙能北仑发电有限公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'镇海发电');
+                    break;
+                case value==10:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='常山燃气'>浙江浙能常山天然气发电有限公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'常山燃气');
+                    break;
+                case value==11:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='温州发电'>浙江浙能温州发电有限公司</option>";
+                        selectCon += "<option value='温特发电'>浙江温州特鲁莱发电有限责任公司</option>";
+                        selectCon += "<option value='乐清发电'>浙江浙能乐清发电有限责任公司</option>";
+                        selectCon += "<option value='温州燃机'>温州燃机发电有限公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'镇海发电');
+                    break;
+                case value==12:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='阿克苏热电'>浙能阿克苏热电有限公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'阿克苏热电');
+                    break;
+                case value==13:
+                    $("#select2div").empty();
+                    var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
+                        selectCon += "<option value='枣泉发电'>宁夏枣泉发电有限责任公司</option>";
+                        selectCon += "</select>";
+                    $("#select2div").append(selectCon);
+                    tab.getController().loadChart01(cityName,'枣泉发电');
                     break;
 	        }
 	}
@@ -208,16 +320,26 @@
                             <div class="tab_center2_01_font">按地市</div>
                             <div class="tab_center2_01_choose01">
                                 <select class="select" id="select01" onchange="changeCity(this.value)">
-                                  <!--<option value="1">杭州</option>-->
+                                  <option value="1">杭州</option>
                                   <option value="2">台州</option>
                                   <option value="3" selected="selected">金华</option>
                                   <option value="4">淮南</option>
+                                  <option value="5">湖州</option>
+                                  <option value="6">嘉兴</option>
+                                  <option value="7">舟山</option>
+                                  <option value="8">绍兴</option>
+                                  <option value="9">宁波</option>
+                                  <option value="10">衢州</option>
+                                  <option value="11">温州</option>
+                                  <option value="12">阿克苏</option>
+                                  <option value="13">银川</option>
                                 </select>
                             </div>
                             <div class="tab_center2_01_font">按电厂</div>
                             <div class="tab_center2_01_choose01" id="select2div">
                                 <select class="select" id="select02" onchange="changePowerPlant(this.value)">
                                   <option value="兰溪发电">兰溪电厂</option>
+                                  <option value="金华燃机">浙能金华燃机发电有限责任公司</option>
                                 </select>
                             </div>
                         </div>
