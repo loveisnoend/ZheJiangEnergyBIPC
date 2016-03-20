@@ -425,7 +425,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                 },
                 series: [
                     {
-                        name:'访问来源',
                         type:'pie',
                         roseType : 'radius',
                         radius: ['20%', '60%'],

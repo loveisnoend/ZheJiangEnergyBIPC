@@ -697,7 +697,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
     								}
     							}
     						},
-    						data: [data1]
+    						data: [data2]
     				//         legendHoverLink : false,
     				// 		markPoint : {
     				// 		    symbol : 'droplet',
@@ -731,7 +731,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
     							}
     						},
     
-    						data: [data2]
+    						data: [data1]
     					}
     				]
 			};

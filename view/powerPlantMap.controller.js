@@ -18,6 +18,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 	onAfterShow : function () {
 	    
         document.getElementById('mj_hid').style.display = "none";
+        document.getElementById("detail_another").style.display = "none";
         document.getElementById('rlcb_detail').style.display = "";
         this._loadData01();
         // this.loadChart();
@@ -26,14 +27,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 	},
 	// 获取三级页面数据
 	_loadData01 : function () {
-	    if (isPowerPlantMapLoad == false) {
+	   // if (isPowerPlantMapLoad == false) {
             busy = new sap.m.BusyDialog({
 				close: function(event) {}
 			});
     		if (busy) {
     			busy.open();
     		} 
-	    }
+	   // }
         var mParameters = {};
 		mParameters['async'] = true;
 		mParameters['success'] = jQuery.proxy(function(sRes) {
@@ -230,7 +231,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 				}
 				
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
 			}
 			
@@ -393,7 +394,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 	},
 	// 获取单位燃料成本值
 	loadFuelCostChartData : function () {
-	    
+    	document.getElementById("rlcb_detail").style.display = "none";
         var busy = new sap.m.BusyDialog({
 			close: function(event) {}
 		});
@@ -1422,13 +1423,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
                 // 为echarts对象加载数据 
                 myChart7.setOption(option7); 
                 
-                if (isPowerPlantMapLoad == false) {
+                // if (isPowerPlantMapLoad == false) {
                     if (busy) {
             			busy.close();
             		} 
             		changeTheSkinOfPage();
-            		isPowerPlantMapLoad = true;
-                } 
+            // 		isPowerPlantMapLoad = true;
+            //     } 
         }
         
         function drawpie(e, data1, data2, id) {
