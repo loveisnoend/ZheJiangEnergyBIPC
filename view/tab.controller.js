@@ -345,7 +345,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 		    var temY3;
 		    var temY4;
 			if (usetime_v02 == "发电量"){
-			    temY3 = 5000;
+			    temY3 = 8000;
 			    temY4 = 1000;
 			}else {
 			    temY3 = 20;

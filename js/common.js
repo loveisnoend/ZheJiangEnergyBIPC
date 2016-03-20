@@ -20,18 +20,21 @@ function getRealNameByPowerplantname(plantName) {
     if (plantName == '萧山发电') {
         realName = '萧山发电厂';
     }
+    if (plantName == '浙能运输贸易') {
+        realName = '浙江浙能运输贸易有限公司';
+    }
     // 台州
     if (plantName == '台州发电') {
         realName = '台州发电厂';
     }
-    if (plantName == '海天电力工程') {
+    if (plantName == '台州海天电力工程') {
         realName = '台州市海天电力工程有限公司';
     }
     if (plantName == '台州联源热力') {
         realName = '台州市联源热力有限公司';
     }
     // 绍兴
-    if (plantName == '华隆电力') {
+    if (plantName == '华隆电力工程') {
         realName = '浙江华隆电力工程有限公司';
     }
     if (plantName == '滨海发电') {
@@ -47,7 +50,7 @@ function getRealNameByPowerplantname(plantName) {
     if (plantName == '嘉兴发电') {
         realName = '浙江浙能嘉兴发电有限公司';
     }
-    if (plantName == '嘉源电力') {
+    if (plantName == '嘉源电力工程') {
         realName = '浙江嘉源电力工程有限公司';
     }
     if (plantName == '平湖市滨海热力') {
@@ -89,7 +92,7 @@ function getRealNameByPowerplantname(plantName) {
     if (plantName == '温州发电') {
         realName = '浙江浙能温州发电有限公司';
     }
-    if (plantName == '瓯越电力') {
+    if (plantName == '乐清瓯越电力工程') {
         realName = '乐清市瓯越电力工程检修有限公司';
     }
     if (plantName == '嘉隆供热') {
@@ -145,12 +148,15 @@ function getPowerplantnameByRealName(realName) {
     if (realName == '萧山发电厂') {
         powerPlantName = '萧山发电';
     }
+    if (realName == '浙江浙能运输贸易有限公司') {
+        powerPlantName = '浙能运输贸易';
+    }
     // 台州
     if (realName == '台州发电厂') {
         powerPlantName = '台州发电';
     }
     if (realName == '台州市海天电力工程有限公司') {
-        powerPlantName = '海天电力工程';
+        powerPlantName = '台州海天电力工程';
     }
     if (realName == '台州市联源热力有限公司') {
         powerPlantName = '台州联源热力';
@@ -160,7 +166,7 @@ function getPowerplantnameByRealName(realName) {
         powerPlantName = '滨海发电';
     }
     if (realName == '浙江华隆电力工程有限公司') {
-        powerPlantName = '华隆电力';
+        powerPlantName = '华隆电力工程';
     }
     if (realName == '浙江浙能钱清发电有限责任公司') {
         powerPlantName = '钱清发电';
@@ -174,7 +180,7 @@ function getPowerplantnameByRealName(realName) {
         powerPlantName = '嘉兴发电';
     }
     if (realName == '浙江嘉源电力工程有限公司') {
-        powerPlantName = '嘉源电力';
+        powerPlantName = '嘉源电力工程';
     }
     if (realName == '平湖市滨海热力有限公司') {
         powerPlantName = '平湖市滨海热力';
@@ -216,7 +222,7 @@ function getPowerplantnameByRealName(realName) {
         powerPlantName = '温州发电';
     }
     if (realName == '乐清市瓯越电力工程检修有限公司') {
-        powerPlantName = '瓯越电力';
+        powerPlantName = '乐清瓯越电力工程';
     }
     if (realName == '乐清市嘉隆供热有限公司') {
         powerPlantName = '嘉隆供热';
@@ -628,6 +634,46 @@ function returnDefualtPowerPlant(areaName){
         zhejiang_dataStr += '{"name":"浙江浙能乐清发电有限责任公司","inputPlanValue":""},{"name":"温州燃机发电有限公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江温州特鲁莱发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能金华燃机发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能中煤舟山煤电有限责任公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能常山天然气发电有限公司","inputPlanValue":""}'
+        zhejiang_dataStr += ']';
+        return zhejiang_dataStr;
+    }
+    if (areaName == 'zhejiangAddNew') {
+    	var zhejiang_dataStr = '[';
+        zhejiang_dataStr += '{"name":"杭州","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能绍兴滨海热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能钱清发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能绍兴滨海热力有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"金华","inputPlanValue":""},{"name":"台州","inputPlanValue":""},';	  
+        zhejiang_dataStr += '{"name":"浙江浙能嘉华发电有限公司","inputPlanValue":""},{"name":"浙江浙能长兴发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海发电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海联合发电有限公司","inputPlanValue":""},{"name":"浙江浙能北仑发电有限公司","inputPlanValue":""},{"name":"浙江浙能镇海天然气发电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海燃气热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能温州发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能乐清发电有限责任公司","inputPlanValue":""},{"name":"温州燃机发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江温州特鲁莱发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能金华燃机发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能中煤舟山煤电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能常山天然气发电有限公司","inputPlanValue":""},'
+        
+        zhejiang_dataStr += '{"name":"浙江华隆电力工程有限公司","inputPlanValue":""},'
+        zhejiang_dataStr += '{"name":"台州市海天电力工程有限公司","inputPlanValue":""},'
+        zhejiang_dataStr += '{"name":"浙江嘉源电力工程有限公司","inputPlanValue":""},'
+        zhejiang_dataStr += '{"name":"宁波发电工程有限公司","inputPlanValue":""},'
+        zhejiang_dataStr += '{"name":"乐清市瓯越电力工程检修有限公司","inputPlanValue":""}'
+        zhejiang_dataStr += ']';
+        return zhejiang_dataStr;
+    }
+    if (areaName == 'zhejiangAddNew002') {
+    	var zhejiang_dataStr = '[';
+        zhejiang_dataStr += '{"name":"杭州","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能绍兴滨海热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能钱清发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能绍兴滨海热力有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"金华","inputPlanValue":""},{"name":"台州","inputPlanValue":""},';	  
+        zhejiang_dataStr += '{"name":"浙江浙能嘉华发电有限公司","inputPlanValue":""},{"name":"浙江浙能长兴发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海发电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海联合发电有限公司","inputPlanValue":""},{"name":"浙江浙能北仑发电有限公司","inputPlanValue":""},{"name":"浙江浙能镇海天然气发电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海燃气热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能温州发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能乐清发电有限责任公司","inputPlanValue":""},{"name":"温州燃机发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江温州特鲁莱发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能金华燃机发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能中煤舟山煤电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能常山天然气发电有限公司","inputPlanValue":""},'
+        
+        zhejiang_dataStr += '{"name":"浙江浙能运输贸易有限公司","inputPlanValue":""}'
         zhejiang_dataStr += ']';
         return zhejiang_dataStr;
     }

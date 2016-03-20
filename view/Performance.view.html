@@ -35,26 +35,26 @@
                 <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo"><b onClick="doit2(0)" style="cursor:pointer;">经营业绩</b> > 日利润</span></div>
                 <div class="performance_main" style="width:100%">
                     <div class="performance_main_content_left" style="background-color:;width:576px;height:702px;margin-left:0px;">
-                        <div class="panel swdl" onclick="toDetailPage('上网电量')" style="margin-top:4%;margin-left:24%;margin-bottom:8%;">
+                        <div class="panel swdl" ondblclick="toDetailPage('上网电量')" style="margin-top:4%;margin-left:24%;margin-bottom:8%;">
                             <div class="panel_title" style="padding-left:0px;font-size: 15px;">
                                 <div style="float:left;margin-left: 10px;"><span style="float:left;padding-right:0px;">上网电量</span><span style="float:left" id="swdl_span"></span></div>
-                                <div style="float:right;color:orange;"><span style="float:left;padding-right:0px;">供热量</span><span style="float:left" id="gongreliang_span"></span></div>
+                                <div style="float:right;color:white;"><span style="float:left;padding-right:0px;">供热量</span><span style="float:left" id="gongreliang_span"></span></div>
                             </div>
                             <div class="panel_content">
                                 <div id="swdl"></div>
                             </div>
                         </div>
-                        <div class="panel pjswdj" onclick="toInternetPowerDetailPage()" style="margin-left:24%">
+                        <div class="panel pjswdj" ondblclick="toInternetPowerDetailPage()" style="margin-left:24%">
                             <div class="panel_title" style="padding-left:0px;font-size: 15px;">
                                 <div style="float:left;margin-left: 10px;"><span style="float:left;padding-right:0px;">平均上网电价</span><span style="float:left" id="pjswdj_span"></span></div>
-                                <div style="float:right;color:orange;"><span style="float:left;padding-right:0px;">供热单价</span><span style="float:left" id="gongreshouru_span"></span></div>
+                                <div style="float:right;color:white;"><span style="float:left;padding-right:0px;">供热单价</span><span style="float:left" id="gongreshouru_span"></span></div>
                             </div>
                             <div class="panel_content">
                                 <div id="pjswdj"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="performance_main_content_center" style="background-color:;background-size:100% 80%;width:750px;height:780px;margin-left:10px;">
+                    <div class="performance_main_content_center" ondblclick="toDetailPage('日利润详细指标')" style="cursor:pointer;background-color:;background-size:100% 80%;width:750px;height:780px;margin-left:10px;">
         
                             <div id="rlr">
                              </div>
@@ -63,16 +63,16 @@
                            
                     </div>
                     <div class="performance_main_content_right" style="background-color:;width:576px;height:702px;margin-left:0px;">
-                    <div class="panel rlcb" onclick="toDetailPage('燃料成本')" style="margin-top:4%;margin-left:0px;margin-bottom:8%;">
+                    <div class="panel rlcb" ondblclick="toDetailPage('燃料成本')" style="margin-top:4%;margin-left:0px;margin-bottom:8%;">
                         <div class="panel_title" style="padding-left:0px;font-size:15px;">
                             <div style="float:left;margin-left: 10px;"><span style="float:left;padding-right:0px;">燃料成本</span><span style="float:left" id="rlcb_span"></span></div>
-                            <div style="float:right;color:orange;"><span style="float:left;padding-right:0px;">供热燃料成本</span><span style="float:left" id="gongrechengben_span"></span></div>
+                            <div style="float:right;color:white;"><span style="float:left;padding-right:0px;">供热燃料成本</span><span style="float:left" id="gongrechengben_span"></span></div>
                         </div>
                         <div class="panel_content">
                             <div id="rlcb"></div>
                         </div>
                     </div>
-                    <div class="panel qtcb" onclick="toDetailPage('其他成本')" style="margin-left:0px;">
+                    <div class="panel qtcb" ondblclick="toDetailPage('其他成本')" style="margin-left:0px;">
                         <div class="panel_title" style="padding-left:0px;font-size:15px;">
                             <div style="float:left;margin-left: 10px;"><span style="float:left;padding-right:0px;">其他成本</span><span style="float:left" id="qtcb_span"></span></div>
                         </div>

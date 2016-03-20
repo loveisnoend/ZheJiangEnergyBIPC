@@ -416,6 +416,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                 },
                 legend: {
                     orient: 'vertical',
+                    selectedMode: 'multiple',
+                    textStyle:{
+                        color:'white'
+                    },
                     x:'left',
                     data:dataName
                 },
@@ -423,7 +427,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                     {
                         name:'访问来源',
                         type:'pie',
-                        radius: ['40%', '60%'],
+                        roseType : 'radius',
+                        radius: ['20%', '60%'],
                         center: ['60%', '50%'],
                         avoidLabelOverlap: false,
                         label: {
@@ -446,7 +451,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                         },
                         data:dataContent
                     }
-                ]
+                ],
+                color : ['#FF7F50','#87CEFA', '#DA70D6', '#32CD32', '#6495ED','#781D10',  '#241672']
             };
             mychart.setOption(option);
         //     if (isAverPersonProfit == false) {

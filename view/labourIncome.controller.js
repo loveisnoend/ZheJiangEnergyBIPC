@@ -186,7 +186,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 // 		}, this);
 // 	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	    
-	    var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+	    var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangAddNew');
 	    var huaiNan_dataStr = '[{"name":"淮南","inputPlanValue":""}]';
 	    var akesu_dataStr = '[{"name":"浙能阿克苏热电有限公司","inputPlanValue":""}]';
 	    var zhaoquan_dataStr = '[{"name":"宁夏枣泉发电有限责任公司","inputPlanValue":""}]';
@@ -510,7 +510,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
         							lineStyle: {
         								color: 'rgba(64,64,64,0.5)'
         							}
-        						},
+        						}
         				// 		max: y1,
         				// 		min: y2,
         				// 		splitNumber: n
@@ -533,7 +533,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
         						        }
         						    }
         						},
-                                barWidth : 50,
                                 data:KPI_LWS_V
                             },
                             {
@@ -552,7 +551,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
         						        }
         						    }
         						},
-                                barWidth : 50,
                                 data:KPI_LWS_UP
                             }
                             

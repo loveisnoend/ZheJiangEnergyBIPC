@@ -384,6 +384,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
                 },
                 legend: {
                     orient: 'vertical',
+                    selectedMode: 'multiple',
+                    textStyle:{
+                        color:'white'
+                    },
                     x: 'left',
                     data:dataName
                 },

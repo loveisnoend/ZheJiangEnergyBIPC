@@ -1,0 +1,166 @@
+<template data-controller-name="com.zhenergy.pcbi.view.dailyProfitDetail">
+    <div class="nav_main">
+        <div class="main-center">
+            <div class="msg_top">
+               <div class="msg_top1">
+                   <marquee behavior="scroll" scrollamount="5">
+                       <div class="msg_text">
+                       <b class="newMsgIdClass"></b>
+                       <!--GDP增长率<b style="color:#32FF32;" Class="valueGDPIDClass">GDP 7.8 3%↓</b>&nbsp;&nbsp;<span class="span_shuxian">|</span> &nbsp;&nbsp;PPI同比<b style="color:#32FF32;" Class="valuePPItongbiIDClass">PPI 250 2%↑</b>&nbsp;&nbsp;<span class="span_shuxian">|</span>&nbsp;&nbsp;制造业-同比<b Class="valuePMIproduceIDClass" style="color:#32FF32;">PMI 50 2%↑</b> &nbsp;&nbsp;<span class="span_shuxian">|</span>&nbsp;&nbsp;非制造业-同比<b Class="valuePMInonProduceIDClass" style="color:#32FF32;"></b>&nbsp;&nbsp;<span class="span_shuxian">|</span>&nbsp;&nbsp;GDP总值<b style="color:#32FF32;" Class="valueGDPTotalIDClass"></b>&nbsp;&nbsp;<span class="span_shuxian">|</span>&nbsp;&nbsp;CPI环比<b style="color:#32FF32;" Class="valueCPIhuanbiIDClass"></b>&nbsp;&nbsp;<span class="span_shuxian">|</span>&nbsp;&nbsp;CPI同比<b style="color:#32FF32;" Class="valueCPItongbiIDClass"></b>-->
+                       </div>
+                   </marquee>
+               </div> 
+                <div class="msg_top2">
+                    <div class="topToolAll">
+                        <div class="userNameIcon" onmouseover="userHoverOn('userNameCon')" onmouseout="userHoverOut('userNameCon')" ></div>
+                        <div class="userNameCon"><b class="userName"></b></div>
+                    </div>
+                    <div class="topToolAll">
+                        <div class="userSettingIcon" onmouseover="userHoverOn('userSettingCon')" onmouseout="userHoverOut('userSettingCon')" ></div>
+                        <div class="userSettingCon">
+                            <a href="http://erp.zhenergy.com.cn/irj/servlet/prt/portal/prtroot/com.sap.portal.navigation.masthead.LogOutComponent?logout_submit=true" class="msg_topLogout">退出</a>
+                        </div>
+                    </div>
+                    <div class="topToolAll">
+                        <div class="userHelpIcon" onmouseover="userHoverOn('userHelpCon')" onmouseout="userHoverOut('userHelpCon')" ></div>
+                        <div class="userHelpCon"><b class="userHelp" onClick="help()">帮助</b></div>
+                    </div>
+                    <div class="topToolAll">
+                        <div class="userSkinIcon" onmouseover="userHoverOn('userSkinCon')" onmouseout="userHoverOut('userSkinCon')" ></div>
+                        <div class="userSkinCon"><b class="userSkin" onClick="changeSkinCss('dailyProfitDetail')">夜间模式</b></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content_center">
+              <div class="powerTop">
+                    <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo" style="height:100%;"><b onClick="dailyProfit()" style="cursor:pointer;">日利润</b> > <b>日利润详细</b></span></div>             
+              </div>
+              <div class="powerBottom">
+                  <div class="powerPlantLeft">
+        			  <div class="mapTop">
+        			      <div id="huaiNanMapDailyProfitDetail" class="huiNanMap"></div>
+        			      <div id="powerPlantMapDailyProfitDetail" class="powerPlantMap"></div>
+        			  </div>
+        			  <div class="mapBottom">
+        			      <div class="chinaMap" style="margin-left:40px;">
+                              <div class="chinaMapCon">
+            			          <div id="chinaMapDailyProfitDetail" style="float:left;height:110px;width:140px;margin-top:15px;margin-left:30px;">
+            			              
+            			          </div>
+            			          <div id="akesuMapDailyProfitDetail" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:250px;"></div>
+            			          <div id="zaoquanMapDailyProfitDetail" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:450px;"></div>
+        			          </div>
+        			      </div>
+        			      <b id="powerName" style="color:#FEFF02;display:none;"></b>
+        			  </div>
+                </div>
+                <div class="powerPlantRight">
+                    <div id="rlcb_detailDailyProfitDetail" class="detail_02">
+                        <div class="detail_02_01">
+                                <div id="powerPlantMainDetailTitleDailyProfitDetail" style="margin-top:0px;font-size:20px;">集团</div>
+                        </div>
+                        <div class="main_content_combition_1">
+                            <div class="main_content_combition_1_1">
+                                <div class="detail_02_03" onClick="priceDetailAnotherDailyProfitDetail('detail001')">
+                                    <div class="detail_02_font1">自产蒸汽<b>(百万元)</b></div>
+                                    <div class="detail_02_font2" id="travelPriceDailyProfitDetail"></div>
+                                    <div class="detail_02_img" id="detail_01DailyProfitDetail"></div>
+                                </div>
+                                <div class="detail_02_03 detail_position01" onClick="priceDetailAnotherDailyProfitDetail('detail002')">
+                                    <div class="detail_02_font1">外购蒸汽<b>(百万元)</b></div>
+                                    <div class="detail_02_font2" id="coalPriceDailyProfitDetail"></div>
+                                    <div class="detail_02_img" id="detail_02DailyProfitDetail"></div>
+                                </div>
+                            </div>
+                            <div class="main_content_combition_1_2">
+                                <!--<div class="detail_02_04" style="cursor:pointer;" onClick="priceDetailAnotherDailyProfitDetail('detail006')">-->
+                                <!--    <div class="detail_001">-->
+                                <!--        上网电量<b id="internetPV"></b>万千瓦时-->
+                                <!--    </div>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="main_content_combition_1_3">
+                                <div class="detail_02_03" onClick="priceDetailAnotherDailyProfitDetail('detail003')">
+                                    <div class="detail_02_font1">热水<b id="wattVolume1DailyProfitDetail">(百万元)</b></div>
+                                    <div class="detail_02_font2" id="watt1DailyProfitDetail"></div>
+                                    <div class="detail_02_img" id="detail_03DailyProfitDetail"></div>
+                                </div>
+                                <div class="detail_02_03" onClick="priceDetailAnotherDailyProfitDetail('detail004')">
+                                    <div class="detail_02_font1">初装费<b id="wattVolume2DailyProfitDetail">(百万元)</b></div>
+                                    <div class="detail_02_font2" id="factoryUsePV"></div>
+                                    <div class="detail_02_img" id="detail_04DailyProfitDetail"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main_content_combition_2">
+                                <div class="detail_pie" id="detail_pieDailyProfitDetail" style="cursor:pointer;" onClick="priceDetailAnotherDailyProfitDetail('detail005')"></div>
+                                <div class="detail_02_02" style="cursor:pointer;" onClick="priceDetailAnotherDailyProfitDetail('detail005')">
+                                    <div class="detail_02_font01">供热收入</div>
+                                    <div class="detail_02_font01 font_size1" id="fuelCostDailyProfitDetail"></div>
+                                    <div class="detail_02_font01 font_size2">百万元</div>
+                                    <div class="detail_02_font01 font_size3">
+                                        <div class="detail_02_font04_01 font_size4"><b id="fuelDownPercentDailyProfitDetail"></b>%</div>
+                                        <div class="detail_02_font04_02"></div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="internetDetail" style="display:none;margin-top:0px;" id="internetDetailDailyProfitDetail">
+                        <div class="internetDetailTop" style="font-size:20px;font-family: 微软雅黑;margin-left:10px;">
+                           <div style="color:#FFFFFF;margin-top:15px;margin-left:10px;float:left">
+                                <span style="float:left;" id="profitNameDailyProfitDetail">
+                                集团
+                                </span>
+                                <!--<span onclick="internetbackDailyProfitDetail()" style="cursor:pointer;margin-left:20px;color:rgb(255,153,0);">返回</span>-->
+                           </div>
+                        </div>
+                        <div class="priceDetail_another_01" id="priceDetailDivDailyProfitDetail">
+                            
+                        </div>
+                        <div class="priceDetail_another_font">
+                            统计于<br/><b id="dailyProfitDetailIncomeStatisticDate"></b>
+                        </div>
+                    </div>
+                </div>
+                
+              </div>
+    
+            </div>
+            <div class="menu_bottom">
+                <ul>
+                    <li class="but01">
+                        <div class="But01" type="button"  onClick="doit1()"></div>
+                    </li>
+                    <li class="split_line"></li>
+                    <li class="but02">
+                        <div class="But02" type="button"  onClick="doit2()"></div>
+                    </li>
+                    <li class="split_line"></li>
+                    <li class="but03">
+                        <div class="But03" type="button"  onClick="doit3()"></div>
+                    </li>
+                    <li class="split_line"></li>
+                    <li class="but04">
+                        <div class="But04" type="button"  onClick="doit4()"></div>
+                    </li>
+                    <!--<li class="split_line"></li>-->
+                    <!--<li class="but05">-->
+                    <!--    <div class="But05" type="button"  onClick="doit5()"></div>-->
+                    <!--</li>-->
+                    <li class="split_line"></li>
+                    <li class="but06 nav_BI">
+                        <div class="But06" type="button"  onClick="doit6()"></div>
+                    </li>
+                    <li class="split_line"></li>
+                    <li class="but07">
+                        <div class="But07" type="button"  onClick="doit7()"></div>
+                    </li>
+                    <li class="split_line"></li>
+                    <li class="but08">
+                        <div class="But08" type="button"  onClick="doit8()"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>

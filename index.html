@@ -93,6 +93,9 @@
 		        if (detailName == "其他成本") {
 		            app.to("idOthersCost", "show");
 		        }
+		        if (detailName == "日利润详细指标") {
+		            app.to("idDailyProfitDetail", "show");
+		        }
 		        
 		        // 主营业务
 		        if (detailName == "发电收入") {
@@ -259,6 +262,8 @@
 				sap.ui.localResources("view");
 				// 日利润
 				var powerPlantMap;
+				// 日利润详细指标
+				var dailyProfitDetail;
 				var internetPowerVolume;
 				// wait event
 				// 日利润
@@ -529,7 +534,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(tab);
-            		
+            		// 日利润详细
+            		dailyProfitDetail = sap.ui.view({
+            			id: "idDailyProfitDetail",
+            			viewName: "com.zhenergy.pcbi.view.dailyProfitDetail",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(dailyProfitDetail);
+            		 
             		powerPlantMap = sap.ui.view({
             			id: "idPowerPlantMap",
             			viewName: "com.zhenergy.pcbi.view.powerPlantMap",

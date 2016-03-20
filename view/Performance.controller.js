@@ -160,6 +160,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
                         fontWeight: 'bold'
                     }
                 },
+                legend: {
+                    show: true,
+                    textStyle:{
+                        color:'white'
+                    },
+                    selected: {
+                        title01: true,
+                        title02: true
+                    },
+                    data: [title01,title02]
+                },
                 itemStyle : {
                     normal : {
                         label : {
@@ -168,12 +179,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
                         }
                     }  
                 },
-                // tooltip: {
-                //     show: true,
-                //     trigger: 'yxis'
-                //     // formatter: "Temperature : <br/>{b}km : {c}°C"
-                // },
                 tooltip:{
+                   show: true,
 			       trigger:'axis' ,
 			       alwaysShowContent : true,
 			       backgroundColor:'rgb(234,234,234)',
@@ -225,6 +232,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
                         type: 'value',
                         axisLabel: {
                             formatter: '{value} ',
+                            margin:2,
                             textStyle: {
                                 color: color01
                             }
@@ -257,7 +265,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 							textStyle: {
 								color: color02
 							},
-							formatter: '{value}'
+							formatter: '{value}',
+                            margin:2
 						},
 						splitLine: {
 							// 			show: false
@@ -607,7 +616,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 		        rlr_coloImg="arrow-red2";
 		    }
 		}
-		var rlr_innerhtml='<div class="main_content_title" style="padding-top:25%;padding-left:40%;">日利润<span style="font-size:20px;">(万元)</span></div><div class="main_content_sz" style="font-size:65px;font-weight:bold;color:'+rlr_color+'">'+rlr_data+'</div><div class="main_content_sz">同比'+rlr_prec+'%<img src="img/'+rlr_coloImg+'.png" class="content_img"/></div>';
+		var rlr_innerhtml='<div class="main_content_title" style="padding-top:25%;padding-left:40%;"><div style="float:left;">日利润<span style="font-size:20px;">(万元)</div><div style="margin-left:0px;margin-top:5px;"><img height="35px" width="35px" src="img/iconfont-right.png"/></div></span></div><div class="main_content_sz" style="font-size:65px;font-weight:bold;color:'+rlr_color+'">'+rlr_data+'</div><div class="main_content_sz">同比'+rlr_prec+'%<img src="img/'+rlr_coloImg+'.png" class="content_img"/></div>';
 
                         
 		document.getElementById('sr').innerHTML = sr_innerhtml;
