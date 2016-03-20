@@ -422,7 +422,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -551,7 +551,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -828,7 +828,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -943,7 +943,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -1146,7 +1146,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -1195,7 +1195,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -1411,7 +1411,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -1498,7 +1498,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[sRes.results.length-1].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期

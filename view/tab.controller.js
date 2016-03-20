@@ -345,7 +345,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 		    var temY3;
 		    var temY4;
 			if (usetime_v02 == "发电量"){
-			    temY3 = 8000;
+			    temY3 = 50000;
 			    temY4 = 1000;
 			}else {
 			    temY3 = 20;
@@ -586,72 +586,72 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 
 		function drawbar01(e) {
 		    if (data_x4[0] != undefined && data_x3[0] != undefined) {
-    		    var percentValue = ((data_x4[0]/(parseInt(data_x3[0])+parseInt(data_x4[0])))*100).toFixed(2).toString()+'%';
+    		    var percentValue = ((data_x4[0]/(parseInt(data_x3[0])))*100).toFixed(2).toString()+'%';
     		    $('#percentbar01').html(percentValue);
 		    } else {
 		        $('#percentbar01').html('');
 		    }
-		    drawbar(e, data_x4[0], (parseInt(data_x3[0])+parseInt(data_x4[0])), 'bar01');
+		    drawbar(e, data_x4[0], parseInt(data_x3[0]), 'bar01');
 		}
 
 		function drawbar02(e) {
 		    if (data_x4[1] != undefined && data_x3[1] != undefined) {
-    		    var percentValue = ((data_x4[1]/(parseInt(data_x3[1])+parseInt(data_x4[1])))*100).toFixed(2).toString()+'%';
+    		    var percentValue = ((data_x4[1]/(parseInt(data_x3[1])))*100).toFixed(2).toString()+'%';
     		    $('#percentbar02').html(percentValue);
 		    } else {
 		        $('#percentbar02').html('');
 		    }
-		    drawbar(e, data_x4[1], (parseInt(data_x3[1])+parseInt(data_x4[1])), 'bar02');
+		    drawbar(e, data_x4[1], parseInt(data_x3[1]), 'bar02');
 		}
 
 		function drawbar03(e) {
 		    if (data_x4[2] != undefined && data_x3[2] != undefined) {
-    		    var percentValue = ((data_x4[2]/(parseInt(data_x3[2])+parseInt(data_x4[2])))*100).toFixed(2).toString()+'%';
+    		    var percentValue = ((data_x4[2]/(parseInt(data_x3[2])))*100).toFixed(2).toString()+'%';
     		    $('#percentbar03').html(percentValue);
 		    } else {
 		        $('#percentbar03').html('');
 		    }
-		    drawbar(e, data_x4[2], (parseInt(data_x3[2])+parseInt(data_x4[2])), 'bar03');
+		    drawbar(e, data_x4[2], parseInt(data_x3[2]), 'bar03');
 		}
 
 		function drawbar04(e) {
 		    if (data_x4[3] != undefined && data_x3[3] != undefined) {
-    		    var percentValue = ((data_x4[3]/(parseInt(data_x3[3])+parseInt(data_x4[3])))*100).toFixed(2).toString()+'%';
+    		    var percentValue = ((data_x4[3]/(parseInt(data_x3[3])))*100).toFixed(2).toString()+'%';
     		    $('#percentbar04').html(percentValue);
 		    } else {
 		        $('#percentbar04').html('');
 		    }
-		    drawbar(e, data_x4[3], (parseInt(data_x3[3])+parseInt(data_x4[3])), 'bar04');
+		    drawbar(e, data_x4[3], parseInt(data_x3[3]), 'bar04');
 		}
 
 		function drawbar05(e) {
 		    if (data_x4[4] != undefined && data_x3[4] != undefined) {
-    		    var percentValue = ((data_x4[4]/(parseInt(data_x3[4])+parseInt(data_x4[4])))*100).toFixed(2).toString()+'%';
+    		    var percentValue = ((data_x4[4]/(parseInt(data_x3[4])))*100).toFixed(2).toString()+'%';
     		    $('#percentbar05').html(percentValue);
 		    } else {
 		        $('#percentbar05').html('');
 		    }
-		    drawbar(e, data_x4[4], (parseInt(data_x3[4])+parseInt(data_x4[4])), 'bar05');
+		    drawbar(e, data_x4[4], parseInt(data_x3[4]), 'bar05');
 		}
 
 		function drawbar06(e) {
 		    if (data_x4[5] != undefined && data_x3[5] != undefined) {
-    		    var percentValue = ((data_x4[5]/(parseInt(data_x3[5])+parseInt(data_x4[5])))*100).toFixed(2).toString()+'%';
+    		    var percentValue = ((data_x4[5]/(parseInt(data_x3[5])))*100).toFixed(2).toString()+'%';
     		    $('#percentbar06').html(percentValue);
 		    } else {
 		        $('#percentbar06').html('');
 		    }
-		    drawbar(e, data_x4[5], (parseInt(data_x3[5])+parseInt(data_x4[5])), 'bar06');
+		    drawbar(e, data_x4[5], parseInt(data_x3[5]), 'bar06');
 		}
 
 		function drawbar07(e) {
 		    if (data_x4[6] != undefined && data_x3[6] != undefined) {
-		        var percentValue = ((data_x4[6]/(parseInt(data_x3[6])+parseInt(data_x4[6])))*100).toFixed(2).toString()+'%';
+    		    var percentValue = ((data_x4[6]/(parseInt(data_x3[6])))*100).toFixed(2).toString()+'%';
     		    $('#percentbar07').html(percentValue);
 		    } else {
                 $('#percentbar07').html('');
 		    }
-		    drawbar(e, data_x4[6], (parseInt(data_x3[6])+parseInt(data_x4[6])), 'bar07');
+		    drawbar(e, data_x4[6], parseInt(data_x3[6]), 'bar07');
 		}
 
 		function drawbar(e, data1, data2, id) {
@@ -669,7 +669,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 					borderWidth: 0
 
 				},
-				color: ['#FFB300','#33FF32'],
+				color: ['#33FF32','#FFB300'],
 
 				xAxis: [
 					{
@@ -697,7 +697,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
     								}
     							}
     						},
-    						data: [data2]
+    						data: [data1]
     				//         legendHoverLink : false,
     				// 		markPoint : {
     				// 		    symbol : 'droplet',
@@ -731,7 +731,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
     							}
     						},
     
-    						data: [data1]
+    						data: [data2]
     					}
     				]
 			};
