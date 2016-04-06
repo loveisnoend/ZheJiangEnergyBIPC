@@ -276,7 +276,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 				}
 			}
 			// 统计于日期
-			$('#safeProduceDaysIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#safeProduceDaysIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '电厂安全日天数') {
 				this.loadBaseDataDetail_SafeProduceDaysIncome(chartDivId, priceChartName, xData, KPI_SPD_V, KPI_RLC_UP);
 			}

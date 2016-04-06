@@ -207,7 +207,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				}
 			}
 			// 统计于日期
-			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
 			// 年龄 ≤ 30 31-40 41-50 51-55 ≥56
 			var ageChart = 'ageChart';
 			var ageChartData = [
@@ -369,7 +369,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				}
 			}
 			// 统计于日期
-			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_WokerPropertyAndTypeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}

@@ -193,7 +193,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				}
 			}
 			// 统计于日期
-			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '销售现金比率') {
 				this.loadBaseDataDetail_SupplySalesPercentIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -239,7 +239,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				}
 			}
 			// 统计于日期
-			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '销售现金比率') {
 				this.loadBaseDataDetail_SalesPercentIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}

@@ -244,7 +244,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCount", {
 				}
 			}
 			// 统计于日期
-			$('#workerCountIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#workerCountIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '单位万千瓦员工数') {
 				this.loadBaseDataDetail_WorkerCountIncome(chartDivId, priceChartName, xData, KPI_BZI_V, KPI_BZI_UP);
 			}

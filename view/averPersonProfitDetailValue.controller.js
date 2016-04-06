@@ -70,6 +70,55 @@ onInit: function() {
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '人均利润') {
+				this.loadBaseDataDetail_SupplyaverPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
+			}
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			sap.m.MessageToast.show("数据分析中,请稍后......", {
+				offset: '0 -110'
+			});
+		}, this);
+		sap.ui.getCore().getModel().read("SCREEN_FZBZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	},
+	// 获取个电厂指标-人均利润 SCREEN_FZBZ_03_RJLR
+	loadEachPlant_SupplyaverPersonProfitDetailValueIncome: function(chartDivId, priceChartName, powerPlantName) {
+
+		// 销售现金比率指标
+		// 销售现金比率
+		var KPI_XXR_V = new Array();
+
+		// 销售现金比率同比
+		var KPI_XXR_UP = new Array();
+
+		var dataStatisticDate = '';
+		var mParameters = {};
+		mParameters['async'] = true;
+		mParameters['success'] = jQuery.proxy(function(sRes) {
+
+			// 各个电厂月份指标
+			var xData = new Array();
+			for (var i in sRes.results) {
+				// 销售现金比率同比
+				if (sRes.results[i].KPI_TYPE == '人均利润同比') {
+					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
+				}
+				// 销售现金比率
+				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
+					xData.push(sRes.results[i].KPI_DATE);
+				}
+				// 收入统计日期
+				if (dataStatisticDate == '') {
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
+						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				}
+			}
+			// 统计于日期
+// 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_SupplyaverPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
@@ -117,6 +166,7 @@ onInit: function() {
 			}
 			// 统计于日期
 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_averPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}

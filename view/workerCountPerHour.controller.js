@@ -218,7 +218,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			// 				}
 			// 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			if (priceChartName == '发电生产率') {
 				this.loadBaseDataDetail_SupplyWorkerCountPerHourIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -277,7 +281,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			if (priceChartName == '发电生产率') {
 				this.loadBaseDataDetail_WorkerCountPerHourIncome(chartDivId, priceChartName, xData, KPI_DLR_V, KPI_DLR_UP);
 			}

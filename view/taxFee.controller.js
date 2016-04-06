@@ -82,7 +82,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 				}
 			}
 			// 统计于日期
-			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '所得税费用') {
 				this.taxFee(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -138,7 +138,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 				}
 			}
 			// 统计于日期
-			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '所得税费用') {
 				this.loadBaseDataDetail_TaxFeeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}

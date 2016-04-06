@@ -422,6 +422,8 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			var eachCostData = new Array();
 			// 各电厂名
 			var eachPowerPlantName = new Array();
+<<<<<<< HEAD
+=======
 			// 统计于日期
 			var dataStatisticDate = '';
 
@@ -439,8 +441,30 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			// 统计于日期
+<<<<<<< HEAD
+			var dataStatisticDate = '';
+
+			for (var i in sRes.results) {
+				if (sRes.results[i].KPI_DESC != "集团") {
+					if (sRes.results[i].KPI_TYPE == priceChartName) {
+						var tempCost = sRes.results[i].KPI_VALUE; //10000).toFixed(2);
+						eachCostData.push(tempCost);
+						eachPowerPlantName.push(sRes.results[i].KPI_DESC);
+					}
+					if (dataStatisticDate == '') {
+						dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[
+							i].KPI_DATE.substring(6, 8);
+					}
+				}
+			}
+
+			// 统计于日期
+// 			$('#othersCostStatisticDate').html(dataStatisticDate);
+=======
 			$('#othersCostStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 
 			this.loadEachCostChartdetail(chartDivId, priceChartName, eachPowerPlantName, eachCostData);
 			if (busy) {
@@ -614,7 +638,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			}
 
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#othersCostStatisticDate').html(dataStatisticDate);
+=======
 			$('#othersCostStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 
 			this.loadPriceChartdetail(chartDivId, priceChartName, dataThisYear, dataLastYear, powerPlantName);
 			if (busy) {

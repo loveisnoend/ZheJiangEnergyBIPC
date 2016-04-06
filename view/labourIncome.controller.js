@@ -356,7 +356,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 				}
 			}
 			// 统计于日期
-			$('#labourIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#labourIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '劳务收入') {
 				this.loadBaseDataDetail_SupplyLabourIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -410,7 +410,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 				}
 			}
 			// 统计于日期
-			$('#labourIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#labourIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '劳务收入') {
 				this.loadBaseDataDetail_OtherLabourIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}

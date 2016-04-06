@@ -201,7 +201,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				}
 			}
 			// 统计于日期
-			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净资产') {
 				this.pureProperty(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -257,7 +257,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				}
 			}
 			// 统计于日期
-			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净资产') {
 				this.loadBaseDataDetail_PurePropertyIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}

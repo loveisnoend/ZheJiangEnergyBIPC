@@ -432,7 +432,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_SalesIncome(chartDivId, priceChartName, xData, KPI_HYS_V, KPI_ZGS_V, KPI_TDS_V, KPI_JJS_V, KPI_OES_V,
 				KPI_RLS_V, KPI_ZFS_V, KPI_HYS_UP, KPI_ZGS_UP, KPI_TDS_UP, KPI_JJS_UP, KPI_OES_UP, KPI_RLS_UP, KPI_ZFS_UP);
 			if (busy) {
@@ -565,7 +569,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_SalesIncome(chartDivId, priceChartName, xData, KPI_HYS_V, KPI_ZGS_V, KPI_TDS_V, KPI_JJS_V, KPI_OES_V,
 				KPI_RLS_V, KPI_ZFS_V, KPI_HYS_UP, KPI_ZGS_UP, KPI_TDS_UP, KPI_JJS_UP, KPI_OES_UP, KPI_RLS_UP, KPI_ZFS_UP);
 			if (busy) {
@@ -854,7 +862,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_SubsidyIncome(chartDivId, priceChartName, xData, KPI_ZSS_V, KPI_TLS_V, KPI_TXS_V, KPI_CCS_V, KPI_DPS_V,
 				KPI_KHS_V, KPI_ZSS_UP, KPI_TLS_UP, KPI_TXS_UP, KPI_CCS_UP, KPI_DPS_UP, KPI_KHS_UP);
 			if (busy) {
@@ -973,7 +985,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_SubsidyIncome(chartDivId, priceChartName, xData, KPI_ZSS_V, KPI_TLS_V, KPI_TXS_V, KPI_CCS_V, KPI_DPS_V,
 				KPI_KHS_V, KPI_ZSS_UP, KPI_TLS_UP, KPI_TXS_UP, KPI_CCS_UP, KPI_DPS_UP, KPI_KHS_UP);
 			if (busy) {
@@ -1188,7 +1204,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_SubServiceIncome(chartDivId, priceChartName, xData, KPI_FZS_V, KPI_FZS_UP);
 			if (busy) {
 				busy.close();
@@ -1240,7 +1260,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_SubServiceIncome(chartDivId, priceChartName, xData, KPI_FZS_V, KPI_FZS_UP);
 			if (busy) {
 				busy.close();
@@ -1466,7 +1490,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_PowerOutputIncome(chartDivId, priceChartName, xData, KPI_FDS_V, KPI_SDS_V, KPI_BTS_V, KPI_FZS_V, KPI_FDS_UP,
 				KPI_SDS_UP, KPI_BTS_UP, KPI_FZS_UP);
 			if (busy) {
@@ -1557,7 +1585,11 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			this.loadBaseDataDetail_PowerOutputIncome(chartDivId, priceChartName, xData, KPI_FDS_V, KPI_SDS_V, KPI_BTS_V, KPI_FZS_V, KPI_FDS_UP,
 				KPI_SDS_UP, KPI_BTS_UP, KPI_FZS_UP);
 			if (busy) {

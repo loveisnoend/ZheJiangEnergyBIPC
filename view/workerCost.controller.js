@@ -218,7 +218,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			// 				}
 			// 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			if (priceChartName == '单位效能') {
 				this.loadBaseDataDetail_SupplyWorkerCostIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -277,7 +281,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 				}
 			}
 			// 统计于日期
+<<<<<<< HEAD
+// 			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
+=======
 			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
+>>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			if (priceChartName == '单位效能') {
 				this.loadBaseDataDetail_WorkerCostIncome(chartDivId, priceChartName, xData, KPI_RLC_V, KPI_RLC_UP);
 			}

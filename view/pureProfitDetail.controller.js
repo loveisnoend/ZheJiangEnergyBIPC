@@ -82,7 +82,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfitDetail", {
 				}
 			}
 			// 统计于日期
-			$('#pureProfitDetailIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#pureProfitDetailIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净利润') {
 				this.pureProfitDetail(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -138,7 +138,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfitDetail", {
 				}
 			}
 			// 统计于日期
-			$('#pureProfitDetailIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#pureProfitDetailIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净利润') {
 				this.loadBaseDataDetail_PureProfitDetailIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
