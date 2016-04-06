@@ -2,20 +2,20 @@
 function getRealNameByPowerplantname(plantName) {
     var realName = '';
 	if (plantName == '凤台发电') {
-        realName = '淮南';
+        realName = '凤台电厂';
     }
     if (plantName == '兰溪发电') {
-        realName = '金华';
+        realName = '浙江浙能兰溪发电有限责任公司';
     }
     if (plantName == '台二发电') {
-        realName = '台州';
+        realName = '浙江浙能台州第二发电有限责任公司';
     }
     if (plantName == '集团') {
-        realName = '杭州';
+        realName = '浙能电力股份有限公司';
     }
     // 杭州
     if (plantName == '电力股份本部') {
-        realName = '浙能电力股份有限公司';
+        realName = '浙能电力股份本部';
     }
     if (plantName == '萧山发电') {
         realName = '萧山发电厂';
@@ -121,28 +121,28 @@ function getRealNameByPowerplantname(plantName) {
     }
     // 新疆
     if (plantName == '阿克苏热电') {
-        realName = '浙能阿克苏热电有限公司';
+        realName = '阿克苏热电';
     }
     // 宁夏
     if (plantName == '枣泉发电') {
-        realName = '宁夏枣泉发电有限责任公司';
+        realName = '枣泉发电';
     }
     return realName;
 }
 // get powerplant name by real name
 function getPowerplantnameByRealName(realName) {
     var powerPlantName = '';
-	if (realName == '金华') {
+	if (realName == '浙江浙能兰溪发电有限责任公司') {
 	    powerPlantName = '兰溪电厂';
-	} else if (realName == '台州') {
+	} else if (realName == '浙江浙能台州第二发电有限责任公司') {
 	    powerPlantName = '台二电厂';
-	} else if (realName == '杭州') {
+	} else if (realName == '浙能电力股份有限公司') {
 	    powerPlantName = '集团';
-	} else if (realName == '淮南') {
+	} else if (realName == '凤台电厂') {
 	    powerPlantName = '凤台电厂';
 	}
 	// 杭州
-    if (realName == '浙能电力股份有限公司') {
+    if (realName == '浙能电力股份本部') {
         powerPlantName = '电力股份本部';
     }
     if (realName == '萧山发电厂') {
@@ -249,11 +249,11 @@ function getPowerplantnameByRealName(realName) {
         powerPlantName = '常山燃气';
     }
     // 新疆
-    if (realName == '浙能阿克苏热电有限公司') {
+    if (realName == '阿克苏热电') {
         powerPlantName = '阿克苏热电';
     }
     // 宁夏
-    if (realName == '宁夏枣泉发电有限责任公司') {
+    if (realName == '枣泉发电') {
         powerPlantName = '枣泉发电';
     }
 	return powerPlantName;
@@ -623,10 +623,10 @@ function _loadData03(valueCPIhuanbi,valueGDP,valueCPItongbi,valuePPItongbi,value
 function returnDefualtPowerPlant(areaName){
     if (areaName == 'zhejiang') {
     	var zhejiang_dataStr = '[';
-        zhejiang_dataStr += '{"name":"杭州","inputPlanValue":""},';
-        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份本部","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能绍兴滨海热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能钱清发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能绍兴滨海热力有限公司","inputPlanValue":""},';
-        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"金华","inputPlanValue":""},{"name":"台州","inputPlanValue":""},';	  
+        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"浙江浙能兰溪发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能台州第二发电有限责任公司","inputPlanValue":""},';	  
         zhejiang_dataStr += '{"name":"浙江浙能嘉华发电有限公司","inputPlanValue":""},{"name":"浙江浙能长兴发电有限公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能镇海发电有限责任公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能镇海联合发电有限公司","inputPlanValue":""},{"name":"浙江浙能北仑发电有限公司","inputPlanValue":""},{"name":"浙江浙能镇海天然气发电有限责任公司","inputPlanValue":""},';
@@ -639,10 +639,10 @@ function returnDefualtPowerPlant(areaName){
     }
     if (areaName == 'zhejiangAddNew') {
     	var zhejiang_dataStr = '[';
-        zhejiang_dataStr += '{"name":"杭州","inputPlanValue":""},';
-        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份本部","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能绍兴滨海热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能钱清发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能绍兴滨海热力有限公司","inputPlanValue":""},';
-        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"金华","inputPlanValue":""},{"name":"台州","inputPlanValue":""},';	  
+        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"浙江浙能兰溪发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能台州第二发电有限责任公司","inputPlanValue":""},';	  
         zhejiang_dataStr += '{"name":"浙江浙能嘉华发电有限公司","inputPlanValue":""},{"name":"浙江浙能长兴发电有限公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能镇海发电有限责任公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能镇海联合发电有限公司","inputPlanValue":""},{"name":"浙江浙能北仑发电有限公司","inputPlanValue":""},{"name":"浙江浙能镇海天然气发电有限责任公司","inputPlanValue":""},';
@@ -661,10 +661,10 @@ function returnDefualtPowerPlant(areaName){
     }
     if (areaName == 'zhejiangAddNew002') {
     	var zhejiang_dataStr = '[';
-        zhejiang_dataStr += '{"name":"杭州","inputPlanValue":""},';
-        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙能电力股份本部","inputPlanValue":""},{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能绍兴滨海热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能钱清发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能绍兴滨海热力有限公司","inputPlanValue":""},';
-        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"金华","inputPlanValue":""},{"name":"台州","inputPlanValue":""},';	  
+        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"浙江浙能兰溪发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能台州第二发电有限责任公司","inputPlanValue":""},';	  
         zhejiang_dataStr += '{"name":"浙江浙能嘉华发电有限公司","inputPlanValue":""},{"name":"浙江浙能长兴发电有限公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能镇海发电有限责任公司","inputPlanValue":""},';
         zhejiang_dataStr += '{"name":"浙江浙能镇海联合发电有限公司","inputPlanValue":""},{"name":"浙江浙能北仑发电有限公司","inputPlanValue":""},{"name":"浙江浙能镇海天然气发电有限责任公司","inputPlanValue":""},';

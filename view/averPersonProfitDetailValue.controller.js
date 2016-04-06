@@ -1,11 +1,6 @@
-sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
+sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfitDetailValue", {
 
-	/**
-	 * Called when a controller detail_01 instantiated and its View controls (if available) are already created.
-	 * Can be used to modify thdetail_01e View before it is displayed, to bind event handlers and do other one-time initialization.
-	 * @memberOf com.zhenergy.bi.view.powerPlantMap
-	 */
-	onInit: function() {
+onInit: function() {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
@@ -17,8 +12,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 	// eventment before show the page 
 	onAfterShow: function() {
 
-		document.getElementById('internetDetailSafeProduceDays').style.display = "";
-		document.getElementById('rlcb_detailSafeProduceDays').style.display = "none";
+		document.getElementById('internetDetailaverPersonProfitDetailValue').style.display = "";
+		document.getElementById('rlcb_detailaverPersonProfitDetailValue').style.display = "none";
 		// this.loadChart();
 		this._loadData01();
 		// 设定头部跑马灯信息 common.js
@@ -37,236 +32,35 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 		var akesu_JsonData = JSON.parse(akesu_dataStr);
 		var zhaoquan_JsonData = JSON.parse(zhaoquan_dataStr);
 		this.loadChart(zhejiang_JsonData, huaiNan_JsonData, akesu_JsonData, zhaoquan_JsonData);
-		// change the page skin
 		changeTheSkinOfPage();
 	},
-	// 	loadmjChart: function(divId){
-	//         require(
-	//         [
-	//             'echarts',
-	//             'echarts/chart/line',
-	//             'echarts/chart/bar'
-	//         ],
-	// 		draw);
 
-	// 		function draw(e){
-	// 		    document.getElementById('caloriSafeProduceDaysPlantNameSafeProduceDays').innerHTML = document.getElementById('powerPlantMainDetailTitleSafeProduceDays').innerHTML;
-	// 		    var mychart = e.init(document.getElementById(divId));
-	// 		    var option = {
-	// 		        title:{
-	//             	text:'煤炭价格变化',
-	//             	textStyle:{
-	// 					color:'white',
-	// 					fontFamily:'微软雅黑'
-	// 				},
-	// 				x:'50',
-	// 				y:'10'
-	//             },
-	//   			legend: {
-	//               	orient:'horizontal',
-	//               	x:'350',
-	//               	y:'15',
-	//               	textStyle:{
-	// 					color:'white',
-	// 					fontFamily:'微软雅黑'
-	// 				},
-	//     			data:['实际采购价格','秦港煤价']
-	//   		 	},
-	//   			color: ['#2DE630', '#E52DE6','white'],
-	// 			grid: {
-	//                 y1:100,
-	//                 y2:100
-	// 			},
-	// 			xAxis: [
-	// 				{
 
-	// 					//show: false,
-	// 					type: 'category',
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}'
-	// 					},
-	// 					data: ['7/23', '7/24', '7/25', '7/26', '7/27', '7/28', '7/29', '7/30']
-	//                 }
-	//             ],
-	// 			yAxis: [
-	// 				{
-	// 					name: '',
-	// 					type: 'value',
-	// 					axisLine: {
-	// 						show: false
-	// 					},
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}'
-	// 					},
-	// 					// 		splitLine: {
-	// 					// 			show: false
-	// 					// 		},
-	// 					splitLine: {
-	// 						// 			show: false
-	// 						lineStyle: {
-	// 							color: 'rgba(64,64,64,0.5)'
-	// 						}
-	// 					}
-	//                 },
-	// 				{
-	// 					name: '',
-	// 					type: 'value',
-	// 					axisLine: {
-	// 						show: false
-	// 					},
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}%'
-	// 					},
-	// 					splitLine: {
-	// 						// 			show: false
-	// 						lineStyle: {
-	// 							//color: 'rgba(64,64,64,0.5)',
-	// 						}
-	// 					}
-	//                 }
-	//             ],
-	// 			series: [
-	// 				{
-	// 					name: '实际采购价格',
-	// 					type: 'line',
-	// 					smooth: true,
-	//                  	barGap: '0%',
-	//                   	barCategoryGap: '50%',
-	// 					// itemStyle: {normal: {areaStyle: {type: 'default'}}},
-	// 					data: ['0.50','0.18','0.37','0.18','0.50','0.18','0.50','0.18','0.18','0.37','0.18']
-	//                 },
-	// 				{
-	// 					name: '秦港煤价',
-	// 					type: 'line',
-	// 					smooth: true,
+	// 获取集团指标-人均利润 SCREEN_FZBZ_01_V01
+	loadBase_SupplyaverPersonProfitDetailValueIncome: function(chartDivId, priceChartName) {
 
-	// 					//itemStyle: {normal: {areaStyle: {type: 'default'}}},
-	// 					data: ['0.30','0.14','0.34','0.13','0.40','0.12','0.40','0.08','0.15','0.27','0.14']
+		// 人均利润指标
+		// 人均利润
+		var KPI_XXR_V = new Array();
 
-	//                 }
-	//             ]
-	// 		    };
-	// 		    mychart.setOption(option);
-	// 		}
+		// 人均利润同比
+		var KPI_XXR_UP = new Array();
 
-	// 	},
-
-	// 获取集团指标-电厂安全日天数 SCREEN_FZBZ_02_V02
-	// 	loadBase_SupplySafeProduceDaysIncome : function (chartDivId, priceChartName) {
-
-	//         // 电厂安全日天数指标
-	//         // 电厂安全日天数
-	//         var KPI_LWS_V = new Array();
-
-	//         // 电厂安全日天数同比
-	//         var KPI_LWS_UP = new Array();
-
-	//         var dataStatisticDate = '';
-	// 	    var mParameters = {};
-	// 		mParameters['async'] = true;
-	// 		mParameters['success'] = jQuery.proxy(function(sRes) {
-
-	// 			// 各个电厂
-	// 			var xData = new Array();
-	// 			for (var i in sRes.results) {
-	// 			    // 电厂安全日天数收入同比
-	// 				if (sRes.results[i].KPI_TYPE == '电厂安全日天数_同比'){ 
-	//                     KPI_LWS_UP.push(sRes.results[i].KPI_VALUE);
-	//                     xData.push(sRes.results[i].KPI_DESC);
-	// 				}
-	// 				// 电厂安全日天数收入
-	// 				if (sRes.results[i].KPI_TYPE == '电厂安全日天数'){ 
-	//                     KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
-	// 				}
-	// 				// 收入统计日期
-	// 				if (dataStatisticDate == '') {
-	// 				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
-	// 				}
-	// 			}
-	// 			// 统计于日期
-	// 			$('#safeProduceDaysIncomeStatisticDate').html(dataStatisticDate);
-	// 			if (priceChartName == '电厂安全日天数') {
-	// 			    this.loadBaseDataDetail_SupplySafeProduceDaysIncome(chartDivId, priceChartName,xData,KPI_LWS_V,KPI_LWS_UP);
-	// 			}
-	// 		}, this);
-	// 		mParameters['error'] = jQuery.proxy(function(eRes) {
-	// 			sap.m.MessageToast.show("获取数据失败",{offset:'0 -110'});
-	// 		}, this);
-	// 	    sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
-	// 	},
-	// 获取个电厂指标-电厂安全日天数 SCREEN_FZBZ_02_V04
-	loadEachPlant_SupplySafeProduceDaysIncome: function(chartDivId, priceChartName, powerPlantName) {
-		var busy = new sap.m.BusyDialog({
-			close: function(event) {}
-		});
-		if (busy) {
-			busy.open();
-		}
-		// 电厂安全日天数指标
-		// 电厂安全日天数
-		var KPI_SPD_V = new Array();
-
-		// 电厂安全日天数同比
-		var KPI_RLC_UP = new Array();
-
-		// TODO Wait for the selected date functionality
 		var dataStatisticDate = '';
-
-		// 	    var mParameters = "/SCREEN_FXKZ_01_V01.xsodata/PARAMETER(PUR_NAME='"+usrid+"',PUR_DATE='"+safeProduceDaysDate+"')/Results?&$format=json";
-
-		// 	    var mResults = makeCorsRequest(mParameters);
-
-		// 	    if (mResults != '') {
-		//             var sResAll = JSON.parse(mResults);
-		//             var sRes = sResAll.d;
-		// 			// 各个电厂月份指标
-		// 			var xData = new Array();
-		// 			for (var i in sRes.results) {
-		// 			    // 电厂安全日天数收入同比
-		// 				// if (sRes.results[i].KPI_TYPE == '电厂安全日天数_同比'){ 
-		//     //                 KPI_RLC_UP.push(sRes.results[i].KPI_VALUE);
-		// 				// }
-		// 				// 电厂安全日天数收入
-		// 				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC != powerPlantName){ 
-		//                     KPI_SPD_V.push(sRes.results[i].KPI_VALUE);
-		//                     xData.push(sRes.results[i].KPI_DESC);
-		// 				}
-		// 				// 收入统计日期
-		// 				if (dataStatisticDate == '') {
-		// 				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[i].KPI_DATE.substring(6,8);
-		// 				}
-		// 			}
-		// 			// 统计于日期
-		// 			$('#safeProduceDaysIncomeStatisticDate').html(dataStatisticDate);
-		// 			if (priceChartName == '电厂安全日天数') {
-		// 			    this.loadBaseDataDetail_SafeProduceDaysIncome(chartDivId, priceChartName,xData,KPI_SPD_V,KPI_RLC_UP);
-		// 			}
-		// 	    }
-
-		// TODO original functionality
 		var mParameters = {};
 		mParameters['async'] = true;
 		mParameters['success'] = jQuery.proxy(function(sRes) {
 
-			// 各个电厂月份指标
+			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 电厂安全日天数收入同比
-				// if (sRes.results[i].KPI_TYPE == '电厂安全日天数_同比'){ 
-				//                 KPI_RLC_UP.push(sRes.results[i].KPI_VALUE);
-				// }
-				// 电厂安全日天数收入
-				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC != powerPlantName) {
-					KPI_SPD_V.push(sRes.results[i].KPI_VALUE);
+				// 人均利润同比
+				if (sRes.results[i].KPI_TYPE == '人均利润同比') {
+					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
+				}
+				// 人均利润
+				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DESC);
 				}
 				// 收入统计日期
@@ -276,12 +70,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 				}
 			}
 			// 统计于日期
-			$('#safeProduceDaysIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '电厂安全日天数') {
-				this.loadBaseDataDetail_SafeProduceDaysIncome(chartDivId, priceChartName, xData, KPI_SPD_V, KPI_RLC_UP);
-			}
-			if (busy) {
-				busy.close();
+			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '人均利润') {
+				this.loadBaseDataDetail_SupplyaverPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
 		}, this);
 		mParameters['error'] = jQuery.proxy(function(eRes) {
@@ -289,10 +80,57 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FXKZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("SCREEN_FZBZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团-电厂安全日天数
-	loadBaseDataDetail_SupplySafeProduceDaysIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {
+	// 获取个电厂指标-人均利润 SCREEN_FZBZ_03_RJLR
+	loadEachPlant_SupplyaverPersonProfitDetailValueIncome: function(chartDivId, priceChartName, powerPlantName) {
+
+		// 销售现金比率指标
+		// 销售现金比率
+		var KPI_XXR_V = new Array();
+
+		// 销售现金比率同比
+		var KPI_XXR_UP = new Array();
+
+		var dataStatisticDate = '';
+		var mParameters = {};
+		mParameters['async'] = true;
+		mParameters['success'] = jQuery.proxy(function(sRes) {
+
+			// 各个电厂月份指标
+			var xData = new Array();
+			for (var i in sRes.results) {
+				// 销售现金比率同比
+				if (sRes.results[i].KPI_TYPE == '人均利润同比') {
+					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
+				}
+				// 销售现金比率
+				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
+					xData.push(sRes.results[i].KPI_DATE);
+				}
+				// 收入统计日期
+				if (dataStatisticDate == '') {
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
+						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				}
+			}
+			// 统计于日期
+			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '人均利润') {
+				this.loadBaseDataDetail_averPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
+			}
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			sap.m.MessageToast.show("数据分析中,请稍后......", {
+				offset: '0 -110'
+			});
+		}, this);
+		sap.ui.getCore().getModel().read("SCREEN_FZBZ_03_RJLR/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	},
+	// 加载集团-人均利润 
+	loadBaseDataDetail_SupplyaverPersonProfitDetailValueIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
+
 		require(
             [
                 'echarts',
@@ -303,15 +141,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
+				if(document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
 .innerHTML=="集团"){
-   document.getElementById('profitNameSafeProduceDays').innerHTML="电力股份公司";
+   document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML="电力股份公司";
 }else{
-document.getElementById('profitNameSafeProduceDays').innerHTML = document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
+document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
 .innerHTML;
 }
-// 			document.getElementById('profitNameSafeProduceDays').innerHTML = document.getElementById('powerPlantMainDetailTitleSafeProduceDays').innerHTML;
-			var color1 = '#2DE630';
+// 			document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue').innerHTML;
+			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {
 				title: {
@@ -332,7 +170,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 						color: 'white',
 						fontFamily: '微软雅黑'
 					},
-					data: ['电厂安全日天数']
+					data: ['人均利润']
 				},
 				tooltip: {
 					trigger: 'axis',
@@ -345,7 +183,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 						type: 'none'
 					}
 				},
-				// color: [color1, color2],
+				color: [color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -370,14 +208,14 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
                         ],
 				yAxis: [
 					{
-						name: '单位:百万元',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
 						},
 						axisLabel: {
 							textStyle: {
-								color: color1
+								color: 'white'
 							},
 							formatter: '{value}'
 						},
@@ -397,7 +235,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
                         ],
 				series: [
 					{
-						name: '电厂安全日天数',
+						name: '人均利润',
 						type: 'bar',
 						symbol: 'emptyCircle',
 						symbolSize: 5,
@@ -412,35 +250,20 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 								}
 							}
 						},
-						data: KPI_RJS_V
+						data: KPI_XXR_V
                             }
-            //                 {
-            //                     name:'电厂安全日天数同比',
-            //                     type:'line',
-            //                     symbol:'emptyCircle',
-        				// 		symbolSize:5,
-        				// 		itemStyle: {
-        				// 		    normal: {
-        				// 		        label : {
-        				// 		            show :true,
-        				// 		            position : 'top',
-        				// 		            textStyle:{
-        				// 		                color : 'white'
-        				// 		            }
-        				// 		        }
-        				// 		    }
-        				// 		},
-            //                     barWidth : 50,
-            //                     data:KPI_LWS_UP
-            //                 }
                         ]
 			};
 
 			mychart.setOption(option);
+			// 关闭加载事件
+			if (busy) {
+				busy.close();
+			}
 		}
 	},
-	// 加载集团-电厂安全日天数指标
-	loadBaseDataDetail_SafeProduceDaysIncome: function(chartDivId, priceChartName, xData, KPI_RLC_V, KPI_RLC_UP) {
+	// 加载集团-人均利润
+	loadBaseDataDetail_averPersonProfitDetailValueIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
 		require(
             [
                 'echarts',
@@ -451,14 +274,14 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
+			if(document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
 .innerHTML=="集团"){
-   document.getElementById('profitNameSafeProduceDays').innerHTML="电力股份公司";
+   document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML="电力股份公司";
 }else{
-document.getElementById('profitNameSafeProduceDays').innerHTML = document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
+document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
 .innerHTML;
 }
-// 			document.getElementById('profitNameSafeProduceDays').innerHTML = document.getElementById('powerPlantMainDetailTitleSafeProduceDays').innerHTML;
+// 			document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {
@@ -507,19 +330,14 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 							textStyle: {
 								color: 'white'
 							},
-							formatter: '{value}',
-							show: true,
-							interval: 'auto',
-							inside: false,
-							rotate: 30,
-							margin: 8
+							formatter: '{value}'
 						},
 						data: xData
                             }
                         ],
 				yAxis: [
 					{
-						name: '单位:天',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -561,12 +379,18 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 								}
 							}
 						},
-						data: KPI_RLC_V
+						barWidth: 50,
+						data: KPI_XXR_V
                             }
                         ]
 			};
 
 			mychart.setOption(option);
+
+			// 关闭加载事件
+			if (busy) {
+				busy.close();
+			}
 		}
 	},
 	//load the chart map
@@ -595,7 +419,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			draw);
 
 		function draw(e) {
-			drawSafeProduceDaysDistribution(e);
+			drawaverPersonProfitDetailValueDistribution(e);
 
 			//   drawpie01(e);
 			// 			drawbar01(e);
@@ -604,14 +428,14 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			// 			drawbar04(e);
 		}
 
-		function drawSafeProduceDaysDistribution(ec) {
+		function drawaverPersonProfitDetailValueDistribution(ec) {
 
 			// event configure    
 			var ecConfig = require('echarts/config');
 
 			///////////////////////////////////中国地图/////////////////////////////////////			
 			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapSafeProduceDays'));
+			myChart3 = ec.init(document.getElementById('chinaMapaverPersonProfitDetailValue'));
 			option3 = {
 				tooltip: {
 					trigger: 'item',
@@ -647,10 +471,10 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			// 为echarts对象加载数据 
 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleSafeProduceDays').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			var myChart4 = ec.init(document.getElementById('powerPlantMapSafeProduceDays'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapaverPersonProfitDetailValue'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -835,8 +659,8 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			};
 			myChart4.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSafeProduceDays').style.display = "";
-				document.getElementById('rlcb_detailSafeProduceDays').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitDetailValue').style.display = "none";
 
 				var mapSeries = option4.series[0];
 
@@ -899,7 +723,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapSafeProduceDays'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapaverPersonProfitDetailValue'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -1012,8 +836,8 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			};
 			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSafeProduceDays').style.display = "";
-				document.getElementById('rlcb_detailSafeProduceDays').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitDetailValue').style.display = "none";
 
 				var mapSeries = option5.series[0];
 
@@ -1060,7 +884,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapSafeProduceDays'));
+			myChart6 = ec.init(document.getElementById('akesuMapaverPersonProfitDetailValue'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -1173,8 +997,8 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			};
 			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSafeProduceDays').style.display = "";
-				document.getElementById('rlcb_detailSafeProduceDays').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitDetailValue').style.display = "none";
 
 				var mapSeries = option6.series[0];
 
@@ -1221,7 +1045,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapSafeProduceDays'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapaverPersonProfitDetailValue'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {
@@ -1334,8 +1158,8 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			};
 			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSafeProduceDays').style.display = "";
-				document.getElementById('rlcb_detailSafeProduceDays').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitDetailValue').style.display = "none";
 
 				var mapSeries = option7.series[0];
 
@@ -1507,33 +1331,41 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 		}
 
 		function drawpie01(e) {
-			drawpie(e, 3, 4, 'detail_pieSafeProduceDays');
+			drawpie(e, 3, 4, 'detail_pieaverPersonProfitDetailValue');
 		}
 
 		function drawbar01(e) {
-			drawbar(e, 4, 6, 'detail_01SafeProduceDays');
+			drawbar(e, 4, 6, 'detail_01averPersonProfitDetailValue');
 		}
 
 		function drawbar02(e) {
-			drawbar(e, 7, 3, 'detail_02SafeProduceDays');
+			drawbar(e, 7, 3, 'detail_02averPersonProfitDetailValue');
 		}
 
 		function drawbar03(e) {
-			drawbar(e, 3, 7, 'detail_03SafeProduceDays');
+			drawbar(e, 3, 7, 'detail_03averPersonProfitDetailValue');
 		}
 
 		function drawbar04(e) {
-			drawbar(e, 8, 2, 'detail_04SafeProduceDays');
+			drawbar(e, 8, 2, 'detail_04averPersonProfitDetailValue');
 		}
 		// 设置Chart的数据
 		function setChartData(ec, mapSeries, dataIndex) {
 
+			// 加载等待事件
+			busy = new sap.m.BusyDialog({
+				close: function(event) {}
+			});
+			if (busy) {
+				busy.open();
+			}
+
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			document.getElementById('powerPlantMainDetailTitleSafeProduceDays').innerHTML = powerPlantName;
+			document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue').innerHTML = powerPlantName;
 
-			var priceChartId = "priceDetailDivSafeProduceDays";
-			var priceChartName = "电厂安全日天数";
+			var priceChartId = "priceDetailDivaverPersonProfitDetailValue";
+			var priceChartName = "人均利润";
 			if (powerPlantName == '台二电厂') {
 				powerPlantName = '台二发电';
 			}
@@ -1544,68 +1376,14 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 				powerPlantName = '凤台发电';
 			}
 			if (powerPlantName == '集团') {
-				safeProduceDays.getController().loadEachPlant_SupplySafeProduceDaysIncome(priceChartId, priceChartName, powerPlantName);
+				// TODO
+				averPersonProfitDetailValuePage.getController().loadBase_SupplyaverPersonProfitDetailValueIncome(priceChartId, priceChartName);
+				//averPersonProfitDetailValue.getController().loadEachPlant_SupplyaverPersonProfitDetailValueIncome(priceChartId, priceChartName, powerPlantName);
+			} else {
+				averPersonProfitDetailValuePage.getController().loadEachPlant_SupplyaverPersonProfitDetailValueIncome(priceChartId, priceChartName, powerPlantName);
 			}
-			// 	else {
-			// 	   safeProduceDays.getController().loadEachPlant_SupplySafeProduceDaysIncome(priceChartId, priceChartName, powerPlantName);
-			// 	}
-			//  // 自产蒸汽
-			//  var selfSteamIncomeVal = mapSeries.markPoint.data[dataIndex].selfSteamIncomeVal;
-			//  if (selfSteamIncomeVal != undefined) {
-			//      document.getElementById('travelPriceSafeProduceDays').innerHTML =  selfSteamIncomeVal;
-			//  } else {
-			//      document.getElementById('travelPriceSafeProduceDays').innerHTML = 0;
-			//      selfSteamIncomeVal = 0;
-			//  }
-			//  // 外购蒸汽
-			//  var outSteamIncomeVal = mapSeries.markPoint.data[dataIndex].outSteamIncomeVal;
-			//  if (outSteamIncomeVal != undefined) {
-			//      document.getElementById('coalPriceSafeProduceDays').innerHTML = outSteamIncomeVal;
-			//  } else {
-			//      document.getElementById('coalPriceSafeProduceDays').innerHTML = 0;
-			//      outSteamIncomeVal = 0;
-			//  }
-			//  // 热水
-			//  var safeProduceDaysWaterIncomeVal = mapSeries.markPoint.data[dataIndex].safeProduceDaysWaterIncomeVal;
-			//  if (safeProduceDaysWaterIncomeVal != undefined) {
-			//      document.getElementById('watt1SafeProduceDays').innerHTML =  safeProduceDaysWaterIncomeVal;
-			//  } else {
-			//      document.getElementById('watt1SafeProduceDays').innerHTML = 0;
-			//      safeProduceDaysWaterIncomeVal = 0;
-			//  }
-			//  // 初装费
-			//  var firstFeeIncomeVal = mapSeries.markPoint.data[dataIndex].firstFeeIncomeVal;
-			//  if (firstFeeIncomeVal != undefined) {
-			//      document.getElementById('factoryUsePV').innerHTML = firstFeeIncomeVal;
-			//  } else {
-			//      document.getElementById('factoryUsePV').innerHTML = 0;
-			//      firstFeeIncomeVal = 0;
-			//  }
-			//  // 供热收入
-			//  var supplySafeProduceDaysIncomeVal = mapSeries.markPoint.data[dataIndex].supplySafeProduceDaysIncomeVal;
-			//  if (supplySafeProduceDaysIncomeVal != undefined) {
-			//      document.getElementById('fuelCostSafeProduceDays').innerHTML = supplySafeProduceDaysIncomeVal;
-			//  } else {
-			//      document.getElementById('fuelCostSafeProduceDays').innerHTML = 0;
-			//      supplySafeProduceDaysIncomeVal = 0;
-			//  }
-			//  // 供热收入同比
-			//  var supplySafeProduceDaysIncomeUP = mapSeries.markPoint.data[dataIndex].supplySafeProduceDaysIncomeUP;
-			//  if (supplySafeProduceDaysIncomeUP != undefined) {
-			//      document.getElementById('fuelDownPercentSafeProduceDays').innerHTML = supplySafeProduceDaysIncomeUP;
-			//  } else {
-			//      document.getElementById('fuelDownPercentSafeProduceDays').innerHTML = 0;
-			//      supplySafeProduceDaysIncomeUP = 0;
-			//  }
-			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + safeProduceDaysWaterIncomeVal + firstFeeIncomeVal;
-			//  if (dataAll == 0) {
-			//      dataAll = 10;
-			//  }
-			//  drawpie(ec, supplySafeProduceDaysIncomeUP+50, 50, 'detail_pieSafeProduceDays');
-			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01SafeProduceDays');
-			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02SafeProduceDays');
-			//  drawbar(ec, safeProduceDaysWaterIncomeVal, dataAll, 'detail_03SafeProduceDays');
-			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04SafeProduceDays');
+			
 		}
 	}
+
 });

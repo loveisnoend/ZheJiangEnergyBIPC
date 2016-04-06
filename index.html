@@ -140,6 +140,10 @@
 		        if (detailName == "人均工资") {
 		            app.to("idAverPersonSalary", "show");
 		        }
+		        // 人均工资
+		        if (detailName == "人均利润") {
+		            app.to("idAverPersonProfitDetailValue", "show");
+		        }
 		        // 人均营业收入记录
 		        if (detailName == "人均营业收入记录") {
 		            app.to("idAverPersonProfitRecord", "show");
@@ -337,7 +341,7 @@
 				// 人均利润
 				var averPersonProfit;
 				var averPersonProfitDetailValue;
-				
+				var averPersonProfitDetailValuePage;
                 // 用工性质/员工类型
             	var wokerPropertyAndType;
             	var isWokerPropertyAndType = false;
@@ -751,6 +755,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(averPersonSalary);
+            		 
+            		 // 人均利润详细页面
+            		 averPersonProfitDetailValuePage = sap.ui.view({
+            			id: "idAverPersonProfitDetailValue",
+            			viewName: "com.zhenergy.pcbi.view.averPersonProfitDetailValue",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averPersonProfitDetailValuePage);
             		 
             		 // 单位万千瓦员工数
             		 workerCount = sap.ui.view({

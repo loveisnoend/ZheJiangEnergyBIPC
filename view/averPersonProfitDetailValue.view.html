@@ -1,5 +1,5 @@
-<template data-controller-name="com.zhenergy.pcbi.view.workerCount">
-    <div class="nav_main">
+<template data-controller-name="com.zhenergy.pcbi.view.averPersonProfitDetailValue">
+	<div class="nav_main">
         <div class="main-center">
             <div class="msg_top">
                <div class="msg_top1">
@@ -27,98 +27,98 @@
                     </div>
                     <div class="topToolAll">
                         <div class="userSkinIcon" onmouseover="userHoverOn('userSkinCon')" onmouseout="userHoverOut('userSkinCon')" ></div>
-                        <div class="userSkinCon"><b class="userSkin" onClick="changeSkinCss('workerCount')">夜间模式</b></div>
+                        <div class="userSkinCon"><b class="userSkin" onClick="changeSkinCss('averPersonProfitDetailValue')">夜间模式</b></div>
                     </div>
                 </div>
             </div>
             <div class="content_center">
               <div class="powerTop">
-                    <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo" style="height:100%;"><b onClick="doit8(2)" style="cursor:pointer;">发展保障</b> > <b>单位万千瓦员工数</b></span></div>             
+                    <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo" style="height:100%;"><b onClick="toAverPersonProfitPage()" style="cursor:pointer;">电力股份人均利润</b> > <b>人均利润</b></span></div>             
               </div>
               <div class="powerBottom">
                   <div class="powerPlantLeft">
         			  <div class="mapTop">
-        			      <div id="huaiNanMapWorkerCount" class="huiNanMap"></div>
-        			      <div id="powerPlantMapWorkerCount" class="powerPlantMap"></div>
+        			      <div id="huaiNanMapaverPersonProfitDetailValue" class="huiNanMap"></div>
+        			      <div id="powerPlantMapaverPersonProfitDetailValue" class="powerPlantMap"></div>
         			  </div>
         			  <div class="mapBottom">
         			      <div class="chinaMap" style="margin-left:40px;">
                               <div class="chinaMapCon">
-            			          <div id="chinaMapWorkerCount" style="float:left;height:110px;width:140px;margin-top:15px;margin-left:30px;">
+            			          <div id="chinaMapaverPersonProfitDetailValue" style="float:left;height:110px;width:140px;margin-top:15px;margin-left:30px;">
             			              
             			          </div>
-            			          <div id="akesuMapWorkerCount" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:250px;"></div>
-            			          <div id="zaoquanMapWorkerCount" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:450px;"></div>
+            			          <div id="akesuMapaverPersonProfitDetailValue" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:250px;"></div>
+            			          <div id="zaoquanMapaverPersonProfitDetailValue" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:450px;"></div>
         			          </div>
         			      </div>
         			      <b id="powerName" style="color:#FEFF02;display:none;"></b>
         			  </div>
                 </div>
                 <div class="powerPlantRight">
-                    <div id="rlcb_detailWorkerCount" class="detail_02">
+                    <div id="rlcb_detailaverPersonProfitDetailValue" class="detail_02">
                         <div class="detail_02_01">
-                                <div id="powerPlantMainDetailTitleWorkerCount" style="margin-top:0px;font-size:20px;">集团</div>
+                                <div id="powerPlantMainDetailTitleaverPersonProfitDetailValue" style="margin-top:0px;font-size:20px;">集团</div>
                         </div>
                         <div class="main_content_combition_1">
                             <div class="main_content_combition_1_1">
-                                <div class="detail_02_03" onClick="priceDetailAnotherWorkerCount('detail001')">
+                                <div class="detail_02_03" onClick="priceDetailAnotheraverPersonProfitDetailValue('detail001')">
                                     <div class="detail_02_font1">自产蒸汽<b>(百万元)</b></div>
-                                    <div class="detail_02_font2" id="travelPriceWorkerCount"></div>
-                                    <div class="detail_02_img" id="detail_01WorkerCount"></div>
+                                    <div class="detail_02_font2" id="travelPriceaverPersonProfitDetailValue"></div>
+                                    <div class="detail_02_img" id="detail_01averPersonProfitDetailValue"></div>
                                 </div>
-                                <div class="detail_02_03 detail_position01" onClick="priceDetailAnotherWorkerCount('detail002')">
+                                <div class="detail_02_03 detail_position01" onClick="priceDetailAnotheraverPersonProfitDetailValue('detail002')">
                                     <div class="detail_02_font1">外购蒸汽<b>(百万元)</b></div>
-                                    <div class="detail_02_font2" id="coalPriceWorkerCount"></div>
-                                    <div class="detail_02_img" id="detail_02WorkerCount"></div>
+                                    <div class="detail_02_font2" id="coalPriceaverPersonProfitDetailValue"></div>
+                                    <div class="detail_02_img" id="detail_02averPersonProfitDetailValue"></div>
                                 </div>
                             </div>
                             <div class="main_content_combition_1_2">
-                                <!--<div class="detail_02_04" style="cursor:pointer;" onClick="priceDetailAnotherWorkerCount('detail006')">-->
+                                <!--<div class="detail_02_04" style="cursor:pointer;" onClick="priceDetailAnotheraverPersonProfitDetailValue('detail006')">-->
                                 <!--    <div class="detail_001">-->
                                 <!--        上网电量<b id="internetPV"></b>万千瓦时-->
                                 <!--    </div>-->
                                 <!--</div>-->
                             </div>
                             <div class="main_content_combition_1_3">
-                                <div class="detail_02_03" onClick="priceDetailAnotherWorkerCount('detail003')">
-                                    <div class="detail_02_font1">热水<b id="wattVolume1WorkerCount">(百万元)</b></div>
-                                    <div class="detail_02_font2" id="watt1WorkerCount"></div>
-                                    <div class="detail_02_img" id="detail_03WorkerCount"></div>
+                                <div class="detail_02_03" onClick="priceDetailAnotheraverPersonProfitDetailValue('detail003')">
+                                    <div class="detail_02_font1">热水<b id="wattVolume1averPersonProfitDetailValue">(百万元)</b></div>
+                                    <div class="detail_02_font2" id="watt1averPersonProfitDetailValue"></div>
+                                    <div class="detail_02_img" id="detail_03averPersonProfitDetailValue"></div>
                                 </div>
-                                <div class="detail_02_03" onClick="priceDetailAnotherWorkerCount('detail004')">
-                                    <div class="detail_02_font1">初装费<b id="wattVolume2WorkerCount">(百万元)</b></div>
+                                <div class="detail_02_03" onClick="priceDetailAnotheraverPersonProfitDetailValue('detail004')">
+                                    <div class="detail_02_font1">初装费<b id="wattVolume2averPersonProfitDetailValue">(百万元)</b></div>
                                     <div class="detail_02_font2" id="factoryUsePV"></div>
-                                    <div class="detail_02_img" id="detail_04WorkerCount"></div>
+                                    <div class="detail_02_img" id="detail_04averPersonProfitDetailValue"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="main_content_combition_2">
-                                <div class="detail_pie" id="detail_pieWorkerCount" style="cursor:pointer;" onClick="priceDetailAnotherWorkerCount('detail005')"></div>
-                                <div class="detail_02_02" style="cursor:pointer;" onClick="priceDetailAnotherWorkerCount('detail005')">
+                                <div class="detail_pie" id="detail_pieaverPersonProfitDetailValue" style="cursor:pointer;" onClick="priceDetailAnotheraverPersonProfitDetailValue('detail005')"></div>
+                                <div class="detail_02_02" style="cursor:pointer;" onClick="priceDetailAnotheraverPersonProfitDetailValue('detail005')">
                                     <div class="detail_02_font01">供热收入</div>
-                                    <div class="detail_02_font01 font_size1" id="fuelCostWorkerCount"></div>
+                                    <div class="detail_02_font01 font_size1" id="fuelCostaverPersonProfitDetailValue"></div>
                                     <div class="detail_02_font01 font_size2">百万元</div>
                                     <div class="detail_02_font01 font_size3">
-                                        <div class="detail_02_font04_01 font_size4"><b id="fuelDownPercentWorkerCount"></b>%</div>
+                                        <div class="detail_02_font04_01 font_size4"><b id="fuelDownPercentaverPersonProfitDetailValue"></b>%</div>
                                         <div class="detail_02_font04_02"></div>
                                     </div>
                                 </div>
                         </div>
                     </div>
-                    <div class="internetDetail" style="display:none;margin-top:0px;" id="internetDetailWorkerCount">
+                    <div class="internetDetail" style="display:none;margin-top:0px;" id="internetDetailaverPersonProfitDetailValue">
                         <div class="internetDetailTop" style="font-size:20px;font-family: 微软雅黑;margin-left:10px;">
                            <div style="color:#FFFFFF;margin-top:15px;margin-left:10px;float:left">
-                                <span style="float:left;" id="profitNameWorkerCount">
+                                <span style="float:left;" id="profitNameaverPersonProfitDetailValue">
                                 电力股份公司
                                 </span>
-                                <!--<span onclick="internetbackWorkerCount()" style="cursor:pointer;margin-left:20px;color:rgb(255,153,0);">返回</span>-->
+                                <!--<span onclick="internetbackaverPersonProfitDetailValue()" style="cursor:pointer;margin-left:20px;color:rgb(255,153,0);">返回</span>-->
                            </div>
                         </div>
-                        <div class="priceDetail_another_01" id="priceDetailDivWorkerCount">
+                        <div class="priceDetail_another_01" id="priceDetailDivaverPersonProfitDetailValue">
                             
                         </div>
                         <div class="priceDetail_another_font">
-                            统计于<br/><b id="workerCountIncomeStatisticDate"></b>
+                            统计于<br/><b id="averPersonProfitDetailValueIncomeStatisticDate"></b>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                     <!--    <div class="But05" type="button"  onClick="doit5()"></div>-->
                     <!--</li>-->
                     <li class="split_line"></li>
-                    <li class="but06">
+                    <li class="but06 nav_BI">
                         <div class="But06" type="button"  onClick="doit6()"></div>
                     </li>
                     <li class="split_line"></li>
@@ -156,7 +156,7 @@
                         <div class="But07" type="button"  onClick="doit7()"></div>
                     </li>
                     <li class="split_line"></li>
-                    <li class="but08 nav_BI">
+                    <li class="but08">
                         <div class="But08" type="button"  onClick="doit8()"></div>
                     </li>
                 </ul>

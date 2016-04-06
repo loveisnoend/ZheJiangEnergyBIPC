@@ -31,6 +31,9 @@ function priceDetailAnotherLabour(detailId) {
     if (powerPlantName == '凤台电厂') {
         powerPlantName = '凤台发电';
     }
+    if (powerPlantName == '电力股份公司') {
+			powerPlantName = '集团';
+		}
 	if (powerPlantName == '集团') {
 	   labourIncome.getController().loadBase_SupplyLabourIncome(priceChartId, priceChartName);
 	} else {

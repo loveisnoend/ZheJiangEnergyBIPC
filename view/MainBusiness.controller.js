@@ -115,12 +115,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
             }
             //劳务收入
             function drawrlcb(e) {
-                drawline(e, date, data3, '劳务收入', 'green', 'laborChart', data3[data3.length - 1] + '亿元');
+                drawline(e, date, data3, '劳务收入', 'green', 'laborChart', data3[data3.length - 1] + '万元');
             }
 
             //其他收入
             function drawqtcb(e) {
-                drawline(e, date, data4, '其他收入', 'green', 'othersChart', data4[data4.length - 1] + '亿元');
+                drawline(e, date, data4, '其他收入', 'green', 'othersChart', data4[data4.length - 1] + '万元');
             }
 
 	        //折线通用
@@ -406,14 +406,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
  		    }
  		}
 		var sr_innerhtml1=
-		'<div class="MB-main_content_title_1"><span>发电收入<span style="font-size:15px;">(百万元)</span></span>'+
-		'<span style="margin-left:105px;">供热收入<span style="font-size:15px;">(百万元)</span></span></div>'+
+		'<div class="MB-main_content_title_1"><span>发电收入<span style="font-size:15px;">(亿元)</span></span>'+
+		'<span style="margin-left:105px;">供热收入<span style="font-size:15px;">(亿元)</span></span></div>'+
 		'<div class="MB-main_content_sz" style="font-size:30px;font-weight:bold;color:'+sr_colorR01+'"><span style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">'+ powerIncome +'</b></span><span style="width:50%;height:100%;float:left;text-align:center;font-weight:bold;color:'+cb_colorR01+'"><b style="margin-left:-180px;">'+heatIncome+'</b></span></div>'
 		+'<div class="MB-main_content_sz"><div style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">同比'+sr_prec+'%</b><img src="img/'+powerIncomeImg+'.png" class="content_img"/></div><div style="width:50%;height:100%;text-align:center;float:left;"><b style="margin-left:-180px;">同比'+cb_prec+'%</b><img src="img/'+laborIncomeImg+'.png" class="content_img"/></div></div>';
 
 		var sr_innerhtml2=
-		'<div class="MB-main_content_title_2">劳务收入<span><span style="font-size:15px;">(百万元)</span></span>'+
-		'<span style="margin-left:105px;">其他收入<span style="font-size:15px;">(百万元)</span></span></div>'+
+		'<div class="MB-main_content_title_2">劳务收入<span><span style="font-size:15px;">(万元)</span></span>'+
+		'<span style="margin-left:105px;">其他收入<span style="font-size:15px;">(万元)</span></span></div>'+
 		'<div class="MB-main_content_sz" style="font-size:30px;font-weight:bold;color:'+sr_colorR01+'"><span style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">'+ laborIncome +'</b></span><span style="width:50%;height:100%;float:left;text-align:center;font-weight:bold;color:'+cb_colorR01+'"><b style="margin-left:-180px;">'+othersIncome+'</b></span></div>'
 		+'<div class="MB-main_content_sz"><div style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">同比'+sr_prec+'%</b><img src="img/'+laborIncomeImg+'.png" class="content_img"/></div><div style="width:50%;height:100%;text-align:center;float:left;"><b style="margin-left:-180px;">同比'+cb_prec+'%</b><img src="img/'+othersIncomeImg+'.png" class="content_img"/></div></div>';
 
@@ -448,15 +448,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
 		} else {
 		    rlr_color = "red";
 		}
-		var rlr_innerhtml='<div class="MB-main_content_title">主营业务收入<span style="font-size:20px;">(百万元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+mainBusinessIncome+'</div><div class="MB-main_content_sz">同比'+rlr_prec+'%<img src="img/'+mainBusinessIncomeImg+'.png" class="content_img"/></div>';
+		var rlr_innerhtml='<div class="MB-main_content_title">主营业务收入<span style="font-size:20px;">(亿元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+mainBusinessIncome+'</div><div class="MB-main_content_sz">同比'+rlr_prec+'%<img src="img/'+mainBusinessIncomeImg+'.png" class="content_img"/></div>';
                
 		document.getElementById('srMB1').innerHTML = sr_innerhtml1;
 		document.getElementById('srMB2').innerHTML = sr_innerhtml2;
 		document.getElementById('rlrMB').innerHTML=rlr_innerhtml;
-        document.getElementById('powerIncome').innerHTML=powerIncome+'百万元';
-        document.getElementById('heatIncome').innerHTML=heatIncome+'百万元';
-        document.getElementById('laborIncome').innerHTML=laborIncome+'百万元';
-        document.getElementById('othersIncome').innerHTML=othersIncome+'百万元';
+        document.getElementById('powerIncome').innerHTML=powerIncome+'亿元';
+        document.getElementById('heatIncome').innerHTML=heatIncome+'亿元';
+        document.getElementById('laborIncome').innerHTML=laborIncome+'万元';
+        document.getElementById('othersIncome').innerHTML=othersIncome+'万元';
 
 
 // 		document.getElementById('cb').innerHTML = cb_innerhtml;

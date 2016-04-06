@@ -73,13 +73,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.home08", {
 			// 单位万千瓦员工数值
 			var workerCountsPerKW=0;
 			
-			// 单位万千瓦时员工数同比值
+			// 发电生产率同比值
             var workerCountsPerKWHourTongBi = '';
-            // 单位万千瓦时员工数环比值
+            // 发电生产率环比值
             var workerCountsPerKWHourHuanBi = '';
             // 统计日期
             var daytimeWorkerCountsPerKWHour = null;
-			// 单位万千瓦时员工数值
+			// 发电生产率值
 			var workerCountsPerKWHour=0;
 			
 			// 单位万千瓦人工成本同比值
@@ -139,14 +139,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.home08", {
 				    workerCountsPerKWTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				// 单位万千瓦时员工人数
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时员工数' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHour = workerCountsPerKWHour+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO2 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时员工数环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时员工数同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			    // 单位万千瓦人工成本
@@ -456,13 +456,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.home08", {
 			// 单位万千瓦员工数值
 			var workerCountsPerKW=0;
 			
-			// 单位万千瓦时员工数同比值
+			// 发电生产率同比值
             var workerCountsPerKWHourTongBi = '';
-            // 单位万千瓦时员工数环比值
+            // 发电生产率环比值
             var workerCountsPerKWHourHuanBi = '';
             // 统计日期
             var daytimeWorkerCountsPerKWHour = null;
-			// 单位万千瓦时员工数值
+			// 发电生产率值
 			var workerCountsPerKWHour=0;
 			
 			// 单位万千瓦人工成本同比值
@@ -519,14 +519,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.home08", {
 				    workerCountsPerKWTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				// 单位万千瓦时员工人数
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时员工数' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHour = workerCountsPerKWHour+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO2 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时员工数环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时员工数同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			    // 单位万千瓦人工成本

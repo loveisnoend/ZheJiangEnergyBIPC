@@ -129,7 +129,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 
             //平均上网电价
             function drawpjswdj(e) {
-                drawline(e, date, data2, '平均上网电价', 'green', 'pjswdj', data2[data2.length - 1] + '元/千瓦时', KPI_RGJ_V,'供热收入','orange','auto','auto',0,200);
+                drawline(e, date, data2, '平均上网电价', 'green', 'pjswdj', data2[data2.length - 1] + '元/千瓦时', KPI_RGJ_V,'供热单价','orange','auto','auto',0,200);
             }
             //燃料成本
             function drawrlcb(e) {

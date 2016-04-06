@@ -119,19 +119,19 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfit", {
 
             //利润总额
             function drawswdl(e) {
-                drawline(e, date, data1, '利润总额', 'green', 'profitSumChart', data1[data1.length - 1] + '百万元');
+                drawline(e, date, data1, '利润总额', 'green', 'profitSumChart', data1[data1.length - 1] + '万元');
             }
             //所得税费用
             function drawpjswdj(e) {
-                drawline(e, date, data2, '所得税费用', 'green', 'taxFeeChart', data2[data2.length - 1] + '百万元');
+                drawline(e, date, data2, '所得税费用', 'green', 'taxFeeChart', data2[data2.length - 1] + '万元');
             }
             //营业总收入
             function drawrlcb(e) {
-                drawline(e, date, data3, '营业总收入', 'green', 'businessSumIncomeChart', data3[data3.length - 1] + '百万元');
+                drawline(e, date, data3, '营业总收入', 'green', 'businessSumIncomeChart', data3[data3.length - 1] + '亿元');
             }
             //营业总成本
             function drawqtcb(e) {
-                drawline(e, date, data4, '营业总成本', 'green', 'businessSumCostChart', data4[data4.length - 1] + '百万元');
+                drawline(e, date, data4, '营业总成本', 'green', 'businessSumCostChart', data4[data4.length - 1] + '亿元');
             }
 
 	        //折线通用
@@ -355,7 +355,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfit", {
 	        rlr_colorR01="white";
 	    }
 
-		var rlr_innerhtml01='<div class="PP-main_content_title">净利润<span style="font-size:20px;">(百万元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+pureProfitResult+'</div><div class="MB-main_content_sz">同比'+pureProfitResultTongbi+'%<img src="img/'+pureProfitResultImg+'.png" class="content_img"/></div>';
+		var rlr_innerhtml01='<div class="PP-main_content_title">净利润<span style="font-size:20px;">(万元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+pureProfitResult+'</div><div class="MB-main_content_sz">同比'+pureProfitResultTongbi+'%<img src="img/'+pureProfitResultImg+'.png" class="content_img"/></div>';
 		document.getElementById('pureProfitResult').innerHTML=rlr_innerhtml01;
 		
 		// 营业利润
@@ -381,13 +381,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfit", {
 	    } else {
 	        rlr_colorR02="white";
 	    }
-		var rlr_innerhtml02='<div class="PP-main_content_title_1">营业利润<span style="font-size:20px;">(百万元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR02+'">'+businessProfitResult+'</div><div class="MB-main_content_sz">同比'+businessProfitResultTongbi+'%<img src="img/'+businessProfitResultImg+'.png" class="content_img"/></div>';
+		var rlr_innerhtml02='<div class="PP-main_content_title_1">营业利润<span style="font-size:20px;">(亿元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR02+'">'+businessProfitResult+'</div><div class="MB-main_content_sz">同比'+businessProfitResultTongbi+'%<img src="img/'+businessProfitResultImg+'.png" class="content_img"/></div>';
 		document.getElementById('businessProfitResult').innerHTML=rlr_innerhtml02;		
 
-        document.getElementById('profitSum').innerHTML=profitSum+'百万元';
-        document.getElementById('taxFee').innerHTML=taxFee+'百万元';
-        document.getElementById('businessSumIncome').innerHTML=businessSumIncome+'百万元';
-        document.getElementById('businessSumCost').innerHTML=businessSumCost+'百万元';
+        document.getElementById('profitSum').innerHTML=profitSum+'万元';
+        document.getElementById('taxFee').innerHTML=taxFee+'万元';
+        document.getElementById('businessSumIncome').innerHTML=businessSumIncome+'亿元';
+        document.getElementById('businessSumCost').innerHTML=businessSumCost+'亿元';
 
 
 // 		document.getElementById('cb').innerHTML = cb_innerhtml;
