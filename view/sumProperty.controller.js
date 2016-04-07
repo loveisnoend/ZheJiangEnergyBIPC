@@ -9,23 +9,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-				//AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"SumProperty");
-				//AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
-				var naviDemo = document.getElementById("naviSumProperty");
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'><b onClick='doit3(1)' style='cursor:pointer;'>资产情况</b> > <b>"+timeLabel+"电力股份总资产</b></span>";
-			    
-			    this.onAfterShow(evt);
-			    
+				this.onAfterShow(evt);
 			}, this)
 		});
-
 	},
 
 	// eventment before show the page 
 	onAfterShow: function() {
+
 		document.getElementById('internetDetailSumProperty').style.display = "";
 		document.getElementById('rlcb_detailSumProperty').style.display = "none";
 		// this.loadChart();
@@ -169,7 +160,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 
 	// 	},
 
-	// 获取集团指标-总资产 SCREEN_ZCQK_02_V02
+	// 获取浙能电力指标-总资产 SCREEN_ZCQK_02_V02
 	loadBase_SupplySumPropertyIncome: function(chartDivId, priceChartName) {
 
 		var busy = new sap.m.BusyDialog({
@@ -210,7 +201,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				}
 			}
 			// 统计于日期
-			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '总资产') {
 				this.sumProperty(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP);
 			}
@@ -266,7 +257,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				}
 			}
 			// 统计于日期
-			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '总资产') {
 				this.loadBaseDataDetail_SumPropertyIncome(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP);
 			}
@@ -282,7 +273,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团-总资产
+	// 加载浙能电力-总资产
 	sumProperty: function(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP) {
 
 		require(
@@ -296,8 +287,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleSumProperty')
-.innerHTML=="集团"){
-   document.getElementById('profitNameSumProperty').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameSumProperty').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameSumProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleSumProperty')
 .innerHTML;
@@ -432,7 +423,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			mychart.setOption(option);
 		}
 	},
-	// 加载集团-总资产指标
+	// 加载浙能电力-总资产指标
 	loadBaseDataDetail_SumPropertyIncome: function(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP) {
 		require(
             [
@@ -445,8 +436,8 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleSumProperty')
-.innerHTML=="集团"){
-   document.getElementById('profitNameSumProperty').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameSumProperty').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameSumProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleSumProperty')
 .innerHTML;
@@ -598,45 +589,45 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapSumProperty'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMapSumProperty'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapSumProperty'));
@@ -653,11 +644,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [150, 0],
-					textStyle:{
-					    fontSize: 18,
-					    fontWeight : 'bold'
-					}
+					position: [200, 0]
 				},
 				series: [
 					{
@@ -743,7 +730,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -873,7 +860,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认集团数据显示
+			// 默认浙能电力数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -905,11 +892,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [50, 0],
-					textStyle:{
-					    fontSize: 18,
-					    fontWeight : 'bold'
-					}
+					position: [200, 0]
 				},
 				calculable: false,
 				series: [
@@ -1069,11 +1052,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [50, 0],
-					textStyle:{
-					    fontSize: 18,
-					    fontWeight : 'bold'
-					}
+					position: [200, 0]
 				},
 				calculable: false,
 				series: [
@@ -1234,11 +1213,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [50, 0],
-					textStyle:{
-					    fontSize: 18,
-					    fontWeight : 'bold'
-					}
+					position: [200, 0]
 				},
 				calculable: false,
 				series: [
@@ -1548,7 +1523,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '集团') {
+			if (powerPlantName == '浙能电力') {
 				// TODO
 				sumProperty.getController().loadBase_SupplySumPropertyIncome(priceChartId, priceChartName);
 				//sumProperty.getController().loadEachPlant_SupplySumPropertyIncome(priceChartId, priceChartName, powerPlantName);

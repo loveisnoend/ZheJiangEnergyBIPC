@@ -9,18 +9,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    
-				//AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"WorkerCountPerHour");
-			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
-				var naviDemo = document.getElementById("naviWorkerCountPerHour");
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-                                "<b onClick='doit8(3)' style='cursor:pointer;'>发展保障</b> > <b>"+timeLabel+"电力股份发电生产率</b>"+
-                                "</span>";
-			    
-			    
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -172,7 +160,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 
 	// 	},
 
-	// 获取集团指标-发电生产率 SCREEN_FZBZ_02_V02
+	// 获取浙能电力指标-发电生产率 SCREEN_FZBZ_02_V02
 	loadBase_SupplyWorkerCountPerHourIncome: function(chartDivId, priceChartName) {
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
@@ -196,7 +184,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 
-				if (sRes.results[i].KPI_DESC != "集团") {
+				if (sRes.results[i].KPI_DESC != "浙能电力") {
 					if (sRes.results[i].KPI_TYPE == '发电生产率') {
 						counta = 0;
 						for (var a in xData) {
@@ -230,7 +218,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			// 				}
 			// 			}
 			// 统计于日期
-			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '发电生产率') {
 				this.loadBaseDataDetail_SupplyWorkerCountPerHourIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -289,7 +277,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 				}
 			}
 			// 统计于日期
-			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#workerCountPerHourIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '发电生产率') {
 				this.loadBaseDataDetail_WorkerCountPerHourIncome(chartDivId, priceChartName, xData, KPI_DLR_V, KPI_DLR_UP);
 			}
@@ -304,7 +292,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V03/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团-发电生产率
+	// 加载浙能电力-发电生产率
 	loadBaseDataDetail_SupplyWorkerCountPerHourIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {
 		require(
 	            [
@@ -317,8 +305,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleWorkerCountPerHour')
-				.innerHTML == "集团") {
-				document.getElementById('profitNameWorkerCountPerHour').innerHTML = "电力股份公司";
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNameWorkerCountPerHour').innerHTML = "浙能电力股份有限公司";
 			} else {
 				document.getElementById('profitNameWorkerCountPerHour').innerHTML = document.getElementById(
 					'powerPlantMainDetailTitleWorkerCountPerHour')
@@ -359,7 +347,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,//[color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -433,7 +421,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			mychart.setOption(option);
 		}
 	},
-	// 加载集团-发电生产率指标
+	// 加载浙能电力-发电生产率指标
 	loadBaseDataDetail_WorkerCountPerHourIncome: function(chartDivId, priceChartName, xData, KPI_DLR_V, KPI_DLR_UP) {
 		require(
             [
@@ -446,8 +434,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleWorkerCountPerHour')
-				.innerHTML == "集团") {
-				document.getElementById('profitNameWorkerCountPerHour').innerHTML = "电力股份公司";
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNameWorkerCountPerHour').innerHTML = "浙能电力股份有限公司";
 			} else {
 				document.getElementById('profitNameWorkerCountPerHour').innerHTML = document.getElementById(
 					'powerPlantMainDetailTitleWorkerCountPerHour')
@@ -605,45 +593,45 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapWorkerCountPerHour'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMapWorkerCountPerHour'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleWorkerCountPerHour').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitleWorkerCountPerHour').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			myChart4 = ec.init(document.getElementById('powerPlantMapWorkerCountPerHour'));
@@ -746,7 +734,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -876,7 +864,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认集团数据显示
+			// 默认浙能电力数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1539,7 +1527,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '集团') {
+			if (powerPlantName == '浙能电力') {
 				// TODO
 				workerCountPerHour.getController().loadBase_SupplyWorkerCountPerHourIncome(priceChartId, priceChartName);
 				// workerCountPerHour.getController().loadEachPlant_SupplyWorkerCountPerHourIncome(priceChartId, priceChartName, powerPlantName);

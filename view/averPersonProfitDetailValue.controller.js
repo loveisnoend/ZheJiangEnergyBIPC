@@ -4,16 +4,6 @@ onInit: function() {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-				//AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"averPersonProfitDetailValue");
-			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
-				var naviDemo = document.getElementById("naviaverPersonProfitDetailValue");
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-                                "<b onClick='toAverPersonProfitPage()' style='cursor:pointer;'>浙能电力人均利润</b> > <b>"+timeLabel+"人均利润</b>"+
-                                "</span>";
-			    
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -80,7 +70,7 @@ onInit: function() {
 				}
 			}
 			// 统计于日期
-			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_SupplyaverPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -126,7 +116,7 @@ onInit: function() {
 				}
 			}
 			// 统计于日期
-			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_averPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -152,8 +142,8 @@ onInit: function() {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 				if(document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
-.innerHTML=="集团"){
-   document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
 .innerHTML;
@@ -193,7 +183,7 @@ document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = doc
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -285,8 +275,8 @@ document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = doc
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
-.innerHTML=="集团"){
-   document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue')
 .innerHTML;
@@ -327,7 +317,7 @@ document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = doc
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -443,45 +433,45 @@ document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = doc
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapaverPersonProfitDetailValue'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMapaverPersonProfitDetailValue'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitleaverPersonProfitDetailValue').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapaverPersonProfitDetailValue'));
@@ -584,7 +574,7 @@ document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = doc
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -1385,7 +1375,7 @@ document.getElementById('profitNameaverPersonProfitDetailValue').innerHTML = doc
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '集团') {
+			if (powerPlantName == '浙能电力') {
 				// TODO
 				averPersonProfitDetailValuePage.getController().loadBase_SupplyaverPersonProfitDetailValueIncome(priceChartId, priceChartName);
 				//averPersonProfitDetailValue.getController().loadEachPlant_SupplyaverPersonProfitDetailValueIncome(priceChartId, priceChartName, powerPlantName);

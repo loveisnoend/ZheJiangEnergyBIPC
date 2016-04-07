@@ -9,16 +9,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    
-				//AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"DailyProfitDetail");
-			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"+myDate.getDate()+"日"; //getMonth 1-12月对应0-11
-				var naviDemo = document.getElementById("naviDailyProfitDetail");
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-                                "<b onClick='dailyProfit()' style='cursor:pointer;'>日利润</b> > <b>"+timeLabel+"日利润详细</b>"+
-                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -169,7 +159,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 
 	// 	},
 
-	// 获取集团指标-日利润 SCREEN_ZJQK_02_V01
+	// 获取浙能电力指标-日利润 SCREEN_ZJQK_02_V01
 	loadBase_SupplyDailyProfitDetailIncome: function(chartDivId, priceChartName) {
 
 		// 日利润指标
@@ -193,7 +183,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 				}
 				// 日利润
 				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i]
-					.KPI_DESC != '集团') {
+					.KPI_DESC != '浙能电力') {
 					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DESC);
 				}
@@ -204,7 +194,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 				}
 			}
 			// 统计于日期
-			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '日利润') {
 				this.loadBaseDataDetail_SupplyDailyProfitDetailIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -250,7 +240,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 				}
 			}
 			// 统计于日期
-			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '日利润') {
 				this.loadBaseDataDetail_DailyProfitDetailIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -262,7 +252,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V07/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团-日利润
+	// 加载浙能电力-日利润
 	loadBaseDataDetail_SupplyDailyProfitDetailIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
 
 		require(
@@ -276,8 +266,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
-.innerHTML=="集团"){
-   document.getElementById('profitNameDailyProfitDetail').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameDailyProfitDetail').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
 .innerHTML;
@@ -318,7 +308,7 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -416,7 +406,7 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 			}
 		}
 	},
-	// 加载集团-日利润指标
+	// 加载浙能电力-日利润指标
 	loadBaseDataDetail_DailyProfitDetailIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
 		require(
             [
@@ -429,8 +419,8 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
-.innerHTML=="集团"){
-   document.getElementById('profitNameDailyProfitDetail').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameDailyProfitDetail').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
 .innerHTML;
@@ -472,7 +462,7 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -588,45 +578,45 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapDailyProfitDetail'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMapDailyProfitDetail'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleDailyProfitDetail').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitleDailyProfitDetail').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapDailyProfitDetail'));
@@ -729,7 +719,7 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -859,7 +849,7 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认集团数据显示
+			// 默认浙能电力数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1530,7 +1520,7 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '集团') {
+			if (powerPlantName == '浙能电力') {
 				// TODO
 				dailyProfitDetail.getController().loadBase_SupplyDailyProfitDetailIncome(priceChartId, priceChartName);
 				//dailyProfitDetail.getController().loadEachPlant_SupplyDailyProfitDetailIncome(priceChartId, priceChartName, powerPlantName);

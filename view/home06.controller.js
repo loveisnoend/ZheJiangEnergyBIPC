@@ -68,25 +68,25 @@ sap.ui.controller("com.zhenergy.pcbi.view.home06", {
 			
 			for (var i in sRes.results) {
 			    // 销售现金比率
-				if (sRes.results[i].KPI_TYPE == '销售现金比率' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '销售现金比率' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    salesCashRateValue = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '销售现金比率环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '销售现金比率环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    salesCashRateHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '销售现金比率_同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '销售现金比率_同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    salesCashRateTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				// 资产现金回收率
-				if (sRes.results[i].KPI_TYPE == '资产现金回收率' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '资产现金回收率' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    propertyCashBackRateValue = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				    daytimeSum = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '资产现金回收率环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '资产现金回收率环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    propertyCashBackRateHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '资产现金回收率_同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '资产现金回收率_同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    propertyCashBackRateTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			}

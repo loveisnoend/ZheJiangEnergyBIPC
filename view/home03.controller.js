@@ -68,25 +68,25 @@ sap.ui.controller("com.zhenergy.pcbi.view.home03", {
 			
 			for (var i in sRes.results) {
 			    // 净资产
-				if (sRes.results[i].KPI_TYPE == '净资产' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '净资产' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    purePropertyValue = purePropertyValue+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '净资产环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '净资产环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    purePropertyHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '净资产同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '净资产同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    purePropertyTongBi = (sRes.results[i].KPI_VALUE*100).toFixed(0);
 				}
 				// 总资产
-				if (sRes.results[i].KPI_TYPE == '总资产' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '总资产' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    sumPropertyValue = sumPropertyValue+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeSum = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '总资产环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '总资产环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    sumPropertyHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '总资产同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '总资产同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    sumPropertyTongBi = (sRes.results[i].KPI_VALUE*100).toFixed(0);
 				}
 			}

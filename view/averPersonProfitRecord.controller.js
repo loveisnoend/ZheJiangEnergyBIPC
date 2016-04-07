@@ -9,17 +9,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfitRecord", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    
-			    //AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"AverPersonProfitRecord");
-			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
-				var naviDemo = document.getElementById("naviAverPersonProfitRecord");
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-                                "<b onClick='toAverPersonProfitPage()' style='cursor:pointer;'>浙能电力人均利润</b> > <b>"+timeLabel+"人均营业收入</b>"+
-                                "</span>";
-			    
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -203,7 +192,7 @@ var busy = new sap.m.BusyDialog({
 
 				// }
 				// 人均营业收入收入
-if (sRes.results[i].KPI_DESC != "集团") {
+if (sRes.results[i].KPI_DESC != "浙能电力") {
 				if (sRes.results[i].KPI_TYPE == '人均营业收入') {
 					counta = 0;
 					for (var a in xData) {
@@ -226,7 +215,7 @@ if (sRes.results[i].KPI_DESC != "集团") {
 				// }
 			}
 			// 统计于日期
-			$('#averPersonProfitRecordIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#averPersonProfitRecordIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均营业收入') {
 				this.loadBaseDataDetail_SupplyAverPersonProfitRecordIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -282,7 +271,7 @@ if (sRes.results[i].KPI_DESC != "集团") {
 				}
 			}
 			// 统计于日期
-			$('#averPersonProfitRecordIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#averPersonProfitRecordIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均营业收入') {
 				this.loadBaseDataDetail_AverPersonProfitRecordIncome(chartDivId, priceChartName, xData, KPI_RLC_V, KPI_RLC_UP);
 			}
@@ -311,8 +300,8 @@ if (sRes.results[i].KPI_DESC != "集团") {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleAverPersonProfitRecord')
-				.innerHTML == "集团") {
-				document.getElementById('profitNameAverPersonProfitRecord').innerHTML = "电力股份公司";
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNameAverPersonProfitRecord').innerHTML = "浙能电力股份有限公司";
 			} else {
 				document.getElementById('profitNameAverPersonProfitRecord').innerHTML = document.getElementById(
 					'powerPlantMainDetailTitleAverPersonProfitRecord')
@@ -352,7 +341,7 @@ if (sRes.results[i].KPI_DESC != "集团") {
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -441,8 +430,8 @@ if (sRes.results[i].KPI_DESC != "集团") {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleAverPersonProfitRecord')
-				.innerHTML == "集团") {
-				document.getElementById('profitNameAverPersonProfitRecord').innerHTML = "电力股份公司";
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNameAverPersonProfitRecord').innerHTML = "浙能电力股份有限公司";
 			} else {
 				document.getElementById('profitNameAverPersonProfitRecord').innerHTML = document.getElementById(
 					'powerPlantMainDetailTitleAverPersonProfitRecord')
@@ -485,7 +474,7 @@ if (sRes.results[i].KPI_DESC != "集团") {
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -600,45 +589,45 @@ if (sRes.results[i].KPI_DESC != "集团") {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapAverPersonProfitRecord'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMapAverPersonProfitRecord'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleAverPersonProfitRecord').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitleAverPersonProfitRecord').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapAverPersonProfitRecord'));
@@ -741,7 +730,7 @@ if (sRes.results[i].KPI_DESC != "集团") {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -1535,7 +1524,7 @@ if (sRes.results[i].KPI_DESC != "集团") {
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '集团') {
+			if (powerPlantName == '浙能电力') {
 				// TODO
 				averPersonProfitRecord.getController().loadBase_SupplyAverPersonProfitRecordIncome(priceChartId, priceChartName);
 				// averPersonProfitRecord.getController().loadEachPlant_SupplyAverPersonProfitRecordIncome(priceChartId, priceChartName, powerPlantName);

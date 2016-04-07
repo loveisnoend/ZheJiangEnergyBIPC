@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=10">
-		<!--<meta http-equiv='cache-control' content='no-store,no-cache'/>-->
+        <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+        <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+        <META HTTP-EQUIV="expires" CONTENT="0">
 		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
 
 		<script src="resources/sap-ui-core.js"
@@ -25,6 +27,9 @@
 		<link rel="stylesheet" type="text/css" href="css/bottom_button.css" id="bottomButCss">
 		<link rel="stylesheet" type="text/css" href="css/powerPlantMap.css" id="powerPlantMapCss">
         <link rel="stylesheet" type="text/css" href="css/internetPowerVolume.css" id="internetPowerVolumeCss">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/averPersonProfit.css" id="averPersonProfitCss">
+                <link rel="stylesheet" type="text/css" href="css/pureProfit.css" id="pureProfitCss">
 		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
 		<script src="echarts.js"></script>
         <script type="text/javascript" src="js/powerPlantMap.js"></script>
@@ -34,8 +39,10 @@
         <script type="text/javascript" src="js/common.js"></script>
         <script type="text/javascript" src="js/powerIncome.js"></script>
         <script type="text/javascript" src="js/heatIncome.js"></script>
+        <script type="text/javascript" src="js/labourIncome.js"></script>
 		<script type="text/javascript" src="swiper.js"></script>
 		<script type="text/javascript" src="js/pdfobject.js"></script>
+		<script type="text/javascript" src="laydate/laydate.js"></script>
 		<script>
 		    var usrid = "ERPTEST1";
 		    var skinName = '夜间模式'
@@ -75,6 +82,8 @@
 		        mychart.dispose();
 		    }
 		    function toDetailPage(detailName){
+		        
+		        // 日利润
 		        if (detailName == "燃料成本") {
 		            app.to("idPowerPlantMap", "show");
 		        }
@@ -84,11 +93,60 @@
 		        if (detailName == "其他成本") {
 		            app.to("idOthersCost", "show");
 		        }
+		        if (detailName == "日利润详细指标") {
+		            app.to("idDailyProfitDetail", "show");
+		        }
+		        
+		        // 主营业务
 		        if (detailName == "发电收入") {
 		            app.to("idPowerIncome", "show");
 		        }
 		        if (detailName == "供热收入") {
 		            app.to("idHeatIncome", "show");
+		        }
+		        if (detailName == "劳务收入") {
+		            app.to("idLabourIncome", "show");
+		        }
+		        if (detailName == "其他收入") {
+		            app.to("idOthersIncome", "show");
+		        }
+		        
+		        // 净利润
+		        if (detailName == "净利润") {
+		            app.to("idPureProfitDetail", "show");
+		        }
+		        // 营业利润
+		        if (detailName == "营业利润") {
+		            app.to("idBusinessProfit", "show");
+		        }
+		        // 利润总额
+		        if (detailName == "利润总额") {
+		            app.to("idProfitSum", "show");
+		        }
+		        // 所得税费用
+		        if (detailName == "所得税费用") {
+		            app.to("idTaxFee", "show");
+		        }
+		        // 营业总收入
+		        if (detailName == "营业总收入") {
+		            app.to("idBusinessSumIncome", "show");
+		        }
+		        // 营业总成本
+		        if (detailName == "营业总成本") {
+		            app.to("idBusinessSumCost", "show");
+		        }
+		        
+		        // 人均工资
+		        if (detailName == "人均工资") {
+		            app.to("idAverPersonSalary", "show");
+		        }
+		        // 人均工资
+		        if (detailName == "人均利润") {
+		            app.to("idAverPersonProfitDetailValue", "show");
+		        }
+		        // 人均营业收入记录
+		        if (detailName == "人均营业收入记录") {
+		            app.to("idAverPersonProfitRecord", "show");
 		        }
 		    }
 		    function toInternetPowerDetailPage() {
@@ -98,12 +156,12 @@
 		        slidePageNum = 0;
                 app.to("idhome02","show");
             }
-            function doit2() {
-                slidePageNum = 3;
+            function doit2(slide02PageNumParam) {
+                slide02PageNum = slide02PageNumParam;
                 app.to("idhome","show");
             }
-            function doit3() {
-                slidePageNum = 2;
+            function doit3(slide03PageNumParam) {
+                slide03PageNum = slide03PageNumParam;
                 app.to("idhome03","show");
             }
             function doit4() {
@@ -112,18 +170,17 @@
             }
             function doit5() {
                 slidePageNum = 4;
-                app.to("idhome05","show");
+                // app.to("idhome05","show");
             }
-            function doit6() {
-                slidePageNum = 5;
+            function doit6(slide06PageNumParam) {
+                slide06PageNum = slide06PageNumParam;
                 app.to("idhome06","show");
             }
             function doit7() {
-                // slidePageNum = 6;
                 app.to("idhome07","show");
             }
-            function doit8() {
-                // slidePageNum = 7;
+            function doit8(slide08PageNumParam) {
+                slide08PageNum = slide08PageNumParam;
                 app.to("idhome08","show");
             } 
             function dailyProfit(){
@@ -140,6 +197,65 @@
             function toMainBusinessPage() {
                 app.to("idMainBusiness","show");
             }
+            // 净利润页面
+            function toPureProfitPage() {
+                app.to("idPureProfit","show");
+            }
+            //资产情况
+            //净资产页面
+            function toPurePropertyPage() {
+                app.to("idPureProperty","show");
+            }
+            //总资产页面
+            function toSumPropertyPage() {
+                app.to("idSumProperty","show");
+            }
+            // 资金情况
+            // 销售现金比率
+            function toSalesPercentPage() {
+                app.to("idSalesPercent","show");
+            }
+            // 资产现金回收率
+            function toPropertyPercentPage() {
+                app.to("idPropertyPercent","show");
+            }
+            
+            // 人均营业收入
+            function toAverBusinessPage() {
+                app.to("idAverBusinessIncome","show");
+            }
+            // 人均利润
+            function toAverPersonProfitPage() {
+                app.to("idAverPersonProfit","show");
+            }
+            // 员工性质、用工类型
+            function toWokerPropertyAndTypePage() {
+                app.to("idWokerPropertyAndType","show");
+            }
+            
+            // 单位万千瓦员工数
+            function toWokerCountPage() {
+                app.to("idWorkerCount","show");
+            }
+            // 单位万千瓦时员工数
+            function toWokerCountPerHourPage() {
+                app.to("idWorkerCountPerHour","show");
+            }
+            // 单位万千瓦人工成本
+            function toWokerCostPage() {
+                app.to("idWorkerCost","show");
+            }
+            // 单位万千瓦时人工成本
+            function toWokerCostPerHourPage() {
+                app.to("idWorkerCostPerHour","show");
+            }
+            
+            // 安全生产天数
+            function toSafeProduceDaysPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idSafeProduceDays","show");
+            }
 		</script>
 		<script>
 		    var usrid = "ERPTEST1";
@@ -148,96 +264,288 @@
 		</script>
 		<script>
 				sap.ui.localResources("view");
+				// 日利润
 				var powerPlantMap;
+				// 日利润详细指标
+				var dailyProfitDetail;
 				var internetPowerVolume;
+				// wait event
+				// 日利润
+				var isInternetPowerVolumeLoad = false;
+				var isInternetVolumeLoad = false;
+				var isPerformaneceLoad = false;
+				var isPowerPlantMapLoad = false;
+				var isOthersCostLoad = false;
+				// 主营业务
+				var isMainBusinessLoad = false;
+				var isPowerIncomeLoad = false;
+				var isHeatIncomeLoad = false;
+				var isLabourIncomeLoad = false;
+				var isOthersIncomeLoad = false;
+				// 净利润
+				var isPureProfit = false;
+				
+				
+				// home page
+				var isHomeLoad = false;
+				var isHome02Load = false;
+				var isHome03Load = false;
+				var isHome04Load = false;
+				var isHome05Load = false;
+				var isHome06Load = false;
+				var isHome07Load = false;
+				var isHome08Load = false;
+				// 净利润
+				var isAverPersonProfit = false;
+				
 				var internetVolume;
 				var othersCost;
+				// 帮助页面
 				var helpPage;
+				// 主营业务
 				var mainBusiness;
+				// 净利润
+				var pureProfit;
+				
+				// 净利润详细
+				var pureProfitDetail;
+				// 营业利润
+				var businessProfit;
+				// 利润总额
+				var profitSum;
+				// 所得税费用
+				var taxFee;
+				// 营业总收入
+				var businessSumIncome;
+				// 营业总成本
+				var businessSumCost;
+				
+				//资产情况
+				//净资产
+				var pureProperty;
+				//净资产
+				var sumProperty;
+				
+				// 资金情况
+				// 销售现金比率
+				var salesPercent;
+				// 资产现金回收率
+				var propertyPercent;
+				
 				var powerIncome;
 				var heatIncome;
+				var labourIncome;
+				var othersIncome;
+				// 人均营业收入
+				var averBusinessIncome;
+				// 人均利润
+				var averPersonProfit;
+				var averPersonProfitDetailValue;
+				var averPersonProfitDetailValuePage;
+                // 用工性质/员工类型
+            	var wokerPropertyAndType;
+            	var isWokerPropertyAndType = false;
+            	// 人均营业收入记录
+            	var averPersonProfitRecord;
+            	// 人均工资
+            	var averPersonSalary;
+				
+				// 单位万千瓦员工数
+				var workerCount;
+				// 单位万千瓦时员工数
+				var workerCountPerHour;
+				// 单位万千瓦人工成本
+				var workerCost;
+				// 单位万千瓦时人工成本
+				var workerCostPerHour;
+				
+				// 风险控制
+				var safeProduceDays;
+				// TODO 
+				var safeProduceDaysDate;
+				
+				//业务情况
+				var tab;
+				
+				// 经营业绩
+				var home;
+				// 宏观环境
+				var home02;
+				// 资产情况
+				var home03;
+				// 业务情况
+				var home04 
+				// 投资情况
+				var home05; 
+				// 资金情况
+				var home06;
+				// 风险控制
+				var home07; 
+				// 发展保障
+				var home08;
+				
+				
+				// 日利润
+				var Performance;
+				
 				var slidePageNum = 0;
 				var app = new sap.m.App({initialPage:"idhome"});
+				
+				// 每个tab块进入时定位slide
+				var slide08PageNum = 0;
+				var slide02PageNum = 0;
+				var slide03PageNum = 0;
+				var slide06PageNum = 0;
 				
 				// var sServiceUrl = "/sap/opu/odata/sap/ZHANA003_SRV/";
 				var sServiceUrl = "/sap/opu/odata/sap/ZBIMS_SRV";
                 var oModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
                 sap.ui.getCore().setModel(oModel);
+
+                // Create the XHR object.
+                function createCORSRequest(method, url) {
+                      var xhr = new XMLHttpRequest();
+                      xhr.withCredentials = true;
+                      
+                      if ("withCredentials" in xhr) {
+                        // XHR for Chrome/Firefox/Opera/Safari.
+                        xhr.open(method, url, false, 'aclujj', 'Lujj1234');
+                      } else if (typeof XDomainRequest != "undefined") {
+                        // XDomainRequest for IE.
+                        xhr = new XDomainRequest();
+                        xhr.open(method, url);
+                      } else {
+                        // CORS not supported.
+                        xhr = null;
+                      }
+                      return xhr;
+                }
                 
+                // Helper method to parse the title tag from the response.
+                function getTitle(text) {
+                    return text.match('<title>(.*)?</title>')[1];
+                }
+                
+                // Make the actual CORS request.
+                function makeCorsRequest(mParameters) {
+                      // All HTML5 Rocks properties support CORS.
+                      var HostUrl = 'http://10.156.0.48:8000/tranpara_odata';
+                      HostUrl += mParameters;
+                      
+                      var resultData = '';
+                      var xhr = createCORSRequest('GET', HostUrl);
+                      if (!xhr) {
+                        alert('CORS not supported');
+                      }
+                    
+                      // Response handlers.
+                      xhr.onload = function() {
+                        var text = xhr.responseText;
+                        resultData = text;
+                      };
+                    
+                      xhr.onerror = function() {
+                        alert('Woops, there was an error making the request.');
+                      };
+                    
+                      xhr.send();
+                      return resultData;
+                }
+
 				function startApp(context) {
-            		var home = sap.ui.view({
+       
+            		home = sap.ui.view({
             			id: "idhome",
             			viewName: "com.zhenergy.pcbi.view.home",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home);
-            		 var home02= sap.ui.view({
+            		
+            		home02= sap.ui.view({
             			id: "idhome02",
             			viewName: "com.zhenergy.pcbi.view.home02",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home02);
-            		var home03 = sap.ui.view({
+            		
+            		home03 = sap.ui.view({
             			id: "idhome03",
             			viewName: "com.zhenergy.pcbi.view.home03",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home03);
-            		var home04 = sap.ui.view({
+            		
+            		home04 = sap.ui.view({
             			id: "idhome04",
             			viewName: "com.zhenergy.pcbi.view.home04",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home04);
-            		var home05 = sap.ui.view({
+            		
+            		home05 = sap.ui.view({
             			id: "idhome05",
             			viewName: "com.zhenergy.pcbi.view.home05",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home05);
-            		var home06 = sap.ui.view({
+            		
+            		home06 = sap.ui.view({
             			id: "idhome06",
             			viewName: "com.zhenergy.pcbi.view.home06",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home06);
-            		var home07 = sap.ui.view({
+            		
+            		home07 = sap.ui.view({
             			id: "idhome07",
             			viewName: "com.zhenergy.pcbi.view.home07",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home07);
-            		var home08 = sap.ui.view({
+            		
+            		home08 = sap.ui.view({
             			id: "idhome08",
             			viewName: "com.zhenergy.pcbi.view.home08",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home08);
-            		var Performance = sap.ui.view({
+            		
+            		Performance = sap.ui.view({
             			id: "idPerformance",
             			viewName: "com.zhenergy.pcbi.view.Performance",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(Performance);
-            		var rlcbDetailPage = sap.ui.view({
-            			id: "idrlcbDetailPage",
-            			viewName: "com.zhenergy.pcbi.view.rlcbDetailPage",
-            			type: sap.ui.core.mvc.ViewType.HTML
-            		});
-            		app.addPage(rlcbDetailPage);
-            		var jingyingyeji = sap.ui.view({
-            			id: "idjingyingyeji",
-            			viewName: "com.zhenergy.pcbi.view.jingyingyeji",
-            			type: sap.ui.core.mvc.ViewType.HTML
-            		});
-            		app.addPage(jingyingyeji);
+            		
+            		// TODO not used
+            // 		var rlcbDetailPage = sap.ui.view({
+            // 			id: "idrlcbDetailPage",
+            // 			viewName: "com.zhenergy.pcbi.view.rlcbDetailPage",
+            // 			type: sap.ui.core.mvc.ViewType.HTML
+            // 		});
+            // 		app.addPage(rlcbDetailPage);
+            		
+            // 		var jingyingyeji = sap.ui.view({
+            // 			id: "idjingyingyeji",
+            // 			viewName: "com.zhenergy.pcbi.view.jingyingyeji",
+            // 			type: sap.ui.core.mvc.ViewType.HTML
+            // 		});
+            // 		app.addPage(jingyingyeji);
+            		
             		tab = sap.ui.view({
             			id: "idtab",
             			viewName: "com.zhenergy.pcbi.view.tab",
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(tab);
-            		
+            		// 日利润详细
+            		dailyProfitDetail = sap.ui.view({
+            			id: "idDailyProfitDetail",
+            			viewName: "com.zhenergy.pcbi.view.dailyProfitDetail",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(dailyProfitDetail);
+            		 
             		powerPlantMap = sap.ui.view({
             			id: "idPowerPlantMap",
             			viewName: "com.zhenergy.pcbi.view.powerPlantMap",
@@ -252,6 +560,7 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(internetVolume);
+            		 
             		 // 其他成本
             		 othersCost = sap.ui.view({
             			id: "idOthersCost",
@@ -259,6 +568,7 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(othersCost);
+            		 
             		 // 厂用电量
             		internetPowerVolume = sap.ui.view({
             			id: "idInternetPowerVolume",
@@ -266,6 +576,7 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(internetPowerVolume);
+            		 
             		 // 帮助页面
             		 helpPage = sap.ui.view({
             			id: "idHelpPage",
@@ -273,6 +584,7 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(helpPage);
+            		 
             		 // 主营业务
             		 mainBusiness = sap.ui.view({
             			id: "idMainBusiness",
@@ -280,6 +592,98 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(mainBusiness);
+            		 
+            		 // 净利润
+            		 pureProfit = sap.ui.view({
+            			id: "idPureProfit",
+            			viewName: "com.zhenergy.pcbi.view.pureProfit",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(pureProfit);
+            		 
+            		 // 净利润详细
+            		 pureProfitDetail = sap.ui.view({
+            			id: "idPureProfitDetail",
+            			viewName: "com.zhenergy.pcbi.view.pureProfitDetail",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(pureProfitDetail);
+
+            		 // 营业利润
+            		 businessProfit = sap.ui.view({
+            			id: "idBusinessProfit",
+            			viewName: "com.zhenergy.pcbi.view.businessProfit",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(businessProfit);
+            		 
+            		 // 利润总额
+            		 profitSum = sap.ui.view({
+            			id: "idProfitSum",
+            			viewName: "com.zhenergy.pcbi.view.profitSum",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(profitSum);
+            		 
+            		 // 所得税费用
+            		 taxFee = sap.ui.view({
+            			id: "idTaxFee",
+            			viewName: "com.zhenergy.pcbi.view.taxFee",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(taxFee);
+            		 
+            		 // 营业总收入
+            		 businessSumIncome = sap.ui.view({
+            			id: "idBusinessSumIncome",
+            			viewName: "com.zhenergy.pcbi.view.businessSumIncome",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(businessSumIncome);  
+            		 
+            		 // 营业总成本
+            		 businessSumCost = sap.ui.view({
+            			id: "idBusinessSumCost",
+            			viewName: "com.zhenergy.pcbi.view.businessSumCost",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(businessSumCost);  
+            		 
+            		 
+            		 // 资产情况
+            		 // 净资产
+            		 pureProperty = sap.ui.view({
+            			id: "idPureProperty",
+            			viewName: "com.zhenergy.pcbi.view.pureProperty",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(pureProperty);
+            		 
+            		 // 总资产
+            		 sumProperty = sap.ui.view({
+            			id: "idSumProperty",
+            			viewName: "com.zhenergy.pcbi.view.sumProperty",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(sumProperty);
+            		 
+            		 // 资金情况
+            		 // 销售现金比率
+            		 salesPercent = sap.ui.view({
+            			id: "idSalesPercent",
+            			viewName: "com.zhenergy.pcbi.view.salesPercent",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(salesPercent);
+            		 
+            		 // 资产现金回收率
+            		 propertyPercent = sap.ui.view({
+            			id: "idPropertyPercent",
+            			viewName: "com.zhenergy.pcbi.view.propertyPercent",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(propertyPercent);
+            		 
             		 // 发电收入
             		 powerIncome = sap.ui.view({
             			id: "idPowerIncome",
@@ -287,6 +691,7 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(powerIncome);
+            		 
             		 // 供热收入
             		 heatIncome = sap.ui.view({
             			id: "idHeatIncome",
@@ -294,6 +699,110 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(heatIncome);
+            		 
+            		 // 劳务收入
+            		 labourIncome = sap.ui.view({
+            			id: "idLabourIncome",
+            			viewName: "com.zhenergy.pcbi.view.labourIncome",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(labourIncome);
+            		 
+            		 // 其他收入
+            		 othersIncome = sap.ui.view({
+            			id: "idOthersIncome",
+            			viewName: "com.zhenergy.pcbi.view.othersIncome",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(othersIncome);
+            		 
+            		 // 人均营业收入
+            		 averBusinessIncome = sap.ui.view({
+            			id: "idAverBusinessIncome",
+            			viewName: "com.zhenergy.pcbi.view.averBusinessIncome",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averBusinessIncome);
+
+            		 // 人均利润
+            		 averPersonProfit = sap.ui.view({
+            			id: "idAverPersonProfit",
+            			viewName: "com.zhenergy.pcbi.view.averPersonProfit",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averPersonProfit);
+            		 
+            		 // 用工性质/员工类型
+            		 wokerPropertyAndType = sap.ui.view({
+            			id: "idWokerPropertyAndType",
+            			viewName: "com.zhenergy.pcbi.view.wokerPropertyAndType",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(wokerPropertyAndType);
+
+            		 // 人均营业收入记录
+            		 averPersonProfitRecord = sap.ui.view({
+            			id: "idAverPersonProfitRecord",
+            			viewName: "com.zhenergy.pcbi.view.averPersonProfitRecord",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averPersonProfitRecord);
+
+            		 // 人均工资
+            		 averPersonSalary = sap.ui.view({
+            			id: "idAverPersonSalary",
+            			viewName: "com.zhenergy.pcbi.view.averPersonSalary",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averPersonSalary);
+            		 
+            		 // 人均利润详细页面
+            		 averPersonProfitDetailValuePage = sap.ui.view({
+            			id: "idAverPersonProfitDetailValue",
+            			viewName: "com.zhenergy.pcbi.view.averPersonProfitDetailValue",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averPersonProfitDetailValuePage);
+            		 
+            		 // 单位万千瓦员工数
+            		 workerCount = sap.ui.view({
+            			id: "idWorkerCount",
+            			viewName: "com.zhenergy.pcbi.view.workerCount",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(workerCount);
+            		 
+            		 // 单位万千瓦时员工数
+            		 workerCountPerHour = sap.ui.view({
+            			id: "idWorkerCountPerHour",
+            			viewName: "com.zhenergy.pcbi.view.workerCountPerHour",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(workerCountPerHour);
+            		 
+            		 // 单位万千瓦员人工成本
+            		 workerCost = sap.ui.view({
+            			id: "idWorkerCost",
+            			viewName: "com.zhenergy.pcbi.view.workerCost",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(workerCost);
+            		 
+            		 // 单位万千瓦时员人工成本
+            		 workerCostPerHour = sap.ui.view({
+            			id: "idWorkerCostPerHour",
+            			viewName: "com.zhenergy.pcbi.view.workerCostPerHour",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(workerCostPerHour);
+            		 
+            		 // 安全生产天数
+            		 safeProduceDays = sap.ui.view({
+            			id: "idSafeProduceDays",
+            			viewName: "com.zhenergy.pcbi.view.safeProduceDays",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(safeProduceDays);
             		 
 					 app.placeAt("content");
 				}
@@ -307,13 +816,27 @@
         		} else {
         		    usrid = 'ERPTEST1';
         		}
+
+        		// initial the page
                 startApp();
+                
+                // change the zoom of the page relate to pixel
+                function detectZoom (){ 
+                      if (window.outerWidth == 1440) {
+                          document.getElementById("sapUiBodyId").style.zoom = 0.5;
+                      }
+                      if (window.outerWidth == 1366) {
+                          document.getElementById("sapUiBodyId").style.zoom = 0.67;
+                      }
+                      if (window.outerWidth == 1920) {
+                          document.getElementById("sapUiBodyId").style.zoom = 1;
+                      }
+                };
 		</script>
-		
-	<script src='http://127.0.0.1:9088/webide/plugins/pluginrepository/hybrid/cordovafacade/cordova.js' data-original-url='index.html'></script>
+	<script src='https://localhost:9998/webide/plugins/pluginrepository/hybrid/cordovafacade/cordova.js' data-original-url='index.html'></script>
 <style>#interactive.viewport video{width:320px;height:240px;}
 #interactive.viewport .drawingBuffer{width:320px;height:240px;position:absolute;}</style></head>
-	<body class="sapUiBody" role="application">
+	<body class="sapUiBody" id="sapUiBodyId" role="application">
 		<div id="content"></div>
 	</body>
 </html>

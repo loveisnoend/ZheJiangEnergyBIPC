@@ -36,8 +36,8 @@ function btnclick(no) {
         chartDivId = 'pic5500';
     }
     var powerPlantName = document.getElementById('powerPlantMainDetailTitle').innerHTML;
-    if (powerPlantName == '电力股份公司') {
-			powerPlantName = '集团';
+    if (powerPlantName == '浙能电力股份有限公司') {
+			powerPlantName = '浙能电力';
 		}
     if (document.getElementById(btnID).className != "active") {
         //clear();

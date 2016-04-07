@@ -9,17 +9,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    
-				//AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"WokerPropertyAndType");
-			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
-				var naviDemo = document.getElementById("naviWokerPropertyAndType");
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-                                "<b onClick='toAverPersonProfitPage()' style='cursor:pointer;'>浙能电力人均利润</b> > <b>"+timeLabel+"员工类型/用工性质</b>"+
-                                "</span>";
-			    
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -218,7 +207,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				}
 			}
 			// 统计于日期
-			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
 			// 年龄 ≤ 30 31-40 41-50 51-55 ≥56
 			var ageChart = 'ageChart';
 			var ageChartData = [
@@ -380,7 +369,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				}
 			}
 			// 统计于日期
-			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_WokerPropertyAndTypeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -395,7 +384,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团-员工类型 用工性质
+	// 加载浙能电力-员工类型 用工性质
 	wokerPropertyAndTypePie: function(sexChartData, ageChartData, workAgeChartData, educationChartData, skillChartData) {
 		require(
                 [
@@ -502,7 +491,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 		}
 	},
 
-	// 加载集团-员工类型 用工性质
+	// 加载浙能电力-员工类型 用工性质
 	wokerPropertyAndType: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 
 		require(
@@ -516,8 +505,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 				if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
-.innerHTML=="集团"){
-   document.getElementById('profitNameWokerPropertyAndType').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
 .innerHTML;
@@ -649,7 +638,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			mychart.setOption(option);
 		}
 	},
-	// 加载集团-人均利润指标
+	// 加载浙能电力-人均利润指标
 	loadBaseDataDetail_WokerPropertyAndTypeIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 		require(
             [
@@ -662,8 +651,8 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
-.innerHTML=="集团"){
-   document.getElementById('profitNameWokerPropertyAndType').innerHTML="电力股份公司";
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
 }else{
 document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
 .innerHTML;
@@ -816,45 +805,45 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapWokerPropertyAndType'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMapWokerPropertyAndType'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			myChart4 = ec.init(document.getElementById('powerPlantMapWokerPropertyAndType'));
@@ -957,7 +946,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -1087,7 +1076,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认集团数据显示
+			// 默认浙能电力数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
