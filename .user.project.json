@@ -2,18 +2,6 @@
   "run": [
     {
       "filePath": "/zhenergypcbi/index.html",
-      "previewMode": 1,
-      "dataMode": 1,
-      "workspace": "withoutWorkspace",
-      "urlParameters": null,
-      "_metadata": {
-        "runnerId": "qunitrunner",
-        "id": 1972452,
-        "displayName": "New Unit Test 1"
-      }
-    },
-    {
-      "filePath": "/zhenergypcbi/index.html",
       "previewMode": 0,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -25,6 +13,33 @@
         "runnerId": "webapprunner",
         "id": 4759276,
         "displayName": "New Web Application 2"
+      }
+    },
+    {
+      "filePath": "/zhenergypcbi/view/home02.view.html",
+      "previewMode": 0,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 4219203,
+        "displayName": "New Web Application"
+      }
+    },
+    {
+      "filePath": "/zhenergypcbi/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "urlParameters": null,
+      "_metadata": {
+        "runnerId": "qunitrunner",
+        "id": 1972452,
+        "displayName": "New Unit Test 1"
       }
     }
   ]

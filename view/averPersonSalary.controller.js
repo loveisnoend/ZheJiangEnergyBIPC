@@ -99,11 +99,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonSalary", {
 			// 	}
 			// }
 			// 统计于日期
-<<<<<<< HEAD
 // 			$('#averPersonSalaryIncomeStatisticDate').html(dataStatisticDate);
-=======
-			$('#averPersonSalaryIncomeStatisticDate').html(dataStatisticDate);
->>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			if (priceChartName == '人均工资') {
 				this.loadBaseDataDetail_SupplyAverPersonSalaryIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}

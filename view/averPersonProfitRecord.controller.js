@@ -215,11 +215,7 @@ if (sRes.results[i].KPI_DESC != "集团") {
 				// }
 			}
 			// 统计于日期
-<<<<<<< HEAD
 // 			$('#averPersonProfitRecordIncomeStatisticDate').html(dataStatisticDate);
-=======
-			$('#averPersonProfitRecordIncomeStatisticDate').html(dataStatisticDate);
->>>>>>> 7537a2a9c84d7b71694b62609a96a761e97ae447
 			if (priceChartName == '人均营业收入') {
 				this.loadBaseDataDetail_SupplyAverPersonProfitRecordIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
