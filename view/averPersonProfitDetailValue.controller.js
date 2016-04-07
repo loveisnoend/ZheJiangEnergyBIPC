@@ -70,7 +70,7 @@ onInit: function() {
 				}
 			}
 			// 统计于日期
-// 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_SupplyaverPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -116,7 +116,7 @@ onInit: function() {
 				}
 			}
 			// 统计于日期
-// 			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
+			$('#averPersonProfitDetailValueIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
 				this.loadBaseDataDetail_averPersonProfitDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}

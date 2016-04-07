@@ -9,7 +9,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-				this.onAfterShow(evt);
+				//AC-LOUWW 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"PureProperty");
+				//AC-LOUWW 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
+				var naviDemo = document.getElementById("naviPureProperty");
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+                                "<b onClick='doit3(0)' style='cursor:pointer;'>资产情况</b> > <b>"+timeLabel+"电力股份净资产</b>"+
+                                "</span>";
+                                
+                this.onAfterShow(evt);
 			}, this)
 		});
 	},
@@ -201,7 +211,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				}
 			}
 			// 统计于日期
-// 			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
+			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净资产') {
 				this.pureProperty(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -257,7 +267,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				}
 			}
 			// 统计于日期
-// 			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
+			$('#purePropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净资产') {
 				this.loadBaseDataDetail_PurePropertyIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -588,43 +598,43 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapPureProperty'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapPureProperty'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
 			document.getElementById('powerPlantMainDetailTitlePureProperty').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
@@ -643,7 +653,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [150, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				series: [
 					{
@@ -891,7 +905,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [50, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				calculable: false,
 				series: [
@@ -1051,7 +1069,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [50, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				calculable: false,
 				series: [
@@ -1212,7 +1234,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [50, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				calculable: false,
 				series: [

@@ -400,7 +400,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#heatIncomeStatisticDate').html(dataStatisticDate);
+			$('#heatIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '供热收入') {
 				this.loadBaseDataDetail_SupplyHeatIncome(chartDivId, priceChartName, xData, KPI_ZZS_V, KPI_WZS_V, KPI_RSS_V, KPI_CZS_V, KPI_ZZS_UP,
 					KPI_WZS_UP, KPI_RSS_UP, KPI_CZS_UP);
@@ -505,7 +505,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#heatIncomeStatisticDate').html(dataStatisticDate);
+			$('#heatIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '供热收入') {
 				this.loadBaseDataDetail_SupplyHeatIncome(chartDivId, priceChartName, xData, KPI_ZZS_V, KPI_WZS_V, KPI_RSS_V, KPI_CZS_V, KPI_ZZS_UP,
 					KPI_WZS_UP, KPI_RSS_UP, KPI_CZS_UP);

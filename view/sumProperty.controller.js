@@ -9,14 +9,23 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-				this.onAfterShow(evt);
+				//AC-LOUWW 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"SumProperty");
+				//AC-LOUWW 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
+				var naviDemo = document.getElementById("naviSumProperty");
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'><b onClick='doit3(1)' style='cursor:pointer;'>资产情况</b> > <b>"+timeLabel+"电力股份总资产</b></span>";
+			    
+			    this.onAfterShow(evt);
+			    
 			}, this)
 		});
+
 	},
 
 	// eventment before show the page 
 	onAfterShow: function() {
-
 		document.getElementById('internetDetailSumProperty').style.display = "";
 		document.getElementById('rlcb_detailSumProperty').style.display = "none";
 		// this.loadChart();
@@ -201,7 +210,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				}
 			}
 			// 统计于日期
-// 			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
+			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '总资产') {
 				this.sumProperty(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP);
 			}
@@ -257,7 +266,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				}
 			}
 			// 统计于日期
-// 			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
+			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '总资产') {
 				this.loadBaseDataDetail_SumPropertyIncome(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP);
 			}
@@ -589,43 +598,43 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapSumProperty'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapSumProperty'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
 			document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
@@ -644,7 +653,11 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [150, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				series: [
 					{
@@ -892,7 +905,11 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [50, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				calculable: false,
 				series: [
@@ -1052,7 +1069,11 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [50, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				calculable: false,
 				series: [
@@ -1213,7 +1234,11 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 				tooltip: {
 					trigger: 'item',
 					formatter: '{b}<br/>{c}',
-					position: [200, 0]
+					position: [50, 0],
+					textStyle:{
+					    fontSize: 18,
+					    fontWeight : 'bold'
+					}
 				},
 				calculable: false,
 				series: [

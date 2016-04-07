@@ -240,8 +240,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			}
 
 			// 统计于日期
-
-// 			$('#powerPlantStatisticDate').html(dataStatisticDate);
+			$('#powerPlantStatisticDate').html(dataStatisticDate);
 			this.loadmjChart(divId, reallyPrice, qinGangPrice, date);
 
 			if (busy) {

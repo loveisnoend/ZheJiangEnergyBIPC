@@ -356,7 +356,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#othersIncomeStatisticDate').html(dataStatisticDate);
+			$('#othersIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '其他收入') {
 				this.loadBaseDataDetail_OthersIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -410,7 +410,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#othersIncomeStatisticDate').html(dataStatisticDate);
+			$('#othersIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '其他收入') {
 				this.loadBaseDataDetail_OthersIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}

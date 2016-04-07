@@ -16,7 +16,7 @@
       }
     },
     {
-      "filePath": "/zhenergypcbi/view/home02.view.html",
+      "filePath": "/zhenergypcbi/view/pureProperty.view.html",
       "previewMode": 0,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -26,8 +26,23 @@
       "urlParameters": [],
       "_metadata": {
         "runnerId": "webapprunner",
-        "id": 4219203,
-        "displayName": "New Web Application"
+        "id": 3424747,
+        "displayName": "New Web Application 4"
+      }
+    },
+    {
+      "filePath": "/zhenergypcbi/view/pureProfitDetail.view.html",
+      "previewMode": 0,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "_metadata": {
+        "runnerId": "webapprunner",
+        "id": 7987260,
+        "displayName": "New Web Application 3"
       }
     },
     {

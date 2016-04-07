@@ -219,7 +219,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 			// 				}
 			// 			}
 			// 统计于日期
-// 			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
+			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均营业收入') {
 				this.loadBaseDataDetail_SupplyAverBusinessIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -278,7 +278,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
+			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均营业收入') {
 				this.loadBaseDataDetail_AverBusinessIncome(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP);
 			}

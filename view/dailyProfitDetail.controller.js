@@ -194,7 +194,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 				}
 			}
 			// 统计于日期
-// 			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
+			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '日利润') {
 				this.loadBaseDataDetail_SupplyDailyProfitDetailIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -240,7 +240,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 				}
 			}
 			// 统计于日期
-// 			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
+			$('#dailyProfitDetailIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '日利润') {
 				this.loadBaseDataDetail_DailyProfitDetailIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}

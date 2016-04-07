@@ -82,7 +82,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#businessSumIncomeIncomeStatisticDate').html(dataStatisticDate);
+			$('#businessSumIncomeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '营业总收入') {
 				this.businessSumIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -138,7 +138,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#businessSumIncomeIncomeStatisticDate').html(dataStatisticDate);
+			$('#businessSumIncomeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '营业总收入') {
 				this.loadBaseDataDetail_BusinessSumIncomeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}

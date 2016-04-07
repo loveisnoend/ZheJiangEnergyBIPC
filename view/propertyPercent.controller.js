@@ -193,7 +193,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.propertyPercent", {
 				}
 			}
 			// 统计于日期
-// 			$('#propertyPercentIncomeStatisticDate').html(dataStatisticDate);
+			$('#propertyPercentIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '资产现金回收率') {
 				this.loadBaseDataDetail_SupplyPropertyPercentIncome(chartDivId, priceChartName, xData, KPI_ZXR_V, KPI_ZXR_UP);
 			}
@@ -239,7 +239,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.propertyPercent", {
 				}
 			}
 			// 统计于日期
-// 			$('#propertyPercentIncomeStatisticDate').html(dataStatisticDate);
+			$('#propertyPercentIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '资产现金回收率') {
 				this.loadBaseDataDetail_PropertyPercentIncome(chartDivId, priceChartName, xData, KPI_ZXR_V, KPI_ZXR_UP);
 			}
