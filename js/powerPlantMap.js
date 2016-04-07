@@ -51,7 +51,7 @@ function btnclick(no) {
     }
 }
 function detailAnother() {
-    if (document.getElementById('powerPlantMainDetailTitle').innerHTML == "电力股份公司") {
+    if (document.getElementById('powerPlantMainDetailTitle').innerHTML == "浙能电力股份有限公司") {
     	document.getElementById("rlcb_detail").style.display = "none";
     	//document.getElementById("hidden01").style.display = "none";
     	document.getElementById("detail_another").style.display = "";
@@ -65,7 +65,7 @@ function back_another() {
 }
 
 function detailAnother002(machineType) {
-    if(document.getElementById('powerPlantMainDetailTitle').innerHTML != '电力股份公司'){
+    if(document.getElementById('powerPlantMainDetailTitle').innerHTML != '浙能电力股份有限公司'){
     	document.getElementById("rlcb_detail").style.display = "none";
     	//document.getElementById("hidden01").style.display = "none";
     	document.getElementById("detail_another002").style.display = "";
