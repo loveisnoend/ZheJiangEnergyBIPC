@@ -478,26 +478,25 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 					{
 						name: '',
 						type: 'pie',
-						radius: ['50%', '70%'],
-						avoidLabelOverlap: false,
-						label: {
-							normal: {
-								show: false,
-								position: 'center'
-							},
-							emphasis: {
-								show: true,
-								textStyle: {
-									fontSize: '30',
-									fontWeight: 'bold'
-								}
-							}
-						},
-						labelLine: {
-							normal: {
-								show: false
-							}
-						},
+						radius: ['50%', '90%'],
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
 						data: dataContent
                     }
                 ]

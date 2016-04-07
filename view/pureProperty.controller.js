@@ -9,18 +9,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    //AC-LOUWW 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
-			    var sIdentical = "PureProperty";
-				//AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
-			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
-				var naviDemo = document.getElementById("navi"+sIdentical);
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit3(0)' style='cursor:pointer;'>资产情况</b> > <b>"+timeLabel+"浙能电力净资产</b>"+
-                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -602,43 +590,43 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 
 			///////////////////////////////////中国地图/////////////////////////////////////			
 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapPureProperty'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			myChart3 = ec.init(document.getElementById('chinaMapPureProperty'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitlePureProperty').innerHTML = '浙能电力';
+			document.getElementById('powerPlantMainDetailTitlePureProperty').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapPureProperty'));

@@ -210,10 +210,6 @@
             function toSumPropertyPage() {
                 app.to("idSumProperty","show");
             }
-            //资产负债率页面
-            function toLiabilityPropertyPage() {
-                app.to("idLiabilityProperty","show");
-            }
             // 资金情况
             // 销售现金比率
             function toSalesPercentPage() {
@@ -329,8 +325,6 @@
 				var pureProperty;
 				//净资产
 				var sumProperty;
-				// 资产负债情况
-				var liabilityProperty;
 				
 				// 资金情况
 				// 销售现金比率
@@ -672,13 +666,6 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(sumProperty);
-            		 // 资产负债率
-            		 liabilityProperty = sap.ui.view({
-            			id: "idLiabilityProperty",
-            			viewName: "com.zhenergy.pcbi.view.liabilityProperty",
-            			type: sap.ui.core.mvc.ViewType.HTML
-            		 });
-            		 app.addPage(liabilityProperty);
             		 
             		 // 资金情况
             		 // 销售现金比率
