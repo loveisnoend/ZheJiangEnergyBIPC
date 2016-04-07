@@ -52,7 +52,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 			var safeProduceDays=0;
 			for (var i in sRes.results) {
 			    
-				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC == '集团'){  
 				    safeProduceDays = safeProduceDays+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
@@ -100,7 +100,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 			//设置数据
 			var safeProduceDays=0;
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC == '集团'){  
 				    safeProduceDays = safeProduceDays+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}

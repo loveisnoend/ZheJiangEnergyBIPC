@@ -9,6 +9,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+				//AC-LOUWW 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"WorkerCost");
+			    //AC-LOUWW 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
+				var naviDemo = document.getElementById("naviWorkerCost");
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+                                "<b onClick='doit8(4)' style='cursor:pointer;'>发展保障</b> > <b>"+timeLabel+"电力股份单位效能</b>"+
+                                "</span>";
+			    
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -160,7 +170,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 
 	// 	},
 
-	// 获取浙能电力指标-单位万千瓦人工成本 SCREEN_FZBZ_02_V02
+	// 获取集团指标-单位万千瓦人工成本 SCREEN_FZBZ_02_V02
 	loadBase_SupplyWorkerCostIncome: function(chartDivId, priceChartName) {
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
@@ -184,7 +194,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 
-				if (sRes.results[i].KPI_DESC != "浙能电力") {
+				if (sRes.results[i].KPI_DESC != "集团") {
 					if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本') {
 						counta = 0;
 						for (var a in xData) {
@@ -218,7 +228,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			// 				}
 			// 			}
 			// 统计于日期
-// 			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
+			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '单位效能') {
 				this.loadBaseDataDetail_SupplyWorkerCostIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -277,7 +287,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 				}
 			}
 			// 统计于日期
-// 			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
+			$('#workerCostIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '单位效能') {
 				this.loadBaseDataDetail_WorkerCostIncome(chartDivId, priceChartName, xData, KPI_RLC_V, KPI_RLC_UP);
 			}
@@ -292,7 +302,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-单位万千瓦人工成本
+	// 加载集团-单位万千瓦人工成本
 	loadBaseDataDetail_SupplyWorkerCostIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {
 		require(
 	            [
@@ -305,8 +315,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleWorkerCost')
-				.innerHTML == "浙能电力") {
-				document.getElementById('profitNameWorkerCost').innerHTML = "浙能电力股份有限公司";
+				.innerHTML == "集团") {
+				document.getElementById('profitNameWorkerCost').innerHTML = "电力股份公司";
 			} else {
 				document.getElementById('profitNameWorkerCost').innerHTML = document.getElementById('powerPlantMainDetailTitleWorkerCost')
 					.innerHTML;
@@ -346,7 +356,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 						type: 'none'
 					}
 				},
-				color: specialColorArray,//[color1, color2],
+				color: [color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -420,7 +430,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			mychart.setOption(option);
 		}
 	},
-	// 加载浙能电力-单位万千瓦人工成本指标
+	// 加载集团-单位万千瓦人工成本指标
 	loadBaseDataDetail_WorkerCostIncome: function(chartDivId, priceChartName, xData, KPI_RLC_V, KPI_RLC_UP) {
 		require(
             [
@@ -433,8 +443,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleWorkerCost')
-				.innerHTML == "浙能电力") {
-				document.getElementById('profitNameWorkerCost').innerHTML = "浙能电力股份有限公司";
+				.innerHTML == "集团") {
+				document.getElementById('profitNameWorkerCost').innerHTML = "电力股份公司";
 			} else {
 				document.getElementById('profitNameWorkerCost').innerHTML = document.getElementById('powerPlantMainDetailTitleWorkerCost')
 					.innerHTML;
@@ -591,45 +601,45 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapWorkerCost'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapWorkerCost'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleWorkerCost').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleWorkerCost').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			myChart4 = ec.init(document.getElementById('powerPlantMapWorkerCost'));
@@ -732,7 +742,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -862,7 +872,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认浙能电力数据显示
+			// 默认集团数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1525,7 +1535,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '浙能电力') {
+			if (powerPlantName == '集团') {
 				// TODO
 				workerCost.getController().loadBase_SupplyWorkerCostIncome(priceChartId, priceChartName);
 				// workerCost.getController().loadEachPlant_SupplyWorkerCostIncome(priceChartId, priceChartName, powerPlantName);

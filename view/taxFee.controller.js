@@ -41,7 +41,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 		changeTheSkinOfPage();
 	},
 
-	// 获取浙能电力指标-所得税费用 SCREEN_ZCQK_02_V01
+	// 获取集团指标-所得税费用 SCREEN_ZCQK_02_V01
 	loadBase_SupplyTaxFeeIncome: function(chartDivId, priceChartName) {
 
 		var busy = new sap.m.BusyDialog({
@@ -82,7 +82,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 				}
 			}
 			// 统计于日期
-// 			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
+			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '所得税费用') {
 				this.taxFee(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -138,7 +138,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 				}
 			}
 			// 统计于日期
-// 			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
+			$('#taxFeeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '所得税费用') {
 				this.loadBaseDataDetail_TaxFeeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -153,7 +153,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_SDSFY/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-所得税费用
+	// 加载集团-所得税费用
 	taxFee: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 
 		require(
@@ -167,8 +167,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleTaxFee')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameTaxFee').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameTaxFee').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameTaxFee').innerHTML = document.getElementById('powerPlantMainDetailTitleTaxFee')
 .innerHTML;
@@ -209,7 +209,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 						type: 'none'
 					}
 				},
-				color: specialColorArray,
+				color: [color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -303,7 +303,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 			mychart.setOption(option);
 		}
 	},
-	// 加载浙能电力-所得税费用指标
+	// 加载集团-所得税费用指标
 	loadBaseDataDetail_TaxFeeIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 		require(
             [
@@ -316,8 +316,8 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleTaxFee')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameTaxFee').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameTaxFee').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameTaxFee').innerHTML = document.getElementById('powerPlantMainDetailTitleTaxFee')
 .innerHTML;
@@ -358,7 +358,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 						type: 'none'
 					}
 				},
-				color: specialColorArray,
+				color: [color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -496,7 +496,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 		// 				// 为echarts对象加载数据 
 		// 				myChart3.setOption(option3); 
 
-		//                 document.getElementById('powerPlantMainDetailTitleTaxFee').innerHTML = '浙能电力'
+		//                 document.getElementById('powerPlantMainDetailTitleTaxFee').innerHTML = '集团'
 		// 	//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 		// 			    // 基于准备好的dom，初始化echarts图表
 		//                 myChart4 = ec.init(document.getElementById('powerPlantMapTaxFee'));
@@ -661,7 +661,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 		//                 var mapSeries = option4.series[0];
 		//                 setChartData(ec, mapSeries, 0);
 
-		//                 // 默认浙能电力数据显示
+		//                 // 默认集团数据显示
 		// 				var selectedData = {name: mapSeries.markPoint.data[0].name, value: mapSeries.markPoint.data[0].inputPlanValue};
 		// 				option4.series[1].markPoint.data[0] = selectedData;
 		// 			    option4.series[1].markPoint.data[1] = {name:'上海',value:0};
@@ -834,7 +834,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 			// 为echarts对象加载数据 
 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleTaxFee').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleTaxFee').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapTaxFee'));
@@ -937,7 +937,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -1067,7 +1067,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认浙能电力数据显示
+			// 默认集团数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1730,7 +1730,7 @@ document.getElementById('profitNameTaxFee').innerHTML = document.getElementById(
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '浙能电力') {
+			if (powerPlantName == '集团') {
 				// TODO
 				taxFee.getController().loadBase_SupplyTaxFeeIncome(priceChartId, priceChartName);
 				//taxFee.getController().loadEachPlant_SupplyTaxFeeIncome(priceChartId, priceChartName, powerPlantName);

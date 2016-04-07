@@ -31,10 +31,10 @@ function priceDetailAnotherHeat(detailId) {
     if (powerPlantName == '凤台电厂') {
         powerPlantName = '凤台发电';
     }
-    if (powerPlantName == '浙能电力股份有限公司') {
-			powerPlantName = '浙能电力';
+    if (powerPlantName == '电力股份公司') {
+			powerPlantName = '集团';
 		}
-	if (powerPlantName == '浙能电力') {
+	if (powerPlantName == '集团') {
 	   heatIncome.getController().loadBase_SupplyHeatIncome(priceChartId, priceChartName);
 	} else {
 	   heatIncome.getController().loadEachPlant_SupplyHeatIncome(priceChartId, priceChartName, powerPlantName);

@@ -41,7 +41,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumCost", {
 		changeTheSkinOfPage();
 	},
 
-	// 获取浙能电力指标-营业总成本 SCREEN_ZCQK_02_V01
+	// 获取集团指标-营业总成本 SCREEN_ZCQK_02_V01
 	loadBase_SupplyBusinessSumCostIncome: function(chartDivId, priceChartName) {
 
 		var busy = new sap.m.BusyDialog({
@@ -82,7 +82,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumCost", {
 				}
 			}
 			// 统计于日期
-// 			$('#businessSumCostIncomeStatisticDate').html(dataStatisticDate);
+			$('#businessSumCostIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '营业总成本') {
 				this.businessSumCost(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -138,7 +138,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumCost", {
 				}
 			}
 			// 统计于日期
-// 			$('#businessSumCostIncomeStatisticDate').html(dataStatisticDate);
+			$('#businessSumCostIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '营业总成本') {
 				this.loadBaseDataDetail_BusinessSumCostIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
@@ -153,7 +153,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumCost", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_YYZCB/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-营业总成本
+	// 加载集团-营业总成本
 	businessSumCost: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 
 		require(
@@ -167,8 +167,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumCost", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 						if(document.getElementById('powerPlantMainDetailTitleBusinessSumCost')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameBusinessSumCost').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameBusinessSumCost').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameBusinessSumCost').innerHTML = document.getElementById('powerPlantMainDetailTitleBusinessSumCost')
 .innerHTML;
@@ -303,7 +303,7 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 			mychart.setOption(option);
 		}
 	},
-	// 加载浙能电力-营业总成本指标
+	// 加载集团-营业总成本指标
 	loadBaseDataDetail_BusinessSumCostIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 		require(
             [
@@ -316,8 +316,8 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleBusinessSumCost')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameBusinessSumCost').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameBusinessSumCost').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameBusinessSumCost').innerHTML = document.getElementById('powerPlantMainDetailTitleBusinessSumCost')
 .innerHTML;
@@ -496,7 +496,7 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 		// 				// 为echarts对象加载数据 
 		// 				myChart3.setOption(option3); 
 
-		//                 document.getElementById('powerPlantMainDetailTitleBusinessSumCost').innerHTML = '浙能电力'
+		//                 document.getElementById('powerPlantMainDetailTitleBusinessSumCost').innerHTML = '集团'
 		// 	//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 		// 			    // 基于准备好的dom，初始化echarts图表
 		//                 myChart4 = ec.init(document.getElementById('powerPlantMapBusinessSumCost'));
@@ -661,7 +661,7 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 		//                 var mapSeries = option4.series[0];
 		//                 setChartData(ec, mapSeries, 0);
 
-		//                 // 默认浙能电力数据显示
+		//                 // 默认集团数据显示
 		// 				var selectedData = {name: mapSeries.markPoint.data[0].name, value: mapSeries.markPoint.data[0].inputPlanValue};
 		// 				option4.series[1].markPoint.data[0] = selectedData;
 		// 			    option4.series[1].markPoint.data[1] = {name:'上海',value:0};
@@ -834,7 +834,7 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 			// 为echarts对象加载数据 
 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleBusinessSumCost').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleBusinessSumCost').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapBusinessSumCost'));
@@ -937,7 +937,7 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -1067,7 +1067,7 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认浙能电力数据显示
+			// 默认集团数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1730,7 +1730,7 @@ document.getElementById('profitNameBusinessSumCost').innerHTML = document.getEle
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '浙能电力') {
+			if (powerPlantName == '集团') {
 				// TODO
 				businessSumCost.getController().loadBase_SupplyBusinessSumCostIncome(priceChartId, priceChartName);
 				//businessSumCost.getController().loadEachPlant_SupplyBusinessSumCostIncome(priceChartId, priceChartName, powerPlantName);

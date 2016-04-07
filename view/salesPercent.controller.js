@@ -9,6 +9,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+				//AC-LOUWW 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"SalesPercent");
+			    //AC-LOUWW 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
+				var naviDemo = document.getElementById("naviSalesPercent");
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+                                "<b onClick='doit6(0)' style='cursor:pointer;'>资金情况</b> > <b>"+timeLabel+"电力股份销售现金比率</b>"+
+                                "</span>";
+			    
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -159,7 +169,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 
 	// 	},
 
-	// 获取浙能电力指标-销售现金比率 SCREEN_ZJQK_02_V01
+	// 获取集团指标-销售现金比率 SCREEN_ZJQK_02_V01
 	loadBase_SupplySalesPercentIncome: function(chartDivId, priceChartName) {
 
 		// 销售现金比率指标
@@ -193,7 +203,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				}
 			}
 			// 统计于日期
-// 			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
+			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '销售现金比率') {
 				this.loadBaseDataDetail_SupplySalesPercentIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -239,7 +249,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				}
 			}
 			// 统计于日期
-// 			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
+			$('#salesPercentIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '销售现金比率') {
 				this.loadBaseDataDetail_SalesPercentIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
@@ -251,7 +261,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_ZJQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-销售现金比率
+	// 加载集团-销售现金比率
 	loadBaseDataDetail_SupplySalesPercentIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
 
 		require(
@@ -265,8 +275,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 				if(document.getElementById('powerPlantMainDetailTitleSalesPercent')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameSalesPercent').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameSalesPercent').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameSalesPercent').innerHTML = document.getElementById('powerPlantMainDetailTitleSalesPercent')
 .innerHTML;
@@ -404,7 +414,7 @@ document.getElementById('profitNameSalesPercent').innerHTML = document.getElemen
 			}
 		}
 	},
-	// 加载浙能电力-销售现金比率指标
+	// 加载集团-销售现金比率指标
 	loadBaseDataDetail_SalesPercentIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
 		require(
             [
@@ -417,8 +427,8 @@ document.getElementById('profitNameSalesPercent').innerHTML = document.getElemen
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleSalesPercent')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameSalesPercent').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameSalesPercent').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameSalesPercent').innerHTML = document.getElementById('powerPlantMainDetailTitleSalesPercent')
 .innerHTML;
@@ -575,45 +585,45 @@ document.getElementById('profitNameSalesPercent').innerHTML = document.getElemen
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapSalesPercent'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapSalesPercent'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleSalesPercent').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleSalesPercent').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapSalesPercent'));
@@ -716,7 +726,7 @@ document.getElementById('profitNameSalesPercent').innerHTML = document.getElemen
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -846,7 +856,7 @@ document.getElementById('profitNameSalesPercent').innerHTML = document.getElemen
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认浙能电力数据显示
+			// 默认集团数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1517,7 +1527,7 @@ document.getElementById('profitNameSalesPercent').innerHTML = document.getElemen
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '浙能电力') {
+			if (powerPlantName == '集团') {
 				// TODO
 				salesPercent.getController().loadBase_SupplySalesPercentIncome(priceChartId, priceChartName);
 				//salesPercent.getController().loadEachPlant_SupplySalesPercentIncome(priceChartId, priceChartName, powerPlantName);

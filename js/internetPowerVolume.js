@@ -6,7 +6,7 @@ function internetPowerback() {
 function priceDetailAnother(detailId) {
     
     var plantName = document.getElementById('powerPlantName').innerHTML;
-    if (detailId == 'detail001' && plantName == '浙能电力股份有限公司') {
+    if (detailId == 'detail001' && plantName == '电力股份公司') {
     	document.getElementById("internetMain").style.display = "none";
     	document.getElementById("internetDetail").style.display = "";
     	var priceChartId = "priceDetailDiv";

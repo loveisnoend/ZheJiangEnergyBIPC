@@ -6,7 +6,7 @@ function othersCostback() {
 function priceDetailAnotherCost(detailId) {
 
     var plantName = document.getElementById('powerPlantMainDetailTitleCost').innerHTML;
-    if (plantName == '浙能电力股份有限公司') {
+    if (plantName == '电力股份公司') {
     	document.getElementById("othersCost_detail").style.display = "none";
     	document.getElementById("othersCostDetail2").style.display = "";
     	var priceChartId = "othersCostDetailDiv";

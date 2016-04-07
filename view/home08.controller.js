@@ -102,73 +102,73 @@ sap.ui.controller("com.zhenergy.pcbi.view.home08", {
 			
 			for (var i in sRes.results) {
 			    // 人均营业收入
-				if (sRes.results[i].KPI_TYPE == '人均营业收入' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均营业收入' && sRes.results[i].KPI_DESC == '集团'){  
 				    AverBusinessIncomeValue = AverBusinessIncomeValue+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '人均营业收入环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均营业收入环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    AverBusinessIncomeHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '人均营业收入同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均营业收入同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    AverBusinessIncomeTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				
 				
 			    // 人均利润
-				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DESC == '集团'){  
 				    averPersonProfit = averPersonProfit+parseFloat(sRes.results[i].KPI_VALUE);
 				    averPersonProfitDetailValue = averPersonProfit;
 				    daytimeNO5 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '人均利润环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均利润环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    averPersonProfitHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '人均利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均利润同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    averPersonProfitTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				
 				// 单位千瓦员工人数
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKW = workerCountsPerKW+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO1 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				// 单位万千瓦时员工人数
-				if (sRes.results[i].KPI_TYPE == '发电生产率' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHour = workerCountsPerKWHour+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO2 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '发电生产率环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '发电生产率同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			    // 单位万千瓦人工成本
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKW = workerCostPerKW+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO3 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWTongBi = sRes.results[i].KPI_VALUE*100;
 				} 
 				// 单位万千瓦时人工成本
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHour = workerCostPerKWHour+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO4 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHourHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHourTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			}
@@ -485,70 +485,70 @@ sap.ui.controller("com.zhenergy.pcbi.view.home08", {
 			
 			for (var i in sRes.results) {
 			    // 人均营业收入
-				if (sRes.results[i].KPI_TYPE == '人均营业收入' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均营业收入' && sRes.results[i].KPI_DESC == '集团'){  
 				    AverBusinessIncomeValue = AverBusinessIncomeValue+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '人均营业收入环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均营业收入环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    AverBusinessIncomeHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '人均营业收入同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均营业收入同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    AverBusinessIncomeTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				
 			    // 人均利润
-				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DESC == '集团'){  
 				    averPersonProfit = averPersonProfit+parseFloat(sRes.results[i].KPI_VALUE);
 				}
-				if (sRes.results[i].KPI_TYPE == '人均利润环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均利润环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    averPersonProfitHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '人均利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '人均利润同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    averPersonProfitTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				
 				// 单位千瓦员工人数
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKW = workerCountsPerKW+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO1 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦员工数同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 				// 单位万千瓦时员工人数
-				if (sRes.results[i].KPI_TYPE == '发电生产率' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHour = workerCountsPerKWHour+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO2 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '发电生产率环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '发电生产率同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '发电生产率同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCountsPerKWHourTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			    // 单位万千瓦人工成本
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKW = workerCostPerKW+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO3 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWTongBi = sRes.results[i].KPI_VALUE*100;
 				} 
 				// 单位万千瓦时人工成本
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHour = workerCostPerKWHour+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO4 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本环比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHourHuanBi = sRes.results[i].KPI_VALUE*100;
 				}
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本同比' && sRes.results[i].KPI_DESC == '集团'){  
 				    workerCostPerKWHourTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			}
