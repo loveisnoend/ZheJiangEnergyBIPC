@@ -46,7 +46,7 @@
 		<script>
 		    var usrid = "ERPTEST1";
 		    var skinName = '夜间模式'
-		    
+		    var specialColorArray = ['#A704CA','#E52DE6','#2DE630'];
 		    // 日利润
 		    var date, data1, data2, data3, data4;
 	       // var income , cost, profit;
@@ -588,6 +588,55 @@ var isGenerationLoad = false;
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home03);
+            		
+            		industrialAddSpeed = sap.ui.view({
+            			id: "idindustrialAddSpeed",
+            			viewName: "com.zhenergy.pcbi.view.IndustrialAddSpeed",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(industrialAddSpeed);
+            		
+            		socialEleCons = sap.ui.view({
+            			id: "idsocialEleCons",
+            			viewName: "com.zhenergy.pcbi.view.SocialEleCons",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(socialEleCons);
+				//浙江省煤电利用小时
+				var coalUtilizationHour = sap.ui.view({
+            			id: "idcoalUtilizationHour",
+            			viewName: "com.zhenergy.pcbi.view.CoalUtilizationHour",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(coalUtilizationHour);
+				//累计统调外购电量
+                var purchasingPower = sap.ui.view({
+            			id: "idpurchasingPower",
+            			viewName: "com.zhenergy.pcbi.view.PurchasingPower",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(purchasingPower);
+				//累计统调外购电量-外省净送
+				var purchasingPowerOtherProvinces = sap.ui.view({
+            			id: "idpurchasingPowerOtherProvinces",
+            			viewName: "com.zhenergy.pcbi.view.PurchasingPowerOtherProvinces",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(purchasingPowerOtherProvinces);
+				//统调最高用电负荷
+				var eleLoad = sap.ui.view({
+            			id: "ideleLoad",
+            			viewName: "com.zhenergy.pcbi.view.EleLoad",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(eleLoad);
+				//统调最高发电负荷
+				var generationLoad = sap.ui.view({
+            			id: "idgenerationLoad",
+            			viewName: "com.zhenergy.pcbi.view.GenerationLoad",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(generationLoad);
             		
             		home04 = sap.ui.view({
             			id: "idhome04",
