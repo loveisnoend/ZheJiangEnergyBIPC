@@ -256,6 +256,50 @@
                 // safeProduceDaysDate = 
                 app.to("idSafeProduceDays","show");
             }
+            //全国工业增长值增加速度
+            function toindustrialAddSpeedPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idindustrialAddSpeed","show");
+            }
+            //全社会用电量-浙江省
+            function tosocialEleConsPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idsocialEleCons","show");
+            }
+				//浙江省煤电利用小时
+				function tocoalUtilizationHourPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idcoalUtilizationHour","show");
+            }
+
+				//累计统调外购电量
+				function topurchasingPowerPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idpurchasingPower","show");
+            }
+				//累计统调外购电量-外省净送
+				function topurchasingPowerOtherProvincesPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idpurchasingPowerOtherProvinces","show");
+            }
+				//统调最高用电负荷
+				function toeleLoadPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("ideleLoad","show");
+            }
+
+				//统调最高发电负荷
+				function togenerationLoadPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idgenerationLoad","show");
+            }
 		</script>
 		<script>
 		    var usrid = "ERPTEST1";
@@ -371,6 +415,20 @@
 				var home;
 				// 宏观环境
 				var home02;
+				//全国工业增长值增加速度
+				var industrialAddSpeed;
+				//全社会用电量-浙江省
+				var socialEleCons;
+				//浙江省煤电利用小时
+				var coalUtilizationHour;
+				//累计统调外购电量
+                var purchasingPower;
+				//累计统调外购电量-外省净送
+				var purchasingPowerOtherProvinces;
+				//统调最高用电负荷
+				var eleLoad;
+				//统调最高发电负荷
+				var generationLoad;
 				// 资产情况
 				var home03;
 				// 业务情况
@@ -474,6 +532,55 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(home03);
+            		
+            		industrialAddSpeed = sap.ui.view({
+            			id: "idindustrialAddSpeed",
+            			viewName: "com.zhenergy.pcbi.view.IndustrialAddSpeed",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(industrialAddSpeed);
+            		
+            		socialEleCons = sap.ui.view({
+            			id: "idsocialEleCons",
+            			viewName: "com.zhenergy.pcbi.view.SocialEleCons",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(socialEleCons);
+				//浙江省煤电利用小时
+				var coalUtilizationHour = sap.ui.view({
+            			id: "idcoalUtilizationHour",
+            			viewName: "com.zhenergy.pcbi.view.CoalUtilizationHour",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(coalUtilizationHour);
+				//累计统调外购电量
+                var purchasingPower = sap.ui.view({
+            			id: "idpurchasingPower",
+            			viewName: "com.zhenergy.pcbi.view.PurchasingPower",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(purchasingPower);
+				//累计统调外购电量-外省净送
+				var purchasingPowerOtherProvinces = sap.ui.view({
+            			id: "idpurchasingPowerOtherProvinces",
+            			viewName: "com.zhenergy.pcbi.view.PurchasingPowerOtherProvinces",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(purchasingPowerOtherProvinces);
+				//统调最高用电负荷
+				var eleLoad = sap.ui.view({
+            			id: "ideleLoad",
+            			viewName: "com.zhenergy.pcbi.view.EleLoad",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(eleLoad);
+				//统调最高发电负荷
+				var generationLoad = sap.ui.view({
+            			id: "idgenerationLoad",
+            			viewName: "com.zhenergy.pcbi.view.GenerationLoad",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		});
+            		app.addPage(generationLoad);
             		
             		home04 = sap.ui.view({
             			id: "idhome04",
