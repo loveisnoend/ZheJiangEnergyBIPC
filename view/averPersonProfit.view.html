@@ -32,7 +32,8 @@
                 </div>
             </div>
             <div class="content_center">
-                <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo"><b onClick="doit8(1)" style="cursor:pointer;">发展保障</b> > 浙能电力人均利润</span></div>
+                <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;">
+                <span id="demo"><b onClick="doit8(1)" style="cursor:pointer;">发展保障</b> > 浙能电力人员构成分析</span></div>
                 <div class="averPersonProfit_main">
                     <div class="averPersonProfit_main_content_left">
                         <div class="averPersonProfitPanelLeft swdl" ondblclick="toWokerPropertyAndTypePage()">
@@ -41,23 +42,27 @@
                                 <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
                             </div>
                             <div class="averPersonPanel_content01">
-                                <div id="employeeTypeChart" style="width:450px;height:300px;"></div>
+                                <!--<div id="employeeTypeChart" style="width:450px;height:300px;"></div>-->
+                                <div id="employeeTypeChart" style="width:600px;height:500px;"></div>
                             </div>
                         </div>
-                        <div class="averPersonProfitPanelRight pjswdj" onclick="toDetailPage('人均工资')">
-                            <div class="averPersonPanel_title">
-                                <div style="float:left;margin-left:35%">人均工资<span id="averSalary">万元</span></div>                                
-                                <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
-                            </div>
-                            <div class="averPersonPanel_content02">
-                                <div id="averSalaryChart" style="width:450px;height:200px;"></div>
-                            </div>
-                        </div>
+                        <!--<div class="averPersonProfitPanelRight pjswdj" onclick="toDetailPage('人均工资')">-->
+                        <!--    <div class="averPersonPanel_title">-->
+                        <!--        <div style="float:left;margin-left:35%">人均工资<span id="averSalary">万元</span></div>                                -->
+                        <!--        <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>-->
+                        <!--    </div>-->
+                        <!--    <div class="averPersonPanel_content02">-->
+                        <!--        <div id="averSalaryChart" style="width:450px;height:200px;"></div>-->
+                        <!--    </div>-->
+                        <!--</div>-->
                     </div>
                     <div class="averPersonProfit_main_content_center">
+                            <div id="idTimeLabelCenter" ></div>
                             <div id="averPersonProfitResult" style="cursor:pointer;" onclick="toDetailPage('人均利润')">
                              </div>
-                                                             <div style="float:left;margin-left: 350px;margin-top: -100px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
+                            <div style="float:left;margin-left: 350px;margin-top: -100px;">
+                            <!--<img height="25px" width="25px" src="img/iconfont-right.png"/>-->
+                            </div>
 
                     </div>
                     <div class="averPersonProfit_main_content_right">
@@ -68,18 +73,19 @@
                                 <span id="workerProperty"></span>
                             </div>
                             <div class="averPersonPanel_content01">
-                                <div id="workerPropertyChart" style="width:450px;height:300px;"></div>
+                                <div id="workerPropertyChart" style="width:600px;height:500px;"></div>
+                                <!--<div id="workerPropertyChart" style="width:450px;height:300px;"></div>-->
                             </div>
                         </div>
-                        <div class="averPersonProfitPanelRight rlcb" onclick="toDetailPage('人均营业收入记录')">
-                            <div class="averPersonPanel_title">
-                                <div style="float:left;margin-left:35%">人均营业收入<span id="businessIncome">万元</span></div>                                
-                                <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
-                            </div>
-                            <div class="averPersonPanel_content02">
-                                <div id="businessIncomeChart" style="width:450px;height:200px;"></div>
-                            </div>
-                        </div>
+                        <!--<div class="averPersonProfitPanelRight rlcb" onclick="toDetailPage('人均营业收入记录')">-->
+                        <!--    <div class="averPersonPanel_title">-->
+                        <!--        <div style="float:left;margin-left:35%">人均营业收入<span id="businessIncome">万元</span></div>                                -->
+                        <!--        <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>-->
+                        <!--    </div>-->
+                        <!--    <div class="averPersonPanel_content02">-->
+                        <!--        <div id="businessIncomeChart" style="width:450px;height:200px;"></div>-->
+                        <!--    </div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
