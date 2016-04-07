@@ -9,6 +9,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.profitSum", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    
+				//AC-LOUWW 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"ProfitSum");
+			    //AC-LOUWW 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
+				var naviDemo = document.getElementById("naviProfitSum");
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+                                "<b onClick='toPureProfitPage()' style='cursor:pointer;'>浙能电力净利润</b> > <b>"+timeLabel+"利润总额</b>"+
+                                "</span>";
+                                
 				this.onAfterShow(evt);
 			}, this)
 		});
