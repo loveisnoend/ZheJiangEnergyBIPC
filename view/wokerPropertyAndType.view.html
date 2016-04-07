@@ -33,31 +33,34 @@
             </div>
             <div class="content_center">
               <div class="powerTop">
-                    <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo" style="height:100%;"><b onClick="toAverPersonProfitPage()" style="cursor:pointer;">浙能电力人均利润</b> > <b>员工类型/用工性质</b></span></div>             
+                    <div id="naviWokerPropertyAndType" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;">
+                    <!--<span id="demo" style="height:100%;"><b onClick="toAverPersonProfitPage()" style="cursor:pointer;">电力股份人均利润</b> > <b>员工类型/用工性质</b></span>-->
+                        
+                    </div>             
               </div>
               <div class="powerBottom">
-                  <div class="powerPlantLeft">
-        			  <div class="mapTop">
-        			      <div id="huaiNanMapWokerPropertyAndType" class="huiNanMap"></div>
-        			      <div id="powerPlantMapWokerPropertyAndType" class="powerPlantMap"></div>
-        			  </div>
-        			  <div class="mapBottom">
-        			      <div class="chinaMap" style="margin-left:40px;">
-                              <div class="chinaMapCon">
-            			          <div id="chinaMapWokerPropertyAndType" style="float:left;height:110px;width:140px;margin-top:15px;margin-left:30px;">
+                  <div class="powerPlantLeft" id="powerPlantLeftWokerPropertyAndType">
+        			  <!--<div class="mapTop">-->
+        			  <!--    <div id="huaiNanMapWokerPropertyAndType" class="huiNanMap"></div>-->
+        			  <!--    <div id="powerPlantMapWokerPropertyAndType" class="powerPlantMap"></div>-->
+        			  <!--</div>-->
+        			  <!--<div class="mapBottom">-->
+        			  <!--    <div class="chinaMap" style="margin-left:40px;">-->
+             <!--                 <div class="chinaMapCon">-->
+            	<!--		          <div id="chinaMapWokerPropertyAndType" style="float:left;height:110px;width:140px;margin-top:15px;margin-left:30px;">-->
             			              
-            			          </div>
-            			          <div id="akesuMapWokerPropertyAndType" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:250px;"></div>
-            			          <div id="zaoquanMapWokerPropertyAndType" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:450px;"></div>
-        			          </div>
-        			      </div>
-        			      <b id="powerName" style="color:#FEFF02;display:none;"></b>
-        			  </div>
+            	<!--		          </div>-->
+            	<!--		          <div id="akesuMapWokerPropertyAndType" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:250px;"></div>-->
+            	<!--		          <div id="zaoquanMapWokerPropertyAndType" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:450px;"></div>-->
+        			  <!--        </div>-->
+        			  <!--    </div>-->
+        			  <!--    <b id="powerName" style="color:#FEFF02;display:none;"></b>-->
+        			  <!--</div>-->
                 </div>
                 <div class="powerPlantRight">
                     <div id="rlcb_detailWokerPropertyAndType" class="detail_02">
                         <div class="detail_02_01">
-                                <div id="powerPlantMainDetailTitleWokerPropertyAndType" style="margin-top:0px;font-size:20px;">浙能电力</div>
+                                <div id="powerPlantMainDetailTitleWokerPropertyAndType" style="margin-top:0px;font-size:20px;">集团</div>
                         </div>
                         <div class="main_content_combition_1">
                             <div class="main_content_combition_1_1">
@@ -109,7 +112,7 @@
                         <div class="internetDetailTop" style="font-size:20px;font-family: 微软雅黑;margin-left:10px;">
                            <div style="color:#FFFFFF;margin-top:15px;margin-left:10px;float:left">
                                 <span style="float:left;" id="profitNameWokerPropertyAndType">
-                                浙能电力股份有限公司
+                                电力股份公司
                                 </span>
                                 <!--<span onclick="internetbackWokerPropertyAndType()" style="cursor:pointer;margin-left:20px;color:rgb(255,153,0);">返回</span>-->
                            </div>
@@ -137,9 +140,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="priceDetail_another_font">-->
-                            <!--统计于<br/><b id="wokerPropertyAndTypeIncomeStatisticDate"></b>-->
-                        <!--</div>-->
+                        <div class="priceDetail_another_font">
+                            统计于<br/><b id="wokerPropertyAndTypeIncomeStatisticDate"></b>
+                        </div>
                     </div>
                 </div>
                 
@@ -152,27 +155,25 @@
                         <div class="But01" type="button"  onClick="doit1()"></div>
                     </li>
                     <li class="split_line"></li>
-                    <li class="but04">
-                        <div class="But04" type="button"  onClick="doit4()"></div>
-                    </li>
-                    <li class="split_line"></li>
                     <li class="but02">
                         <div class="But02" type="button"  onClick="doit2()"></div>
-                    </li>
-                    <li class="split_line"></li>
-                    <li class="but06">
-                        <div class="But06" type="button"  onClick="doit6()"></div>
                     </li>
                     <li class="split_line"></li>
                     <li class="but03">
                         <div class="But03" type="button"  onClick="doit3()"></div>
                     </li>
-                    
+                    <li class="split_line"></li>
+                    <li class="but04">
+                        <div class="But04" type="button"  onClick="doit4()"></div>
+                    </li>
                     <!--<li class="split_line"></li>-->
                     <!--<li class="but05">-->
                     <!--    <div class="But05" type="button"  onClick="doit5()"></div>-->
                     <!--</li>-->
-                    
+                    <li class="split_line"></li>
+                    <li class="but06">
+                        <div class="But06" type="button"  onClick="doit6()"></div>
+                    </li>
                     <li class="split_line"></li>
                     <li class="but07">
                         <div class="But07" type="button"  onClick="doit7()"></div>

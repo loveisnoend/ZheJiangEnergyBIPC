@@ -9,6 +9,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+				//AC-LOUWW 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"AverBusiness");
+			    //AC-LOUWW 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
+				var naviDemo = document.getElementById("naviAverBusiness");
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+                                "<b onClick='doit8(0)' style='cursor:pointer;'>发展保障</b> > <b>"+timeLabel+"电力股份人均营业收入</b>"+
+                                "</span>";
+                                
+                                
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -184,7 +195,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 
-				if (sRes.results[i].KPI_DESC != "浙能电力") {
+				if (sRes.results[i].KPI_DESC != "集团") {
 					if (sRes.results[i].KPI_TYPE == '人均营业收入') {
 						counta = 0;
 						for (var a in xData) {
@@ -219,7 +230,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 			// 				}
 			// 			}
 			// 统计于日期
-// 			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
+			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均营业收入') {
 				this.loadBaseDataDetail_SupplyAverBusinessIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -278,7 +289,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 				}
 			}
 			// 统计于日期
-// 			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
+			$('#averBusinessIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均营业收入') {
 				this.loadBaseDataDetail_AverBusinessIncome(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP);
 			}
@@ -306,8 +317,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleAverBusiness')
-				.innerHTML == "浙能电力") {
-				document.getElementById('profitNameAverBusiness').innerHTML = "浙能电力股份有限公司";
+				.innerHTML == "集团") {
+				document.getElementById('profitNameAverBusiness').innerHTML = "电力股份公司";
 			} else {
 				document.getElementById('profitNameAverBusiness').innerHTML = document.getElementById('powerPlantMainDetailTitleAverBusiness')
 					.innerHTML;
@@ -347,7 +358,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 						type: 'none'
 					}
 				},
-				color: specialColorArray,
+				color: [color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -435,8 +446,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if (document.getElementById('powerPlantMainDetailTitleAverBusiness')
-				.innerHTML == "浙能电力") {
-				document.getElementById('profitNameAverBusiness').innerHTML = "浙能电力股份有限公司";
+				.innerHTML == "集团") {
+				document.getElementById('profitNameAverBusiness').innerHTML = "电力股份公司";
 			} else {
 				document.getElementById('profitNameAverBusiness').innerHTML = document.getElementById('powerPlantMainDetailTitleAverBusiness')
 					.innerHTML;
@@ -477,7 +488,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 						type: 'none'
 					}
 				},
-				color: specialColorArray,
+				color: [color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -521,7 +532,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 							lineStyle: {
 								color: 'rgba(64,64,64,0.5)'
 							}
-						}
+						},
 						// 		max: y1,
 						// 		min: y2,
 						// 		splitNumber: n
@@ -592,45 +603,45 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapAverBusiness'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapAverBusiness'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleAverBusiness').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleAverBusiness').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapAverBusiness'));
@@ -733,7 +744,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -1526,7 +1537,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '浙能电力') {
+			if (powerPlantName == '集团') {
 				// TODO
 				averBusinessIncome.getController().loadBase_SupplyAverBusinessIncome(priceChartId, priceChartName);
 				// averBusinessIncome.getController().loadEachPlant_SupplyAverBusinessIncome(priceChartId, priceChartName, powerPlantName);

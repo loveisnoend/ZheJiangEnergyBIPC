@@ -160,7 +160,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 
 	// 	},
 
-	// 获取浙能电力指标-电厂安全日天数 SCREEN_FZBZ_02_V02
+	// 获取集团指标-电厂安全日天数 SCREEN_FZBZ_02_V02
 	// 	loadBase_SupplySafeProduceDaysIncome : function (chartDivId, priceChartName) {
 
 	//         // 电厂安全日天数指标
@@ -276,7 +276,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 				}
 			}
 			// 统计于日期
-// 			$('#safeProduceDaysIncomeStatisticDate').html(dataStatisticDate);
+			$('#safeProduceDaysIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '电厂安全日天数') {
 				this.loadBaseDataDetail_SafeProduceDaysIncome(chartDivId, priceChartName, xData, KPI_SPD_V, KPI_RLC_UP);
 			}
@@ -291,7 +291,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_FXKZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-电厂安全日天数
+	// 加载集团-电厂安全日天数
 	loadBaseDataDetail_SupplySafeProduceDaysIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {
 		require(
             [
@@ -304,8 +304,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.safeProduceDays", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameSafeProduceDays').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameSafeProduceDays').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameSafeProduceDays').innerHTML = document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
 .innerHTML;
@@ -345,7 +345,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 						type: 'none'
 					}
 				},
-				color: specialColorArray,// [color1, color2],
+				// color: [color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -439,7 +439,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			mychart.setOption(option);
 		}
 	},
-	// 加载浙能电力-电厂安全日天数指标
+	// 加载集团-电厂安全日天数指标
 	loadBaseDataDetail_SafeProduceDaysIncome: function(chartDivId, priceChartName, xData, KPI_RLC_V, KPI_RLC_UP) {
 		require(
             [
@@ -452,8 +452,8 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 			if(document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameSafeProduceDays').innerHTML="浙能电力股份有限公司";
+.innerHTML=="集团"){
+   document.getElementById('profitNameSafeProduceDays').innerHTML="电力股份公司";
 }else{
 document.getElementById('profitNameSafeProduceDays').innerHTML = document.getElementById('powerPlantMainDetailTitleSafeProduceDays')
 .innerHTML;
@@ -647,7 +647,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			// 为echarts对象加载数据 
 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleSafeProduceDays').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleSafeProduceDays').innerHTML = '集团'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapSafeProduceDays'));
@@ -750,7 +750,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -880,7 +880,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认浙能电力数据显示
+			// 默认集团数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1543,7 +1543,7 @@ document.getElementById('profitNameSafeProduceDays').innerHTML = document.getEle
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '浙能电力') {
+			if (powerPlantName == '集团') {
 				safeProduceDays.getController().loadEachPlant_SupplySafeProduceDaysIncome(priceChartId, priceChartName, powerPlantName);
 			}
 			// 	else {

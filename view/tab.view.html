@@ -50,12 +50,12 @@
 	            case value==1:
 	                $("#select2div").empty();
 	                var selectCon = "<select class='select' id='select02' onchange='changePowerPlant(this.value)'>";
-	                    selectCon += "<option value='浙能电力'>浙能电力</option>";
-	                    selectCon += "<option value='浙能电力本部'>浙能电力股份有限公司</option>";
+	                    selectCon += "<option value='集团'>集团</option>";
+	                    selectCon += "<option value='电力股份本部'>浙能电力股份有限公司</option>";
 	                    selectCon += "<option value='萧山发电'>萧山发电厂</option>";
 	                    selectCon += "</select>";
 	                $("#select2div").append(selectCon);
-                    tab.getController().loadChart01(cityName,'浙能电力');
+                    tab.getController().loadChart01(cityName,'集团');
                     break;
                 case value==2:
                     $("#select2div").empty();
@@ -397,27 +397,25 @@
                         <div class="But01" type="button"  onClick="doit1()"></div>
                     </li>
                     <li class="split_line"></li>
-                    <li class="but04 nav_BI">
-                        <div class="But04" type="button"  onClick="doit4()"></div>
-                    </li>
-                    <li class="split_line"></li>
                     <li class="but02">
                         <div class="But02" type="button"  onClick="doit2()"></div>
-                    </li>
-                    <li class="split_line"></li>
-                    <li class="but06">
-                        <div class="But06" type="button"  onClick="doit6()"></div>
                     </li>
                     <li class="split_line"></li>
                     <li class="but03">
                         <div class="But03" type="button"  onClick="doit3()"></div>
                     </li>
-                    
+                    <li class="split_line"></li>
+                    <li class="but04 nav_BI">
+                        <div class="But04" type="button"  onClick="doit4()"></div>
+                    </li>
                     <!--<li class="split_line"></li>-->
                     <!--<li class="but05">-->
                     <!--    <div class="But05" type="button"  onClick="doit5()"></div>-->
                     <!--</li>-->
-                    
+                    <li class="split_line"></li>
+                    <li class="but06">
+                        <div class="But06" type="button"  onClick="doit6()"></div>
+                    </li>
                     <li class="split_line"></li>
                     <li class="but07">
                         <div class="But07" type="button"  onClick="doit7()"></div>

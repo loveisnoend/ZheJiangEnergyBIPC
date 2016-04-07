@@ -6,7 +6,7 @@ function internetback() {
 function priceDetailAnotherNet(detailId) {
     
     var titleName = document.getElementById("powerPlantMainDetailTitleNet").innerHTML;
-    if (detailId == 'detail006'  && titleName == '浙能电力股份有限公司') {
+    if (detailId == 'detail006'  && titleName == '电力股份公司') {
     	document.getElementById("rlcb_detailNet").style.display = "none";
     	document.getElementById("internetDetailNet").style.display = "";
     	var priceChartId = "priceDetailDivNet";
