@@ -144,7 +144,6 @@
   "img/userSetting-icon.png": "1459927279795",
   "img/userSkin-icon.png": "1459927279927",
   "img/write.png": "1459927280780",
-  "index.html": "1459927279890",
   "js/common.js": "1459927280866",
   "js/heatIncome.js": "1459927280718",
   "js/internetPowerVolume.js": "1459927280363",
@@ -239,8 +238,6 @@
   "view/tab.view.html": "1459927279793",
   "view/taxFee.controller.js": "1459927280815",
   "view/taxFee.view.html": "1459927279565",
-  "view/templates/dymcontents.controller.js": "1460005338991",
-  "view/templates/dymcontents.view.html": "1459937520162",
   "view/wokerPropertyAndType.controller.js": "1459927280167",
   "view/wokerPropertyAndType.view.html": "1459927280730",
   "view/workerCost.controller.js": "1460010437072",
@@ -250,5 +247,7 @@
   "view/workerCount.controller.js": "1459927280322",
   "view/workerCount.view.html": "1459927279898",
   "view/workerCountPerHour.controller.js": "1460009891066",
-  "view/workerCountPerHour.view.html": "1460009925890"
+  "view/workerCountPerHour.view.html": "1460009925890",
+  "index.html": "1460020758000",
+  "view/preview_hidden.html": "1460018398000"
 }

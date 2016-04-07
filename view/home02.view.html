@@ -36,7 +36,7 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
             			<div class="swiper-slide" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="toindustrialAddSpeedPage()">
                 				<div class="demo_header" id="industryUpSumDate">-年-月-日</div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
@@ -46,11 +46,11 @@
                 				<span id="currentMonthUp">0</span>
                 				<span class="demo_shuzi_span_shangbiao">%</span>
                 				</div>
-                				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="industryUpSum"></b></div>
+                				<div class="demo_content_1">同比<b id="tongbiIndustryMonthUp">1.2</b>%&nbsp;<img  src="img/horizontal-green.png" id="tongbiIndustryMonthUpImg" class="demo_img_down"/></div>
                 			</div>
             			</div>
             			<div class="swiper-slide" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="tosocialEleConsPage()">
                 				<div class="demo_header" id="socialPowerVolumeDate">-年-月-日</div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
@@ -65,56 +65,56 @@
                 				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="socialPowerVolumeSumUp"></b>&nbsp;&nbsp;同比<b id="huanbiSocialPowerVolumeSumUp"></b>%&nbsp;<img  id="huanbiSocialPowerVolumeSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
                 			</div>
             			</div>
-            			<div class="swiper-slide" id="MACRO03" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
-                				<div class="demo_header" id="allIndustryDate">-年-月-日</div>
-                				<div class="demo_jiange"></div>
-                				<div class="demo_title">
-                					全社会用电量-所有产业
-                				</div>
-                				<div class="demo_shuzi_first">
-                				<span id="allIndustryMonthUp">0</span>
-                				<span class="demo_shuzi_span_shangbiao">亿千瓦时</span>
-                				</div>
-                				<div class="demo_content_1">同比<b id="tongbiAllIndustryMonthUp"></b>%&nbsp;<img  src="img/horizontal-green.png" id="tongbiAllIndustryMonthUpImg" class="demo_img_down"/></div>
-                				<br/>
-                				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="allIndustrySumUp"></b>&nbsp;&nbsp;同比<b id="huanbiAllIndustrySumUp"></b>%&nbsp;<img  id="huanbiAllIndustrySumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
-                			</div>
-            			</div>
-            			<div class="swiper-slide" id="MACRO04" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
-                				<div class="demo_header" id="wholeNationPowerVolumeDate">-年-月-日</div>
-                				<div class="demo_jiange"></div>
-                				<div class="demo_title">
-                					全国发电量
-                				</div>
-                				<div class="demo_shuzi_first">
-                				<span id="wholeNationPowerVolumeMonthUp">0</span>
-                				<span class="demo_shuzi_span_shangbiao">亿千瓦时</span>
-                				</div>
-                				<div class="demo_content_1">同比<b id="tongbiWholeNationPowerVolumeMonthUp"></b>%&nbsp;<img  src="img/horizontal-green.png" id="tongbiWholeNationPowerVolumeMonthUpImg" class="demo_img_down"/></div>
-                				<br/>
-                				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="wholeNationPowerVolumeSumUp"></b>&nbsp;&nbsp;同比<b id="huanbiWholeNationPowerVolumeSumUp"></b>%&nbsp;<img  id="huanbiWholeNationPowerVolumeSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
-                			</div>
-            			</div>
+            			<!--<div class="swiper-slide" id="MACRO03" style="background-color:;margin-top: -15px;cursor:pointer;">-->
+               <!-- 			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">-->
+               <!-- 				<div class="demo_header" id="allIndustryDate">-年-月-日</div>-->
+               <!-- 				<div class="demo_jiange"></div>-->
+               <!-- 				<div class="demo_title">-->
+               <!-- 					全社会用电量-所有产业-->
+               <!-- 				</div>-->
+               <!-- 				<div class="demo_shuzi_first">-->
+               <!-- 				<span id="allIndustryMonthUp">0</span>-->
+               <!-- 				<span class="demo_shuzi_span_shangbiao">亿千瓦时</span>-->
+               <!-- 				</div>-->
+               <!-- 				<div class="demo_content_1">同比<b id="tongbiAllIndustryMonthUp"></b>%&nbsp;<img  src="img/horizontal-green.png" id="tongbiAllIndustryMonthUpImg" class="demo_img_down"/></div>-->
+               <!-- 				<br/>-->
+               <!-- 				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="allIndustrySumUp"></b>&nbsp;&nbsp;同比<b id="huanbiAllIndustrySumUp"></b>%&nbsp;<img  id="huanbiAllIndustrySumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>-->
+               <!-- 			</div>-->
+            			<!--</div>-->
+            			<!--<div class="swiper-slide" id="MACRO04" style="background-color:;margin-top: -15px;cursor:pointer;">-->
+               <!-- 			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">-->
+               <!-- 				<div class="demo_header" id="wholeNationPowerVolumeDate">-年-月-日</div>-->
+               <!-- 				<div class="demo_jiange"></div>-->
+               <!-- 				<div class="demo_title">-->
+               <!-- 					全国发电量-->
+               <!-- 				</div>-->
+               <!-- 				<div class="demo_shuzi_first">-->
+               <!-- 				<span id="wholeNationPowerVolumeMonthUp">0</span>-->
+               <!-- 				<span class="demo_shuzi_span_shangbiao">亿千瓦时</span>-->
+               <!-- 				</div>-->
+               <!-- 				<div class="demo_content_1">同比<b id="tongbiWholeNationPowerVolumeMonthUp"></b>%&nbsp;<img  src="img/horizontal-green.png" id="tongbiWholeNationPowerVolumeMonthUpImg" class="demo_img_down"/></div>-->
+               <!-- 				<br/>-->
+               <!-- 				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="wholeNationPowerVolumeSumUp"></b>&nbsp;&nbsp;同比<b id="huanbiWholeNationPowerVolumeSumUp"></b>%&nbsp;<img  id="huanbiWholeNationPowerVolumeSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>-->
+               <!-- 			</div>-->
+            			<!--</div>-->
             			<div class="swiper-slide" id="MACRO05" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="tocoalUtilizationHourPage()">
                 				<div class="demo_header" id="averUsePerHourDate">-年-月-日</div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
-                					全国平均利用小时
+                					浙江省煤电利用小时
                 				</div>
                 				<div class="demo_shuzi_first">
                 				<span id="averUsePerHourMonthUp">0</span>
                 				<span class="demo_shuzi_span_shangbiao">小时</span>
                 				</div>
-                				<div class="demo_content_1">同比<b id="tongbiAverUsePerHourMonthUp"></b>小时&nbsp;<img  src="img/horizontal-green.png" id="tongbiAverUsePerHourMonthUpImg" class="demo_img_down"/></div>
+                				<div class="demo_content_1">同比<b id="tongbiAverUsePerHourMonthUp">2.8%</b>&nbsp;<img  src="img/horizontal-green.png" id="tongbiAverUsePerHourMonthUpImg" class="demo_img_down"/></div>
                 				<br/>
                 				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="averUsePerHourSumUp"></b>&nbsp;&nbsp;同比<b id="huanbiAverUsePerHourSumUp"></b>小时&nbsp;<img  id="huanbiAverUsePerHourSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
                 			</div>
             			</div>
             			<div class="swiper-slide" id="MACRO06" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="topurchasingPowerPage()">
                 				<div class="demo_header" id="improtPowerSumDate">-年-月-日</div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
@@ -124,10 +124,13 @@
                 				<span id="improtPowerSum">0</span>
                 				<span class="demo_shuzi_span_shangbiao">亿千瓦时</span>
                 				</div>
+                				<div class="demo_content_1">同比<b id="tongbiImprotPowerMonthUp">3%</b>&nbsp;<img  src="img/horizontal-green.png" id="tongbiImprotPowerMonthUpImg" class="demo_img_down"/></div>
+                				<br/>
+                				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="improtPowerSumUp">4210</b>亿千瓦时&nbsp;&nbsp;同比<b id="huanbiImprotPowerSumUp">1.2%</b>&nbsp;<img  id="huanbiImprotPowerSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
                 			</div>
             			</div>
             			<div class="swiper-slide" id="MACRO07" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="topurchasingPowerOtherProvincesPage()">
                 				<div class="demo_header" id="improtPowerSumOutProvinceDate">-年-月-日</div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
@@ -137,10 +140,13 @@
                 				<span id="improtPowerSumOutProvince">0</span>
                 				<span class="demo_shuzi_span_shangbiao">亿千瓦时</span>
                 				</div>
+                				<div class="demo_content_1">同比<b id="tongbiImprotPowerOutProvinceMonthUp">1.6</b>亿千瓦时&nbsp;<img  src="img/horizontal-green.png" id="tongbiImprotPowerOutProvinceMonthUpImg" class="demo_img_down"/></div>
+                				<br/>
+                				<div class="demo_content_1"><b class="demo_content_sum">累计：</b><b id="ImprotPowerOutProvinceSumUp">3233</b>&nbsp;&nbsp;同比<b id="huanbiImprotPowerOutProvinceSumUp">2.3%</b>&nbsp;<img  id="huanbiImprotPowerOutProvinceSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
                 			</div>
             			</div>
             			<div class="swiper-slide" id="MACRO08" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="toeleLoadPage()">
                 				<div class="demo_header" id="highestUsePowerDate">-年-月-日</div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
@@ -150,10 +156,13 @@
                 				<span id="highestUsePower">0</span>
                 				<span class="demo_shuzi_span_shangbiao">万千瓦时</span>
                 				</div>
+                				<div class="demo_content_1">同比<b id="tongbiHighestUsePowerMonthUp">1.3%</b>&nbsp;<img  src="img/horizontal-green.png" id="tongbiHighestUsePowerMonthUpImg" class="demo_img_down"/></div>
+                				<br/>
+                				<div class="demo_content_1"><b>当月最高：</b><b id="HighestUsePowerM o n">5699</b>万千瓦时&nbsp;&nbsp;</br>累计最高：<b id="huanbiHighestUsePowerSumUp">6800</b>万千瓦时&nbsp;<img  id="huanbiHighestUsePowerSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
                 			</div>
             			</div>
             			<div class="swiper-slide" id="MACRO09" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="togenerationLoadPage()">
                 				<div class="demo_header" id="highestProducePowerDate">-年-月-日</div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
@@ -163,6 +172,9 @@
                 				<span id="highestProducePower">0</span>
                 				<span class="demo_shuzi_span_shangbiao">万千瓦时</span>
                 				</div>
+                				<div class="demo_content_1">同比<b id="tongbiHighestProducePowerMonthUp">2.3%</b>&nbsp;<img  src="img/horizontal-green.png" id="tongbiHighestProducePowerMonthUpImg" class="demo_img_down"/></div>
+                				<br/>
+                				<div class="demo_content_1"><b>当月最高：</b><b id="HighestProducePowerSumUp">6568</b>万千瓦时&nbsp;&nbsp;</br>累计最高：<b id="huanbiHighestProducePowerSumUp">7213</b>万千瓦时&nbsp;<img  id="huanbiHighestProducePowerSumUpImg" src="img/horizontal-green.png" class="demo_img_up"/></div>
                 			</div>
             			</div>
                         <!--<div class="swiper-slide" style="background-color:;margin-top: -15px;cursor:pointer;">-->
@@ -266,25 +278,27 @@
                         <div class="But01" type="button" onClick="doit1()"></div>
                     </li>
                     <li class="split_line"></li>
+                    <li class="but04" id="but04">
+                        <div class="But04" type="button" onClick="doit4()"></div>
+                    </li>
+                    <li class="split_line"></li>
                     <li class="but02" id="but02">
                         <div class="But02" type="button" onClick="doit2()"></div>
+                    </li>
+                    <li class="split_line"></li>
+                    <li class="but06" id="but06">
+                        <div class="But06" type="button" onClick="doit6()"></div>
                     </li>
                     <li class="split_line"></li>
                     <li class="but03" id="but03">
                         <div class="But03" type="button" onClick="doit3()"></div>
                     </li>
-                    <li class="split_line"></li>
-                    <li class="but04" id="but04">
-                        <div class="But04" type="button" onClick="doit4()"></div>
-                    </li>
+                    
                     <!--<li class="split_line"></li>-->
                     <!--<li class="but05" id="but05">-->
                     <!--    <div class="But05" type="button" onClick="doit5()"></div>-->
                     <!--</li>-->
-                    <li class="split_line"></li>
-                    <li class="but06" id="but06">
-                        <div class="But06" type="button" onClick="doit6()"></div>
-                    </li>
+                    
                     <li class="split_line"></li>
                     <li class="but07" id="but07">
                         <div class="But07" type="button" onClick="doit7()"></div>

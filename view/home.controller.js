@@ -122,14 +122,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			//设置数据
 			var home_rlr=0;
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    home_rlr = home_rlr+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '日利润环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '日利润环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    dailyProfitHuanBi = sRes.results[i].KPI_VALUE;
 				}
-				if (sRes.results[i].KPI_TYPE == '日利润同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '日利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    dailyProfitTongBi = sRes.results[i].KPI_VALUE;
 				}
 			}
@@ -217,26 +217,26 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			var pureProfit=0;
 			for (var i in sRes.results) {
 			    // 主营业务
-				if (sRes.results[i].KPI_TYPE == '主营业务收入' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '主营业务收入' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    mainBusinessValue = mainBusinessValue+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '主营业务收入环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '主营业务收入环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    mainBusinessHuanBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
-				if (sRes.results[i].KPI_TYPE == '主营业务收入同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '主营业务收入同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    mainBusinessTongBi = sRes.results[i].KPI_VALUE;
 				}
 				
 				// 净利润
-				if (sRes.results[i].KPI_TYPE == '净利润' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '净利润' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    pureProfit = pureProfit+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytimeNO1 = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '净利润环比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '净利润环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    pureProfitHuanBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
-				if (sRes.results[i].KPI_TYPE == '净利润同比' && sRes.results[i].KPI_DESC == '集团'){  
+				if (sRes.results[i].KPI_TYPE == '净利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    pureProfitTongBi = sRes.results[i].KPI_VALUE;
 				}
 			}

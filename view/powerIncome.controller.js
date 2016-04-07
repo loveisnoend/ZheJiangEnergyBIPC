@@ -9,15 +9,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-				//AC-LOUWW 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,"Power");
-			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11
-				var naviDemo = document.getElementById("naviPower");
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-                                "<b onClick='toMainBusinessPage()' style='cursor:pointer;'>浙能电力主营业务</b> > <b>"+timeLabel+"发电收入</b>"+
-                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -50,7 +41,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			//设置数据
 			var dc = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "集团本部" && sRes.results[i].KPI_DESC != "") {
+				if (sRes.results[i].KPI_DESC != "浙能电力本部" && sRes.results[i].KPI_DESC != "") {
 					if (dc == null || dc.length == 0) {
 						dc.push(sRes.results[i].KPI_DESC);
 					} else {
@@ -81,7 +72,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				tempJsonStrData += '",';
 				var isFirst = true;
 				for (var i in sRes.results) {
-					if ((sRes.results[i].KPI_TYPE == '各电厂发电量' || sRes.results[i].KPI_TYPE == '集团汇总发电量') && sRes.results[i].KPI_DESC == dc[j]) {
+					if ((sRes.results[i].KPI_TYPE == '各电厂发电量' || sRes.results[i].KPI_TYPE == '浙能电力汇总发电量') && sRes.results[i].KPI_DESC == dc[j]) {
 						if (isFirst != true) {
 							tempJsonStrData += ',';
 						}
@@ -322,7 +313,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}
 
 	},
-	// 获取集团指标-售电收入 SCREEN_JYYJ_04_VSDSRJT
+	// 获取浙能电力指标-售电收入 SCREEN_JYYJ_04_VSDSRJT
 	loadBase_SalesIncome: function(chartDivId, priceChartName) {
 
 		var busy = new sap.m.BusyDialog({
@@ -441,7 +432,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_SalesIncome(chartDivId, priceChartName, xData, KPI_HYS_V, KPI_ZGS_V, KPI_TDS_V, KPI_JJS_V, KPI_OES_V,
 				KPI_RLS_V, KPI_ZFS_V, KPI_HYS_UP, KPI_ZGS_UP, KPI_TDS_UP, KPI_JJS_UP, KPI_OES_UP, KPI_RLS_UP, KPI_ZFS_UP);
 			if (busy) {
@@ -574,7 +565,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_SalesIncome(chartDivId, priceChartName, xData, KPI_HYS_V, KPI_ZGS_V, KPI_TDS_V, KPI_JJS_V, KPI_OES_V,
 				KPI_RLS_V, KPI_ZFS_V, KPI_HYS_UP, KPI_ZGS_UP, KPI_TDS_UP, KPI_JJS_UP, KPI_OES_UP, KPI_RLS_UP, KPI_ZFS_UP);
 			if (busy) {
@@ -588,7 +579,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VSDSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团售电收入
+	// 加载浙能电力售电收入
 	loadBaseDataDetail_SalesIncome: function(chartDivId, priceChartName, xData, KPI_HYS_V, KPI_ZGS_V, KPI_TDS_V, KPI_JJS_V, KPI_OES_V,
 		KPI_RLS_V, KPI_ZFS_V, KPI_HYS_UP, KPI_ZGS_UP, KPI_TDS_UP, KPI_JJS_UP, KPI_OES_UP, KPI_RLS_UP, KPI_ZFS_UP) {
 		require(
@@ -602,7 +593,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantMainDetailTitlePower')
-// .innerHTML=="集团"){
+// .innerHTML=="浙能电力"){
 //   document.getElementById('profitNamePower').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitNamePower').innerHTML = document.getElementById('powerPlantMainDetailTitlePower')
@@ -643,7 +634,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 						type: 'none'
 					}
 				},
-				// color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -757,7 +748,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}
 	},
 
-	// 获取集团指标-补贴收入 SCREEN_JYYJ_04_VBTSRJT
+	// 获取浙能电力指标-补贴收入 SCREEN_JYYJ_04_VBTSRJT
 	loadBase_SubsidyIncome: function(chartDivId, priceChartName) {
 
 		var busy = new sap.m.BusyDialog({
@@ -863,7 +854,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_SubsidyIncome(chartDivId, priceChartName, xData, KPI_ZSS_V, KPI_TLS_V, KPI_TXS_V, KPI_CCS_V, KPI_DPS_V,
 				KPI_KHS_V, KPI_ZSS_UP, KPI_TLS_UP, KPI_TXS_UP, KPI_CCS_UP, KPI_DPS_UP, KPI_KHS_UP);
 			if (busy) {
@@ -982,7 +973,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_SubsidyIncome(chartDivId, priceChartName, xData, KPI_ZSS_V, KPI_TLS_V, KPI_TXS_V, KPI_CCS_V, KPI_DPS_V,
 				KPI_KHS_V, KPI_ZSS_UP, KPI_TLS_UP, KPI_TXS_UP, KPI_CCS_UP, KPI_DPS_UP, KPI_KHS_UP);
 			if (busy) {
@@ -996,7 +987,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VBTSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团补贴收入
+	// 加载浙能电力补贴收入
 	loadBaseDataDetail_SubsidyIncome: function(chartDivId, priceChartName, xData, KPI_ZSS_V, KPI_TLS_V, KPI_TXS_V, KPI_CCS_V, KPI_DPS_V,
 		KPI_KHS_V, KPI_ZSS_UP, KPI_TLS_UP, KPI_TXS_UP, KPI_CCS_UP, KPI_DPS_UP, KPI_KHS_UP) {
 		require(
@@ -1010,7 +1001,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantMainDetailTitlePower')
-// .innerHTML=="集团"){
+// .innerHTML=="浙能电力"){
 //   document.getElementById('profitNamePower').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitNamePower').innerHTML = document.getElementById('powerPlantMainDetailTitlePower')
@@ -1051,7 +1042,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 						type: 'none'
 					}
 				},
-				// color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -1158,7 +1149,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}
 	},
 
-	// 获取集团指标-辅助服务收入 SCREEN_JYYJ_04_VFZSRJT
+	// 获取浙能电力指标-辅助服务收入 SCREEN_JYYJ_04_VFZSRJT
 	loadBase_SubServiceIncome: function(chartDivId, priceChartName) {
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
@@ -1197,7 +1188,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_SubServiceIncome(chartDivId, priceChartName, xData, KPI_FZS_V, KPI_FZS_UP);
 			if (busy) {
 				busy.close();
@@ -1249,7 +1240,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_SubServiceIncome(chartDivId, priceChartName, xData, KPI_FZS_V, KPI_FZS_UP);
 			if (busy) {
 				busy.close();
@@ -1262,7 +1253,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VFZSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团辅助服务收入
+	// 加载浙能电力辅助服务收入
 	loadBaseDataDetail_SubServiceIncome: function(chartDivId, priceChartName, xData, KPI_FZS_V, KPI_FZS_UP) {
 		require(
             [
@@ -1275,7 +1266,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantMainDetailTitlePower')
-// .innerHTML=="集团"){
+// .innerHTML=="浙能电力"){
 //   document.getElementById('profitNamePower').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitNamePower').innerHTML = document.getElementById('powerPlantMainDetailTitlePower')
@@ -1316,7 +1307,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 						type: 'none'
 					}
 				},
-				// color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -1398,7 +1389,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}
 	},
 
-	// 获取集团指标-发电收入 SCREEN_JYYJ_04_VFDSRJT
+	// 获取浙能电力指标-发电收入 SCREEN_JYYJ_04_VFDSRJT
 	loadBase_PowerOutputIncome: function(chartDivId, priceChartName) {
 
 		var busy = new sap.m.BusyDialog({
@@ -1475,7 +1466,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_PowerOutputIncome(chartDivId, priceChartName, xData, KPI_FDS_V, KPI_SDS_V, KPI_BTS_V, KPI_FZS_V, KPI_FDS_UP,
 				KPI_SDS_UP, KPI_BTS_UP, KPI_FZS_UP);
 			if (busy) {
@@ -1566,7 +1557,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#powerIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#powerIncomeStatisticDate').html(dataStatisticDate);
 			this.loadBaseDataDetail_PowerOutputIncome(chartDivId, priceChartName, xData, KPI_FDS_V, KPI_SDS_V, KPI_BTS_V, KPI_FZS_V, KPI_FDS_UP,
 				KPI_SDS_UP, KPI_BTS_UP, KPI_FZS_UP);
 			if (busy) {
@@ -1580,7 +1571,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VFDSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团发电收入
+	// 加载浙能电力发电收入
 	loadBaseDataDetail_PowerOutputIncome: function(chartDivId, priceChartName, xData, KPI_FDS_V, KPI_SDS_V, KPI_BTS_V, KPI_FZS_V, KPI_FDS_UP,
 		KPI_SDS_UP, KPI_BTS_UP, KPI_FZS_UP) {
 		require(
@@ -1594,7 +1585,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantMainDetailTitlePower')
-// .innerHTML=="集团"){
+// .innerHTML=="浙能电力"){
 //   document.getElementById('profitNamePower').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitNamePower').innerHTML = document.getElementById('powerPlantMainDetailTitlePower')
@@ -1635,7 +1626,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 						type: 'none'
 					}
 				},
-				// color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -1744,7 +1735,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantMainDetailTitlePower')
-// .innerHTML=="集团"){
+// .innerHTML=="浙能电力"){
 //   document.getElementById('profitNamePower').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitNamePower').innerHTML = document.getElementById('powerPlantMainDetailTitlePower')
@@ -1753,8 +1744,8 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			document.getElementById('profitNamePower').innerHTML = document.getElementById('powerPlantMainDetailTitlePower').innerHTML;
 
 			//   var fuelXaxisName = '';
-			//   if (document.getElementById('powerPlantMainDetailTitlePower').innerHTML == '集团') {
-			//       fuelXaxisName = ['集团','兰溪发电', '台二发电', '凤台发电'];
+			//   if (document.getElementById('powerPlantMainDetailTitlePower').innerHTML == '浙能电力') {
+			//       fuelXaxisName = ['浙能电力','兰溪发电', '台二发电', '凤台发电'];
 			//   } else {
 			//       fuelXaxisName = ['机组1', '机组2', '机组3', '机组4'];
 			//   }
@@ -1795,7 +1786,8 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
+				//[color1, color2],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -1958,45 +1950,45 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapPower'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMapPower'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitlePower').innerHTML = '电力股份公司'
+			document.getElementById('powerPlantMainDetailTitlePower').innerHTML = '浙能电力股份有限公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapPower'));
@@ -2099,7 +2091,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -2229,7 +2221,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认集团数据显示
+			// 默认浙能电力数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -2887,8 +2879,8 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			if(powerPlantName=="集团"){
-			    document.getElementById('powerPlantMainDetailTitlePower').innerHTML = "电力股份公司";
+			if(powerPlantName=="浙能电力"){
+			    document.getElementById('powerPlantMainDetailTitlePower').innerHTML = "浙能电力股份有限公司";
 			}else{
 			document.getElementById('powerPlantMainDetailTitlePower').innerHTML = powerPlantName;
 }

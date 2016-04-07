@@ -37,7 +37,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
 		data3 = new Array();//劳务收入
 		data4 = new Array();//其他收入
 		data5 = new Array();// 主营业务收入
-		// 数据类型，集团数据还是电厂数据
+		// 数据类型，浙能电力数据还是电厂数据
 		var dateTypeName = '';
 		mParameters['async'] = true;
 		mParameters['success'] = jQuery.proxy(function(sRes) {

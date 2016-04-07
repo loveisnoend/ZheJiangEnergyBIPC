@@ -294,7 +294,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				}
 			}
 			// 统计于日期
-			$('#internetPowerVolumeStatisticDate').html(dataStatisticDate);
+// 			$('#internetPowerVolumeStatisticDate').html(dataStatisticDate);
 			this.loadPriceChartdetail(chartDivId, priceChartName, dataThisYear, dataLastYear, powerPlantName);
 			if (busy) {
 				busy.close();

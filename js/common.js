@@ -10,11 +10,11 @@ function getRealNameByPowerplantname(plantName) {
     if (plantName == '台二发电') {
         realName = '浙江浙能台州第二发电有限责任公司';
     }
-    if (plantName == '集团') {
+    if (plantName == '浙能电力') {
         realName = '浙能电力股份有限公司';
     }
     // 杭州
-    if (plantName == '电力股份本部') {
+    if (plantName == '浙能电力本部') {
         realName = '浙能电力股份本部';
     }
     if (plantName == '萧山发电') {
@@ -137,7 +137,7 @@ function getPowerplantnameByRealName(realName) {
 	} else if (realName == '浙江浙能台州第二发电有限责任公司') {
 	    powerPlantName = '台二电厂';
 	} else if (realName == '浙能电力股份有限公司') {
-	    powerPlantName = '集团';
+	    powerPlantName = '浙能电力';
 	} else if (realName == '凤台电厂') {
 	    powerPlantName = '凤台电厂';
 	}

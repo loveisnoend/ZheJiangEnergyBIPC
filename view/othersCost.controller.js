@@ -422,6 +422,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			var eachCostData = new Array();
 			// 各电厂名
 			var eachPowerPlantName = new Array();
+
 			// 统计于日期
 			var dataStatisticDate = '';
 
@@ -440,8 +441,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			}
 
 			// 统计于日期
-			$('#othersCostStatisticDate').html(dataStatisticDate);
-
+// 			$('#othersCostStatisticDate').html(dataStatisticDate);
 			this.loadEachCostChartdetail(chartDivId, priceChartName, eachPowerPlantName, eachCostData);
 			if (busy) {
 				busy.close();
@@ -614,8 +614,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			}
 
 			// 统计于日期
-			$('#othersCostStatisticDate').html(dataStatisticDate);
-
+// 			$('#othersCostStatisticDate').html(dataStatisticDate);
 			this.loadPriceChartdetail(chartDivId, priceChartName, dataThisYear, dataLastYear, powerPlantName);
 			if (busy) {
 				busy.close();

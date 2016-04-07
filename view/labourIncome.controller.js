@@ -41,7 +41,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		// 			//设置数据
 		// 		    var dc=new Array();
 		// 			for (var i in sRes.results) {
-		// 			    if(sRes.results[i].KPI_DESC!="集团本部"&&sRes.results[i].KPI_DESC!=""){
+		// 			    if(sRes.results[i].KPI_DESC!="浙能电力本部"&&sRes.results[i].KPI_DESC!=""){
 		//     				if (dc==null||dc.length==0){ 
 		//     				    dc.push(sRes.results[i].KPI_DESC);    
 		//     				}else{
@@ -68,7 +68,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		// 			    if (dc[j] == '台二发电') {
 		// 			        powerPlantName = '台州';
 		// 			    }
-		// 			    if (dc[j] == '集团') {
+		// 			    if (dc[j] == '浙能电力') {
 		// 			        powerPlantName = '杭州';
 		// 			    }
 
@@ -317,7 +317,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 
 	},
 
-	// 获取集团指标-劳务收入 SCREEN_JYYJ_04_VLWSRJT
+	// 获取浙能电力指标-劳务收入 SCREEN_JYYJ_04_VLWSRJT
 	loadBase_SupplyLabourIncome: function(chartDivId, priceChartName) {
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
@@ -356,7 +356,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 				}
 			}
 			// 统计于日期
-			$('#labourIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#labourIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '劳务收入') {
 				this.loadBaseDataDetail_SupplyLabourIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -410,7 +410,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 				}
 			}
 			// 统计于日期
-			$('#labourIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#labourIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '劳务收入') {
 				this.loadBaseDataDetail_OtherLabourIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
 			}
@@ -425,7 +425,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		}, this);
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VLWSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载集团-劳务收入
+	// 加载浙能电力-劳务收入
 	loadBaseDataDetail_SupplyLabourIncome: function(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP) {
 		require(
             [
@@ -438,7 +438,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantMainDetailTitleLabour')
-// .innerHTML=="集团"){
+// .innerHTML=="浙能电力"){
 //   document.getElementById('profitNameLabour').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitNameLabour').innerHTML = document.getElementById('powerPlantMainDetailTitleLabour')
@@ -479,7 +479,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 						type: 'none'
 					}
 				},
-				// color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -597,7 +597,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 			mychart.setOption(option);
 		}
 	},
-	// 加载集团-劳务收入指标
+	// 加载浙能电力-劳务收入指标
 	loadBaseDataDetail_OtherLabourIncome: function(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP) {
 		require(
             [
@@ -610,7 +610,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantMainDetailTitleLabour')
-// .innerHTML=="集团"){
+// .innerHTML=="浙能电力"){
 //   document.getElementById('profitNameLabour').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitNameLabour').innerHTML = document.getElementById('powerPlantMainDetailTitleLabour')
@@ -652,7 +652,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 						type: 'none'
 					}
 				},
-				// color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -776,8 +776,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 	// 			    var mychart = e.init(document.getElementById(chartDivId));
 	// 			    document.getElementById('profitNameLabour').innerHTML = document.getElementById('powerPlantMainDetailTitleLabour').innerHTML;
 	// 			    var fuelXaxisName = '';
-	// 			    if (document.getElementById('powerPlantMainDetailTitleLabour').innerHTML == '集团') {
-	// 			        fuelXaxisName = ['兰溪发电', '台二发电', '凤台发电', '集团'];
+	// 			    if (document.getElementById('powerPlantMainDetailTitleLabour').innerHTML == '浙能电力') {
+	// 			        fuelXaxisName = ['兰溪发电', '台二发电', '凤台发电', '浙能电力'];
 	// 			    } else {
 	// 			        fuelXaxisName = ['机组1', '机组2', '机组3', '机组4'];
 	// 			    }
@@ -995,7 +995,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		// 				// 为echarts对象加载数据 
 		// 				myChart3.setOption(option3); 
 
-		//                 document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = '集团'
+		//                 document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = '浙能电力'
 		// 	//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 		// 			    // 基于准备好的dom，初始化echarts图表
 		//                 myChart4 = ec.init(document.getElementById('powerPlantMapLabour'));
@@ -1160,7 +1160,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		//                 var mapSeries = option4.series[0];
 		//                 setChartData(ec, mapSeries, 0);
 
-		//                 // 默认集团数据显示
+		//                 // 默认浙能电力数据显示
 		// 				var selectedData = {name: mapSeries.markPoint.data[0].name, value: mapSeries.markPoint.data[0].inputPlanValue};
 		// 				option4.series[1].markPoint.data[0] = selectedData;
 		// 			    option4.series[1].markPoint.data[1] = {name:'上海',value:0};
@@ -1340,7 +1340,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 			// 为echarts对象加载数据 
 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = '电力股份公司'
+			document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = '浙能电力股份有限公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapLabour'));
@@ -1443,7 +1443,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -1573,7 +1573,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认集团数据显示
+			// 默认浙能电力数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -2244,8 +2244,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '集团') {
-			    document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = "电力股份公司";
+			if (powerPlantName == '浙能电力') {
+			    document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = "浙能电力股份有限公司";
 				labourIncome.getController().loadBase_SupplyLabourIncome(priceChartId, priceChartName);
 			} else {
 			    document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = powerPlantName;
