@@ -9,6 +9,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    //AC-LOUWW 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var naviDemo = document.getElementById("idTimeLabelCenter");
+		        naviDemo.innerHTML =  "<b>"+timeLabel+"</b>";
+		        
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -242,8 +248,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 
             function draw(e) {
                 drawswdl(e);
-                drawpjswdj(e);
-                drawrlcb(e);
+                // drawpjswdj(e);
+                // drawrlcb(e);
                 drawqtcb(e);
                 // drawpie(e);
                 //drawdetail01(e);
@@ -256,18 +262,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                     drawpie(e,'employeeTypeChart',dataName,employeeTypeDataContent);
                 }
             }
-            //营业收入
-            function drawpjswdj(e) {
-                if (data_AverBusinessIncome != '') {
-                    drawline(e, date, data_AverBusinessIncome, '人均营业收入', 'green', 'businessIncomeChart', data_AverBusinessIncome[data_AverBusinessIncome.length - 1] + '万元');
-                }
-            }
-            //人均工资
-            function drawrlcb(e) {
-                if (data_AverPersonSalary != '') {
-                    drawline(e, date, data_AverPersonSalary, '人均工资', 'green', 'averSalaryChart', data_AverPersonSalary[data_AverPersonSalary.length - 1] + '万元');
-                }
-            }
+            // //营业收入
+            // function drawpjswdj(e) {
+            //     if (data_AverBusinessIncome != '') {
+            //         drawline(e, date, data_AverBusinessIncome, '人均营业收入', 'green', 'businessIncomeChart', data_AverBusinessIncome[data_AverBusinessIncome.length - 1] + '万元');
+            //     }
+            // }
+            // //人均工资
+            // function drawrlcb(e) {
+            //     if (data_AverPersonSalary != '') {
+            //         drawline(e, date, data_AverPersonSalary, '人均工资', 'green', 'averSalaryChart', data_AverPersonSalary[data_AverPersonSalary.length - 1] + '万元');
+            //     }
+            // }
             //用工性质
             function drawqtcb(e) {
                 var dataName = ['定编人数','在岗职工','借用人员','劳务派遣工','退休返聘员工','不在岗职工','其他人员'];
@@ -411,14 +417,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                     formatter: "{a} <br/>{b}: {c} ({d}%)",
                     textStyle : {
                         color : '#ffffff',
-                        fontSize : 10
+                        fontSize : 20
                     }
                 },
                 legend: {
                     orient: 'vertical',
                     selectedMode: 'multiple',
                     textStyle:{
-                        color:'white'
+                        color:'white',
+                        fontSize: 20
+                    
                     },
                     x:'left',
                     data:dataName
@@ -426,26 +434,32 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                 series: [
                     {
                         type:'pie',
-                        roseType : 'radius',
-                        radius: ['20%', '60%'],
+                        // roseType : 'radius',
+                        radius: ['50%', '70%'],
                         center: ['60%', '50%'],
                         avoidLabelOverlap: false,
                         label: {
                             normal: {
                                 show: false,
-                                position: 'right'
+                                position: 'right',
+                                textStyle: {
+                                    fontSize: 20
+                                }
                             },
                             emphasis: {
                                 show: true,
                                 textStyle: {
-                                    fontSize: '20',
+                                    fontSize: 20,
                                     fontWeight: 'bold'
                                 }
                             }
                         },
                         labelLine: {
                             normal: {
-                                show: false
+                                show: false,
+                                textStyle: {
+                                    fontSize: 20
+                                }
                             }
                         },
                         data:dataContent
@@ -503,8 +517,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		document.getElementById('averPersonProfitResult').innerHTML=rlr_innerhtml01;
 		
         document.getElementById('employeeType').innerHTML=employeeType;
-        document.getElementById('businessIncome').innerHTML=businessIncome+'万元';
-        document.getElementById('averSalary').innerHTML=averSalary+'万元';
+        //AC-LOUWW  
+        // document.getElementById('businessIncome').innerHTML=businessIncome+'万元';
+        // document.getElementById('averSalary').innerHTML=averSalary+'万元';
         document.getElementById('workerProperty').innerHTML=workerProperty;
 
 
