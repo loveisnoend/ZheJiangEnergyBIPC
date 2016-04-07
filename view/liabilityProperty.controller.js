@@ -1,4 +1,4 @@
-sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
+sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 
 	/**
 	 * Called when a controller detail_01 instantiated and its View controls (if available) are already created.
@@ -10,7 +10,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
 			    //AC-LOUWW 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
-			    var sIdentical = "SumProperty";
+			    var sIdentical = "liabilityProperty";
 				//AC-LOUWW 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-LOUWW 页面增加动态的时间日期标签
@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit3(1)' style='cursor:pointer;'>资产情况</b> > <b>"+timeLabel+"浙能电力总资产</b>"+
+                                "<b style='cursor:pointer;'>资产负债情况</b> > <b>"+timeLabel+"浙能电力资产负债情况</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -29,9 +29,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 	// eventment before show the page 
 	onAfterShow: function() {
 
-		document.getElementById('internetDetailSumProperty').style.display = "";
-		document.getElementById('rlcb_detailSumProperty').style.display = "none";
+		document.getElementById('internetDetailliabilityProperty').style.display = "";
+		document.getElementById('rlcb_detailliabilityProperty').style.display = "none";
 		// this.loadChart();
+		var xData = new Array();
+		var KPI_JZC_V = new Array();
+		var KPI_JZC_UP = new Array();
+		this.liabilityProperty('priceDetailDivliabilityProperty', '资产负债率', xData, KPI_JZC_V, KPI_JZC_UP);
 		this._loadData01();
 		// 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi, valueGDP, valueCPItongbi, valuePPItongbi, valuePMIproduce, valuePMInonProduce, valueGDPTotal);
@@ -62,7 +66,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 	// 		draw);
 
 	// 		function draw(e){
-	// 		    document.getElementById('caloriSumPropertyPlantNameSumProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML;
+	// 		    document.getElementById('caloriliabilityPropertyPlantNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML;
 	// 		    var mychart = e.init(document.getElementById(divId));
 	// 		    var option = {
 	// 		        title:{
@@ -172,22 +176,22 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 
 	// 	},
 
-	// 获取浙能电力指标-总资产 SCREEN_ZCQK_02_V02
-	loadBase_SupplySumPropertyIncome: function(chartDivId, priceChartName) {
+	// 获取浙能电力指标-净资产 SCREEN_ZCQK_02_V01
+	loadBase_SupplyliabilityPropertyIncome: function(chartDivId, priceChartName) {
+// TODO 真实数据放开busy
+// 		var busy = new sap.m.BusyDialog({
+// 			close: function(event) {}
+// 		});
+// 		if (busy) {
+// 			busy.open();
+// 		}
 
-		var busy = new sap.m.BusyDialog({
-			close: function(event) {}
-		});
-		if (busy) {
-			busy.open();
-		}
+		// 净资产指标
+		// 净资产
+		var KPI_JZC_V = new Array();
 
-		// 总资产指标
-		// 总资产
-		var KPI_ZZC_V = new Array();
-
-		// 总资产同比
-		var KPI_ZZC_UP = new Array();
+		// 净资产同比
+		var KPI_JZC_UP = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -197,18 +201,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 总资产同比
-				if (sRes.results[i].KPI_TYPE == '总资产_同比') {
-					KPI_ZZC_UP.push(sRes.results[i].KPI_VALUE);
+				// 净资产同比
+				if (sRes.results[i].KPI_TYPE == '净资产_同比') {
+					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
-				// 总资产
-				if (sRes.results[i].KPI_TYPE == '总资产' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
-				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
-				        
-				    }else{
-					KPI_ZZC_V.push(sRes.results[i].KPI_VALUE);
+				// 净资产
+				if (sRes.results[i].KPI_TYPE == '净资产' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DESC);
-				    }
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
@@ -217,9 +217,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				}
 			}
 			// 统计于日期
-// 			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '总资产') {
-				this.sumProperty(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP);
+// 			$('#liabilityPropertyIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '资产负债率') {
+				this.liabilityProperty(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
 			if (busy) {
 				busy.close();
@@ -230,24 +230,25 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		// TODO 数据请求
+		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 获取个电厂指标-总资产 SCREEN_ZCQK_02_V02
-	loadEachPlant_SupplySumPropertyIncome: function(chartDivId, priceChartName, powerPlantName) {
+	// 获取个电厂指标-净资产 SCREEN_ZCQK_02_V01
+	loadEachPlant_SupplyliabilityPropertyIncome: function(chartDivId, priceChartName, powerPlantName) {
+	    // TODO 真实数据放开busy
+// 		var busy = new sap.m.BusyDialog({
+// 			close: function(event) {}
+// 		});
+// 		if (busy) {
+// 			busy.open();
+// 		}
 
-		var busy = new sap.m.BusyDialog({
-			close: function(event) {}
-		});
-		if (busy) {
-			busy.open();
-		}
+		// 净资产指标
+		// 净资产
+		var KPI_JZC_V = new Array();
 
-		// 总资产指标
-		// 总资产
-		var KPI_ZZC_V = new Array();
-
-		// 总资产同比
-		var KPI_ZZC_UP = new Array();
+		// 净资产同比
+		var KPI_JZC_UP = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -257,13 +258,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 			// 各个电厂月份指标
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 总资产同比
-				if (sRes.results[i].KPI_TYPE == '总资产_同比') {
-					KPI_ZZC_UP.push(sRes.results[i].KPI_VALUE);
+				// 净资产同比
+				if (sRes.results[i].KPI_TYPE == '净资产_同比') {
+					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
-				// 总资产
-				if (sRes.results[i].KPI_TYPE == '总资产' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_ZZC_V.push(sRes.results[i].KPI_VALUE);
+				// 净资产
+				if (sRes.results[i].KPI_TYPE == '净资产' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期
@@ -273,11 +274,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				}
 			}
 			// 统计于日期
-// 			$('#sumPropertyIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '总资产') {
-				this.loadBaseDataDetail_SumPropertyIncome(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP);
+// 			$('#liabilityPropertyIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '净资产') {
+				this.loadBaseDataDetail_liabilityPropertyIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
-
 			if (busy) {
 				busy.close();
 			}
@@ -287,10 +287,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-总资产
-	sumProperty: function(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP) {
+	// 加载浙能电力-净资产
+	liabilityProperty: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 
 		require(
             [
@@ -302,16 +302,23 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleSumProperty')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameSumProperty').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameSumProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleSumProperty')
-.innerHTML;
-}
-// 			document.getElementById('profitNameSumProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML;
+			if (document.getElementById('powerPlantMainDetailTitleliabilityProperty')
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNameliabilityProperty').innerHTML = "浙能电力股份有限公司";
+			} else {
+				document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty')
+					.innerHTML;
+			}
+			//document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
+			
+			// mockdata start
+			// 电厂
+			xData = ['萧山发电','台州发电','兰溪发电','台二发电','凤台发电','嘉兴发电','长兴发电','滨海发电','镇海发电','温州发电','乐清发电','舟山煤电','阿克苏热电','枣泉发电','镇海联合','金华燃机','常山燃气','温州燃机','嘉华发电','北仑发电','镇海燃气','镇海燃热','温特发电','钱清发电','绍兴滨海热力'];
+			// 资产负债率
+			KPI_JZC_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+			// mockdata end
 			var option = {
 				title: {
 					text: priceChartName,
@@ -332,7 +339,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 						color: 'white',
 						fontFamily: '微软雅黑'
 					},
-					data: ['总资产']
+					data: ['资产负债率']
 				},
 				tooltip: {
 					trigger: 'axis',
@@ -345,7 +352,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -370,7 +377,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
                         ],
 				yAxis: [
 					{
-						name: '单位:亿元',
+						name: '%',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -397,7 +404,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
                         ],
 				series: [
 					{
-						name: '总资产',
+						name: '资产负债率',
 						type: 'bar',
 						symbol: 'emptyCircle',
 						symbolSize: 5,
@@ -412,10 +419,10 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 								}
 							}
 						},
-						data: KPI_ZZC_V
+						data: KPI_JZC_V
                             }
             //                 {
-            //                     name:'总资产同比',
+            //                     name:'净资产同比',
             //                     type:'line',
             //                     symbol:'emptyCircle',
         				// 		symbolSize:5,
@@ -439,8 +446,8 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			mychart.setOption(option);
 		}
 	},
-	// 加载浙能电力-总资产指标
-	loadBaseDataDetail_SumPropertyIncome: function(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP) {
+	// 加载浙能电力-净资产指标
+	loadBaseDataDetail_liabilityPropertyIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 		require(
             [
                 'echarts',
@@ -451,14 +458,14 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleSumProperty')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameSumProperty').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameSumProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleSumProperty')
-.innerHTML;
-}
-// 			document.getElementById('profitNameSumProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML;
+			if (document.getElementById('powerPlantMainDetailTitleliabilityProperty')
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNameliabilityProperty').innerHTML = "浙能电力股份有限公司";
+			} else {
+				document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty')
+					.innerHTML;
+			}
+			//	document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {
@@ -557,7 +564,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 							}
 						},
 						barWidth: 50,
-						data: KPI_ZZC_V
+						data: KPI_JZC_V
                             }
                         ]
 			};
@@ -591,7 +598,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			draw);
 
 		function draw(e) {
-			drawSumPropertyDistribution(e);
+			drawliabilityPropertyDistribution(e);
 
 			//   drawpie01(e);
 			// 			drawbar01(e);
@@ -600,14 +607,14 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			// 			drawbar04(e);
 		}
 
-		function drawSumPropertyDistribution(ec) {
+		function drawliabilityPropertyDistribution(ec) {
 
 			// event configure    
 			var ecConfig = require('echarts/config');
 
 			///////////////////////////////////中国地图/////////////////////////////////////			
 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapSumProperty'));
+// 			myChart3 = ec.init(document.getElementById('chinaMapliabilityProperty'));
 // 			option3 = {
 // 				tooltip: {
 // 					trigger: 'item',
@@ -643,10 +650,10 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 // 			// 为echarts对象加载数据 
 // 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML = '浙能电力';
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			var myChart4 = ec.init(document.getElementById('powerPlantMapSumProperty'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapliabilityProperty'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -831,8 +838,8 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			};
 			myChart4.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSumProperty').style.display = "";
-				document.getElementById('rlcb_detailSumProperty').style.display = "none";
+				document.getElementById('internetDetailliabilityProperty').style.display = "";
+				document.getElementById('rlcb_detailliabilityProperty').style.display = "none";
 
 				var mapSeries = option4.series[0];
 
@@ -895,7 +902,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapSumProperty'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapliabilityProperty'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -1008,8 +1015,8 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			};
 			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSumProperty').style.display = "";
-				document.getElementById('rlcb_detailSumProperty').style.display = "none";
+				document.getElementById('internetDetailliabilityProperty').style.display = "";
+				document.getElementById('rlcb_detailliabilityProperty').style.display = "none";
 
 				var mapSeries = option5.series[0];
 
@@ -1056,7 +1063,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapSumProperty'));
+			myChart6 = ec.init(document.getElementById('akesuMapliabilityProperty'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -1136,7 +1143,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 							"阿克苏热电": [80.22, 41.17],
 							"上海": [3000, 3000]
 						}
-					},
+						},
 					{
 						name: 'Top3',
 						type: 'map',
@@ -1169,8 +1176,8 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			};
 			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSumProperty').style.display = "";
-				document.getElementById('rlcb_detailSumProperty').style.display = "none";
+				document.getElementById('internetDetailliabilityProperty').style.display = "";
+				document.getElementById('rlcb_detailliabilityProperty').style.display = "none";
 
 				var mapSeries = option6.series[0];
 
@@ -1217,7 +1224,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapSumProperty'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapliabilityProperty'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {
@@ -1297,7 +1304,7 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 							"枣泉发电": [106.27, 38.47],
 							"上海": [3000, 3000]
 						}
-					},
+						},
 					{
 						name: 'Top3',
 						type: 'map',
@@ -1330,8 +1337,8 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			};
 			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailSumProperty').style.display = "";
-				document.getElementById('rlcb_detailSumProperty').style.display = "none";
+				document.getElementById('internetDetailliabilityProperty').style.display = "";
+				document.getElementById('rlcb_detailliabilityProperty').style.display = "none";
 
 				var mapSeries = option7.series[0];
 
@@ -1503,33 +1510,33 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 		}
 
 		function drawpie01(e) {
-			drawpie(e, 3, 4, 'detail_pieSumProperty');
+			drawpie(e, 3, 4, 'detail_pieliabilityProperty');
 		}
 
 		function drawbar01(e) {
-			drawbar(e, 4, 6, 'detail_01SumProperty');
+			drawbar(e, 4, 6, 'detail_01liabilityProperty');
 		}
 
 		function drawbar02(e) {
-			drawbar(e, 7, 3, 'detail_02SumProperty');
+			drawbar(e, 7, 3, 'detail_02liabilityProperty');
 		}
 
 		function drawbar03(e) {
-			drawbar(e, 3, 7, 'detail_03SumProperty');
+			drawbar(e, 3, 7, 'detail_03liabilityProperty');
 		}
 
 		function drawbar04(e) {
-			drawbar(e, 8, 2, 'detail_04SumProperty');
+			drawbar(e, 8, 2, 'detail_04liabilityProperty');
 		}
 		// 设置Chart的数据
 		function setChartData(ec, mapSeries, dataIndex) {
 
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			document.getElementById('powerPlantMainDetailTitleSumProperty').innerHTML = powerPlantName;
+			document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML = powerPlantName;
 
-			var priceChartId = "priceDetailDivSumProperty";
-			var priceChartName = "总资产";
+			var priceChartId = "priceDetailDivliabilityProperty";
+			var priceChartName = "净资产";
 			if (powerPlantName == '台二电厂') {
 				powerPlantName = '台二发电';
 			}
@@ -1541,34 +1548,34 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			}
 			if (powerPlantName == '浙能电力') {
 				// TODO
-				sumProperty.getController().loadBase_SupplySumPropertyIncome(priceChartId, priceChartName);
-				//sumProperty.getController().loadEachPlant_SupplySumPropertyIncome(priceChartId, priceChartName, powerPlantName);
+				liabilityProperty.getController().loadBase_SupplyliabilityPropertyIncome(priceChartId, priceChartName);
+				//liabilityProperty.getController().loadEachPlant_SupplyliabilityPropertyIncome(priceChartId, priceChartName, powerPlantName);
 			} else {
-				sumProperty.getController().loadEachPlant_SupplySumPropertyIncome(priceChartId, priceChartName, powerPlantName);
+				liabilityProperty.getController().loadEachPlant_SupplyliabilityPropertyIncome(priceChartId, priceChartName, powerPlantName);
 			}
 			//  // 自产蒸汽
 			//  var selfSteamIncomeVal = mapSeries.markPoint.data[dataIndex].selfSteamIncomeVal;
 			//  if (selfSteamIncomeVal != undefined) {
-			//      document.getElementById('travelPriceSumProperty').innerHTML =  selfSteamIncomeVal;
+			//      document.getElementById('travelPriceliabilityProperty').innerHTML =  selfSteamIncomeVal;
 			//  } else {
-			//      document.getElementById('travelPriceSumProperty').innerHTML = 0;
+			//      document.getElementById('travelPriceliabilityProperty').innerHTML = 0;
 			//      selfSteamIncomeVal = 0;
 			//  }
 			//  // 外购蒸汽
 			//  var outSteamIncomeVal = mapSeries.markPoint.data[dataIndex].outSteamIncomeVal;
 			//  if (outSteamIncomeVal != undefined) {
-			//      document.getElementById('coalPriceSumProperty').innerHTML = outSteamIncomeVal;
+			//      document.getElementById('coalPriceliabilityProperty').innerHTML = outSteamIncomeVal;
 			//  } else {
-			//      document.getElementById('coalPriceSumProperty').innerHTML = 0;
+			//      document.getElementById('coalPriceliabilityProperty').innerHTML = 0;
 			//      outSteamIncomeVal = 0;
 			//  }
 			//  // 热水
-			//  var sumPropertyWaterIncomeVal = mapSeries.markPoint.data[dataIndex].sumPropertyWaterIncomeVal;
-			//  if (sumPropertyWaterIncomeVal != undefined) {
-			//      document.getElementById('watt1SumProperty').innerHTML =  sumPropertyWaterIncomeVal;
+			//  var liabilityPropertyWaterIncomeVal = mapSeries.markPoint.data[dataIndex].liabilityPropertyWaterIncomeVal;
+			//  if (liabilityPropertyWaterIncomeVal != undefined) {
+			//      document.getElementById('watt1liabilityProperty').innerHTML =  liabilityPropertyWaterIncomeVal;
 			//  } else {
-			//      document.getElementById('watt1SumProperty').innerHTML = 0;
-			//      sumPropertyWaterIncomeVal = 0;
+			//      document.getElementById('watt1liabilityProperty').innerHTML = 0;
+			//      liabilityPropertyWaterIncomeVal = 0;
 			//  }
 			//  // 初装费
 			//  var firstFeeIncomeVal = mapSeries.markPoint.data[dataIndex].firstFeeIncomeVal;
@@ -1579,30 +1586,30 @@ document.getElementById('profitNameSumProperty').innerHTML = document.getElement
 			//      firstFeeIncomeVal = 0;
 			//  }
 			//  // 供热收入
-			//  var supplySumPropertyIncomeVal = mapSeries.markPoint.data[dataIndex].supplySumPropertyIncomeVal;
-			//  if (supplySumPropertyIncomeVal != undefined) {
-			//      document.getElementById('fuelCostSumProperty').innerHTML = supplySumPropertyIncomeVal;
+			//  var supplyliabilityPropertyIncomeVal = mapSeries.markPoint.data[dataIndex].supplyliabilityPropertyIncomeVal;
+			//  if (supplyliabilityPropertyIncomeVal != undefined) {
+			//      document.getElementById('fuelCostliabilityProperty').innerHTML = supplyliabilityPropertyIncomeVal;
 			//  } else {
-			//      document.getElementById('fuelCostSumProperty').innerHTML = 0;
-			//      supplySumPropertyIncomeVal = 0;
+			//      document.getElementById('fuelCostliabilityProperty').innerHTML = 0;
+			//      supplyliabilityPropertyIncomeVal = 0;
 			//  }
 			//  // 供热收入同比
-			//  var supplySumPropertyIncomeUP = mapSeries.markPoint.data[dataIndex].supplySumPropertyIncomeUP;
-			//  if (supplySumPropertyIncomeUP != undefined) {
-			//      document.getElementById('fuelDownPercentSumProperty').innerHTML = supplySumPropertyIncomeUP;
+			//  var supplyliabilityPropertyIncomeUP = mapSeries.markPoint.data[dataIndex].supplyliabilityPropertyIncomeUP;
+			//  if (supplyliabilityPropertyIncomeUP != undefined) {
+			//      document.getElementById('fuelDownPercentliabilityProperty').innerHTML = supplyliabilityPropertyIncomeUP;
 			//  } else {
-			//      document.getElementById('fuelDownPercentSumProperty').innerHTML = 0;
-			//      supplySumPropertyIncomeUP = 0;
+			//      document.getElementById('fuelDownPercentliabilityProperty').innerHTML = 0;
+			//      supplyliabilityPropertyIncomeUP = 0;
 			//  }
-			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + sumPropertyWaterIncomeVal + firstFeeIncomeVal;
+			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + liabilityPropertyWaterIncomeVal + firstFeeIncomeVal;
 			//  if (dataAll == 0) {
 			//      dataAll = 10;
 			//  }
-			//  drawpie(ec, supplySumPropertyIncomeUP+50, 50, 'detail_pieSumProperty');
-			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01SumProperty');
-			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02SumProperty');
-			//  drawbar(ec, sumPropertyWaterIncomeVal, dataAll, 'detail_03SumProperty');
-			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04SumProperty');
+			//  drawpie(ec, supplyliabilityPropertyIncomeUP+50, 50, 'detail_pieliabilityProperty');
+			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01liabilityProperty');
+			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02liabilityProperty');
+			//  drawbar(ec, liabilityPropertyWaterIncomeVal, dataAll, 'detail_03liabilityProperty');
+			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04liabilityProperty');
 		}
 	}
 });

@@ -36,6 +36,20 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" style="background-color:;margin-top: -15px;cursor:pointer;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="toSumPropertyPage()">
+                				<div class="demo_header"><b id="sumPropertyDate"></b></div>
+                				<div class="demo_jiange"></div>
+                				<div class="demo_title">
+                					浙能电力总资产
+                				</div>
+                				<div class="demo_shuzi_red">
+                				<span id="sumProperty">0</span>
+                				<span class="demo_shuzi_span_shangbiao">亿元</span>
+                				</div>
+                				<div class="demo_content_1"><b>总资产增长率</b><b id="sumPropertyUpValue"></b>%&nbsp;<img  src="img/horizontal-green.png" id="sumPropertyUpImg" class="demo_img_down"/></div>
+                			</div>
+            			</div>
+                        <div class="swiper-slide" style="background-color:;margin-top: -15px;cursor:pointer;">
                 			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="toPurePropertyPage()">
                 				<div class="demo_header"><b id="purePropertyDate"></b></div>
                 				<div class="demo_jiange"></div>
@@ -49,18 +63,18 @@
                 				<div class="demo_content_1"><b>净资产增长率</b><b id="purePropertyUpValue"></b>%&nbsp;<img  src="img/horizontal-green.png" id="purePropertyUpImg" class="demo_img_down"/></div>
                 			</div>
             			</div>
-            			<div class="swiper-slide" style="background-color:;margin-top: -15px;cursor:pointer;">
-                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="toSumPropertyPage()">
-                				<div class="demo_header"><b id="sumPropertyDate"></b></div>
+                        <div class="swiper-slide" style="background-color:;margin-top: -15px;cursor:pointer;">
+                			<div class="demo_outer" style="cursor:pointer;background-size:100% 100%;" ondblclick="toLiabilityPropertyPage()">
+                				<div class="demo_header"><b id="liabilityPropertyDate">2016年3月</b></div>
                 				<div class="demo_jiange"></div>
                 				<div class="demo_title">
-                					浙能电力总资产
+                					浙能电力资产负债率
                 				</div>
                 				<div class="demo_shuzi_red">
-                				<span id="sumProperty">0</span>
-                				<span class="demo_shuzi_span_shangbiao">亿元</span>
+                				<span id="sumProperty" style="color: green; font-size: 75px;">46.9</span>
+                				<span class="demo_shuzi_span_shangbiao">%</span>
                 				</div>
-                				<div class="demo_content_1"><b>总资产增长率</b><b id="sumPropertyUpValue"></b>%&nbsp;<img  src="img/horizontal-green.png" id="sumPropertyUpImg" class="demo_img_down"/></div>
+                				<div class="demo_content_1"><b>同比</b><b id="tongbiLiabilityProperty">-1.02</b>%&nbsp;<img  src="img/horizontal-green.png" id="liabilityPropertyImg" class="demo_img_down"/></div>
                 			</div>
             			</div>
             		</div>
