@@ -10,18 +10,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
-			    var sIdentical = "InternetPowerVolume";
-				//AC-Gates 动态插入MAP的div代码
-				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
-			    //AC-Gates 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"+(myDate.getDate()-1)+"日"; //getMonth 1-12月对应0-11  myDate.getDate()-1
-				var naviDemo = document.getElementById("navi"+sIdentical);
-		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-		        //AC-Gates 更改下面的文字和onclick方法
-                                "<b onClick='dailyProfit()' style='cursor:pointer;'>浙能电力日利润</b> > <b>"+timeLabel+"平均上网电价</b>"+
-                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -55,7 +43,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 			//设置数据
 			var dc = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "集团本部" && sRes.results[i].KPI_DESC != "" && sRes.results[i].KPI_DESC != "浙能电力本部") {
+				if (sRes.results[i].KPI_DESC != "集团本部" && sRes.results[i].KPI_DESC != "") {
 					if (dc == null || dc.length == 0) {
 						dc.push(sRes.results[i].KPI_DESC);
 					} else {
@@ -217,19 +205,19 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 				}
 				tempJsonStrData += '}';
 
-				if (powerPlantName == '凤台电厂') {
+				if (powerPlantName == '淮南') {
 					if (isHuaiNanDataFirst != true) {
 						huaiNan_dataStr += ',';
 					}
 					huaiNan_dataStr += tempJsonStrData;
 					isHuaiNanDataFirst = false;
-				} else if (powerPlantName == '阿克苏热电') {
+				} else if (powerPlantName == '浙能阿克苏热电有限公司') {
 					if (isAkesuDataFirst != true) {
 						akesu_dataStr += ',';
 					}
 					akesu_dataStr += tempJsonStrData
 					isAkesuDataFirst = false;
-				} else if (powerPlantName == '枣泉发电') {
+				} else if (powerPlantName == '宁夏枣泉发电有限责任公司') {
 					if (isZaoquanDataFirst != true) {
 						zhaoquan_dataStr += ',';
 					}
@@ -243,10 +231,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 					isZhejiangDataFirst = false;
 				}
 			}
-			zhejiang_dataStr += ']';
-			huaiNan_dataStr += ']';
-			akesu_dataStr += ']';
-			zhaoquan_dataStr += ']';
+						zhejiang_dataStr += ']';
+						huaiNan_dataStr += ']';
+						akesu_dataStr += ']';
+						zhaoquan_dataStr += ']';
+huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
+    akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
+    zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
 			var zhejiang_JsonData = JSON.parse(zhejiang_dataStr)
 			var huaiNan_JsonData = JSON.parse(huaiNan_dataStr);
 			var akesu_JsonData = JSON.parse(akesu_dataStr);
@@ -286,7 +277,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 			// 获取当前年份
 			var thisYear = new Date().getFullYear();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "浙能电力") {
+				if (sRes.results[i].KPI_DESC != "集团") {
 					if (sRes.results[i].KPI_TYPE == '平均上网电价' && sRes.results[i].KPI_DATE.substring(0, 4) == thisYear) {
 						dataThisYear.push(sRes.results[i].KPI_VALUE);
 						powerPlantName.push(sRes.results[i].KPI_DESC);
@@ -330,7 +321,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 			var mychart = e.init(document.getElementById(chartDivId));
 // 			if(document.getElementById('powerPlantName')
 // .innerHTML=="集团"){
-//   document.getElementById('profitName').innerHTML="浙能电力股份有限公司";
+//   document.getElementById('profitName').innerHTML="电力股份公司";
 // }else{
 // document.getElementById('profitName').innerHTML = document.getElementById('powerPlantName')
 // .innerHTML;
@@ -363,7 +354,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 					},
 					data: ['当年', '去年']
 				},
-				color: specialColorArray,
+				color: ['#2DE630', '#E52DE6', 'white'],
 				grid: {
 					y1: 100,
 					y2: 100
@@ -508,48 +499,48 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-// 			///////////////////////////////////中国地图/////////////////////////////////////			
-// 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMap'));
-// 			option3 = {
-// 				tooltip: {
-// 					trigger: 'item',
-// 					formatter: '{b}'
-// 				},
-// 				series: [
-// 					{
-// 						name: '中国',
-// 						type: 'map',
-// 						mapType: 'china',
-// 						selectedMode: 'multiple',
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: false
-// 								}
-// 							},
-// 							emphasis: {
-// 								label: {
-// 									show: true
-// 								}
-// 							}
-// 						},
-// 						data: [
-// 							{
-// 								name: '浙江',
-// 								selected: true
-// 							}
-// 							]
-// 						}
-// 					]
-// 			};
-// 			// 为echarts对象加载数据 
-// 			myChart3.setOption(option3);
+			///////////////////////////////////中国地图/////////////////////////////////////			
+			// 基于准备好的dom，初始化echarts图表
+			myChart3 = ec.init(document.getElementById('chinaMap'));
+			option3 = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				series: [
+					{
+						name: '中国',
+						type: 'map',
+						mapType: 'china',
+						selectedMode: 'multiple',
+						itemStyle: {
+							normal: {
+								label: {
+									show: false
+								}
+							},
+							emphasis: {
+								label: {
+									show: true
+								}
+							}
+						},
+						data: [
+							{
+								name: '浙江',
+								selected: true
+							}
+							]
+						}
+					]
+			};
+			// 为echarts对象加载数据 
+			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantName').innerHTML = '浙能电力股份有限公司'
+			document.getElementById('powerPlantName').innerHTML = '电力股份公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			myChart4 = ec.init(document.getElementById('powerPlantMapInternetPowerVolume'));
+			myChart4 = ec.init(document.getElementById('powerPlantMap'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -649,7 +640,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-				// 			"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -798,7 +789,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapInternetPowerVolume'));
+			myChart5 = ec.init(document.getElementById('huaiNanMap'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -1367,11 +1358,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 			// 电厂名
 		
 			// 隐藏可点击箭头
-			if (powerPlantName != "浙能电力") {
-			    document.getElementById('powerPlantName').innerHTML = powerPlantName;
+			if (powerPlantName != "集团") {
+			    	document.getElementById('powerPlantName').innerHTML = powerPlantName;
 				document.getElementById('arrowInternetPowerVolume').style.display = "none";
 			} else {
-			    document.getElementById('powerPlantName').innerHTML = "浙能电力股份有限公司";
+			    document.getElementById('powerPlantName').innerHTML = "电力股份公司";
 			    	
 				document.getElementById('arrowInternetPowerVolume').style.display = "";
 			}
