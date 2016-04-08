@@ -36,9 +36,6 @@ function btnclick(no) {
         chartDivId = 'pic5500';
     }
     var powerPlantName = document.getElementById('powerPlantMainDetailTitle').innerHTML;
-    if (powerPlantName == '浙能电力股份有限公司') {
-			powerPlantName = '浙能电力';
-		}
     if (document.getElementById(btnID).className != "active") {
         //clear();
         document.getElementById(olddivID).style.display = "none";
@@ -51,7 +48,7 @@ function btnclick(no) {
     }
 }
 function detailAnother() {
-    if (document.getElementById('powerPlantMainDetailTitle').innerHTML == "电力股份公司") {
+    if (document.getElementById('powerPlantMainDetailTitle').innerHTML == "浙能电力股份有限公司") {
     	document.getElementById("rlcb_detail").style.display = "none";
     	//document.getElementById("hidden01").style.display = "none";
     	document.getElementById("detail_another").style.display = "";
@@ -65,7 +62,7 @@ function back_another() {
 }
 
 function detailAnother002(machineType) {
-    if(document.getElementById('powerPlantMainDetailTitle').innerHTML != '电力股份公司'){
+    if(document.getElementById('powerPlantMainDetailTitle').innerHTML != '浙能电力股份有限公司'){
     	document.getElementById("rlcb_detail").style.display = "none";
     	//document.getElementById("hidden01").style.display = "none";
     	document.getElementById("detail_another002").style.display = "";

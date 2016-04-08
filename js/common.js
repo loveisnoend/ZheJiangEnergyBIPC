@@ -677,4 +677,20 @@ function returnDefualtPowerPlant(areaName){
         zhejiang_dataStr += ']';
         return zhejiang_dataStr;
     }
+    if (areaName == 'zhejiangNoHomeBase') {
+    	var zhejiang_dataStr = '[';
+        zhejiang_dataStr += '{"name":"浙能电力股份有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"萧山发电厂","inputPlanValue":""},{"name":"台州发电厂","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能绍兴滨海热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能钱清发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能绍兴滨海热力有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能嘉兴发电有限公司","inputPlanValue":""},{"name":"浙江浙能兰溪发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能台州第二发电有限责任公司","inputPlanValue":""},';	  
+        zhejiang_dataStr += '{"name":"浙江浙能嘉华发电有限公司","inputPlanValue":""},{"name":"浙江浙能长兴发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海发电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海联合发电有限公司","inputPlanValue":""},{"name":"浙江浙能北仑发电有限公司","inputPlanValue":""},{"name":"浙江浙能镇海天然气发电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能镇海燃气热电有限责任公司","inputPlanValue":""},{"name":"浙江浙能温州发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能乐清发电有限责任公司","inputPlanValue":""},{"name":"温州燃机发电有限公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江温州特鲁莱发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能金华燃机发电有限责任公司","inputPlanValue":""},{"name":"浙江浙能中煤舟山煤电有限责任公司","inputPlanValue":""},';
+        zhejiang_dataStr += '{"name":"浙江浙能常山天然气发电有限公司","inputPlanValue":""}'
+        zhejiang_dataStr += ']';
+        return zhejiang_dataStr;
+    }
 }
