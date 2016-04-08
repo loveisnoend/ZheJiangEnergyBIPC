@@ -234,7 +234,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 				busy.close();
 			}
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-单位万千瓦人工成本 SCREEN_FZBZ_02_V04
 	loadEachPlant_SupplyWorkerCostIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -290,7 +290,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-单位万千瓦人工成本
 	loadBaseDataDetail_SupplyWorkerCostIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {

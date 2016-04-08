@@ -228,7 +228,7 @@ if (sRes.results[i].KPI_DESC != "浙能电力") {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-人均营业收入 SCREEN_FZBZ_02_V04
 	loadEachPlant_SupplyAverPersonProfitRecordIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -284,7 +284,7 @@ if (sRes.results[i].KPI_DESC != "浙能电力") {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载集团-人均营业收入
 	loadBaseDataDetail_SupplyAverPersonProfitRecordIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {

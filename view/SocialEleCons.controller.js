@@ -38,7 +38,7 @@ onInit: function() {
 			alert("数据分析中,请稍后......");
 		}, this);
 
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_02_V06", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_02_V06", mParameters);
 
 	},
 	onAfterShow: function(evt) {

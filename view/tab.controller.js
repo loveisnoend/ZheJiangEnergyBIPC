@@ -141,7 +141,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_02_V01", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_02_V01", mParameters);
 	},
 	
 	// 发电量和利用小时chart加载
@@ -217,7 +217,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.tab", {
 			var usrid = "ZS_BI_DATA_ORG_2080";
 		}
 		//this.getView().bindElement("/EE_PERSONPHOTO_SET('" + usrid + "')");
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_02_V02?$filter=(BNAME eq 'ERPTEST1')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_02_V02?$filter=(BNAME eq 'ERPTEST1')", mParameters);
     },
 	loadData_weather : function(year,month,day){
             var d = new Date();

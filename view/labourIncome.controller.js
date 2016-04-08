@@ -369,7 +369,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VLWSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VLWSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-劳务收入 SCREEN_JYYJ_04_VLWSRDC
 	loadEachPlant_SupplyLabourIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -423,7 +423,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VLWSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VLWSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-劳务收入
 	loadBaseDataDetail_SupplyLabourIncome: function(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP) {

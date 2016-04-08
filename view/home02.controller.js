@@ -358,7 +358,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
 				offset: '0 -110'
 			});
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_01_V01", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_01_V01", mParameters);
 	},
 	// 获取当前用户的可见功能ID
 	_getTheVisiableIdOfCurrentUser : function(){
@@ -440,7 +440,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("ZJEY_AUT_PC_TABPRI?$filter=(BNAME eq '" +usrid+ "')and(ZTOPICNAME eq '"+tabName+"')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZJEY_AUT_PC_TABPRI?$filter=(BNAME eq '" +usrid+ "')and(ZTOPICNAME eq '"+tabName+"')", mParameters);
 	},
 	// 获取二级页面数据
 	_loadData01 : function () {

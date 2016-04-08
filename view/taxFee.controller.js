@@ -95,7 +95,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_SDSFY/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_SDSFY/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-所得税费用 SCREEN_ZCQK_02_V01
 	loadEachPlant_SupplyTaxFeeIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -151,7 +151,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.taxFee", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_SDSFY/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_SDSFY/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-所得税费用
 	taxFee: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {

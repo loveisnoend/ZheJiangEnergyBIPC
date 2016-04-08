@@ -215,7 +215,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V07/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V07/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-日利润 SCREEN_ZJQK_02_V01
 	loadEachPlant_SupplyDailyProfitDetailIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -261,7 +261,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V07/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V07/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-日利润
 	loadBaseDataDetail_SupplyDailyProfitDetailIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {

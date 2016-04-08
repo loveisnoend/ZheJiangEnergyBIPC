@@ -70,7 +70,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取二级页面数据 员工类型
 	_loadData02 : function () {
@@ -149,7 +149,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
     // 获取二级页面数据 用工性质
 	_loadData03 : function () {
@@ -229,7 +229,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V07/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V07/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	loadChart: function(data_AverBusinessIncome,data_AverPersonSalary,workerPropertyDataContent,employeeTypeDataContent) {
 	    require(

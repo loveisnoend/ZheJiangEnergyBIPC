@@ -115,7 +115,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonSalary", {
 				busy.close();
 			}
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-人均工资 SCREEN_FZBZ_02_V04
 	loadEachPlant_SupplyAverPersonSalaryIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -171,7 +171,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonSalary", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 	加载浙能电力-人均工资
 	loadBaseDataDetail_SupplyAverPersonSalaryIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {

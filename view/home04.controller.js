@@ -61,7 +61,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_01_V01", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_01_V01", mParameters);
 	},
 	
 	_loadDataInitial : function(daytime,weather,temperature,place){
@@ -180,7 +180,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_01_V02", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_01_V02", mParameters);
 	},
 	// 设定全社会用电量和同比值
 	_loadData02 : function(mom,allenergy){

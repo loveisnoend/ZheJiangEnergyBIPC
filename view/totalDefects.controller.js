@@ -303,7 +303,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FXKZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-电厂安全日天数
 	loadBaseDataDetail_SupplyTotalDefectsIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {

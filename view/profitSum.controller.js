@@ -95,7 +95,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.profitSum", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-利润总额 SCREEN_ZCQK_02_V01
 	loadEachPlant_SupplyProfitSumIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -151,7 +151,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.profitSum", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-利润总额
 	profitSum: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {

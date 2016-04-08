@@ -85,7 +85,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_02_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_02_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	loadChart: function() {
 	    require(

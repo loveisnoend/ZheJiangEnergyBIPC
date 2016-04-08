@@ -199,7 +199,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	loadmjChart: function(divId) {
 		require(
@@ -424,7 +424,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VGRSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VGRSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-供热收入 SCREEN_JYYJ_04_VGRSRDC
 	loadEachPlant_SupplyHeatIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -529,7 +529,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VGRSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VGRSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-供热收入
 	loadBaseDataDetail_SupplyHeatIncome: function(chartDivId, priceChartName, xData, KPI_ZZS_V, KPI_WZS_V, KPI_RSS_V, KPI_CZS_V, KPI_ZZS_UP,

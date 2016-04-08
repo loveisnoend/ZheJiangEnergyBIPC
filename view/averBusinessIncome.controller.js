@@ -249,7 +249,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 				busy.close();
 			}
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-人均营业收入 SCREEN_FZBZ_02_V01
 	loadEachPlant_SupplyAverBusinessIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -305,7 +305,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载集团-人均营业收入
 	loadBaseDataDetail_SupplyAverBusinessIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {

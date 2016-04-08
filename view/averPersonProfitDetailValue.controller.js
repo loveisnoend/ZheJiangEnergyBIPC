@@ -92,7 +92,7 @@ onInit: function() {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-人均利润 SCREEN_FZBZ_03_RJLR
 	loadEachPlant_SupplyaverPersonProfitDetailValueIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -138,7 +138,7 @@ onInit: function() {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_03_RJLR/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_03_RJLR/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载集团-人均利润 
 	loadBaseDataDetail_SupplyaverPersonProfitDetailValueIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {

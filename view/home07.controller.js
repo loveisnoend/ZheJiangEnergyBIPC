@@ -190,7 +190,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 				offset: '0 -110'
 			});
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_FXKZ_01_V01?$filter=(BNAME eq '" +usrid+ "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_01_V01?$filter=(BNAME eq '" +usrid+ "')", mParameters);
 	},
 	// 获取二级页面数据
 	_loadData01 : function (currentDate) {

@@ -194,7 +194,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取煤价数据
 	loadCoalPriceChartData: function(calorieType, divId, powerPlantName) {
@@ -260,7 +260,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("ZJEY_CL_JYYJ_04_MTJG/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZJEY_CL_JYYJ_04_MTJG/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	loadmjChart: function(divId, reallyPrice, qinGangPrice, date) {
 		require(
@@ -465,7 +465,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("ZJEY_CL_JYYJ_04_DWCB/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZJEY_CL_JYYJ_04_DWCB/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	//大圆圈点进去的chart
 	loadChartdetail: function(dataThisYear, dataLastYear, dataUpPercent, powerPlantName) {

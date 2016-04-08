@@ -106,7 +106,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_01_V01", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_01_V01", mParameters);
 	},
 	// 加载日利润值
 	_loadData_left : function(){
@@ -191,7 +191,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 				offset: '0 -110'
 			});
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_01_V03?$filter=(BNAME eq '" +usrid+ "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_01_V03?$filter=(BNAME eq '" +usrid+ "')", mParameters);
 	},
 	// 加载主营业务值
 	_loadData_MainBusiness : function(){
@@ -342,7 +342,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_JYYJ_01_V04?$filter=(BNAME eq '" +usrid+ "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_01_V04?$filter=(BNAME eq '" +usrid+ "')", mParameters);
 	},
 	// 获取当前用户的可见功能ID
 	_getTheVisiableIdOfCurrentUser : function(){
@@ -360,7 +360,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("ZJEY_AUT_PC_TABPRI?$filter=(BNAME eq '" +usrid+ "')and(ZTOPICNAME eq '"+tabName+"')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZJEY_AUT_PC_TABPRI?$filter=(BNAME eq '" +usrid+ "')and(ZTOPICNAME eq '"+tabName+"')", mParameters);
 	},
 	// 获取二级页面数据
 	_loadData01 : function () {

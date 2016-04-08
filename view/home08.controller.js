@@ -409,7 +409,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home08", {
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");
 		}, this);
-	    sap.ui.getCore().getModel().read("SCREEN_FZBZ_01_V01?$filter=(BNAME eq '" +usrid+ "')", mParameters);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_01_V01?$filter=(BNAME eq '" +usrid+ "')", mParameters);
 	},
 	
 // 	// get data by new method of OData

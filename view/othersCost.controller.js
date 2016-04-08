@@ -303,7 +303,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	loadmjChart: function(divId) {
 		require(
@@ -477,7 +477,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("ZJEY_CL_JYYJ_04_VQTCB/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZJEY_CL_JYYJ_04_VQTCB/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 电价详细Chart
 	loadEachCostChartdetail: function(chartDivId, priceChartName, eachPowerPlantName, eachCostData) {
@@ -642,7 +642,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("ZJEY_CL_JYYJ_04_VQTCB/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZJEY_CL_JYYJ_04_VQTCB/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 电价详细Chart
 	loadPriceChartdetail: function(chartDivId, priceChartName, dataThisYear, dataLastYear, powerPlantName) {

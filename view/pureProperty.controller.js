@@ -231,7 +231,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-净资产 SCREEN_ZCQK_02_V01
 	loadEachPlant_SupplyPurePropertyIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -287,7 +287,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProperty", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-净资产
 	pureProperty: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {

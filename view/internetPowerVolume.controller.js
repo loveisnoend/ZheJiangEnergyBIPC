@@ -258,7 +258,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V03/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V03/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 
 	// 获取平均电价值
@@ -314,7 +314,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetPowerVolume", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("ZJEY_CL_JYYJ_04_VPJDJ/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZJEY_CL_JYYJ_04_VPJDJ/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 电价详细Chart
 	loadPriceChartdetail: function(chartDivId, priceChartName, dataThisYear, dataLastYear, powerPlantName) {

@@ -257,7 +257,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCount", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-单位万千瓦员工数
 	// 	loadBaseDataDetail_SupplyWorkerCountIncome: function(chartDivId, priceChartName,xData,KPI_RJS_V,KPI_RJS_UP) {

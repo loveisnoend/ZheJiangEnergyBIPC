@@ -340,7 +340,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-人均利润 SCREEN_ZCQK_02_V01
 	loadEachPlant_SupplyWokerPropertyAndTypeIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -396,7 +396,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-员工类型 用工性质
 	wokerPropertyAndTypePie: function(sexChartData, ageChartData, workAgeChartData, educationChartData, skillChartData) {

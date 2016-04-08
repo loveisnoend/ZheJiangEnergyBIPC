@@ -230,7 +230,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-总资产 SCREEN_ZCQK_02_V02
 	loadEachPlant_SupplySumPropertyIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -287,7 +287,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.sumProperty", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-总资产
 	sumProperty: function(chartDivId, priceChartName, xData, KPI_ZZC_V, KPI_ZZC_UP) {

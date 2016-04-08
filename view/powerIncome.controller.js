@@ -192,7 +192,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V05/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V05/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	loadmjChart: function(divId) {
 		require(
@@ -444,7 +444,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VSDSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VSDSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-售电收入 SCREEN_JYYJ_04_VSDSRDC
 	loadEachPlant_SalesIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -577,7 +577,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VSDSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VSDSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力售电收入
 	loadBaseDataDetail_SalesIncome: function(chartDivId, priceChartName, xData, KPI_HYS_V, KPI_ZGS_V, KPI_TDS_V, KPI_JJS_V, KPI_OES_V,
@@ -866,7 +866,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VBTSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VBTSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-补贴收入 SCREEN_JYYJ_04_VBTSRDC
 	loadEachPlant_SubsidyIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -985,7 +985,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VBTSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VBTSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力补贴收入
 	loadBaseDataDetail_SubsidyIncome: function(chartDivId, priceChartName, xData, KPI_ZSS_V, KPI_TLS_V, KPI_TXS_V, KPI_CCS_V, KPI_DPS_V,
@@ -1199,7 +1199,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VFZSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VFZSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-辅助服务收入 SCREEN_JYYJ_04_VFZSRDC
 	loadEachPlant_SubServiceIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -1251,7 +1251,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VFZSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VFZSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力辅助服务收入
 	loadBaseDataDetail_SubServiceIncome: function(chartDivId, priceChartName, xData, KPI_FZS_V, KPI_FZS_UP) {
@@ -1478,7 +1478,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VFDSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VFDSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-发电收入 SCREEN_JYYJ_04_VFDSRDC
 	loadEachPlant_PowerOutputIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -1569,7 +1569,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VFDSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VFDSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力发电收入
 	loadBaseDataDetail_PowerOutputIncome: function(chartDivId, priceChartName, xData, KPI_FDS_V, KPI_SDS_V, KPI_BTS_V, KPI_FZS_V, KPI_FDS_UP,

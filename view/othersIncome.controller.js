@@ -369,7 +369,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VQTSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VQTSRJT/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-其他收入 SCREEN_JYYJ_04_VLWSRDC
 	loadEachPlant_OthersIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -423,7 +423,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_JYYJ_04_VQTSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_04_VQTSRDC/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-其他收入
 	// 	loadBaseDataDetail_OthersIncome: function(chartDivId, priceChartName,xData,KPI_LWS_V,KPI_LWS_UP) {

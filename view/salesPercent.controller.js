@@ -203,7 +203,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZJQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZJQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-销售现金比率 SCREEN_ZJQK_02_V01
 	loadEachPlant_SupplySalesPercentIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -249,7 +249,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("SCREEN_ZJQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZJQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-销售现金比率
 	loadBaseDataDetail_SupplySalesPercentIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
