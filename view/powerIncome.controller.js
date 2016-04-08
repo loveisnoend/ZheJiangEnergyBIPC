@@ -9,6 +9,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
+			    var sIdentical = "PowerIncome";
+				//AC-Gates 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
+			    //AC-Gates 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var naviDemo = document.getElementById("navi"+sIdentical);
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+		        //AC-Gates 更改下面的文字和onclick方法
+                                "<b onClick='toMainBusinessPage()' style='cursor:pointer;'>浙能电力主营业务</b> > <b>"+timeLabel+"发电收入</b>"+
+                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -147,19 +159,19 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				}
 				tempJsonStrData += '}';
 
-				if (powerPlantName == '淮南') {
+				if (powerPlantName == '凤台电厂') {
 					if (isHuaiNanDataFirst != true) {
 						huaiNan_dataStr += ',';
 					}
 					huaiNan_dataStr += tempJsonStrData;
 					isHuaiNanDataFirst = false;
-				} else if (powerPlantName == '浙能阿克苏热电有限公司') {
+				} else if (powerPlantName == '阿克苏热电') {
 					if (isAkesuDataFirst != true) {
 						akesu_dataStr += ',';
 					}
 					akesu_dataStr += tempJsonStrData
 					isAkesuDataFirst = false;
-				} else if (powerPlantName == '宁夏枣泉发电有限责任公司') {
+				} else if (powerPlantName == '枣泉发电') {
 					if (isZaoquanDataFirst != true) {
 						zhaoquan_dataStr += ',';
 					}
@@ -173,14 +185,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 					isZhejiangDataFirst = false;
 				}
 			}
-						zhejiang_dataStr += ']';
-						huaiNan_dataStr += ']';
-						akesu_dataStr += ']';
-						zhaoquan_dataStr += ']';
-
-huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
-    akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
-    zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
+			zhejiang_dataStr += ']';
+			huaiNan_dataStr += ']';
+			akesu_dataStr += ']';
+			zhaoquan_dataStr += ']';
 			var zhejiang_JsonData = JSON.parse(zhejiang_dataStr)
 			var huaiNan_JsonData = JSON.parse(huaiNan_dataStr);
 			var akesu_JsonData = JSON.parse(akesu_dataStr);
@@ -1950,48 +1958,48 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapPower'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapPower'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
 			document.getElementById('powerPlantMainDetailTitlePower').innerHTML = '浙能电力股份有限公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			var myChart4 = ec.init(document.getElementById('powerPlantMapPower'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapPowerIncome'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -2240,7 +2248,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapPower'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapPowerIncome'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -2401,7 +2409,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapPower'));
+			myChart6 = ec.init(document.getElementById('akesuMapPowerIncome'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -2562,7 +2570,7 @@ huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapPower'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapPowerIncome'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {
