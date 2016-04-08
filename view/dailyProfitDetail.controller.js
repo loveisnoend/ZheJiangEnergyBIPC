@@ -9,6 +9,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
+			    var sIdentical = "DailyProfitDetail";
+				//AC-Gates 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
+			    //AC-Gates 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"+(myDate.getDate()-1)+"日"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var naviDemo = document.getElementById("navi"+sIdentical);
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+		        //AC-Gates 更改下面的文字和onclick方法
+                                "<b onClick='dailyProfit()' style='cursor:pointer;'>日利润</b> > <b>"+timeLabel+"日利润详细</b>"+
+                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -27,7 +39,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 	// 获取三级页面数据
 	_loadData01: function() {
 
-		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangNoHomeBase');
 		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
 		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
@@ -182,8 +194,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 日利润
-				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i]
-					.KPI_DESC != '浙能电力') {
+				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i].KPI_DESC != '浙能电力'&& sRes.results[i].KPI_DESC != '浙能电力本部') {
 					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DESC);
 				}
@@ -229,7 +240,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 日利润
-				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC == powerPlantName) {
+				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC == powerPlantName && sRes.results[i].KPI_DESC != '浙能电力本部') {
 					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DATE);
 				}
@@ -265,13 +276,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameDailyProfitDetail').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
-.innerHTML;
-}
+			if(document.getElementById('powerPlantMainDetailTitleDailyProfitDetail').innerHTML=="浙能电力"){
+                document.getElementById('profitNameDailyProfitDetail').innerHTML="浙能电力股份有限公司";
+            }else{
+                document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail').innerHTML;
+            }
 // 			document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
 // 				.innerHTML;
 			var color1 = '#A704CA';
@@ -418,13 +427,11 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameDailyProfitDetail').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
-.innerHTML;
-}
+			if(document.getElementById('powerPlantMainDetailTitleDailyProfitDetail').innerHTML=="浙能电力"){
+                document.getElementById('profitNameDailyProfitDetail').innerHTML="浙能电力股份有限公司";
+            }else{
+                document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail').innerHTML;
+            }
 // 			document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
 // 				.innerHTML;
 			var color1 = '#A704CA';
@@ -578,43 +585,43 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapDailyProfitDetail'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapDailyProfitDetail'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
 			document.getElementById('powerPlantMainDetailTitleDailyProfitDetail').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
@@ -719,7 +726,7 @@ document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getE
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+				// 			"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],

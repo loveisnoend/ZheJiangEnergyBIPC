@@ -1,6 +1,6 @@
-<template data-controller-name="com.zhenergy.pcbi.view.SocialEleCons">
-	<div class="nav_main">
-        <div class="main-center">
+<template data-controller-name="com.zhenergy.pcbi.view.averPersonProfit">
+	 <div class="nav_main">
+	    <div class="main-center">
             <div class="msg_top">
                <div class="msg_top1">
                    <marquee behavior="scroll" scrollamount="5">
@@ -27,18 +27,61 @@
                     </div>
                     <div class="topToolAll">
                         <div class="userSkinIcon" onmouseover="userHoverOn('userSkinCon')" onmouseout="userHoverOut('userSkinCon')" ></div>
-                        <div class="userSkinCon"><b class="userSkin" onClick="changeSkinCss('workerCount')">夜间模式</b></div>
+                        <div class="userSkinCon"><b class="userSkin" onClick="changeSkinCss('averPersonProfit')">夜间模式</b></div>
                     </div>
                 </div>
             </div>
             <div class="content_center">
-              <div class="powerTop">
-                    <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo" style="height:100%;"><b onClick="doit1()" style="cursor:pointer;">宏观环境</b> > <b>全社会用电量-浙江省</b></span></div>             
-              </div>
-              <div class="powerBottom">
-                <div style="width:100%;height:98%;" id="SocialEleConsChart"></div>
-              </div>
-    
+                <div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo"><b onClick="doit8(1)" style="cursor:pointer;">发展保障</b> > 浙能电力人均利润</span></div>
+                <div class="averPersonProfit_main">
+                    <div class="averPersonProfit_main_content_left">
+                        <div class="averPersonProfitPanelLeft swdl" ondblclick="toWokerPropertyAndTypePage()">
+                            <div class="averPersonPanel_title"><span id="employeeType"></span>
+                                <div style="float:left;margin-left:45%">员工类型</div>
+                                <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
+                            </div>
+                            <div class="averPersonPanel_content01">
+                                <div id="employeeTypeChart" style="width:450px;height:300px;"></div>
+                            </div>
+                        </div>
+                        <div class="averPersonProfitPanelRight pjswdj" onclick="toDetailPage('人均工资')">
+                            <div class="averPersonPanel_title">
+                                <div style="float:left;margin-left:35%">人均工资<span id="averSalary">万元</span></div>                                
+                                <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
+                            </div>
+                            <div class="averPersonPanel_content02">
+                                <div id="averSalaryChart" style="width:450px;height:200px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="averPersonProfit_main_content_center">
+                            <div id="averPersonProfitResult" style="cursor:pointer;" onclick="toDetailPage('人均利润')">
+                             </div>
+                                                             <div style="float:left;margin-left: 350px;margin-top: -100px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
+
+                    </div>
+                    <div class="averPersonProfit_main_content_right">
+                        <div class="averPersonProfitPanelLeft qtcb" ondblclick="toWokerPropertyAndTypePage()">
+                            <div class="averPersonPanel_title">
+                                <div style="float:left;margin-left:45%">用工性质</div>
+                                <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
+                                <span id="workerProperty"></span>
+                            </div>
+                            <div class="averPersonPanel_content01">
+                                <div id="workerPropertyChart" style="width:450px;height:300px;"></div>
+                            </div>
+                        </div>
+                        <div class="averPersonProfitPanelRight rlcb" onclick="toDetailPage('人均营业收入记录')">
+                            <div class="averPersonPanel_title">
+                                <div style="float:left;margin-left:35%">人均营业收入<span id="businessIncome">万元</span></div>                                
+                                <div style="float:left;margin-left:0px;margin-top:8px;"><img height="25px" width="25px" src="img/iconfont-right.png"/></div>
+                            </div>
+                            <div class="averPersonPanel_content02">
+                                <div id="businessIncomeChart" style="width:450px;height:200px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="menu_bottom">
                 <ul>
