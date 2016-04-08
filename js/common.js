@@ -297,6 +297,22 @@ function changeSkinCss(pageName) {
         skinName = '夜间模式';
     }
     skinNameAlter = $('.userSkin').html();
+    
+    //宏观 TODO TimLu
+    if (pageName == 'IndustrialAddSpeed') {
+        isIndustrialAddSpeed=false;
+        industrialAddSpeed.getController()._loadData01();
+    }
+    if (pageName == 'SocialEleCons') {
+        isSocialEleCons=false;
+        socialEleCons.getController()._loadData01();
+    }
+    if (pageName == 'CoalUtilizationHour') {
+        isCoalUtilizationHour=false;
+        coalUtilizationHour.getController()._loadData01();
+    }
+    
+    
     if (pageName == 'help') {
         changeTheSkinOfPage();
     }
@@ -449,6 +465,9 @@ function changeSkinCss(pageName) {
     if (pageName == 'averPersonSalary') {
         averPersonSalary.getController()._loadData01();
     }
+    
+    
+    
 }
 // change the skin of the page
 function changeTheSkinOfPage() {

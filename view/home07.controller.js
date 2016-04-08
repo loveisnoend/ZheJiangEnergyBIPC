@@ -90,32 +90,83 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 	    }
 	},
 	
-	// 加载电厂安全日天数值
-	_loadSafeProduceDays : function(){
+// 	// 加载电厂安全日天数值
+// 	_loadSafeProduceDays : function(){
+// 	    var mParameters = {};
+// 		mParameters['async'] = true;
+// 		mParameters['success'] = jQuery.proxy(function(sRes) {
+//             // 统计日期
+//             var daytime = null;
+// 			//设置数据
+// 			var safeProduceDays=0;
+// 			for (var i in sRes.results) {
+// 				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC == '浙能电力'){  
+// 				    safeProduceDays = safeProduceDays+parseFloat(sRes.results[i].KPI_VALUE);
+// 				    daytime = sRes.results[i].KPI_DATE;
+// 				}
+// 			}
+// 			var rlr_color="red";
+//     		if(safeProduceDays>0){
+//     		    if (skinName == '夜间模式') {
+//     		        rlr_color="green";
+//     		    } else {
+//     		        rlr_color="white";
+//     		    }
+//     		}
+//     		$('#safeProduceDays').css('color',rlr_color);
+//     		$('#safeProduceDays').css('font-size','75px');
+// 			$('#safeProduceDays').html(safeProduceDays);
+//             var daytime01;
+//     	    var daytime02;
+//     	    var daytime03;
+//     	    if (daytime != null) {
+//     	       daytime01 = daytime.substring(0,4);
+//     	       daytime02 = daytime.substring(4,6);
+//     	       daytime03 = daytime.substring(6,8); 
+//     	    }
+//             // 电厂安全日天数日期
+// 	        $('#safeProduceDaysDate').html(daytime01 + "年" + daytime02 + "月" + daytime03 + "日");
+// 	        if (isHomeLoad == false) {
+//                 if (busy) {
+//         			busy.close();
+//         		} 
+//         		changeTheSkinOfPage();
+//         		isHomeLoad = true;
+//             }
+// 		}, this);
+// 		mParameters['error'] = jQuery.proxy(function(eRes) {
+// 			sap.m.MessageToast.show("网络连接失败，请重试", {
+// 				offset: '0 -110'
+// 			});
+// 		}, this);
+// 	    sap.ui.getCore().getModel().read("SCREEN_FXKZ_01_V01?$filter=(BNAME eq '" +usrid+ "')", mParameters);
+// 	},
+	// 加载电厂一二类缺陷总数
+	_loadTotalDefects : function(){
 	    var mParameters = {};
 		mParameters['async'] = true;
 		mParameters['success'] = jQuery.proxy(function(sRes) {
             // 统计日期
             var daytime = null;
 			//设置数据
-			var safeProduceDays=0;
+			var iTotalDefects=0;
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC == '浙能电力'){  
-				    safeProduceDays = safeProduceDays+parseFloat(sRes.results[i].KPI_VALUE);
+				if (sRes.results[i].KPI_TYPE == '缺陷总数' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    iTotalDefects = iTotalDefects+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
 			}
 			var rlr_color="red";
-    		if(safeProduceDays>0){
+    		if(iTotalDefects>0){
     		    if (skinName == '夜间模式') {
     		        rlr_color="green";
     		    } else {
     		        rlr_color="white";
     		    }
     		}
-    		$('#safeProduceDays').css('color',rlr_color);
-    		$('#safeProduceDays').css('font-size','75px');
-			$('#safeProduceDays').html(safeProduceDays);
+    		$('#TotalDefects').css('color',rlr_color);
+    		$('#TotalDefects').css('font-size','75px');
+			$('#TotalDefects').html(iTotalDefects);
             var daytime01;
     	    var daytime02;
     	    var daytime03;
@@ -125,7 +176,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
     	       daytime03 = daytime.substring(6,8); 
     	    }
             // 电厂安全日天数日期
-	        $('#safeProduceDaysDate').html(daytime01 + "年" + daytime02 + "月" + daytime03 + "日");
+	        $('#TotalDefectsDate').html(daytime01 + "年" + daytime02 + "月" + daytime03 + "日");
 	        if (isHomeLoad == false) {
                 if (busy) {
         			busy.close();
@@ -160,7 +211,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 	   // this._getDataByDifferentDate(currentDate);
 	    
 		this._drawSwiper();
-	    this._loadSafeProduceDays();
+	   // this._loadSafeProduceDays();
+	    this._loadTotalDefects();
 		// 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi,valueGDP,valueCPItongbi,valuePPItongbi,valuePMIproduce,valuePMInonProduce,valueGDPTotal);
 	},
