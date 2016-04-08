@@ -8,7 +8,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
                 ]
                 );
 		var mySwiper = new Swiper('.swiper-container', {
-			initialSlide: 0,
+			initialSlide: slide01PageNum,
 			speed: 50,
 			loop: false,
 			freeMode: false,
