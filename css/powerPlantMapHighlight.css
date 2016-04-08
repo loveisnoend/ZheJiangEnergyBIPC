@@ -45,15 +45,15 @@
     width:600px;
 }
 .mapTop{
-    width : 40%;
-    height : 90%;
+    width : 20%;
+    height : 100%;
     float : left;
 }
 .mapBottom{
-    width : 100%;
-    height : 5%;
+    width : 80%;
+    height : 100%;
     float : left;
-    margin-left:-8%;
+    margin-left:0%;
 }
 .chinaMap{
     width : 55%;
