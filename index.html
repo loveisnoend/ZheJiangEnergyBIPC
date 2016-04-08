@@ -96,6 +96,9 @@
 		        if (detailName == "日利润详细指标") {
 		            app.to("idDailyProfitDetail", "show");
 		        }
+		        if (detailName == "发电和供热收入") {
+		            app.to("idPowerAndHeatIncome", "show");
+		        }
 		        
 		        // 主营业务
 		        if (detailName == "发电收入") {
@@ -149,9 +152,10 @@
 		            app.to("idAverPersonProfitRecord", "show");
 		        }
 		    }
-		    function toInternetPowerDetailPage() {
-		        app.to("idInternetPowerVolume","show");
-		    }
+		    // TODO Gates
+		  //  function toInternetPowerDetailPage() {
+		  //      app.to("idInternetPowerVolume","show");
+		  //  }
 		    function doit1() {
 		        slidePageNum = 0;
                 app.to("idhome02","show");
@@ -280,6 +284,8 @@
 				// 日利润详细指标
 				var dailyProfitDetail;
 				var internetPowerVolume;
+				// 发电和供热收入
+				var powerAndHeatIncome
 				// wait event
 				// 日利润
 				var isInternetPowerVolumeLoad = false;
@@ -558,6 +564,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(dailyProfitDetail);
+            		 
+            		// 发电和供热收入
+            		powerAndHeatIncome = sap.ui.view({
+            			id: "idPowerAndHeatIncome",
+            			viewName: "com.zhenergy.pcbi.view.powerAndHeatIncome",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(powerAndHeatIncome);
             		 
             		powerPlantMap = sap.ui.view({
             			id: "idPowerPlantMap",

@@ -9,6 +9,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
+			    var sIdentical = "PowerAndHeatIncome";
+				//AC-Gates 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
+			    //AC-Gates 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"+(myDate.getDate()-1)+"日"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var naviDemo = document.getElementById("navi"+sIdentical);
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+		        //AC-Gates 更改下面的文字和onclick方法
+                                "<b onClick='dailyProfit()' style='cursor:pointer;'>浙能电力日利润</b> > <b>"+timeLabel+"发电和供热收入</b>"+
+                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -27,7 +39,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 	// 获取三级页面数据
 	_loadData01: function() {
 
-		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangNoHomeBase');
 		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
 		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
@@ -434,9 +446,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome')
-				.innerHTML == "集团") {
-				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = "电力股份公司";
+			if (document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML == "浙能电力") {
+				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = "浙能电力股份有限公司";
 			} else {
 				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome')
 					.innerHTML;
@@ -588,45 +599,45 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapPowerAndHeatIncome'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapPowerAndHeatIncome'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML = '集团'
+			document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapPowerAndHeatIncome'));
@@ -1522,7 +1533,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			if (powerPlantName == '集团') {
+			if (powerPlantName == '浙能电力') {
 				// TODO
 				powerAndHeatIncome.getController().loadBase_SupplyPowerAndHeatIncomeIncome(priceChartId, priceChartName);
 				//powerAndHeatIncome.getController().loadEachPlant_SupplyPowerAndHeatIncomeIncome(priceChartId, priceChartName, powerPlantName);
