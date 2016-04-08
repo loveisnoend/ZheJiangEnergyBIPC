@@ -117,6 +117,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.CoalUtilizationHour", {
 							show: false
 						},
 						axisLabel: {
+						    interval:0,
 							formatter: function(val, index) {
 								if (parseInt(val.substring(4, 6)) % 3 == 0) {
 									return val.substring(0, 4) + "年第" + parseInt(val.substring(4, 6)) / 3 + "季度";
