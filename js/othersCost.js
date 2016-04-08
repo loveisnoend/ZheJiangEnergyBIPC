@@ -26,6 +26,9 @@ function priceDetailAnotherCost(detailId) {
     	} else if(detailId == 'detail005'){
     	    priceChartName = '其他营业成本';  
     	    othersCost.getController().loadOthersCostChartData(priceChartId, priceChartName);
+    	} else if(detailId == 'detail006'){
+    	    priceChartName = '日利润-其他成本';  
+    	    othersCost.getController().loadOthersCostChartData(priceChartId, priceChartName);
     	}
     }
 }

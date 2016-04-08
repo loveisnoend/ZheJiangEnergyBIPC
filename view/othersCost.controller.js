@@ -38,14 +38,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 	},
 	// 获取三级页面数据
 	_loadData01: function() {
-		if (isOthersCostLoad == false) {
+// 		if (isOthersCostLoad == false) {
 			busy = new sap.m.BusyDialog({
 				close: function(event) {}
 			});
 			if (busy) {
 				busy.open();
 			}
-		}
+// 		}
 		var mParameters = {};
 		mParameters['async'] = true;
 		mParameters['success'] = jQuery.proxy(function(sRes) {
@@ -240,6 +240,22 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 							tempJsonStrData += ',';
 						}
 						tempJsonStrData += '"otherRunningCostUP":';
+						tempJsonStrData += sRes.results[i].KPI_VALUE;
+						isFirst = false;
+					}
+					if (sRes.results[i].KPI_TYPE == '日利润-其他成本' && sRes.results[i].KPI_DESC == dc[j]) {
+						if (isFirst != true) {
+							tempJsonStrData += ',';
+						}
+						tempJsonStrData += '"otherCost":';
+						tempJsonStrData += sRes.results[i].KPI_VALUE; ///10000).toFixed(2);
+						isFirst = false;
+					}
+					if (sRes.results[i].KPI_TYPE == '日利润-其他成本同比' && sRes.results[i].KPI_DESC == dc[j]) {
+						if (isFirst != true) {
+							tempJsonStrData += ',';
+						}
+						tempJsonStrData += '"otherCostUP":';
 						tempJsonStrData += sRes.results[i].KPI_VALUE;
 						isFirst = false;
 					}
@@ -601,17 +617,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 
 			for (var i in sRes.results) {
 				if (sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部') {
-					if (sRes.results[i].KPI_TYPE == '其他营业成本') {
+					if (sRes.results[i].KPI_TYPE == priceChartName) {
 						dataThisYear.push(sRes.results[i].KPI_VALUE); ///10000).toFixed(2));
 						powerPlantName.push(sRes.results[i].KPI_DESC);
 					}
-					if (sRes.results[i].KPI_TYPE == '其他营业成本同比') {
+					if (sRes.results[i].KPI_TYPE == (priceChartName+'同比')) {
 						dataLastYear.push(sRes.results[i].KPI_VALUE); ///10000).toFixed(2));
 					}
 				}
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[i]
-						.KPI_DATE.substring(6, 8);
+					dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[i].KPI_DATE.substring(6, 8);
 				}
 			}
 
@@ -1597,13 +1612,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 			// 为echarts对象加载数据 
 			myChart7.setOption(option7);
 
-			if (isOthersCostLoad == false) {
+// 			if (isOthersCostLoad == false) {
 				if (busy) {
 					busy.close();
 				}
 				changeTheSkinOfPage();
 				isOthersCostLoad = true;
-			}
+// 			}
 		}
 
 		function drawpie(e, data1, data2, id) {
@@ -1765,6 +1780,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 				document.getElementById('arrowOthersCost03').style.display = "none";
 				document.getElementById('arrowOthersCost04').style.display = "none";
 				document.getElementById('arrowOthersCost05').style.display = "none";
+				document.getElementById('arrowOthersCost06').style.display = "none";
 			} else {
 			    document.getElementById('powerPlantMainDetailTitleCost').innerHTML = "浙能电力股份有限公司";
 				document.getElementById('arrowOthersCost01').style.display = "";
@@ -1772,6 +1788,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 				document.getElementById('arrowOthersCost03').style.display = "";
 				document.getElementById('arrowOthersCost04').style.display = "";
 				document.getElementById('arrowOthersCost05').style.display = "";
+				document.getElementById('arrowOthersCost06').style.display = "";
 			}
 			// 其他营业成本
 			var otherRunningCost = mapSeries.markPoint.data[dataIndex].otherRunningCost;
@@ -1780,13 +1797,29 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 			} else {
 				document.getElementById('other_fuelCost').innerHTML = 0;
 			}
-			// 其他营业成本同比
+			// 其他营业成本同比 TODO not used now
 			var otherRunningCostUP = mapSeries.markPoint.data[dataIndex].otherRunningCostUP;
 			if (otherRunningCostUP != undefined) {
-				document.getElementById('fuelDownPercentCost').innerHTML = otherRunningCostUP;
+				// document.getElementById('fuelDownPercentCost').innerHTML = otherRunningCostUP;
 			} else {
-				document.getElementById('fuelDownPercentCost').innerHTML = 0;
+				// document.getElementById('fuelDownPercentCost').innerHTML = 0;
 				otherRunningCostUP = 0;
+			}
+
+			// 其他成本
+			var otherCost = mapSeries.markPoint.data[dataIndex].otherCost;
+			if (otherCost != undefined) {
+				document.getElementById('other_fuelCostNew').innerHTML = otherCost;
+			} else {
+				document.getElementById('other_fuelCostNew').innerHTML = 0;
+			}
+			// 其他成本同比
+			var otherCostUP = mapSeries.markPoint.data[dataIndex].otherCostUP;
+			if (otherCostUP != undefined) {
+				document.getElementById('fuelDownPercentCostNew').innerHTML = otherCostUP;
+			} else {
+				document.getElementById('fuelDownPercentCostNew').innerHTML = 0;
+				otherCostUP = 0;
 			}
 
 			// 折旧费

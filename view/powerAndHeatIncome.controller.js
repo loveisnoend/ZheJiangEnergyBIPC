@@ -188,6 +188,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 
 		// 日利润-供热收入同比
 		var KPI_JZC_UP = new Array();
+		
+		// 日利润-发电收入指标
+		// 日利润-发电收入
+		var KPI_DSR_V = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -202,9 +206,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 日利润-供热收入
-				if (sRes.results[i].KPI_TYPE == '日利润-供热收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				if (sRes.results[i].KPI_TYPE == '日利润-供热收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i].KPI_DESC != '浙能电力本部') {
 					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DESC);
+				}
+				// 日利润-发电收入
+				if (sRes.results[i].KPI_TYPE == '日利润-发电收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i].KPI_DESC != '浙能电力本部') {
+					KPI_DSR_V.push(sRes.results[i].KPI_VALUE);
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
@@ -215,7 +223,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 			// 统计于日期
 // 			$('#powerAndHeatIncomeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '日利润-供热收入') {
-				this.powerAndHeatIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
+				this.powerAndHeatIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP, KPI_DSR_V);
 			}
 			if (busy) {
 				busy.close();
@@ -245,6 +253,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 		// 日利润-供热收入同比
 		var KPI_JZC_UP = new Array();
 
+		// 日利润-发电收入指标
+		// 日利润-发电收入
+		var KPI_DSR_V = new Array();
+
 		var dataStatisticDate = '';
 		var mParameters = {};
 		mParameters['async'] = true;
@@ -258,20 +270,23 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 日利润-供热收入
-				if (sRes.results[i].KPI_TYPE == '日利润-供热收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+				if (sRes.results[i].KPI_TYPE == '日利润-供热收入' && sRes.results[i].KPI_DESC == powerPlantName && sRes.results[i].KPI_DESC != '浙能电力本部') {
 					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DATE);
 				}
+				// 日利润-发电收入
+				if (sRes.results[i].KPI_TYPE == '日利润-发电收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i].KPI_DESC != '浙能电力本部') {
+					KPI_DSR_V.push(sRes.results[i].KPI_VALUE);
+				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
 // 			$('#powerAndHeatIncomeIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '日利润-供热收入') {
-				this.loadBaseDataDetail_PowerAndHeatIncomeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
+				this.loadBaseDataDetail_PowerAndHeatIncomeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_DSR_V);
 			}
 			if (busy) {
 				busy.close();
@@ -285,7 +300,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 		sap.ui.getCore().getModel().read("SCREEN_JYYJ_03_V08/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载集团-日利润-供热收入
-	powerAndHeatIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+	powerAndHeatIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP, KPI_DSR_V) {
 
 		require(
             [
@@ -297,16 +312,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome')
-				.innerHTML == "集团") {
-				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = "电力股份公司";
+			if (document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML == "浙能电力") {
+				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = "浙能电力股份有限公司";
 			} else {
 				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome')
 					.innerHTML;
 			}
 			//document.getElementById('profitNamePowerAndHeatIncome').innerHTML = document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML;
-			var color1 = '#A704CA';
-			var color2 = '#E52DE6';
+			var color1 = '#32CD32';
+			var color2 = '#A704CA';
 			var option = {
 				title: {
 					text: priceChartName,
@@ -320,14 +334,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 				},
 				legend: {
 					orient: 'horizontal',
-					show: false,
+					show: true,
 					x: '120',
 					y: '35',
 					textStyle: {
 						color: 'white',
 						fontFamily: '微软雅黑'
 					},
-					data: ['日利润-供热收入']
+					data: ['日利润-供热收入','日利润-发电收入']
 				},
 				tooltip: {
 					trigger: 'axis',
@@ -365,7 +379,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
                         ],
 				yAxis: [
 					{
-						name: '单位:亿元',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -391,43 +405,32 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
                             }
                         ],
 				series: [
-					{
-						name: '日利润-供热收入',
-						type: 'bar',
-						symbol: 'emptyCircle',
-						symbolSize: 5,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true,
-									position: 'top',
-									textStyle: {
-										color: 'white'
-									}
-								}
-							}
-						},
-						data: KPI_JZC_V
+					     {
+    						name: '日利润-供热收入',
+    						type: 'bar',
+    						//                     symbol:'emptyCircle',
+    						// 		symbolSize:5,
+    						// 		itemStyle: {
+    						// 		    normal: {
+    						// 		        label : {
+    						// 		            show :true,
+    						// 		            position : 'top',
+    						// 		            textStyle:{
+    						// 		                color : 'white'
+    						// 		            }
+    						// 		        }
+    						// 		    }
+    						// 		},
+    						// barWidth : 50,
+        						stack: '发电供热收入',
+        						data: KPI_JZC_V
+                           },
+    					   {
+    						name: '日利润-发电收入',
+    						type: 'bar',
+    						stack: '发电供热收入',
+    						data: KPI_DSR_V
                             }
-            //                 {
-            //                     name:'日利润-供热收入同比',
-            //                     type:'line',
-            //                     symbol:'emptyCircle',
-        				// 		symbolSize:5,
-        				// 		itemStyle: {
-        				// 		    normal: {
-        				// 		        label : {
-        				// 		            show :true,
-        				// 		            position : 'top',
-        				// 		            textStyle:{
-        				// 		                color : 'white'
-        				// 		            }
-        				// 		        }
-        				// 		    }
-        				// 		},
-            //                     barWidth : 50,
-            //                     data:KPI_LWS_UP
-            //                 }
                         ]
 			};
 
@@ -435,7 +438,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 		}
 	},
 	// 加载集团-日利润-供热收入指标
-	loadBaseDataDetail_PowerAndHeatIncomeIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+	loadBaseDataDetail_PowerAndHeatIncomeIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_DSR_V) {
 		require(
             [
                 'echarts',
@@ -449,12 +452,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 			if (document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML == "浙能电力") {
 				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = "浙能电力股份有限公司";
 			} else {
-				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome')
-					.innerHTML;
+				document.getElementById('profitNamePowerAndHeatIncome').innerHTML = document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML;
 			}
 			//	document.getElementById('profitNamePowerAndHeatIncome').innerHTML = document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML;
-			var color1 = '#A704CA';
-			var color2 = '#E52DE6';
+			var color1 = '#32CD32';
+			var color2 = '#A704CA';
 			var option = {
 				title: {
 					text: priceChartName,
@@ -468,14 +470,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 				},
 				legend: {
 					orient: 'horizontal',
-					show: false,
+					show: true,
 					x: '120',
 					y: '35',
 					textStyle: {
 						color: 'white',
 						fontFamily: '微软雅黑'
 					},
-					data: [priceChartName]
+					data: ['日利润-供热收入','日利润-发电收入']
 				},
 				tooltip: {
 					trigger: 'axis',
@@ -508,7 +510,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
                         ],
 				yAxis: [
 					{
-						name: '单位:亿元',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -534,24 +536,31 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
                             }
                         ],
 				series: [
-					{
-						name: priceChartName,
-						type: 'bar',
-						symbol: 'emptyCircle',
-						symbolSize: 5,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true,
-									position: 'top',
-									textStyle: {
-										color: 'white'
-									}
-								}
-							}
-						},
-						barWidth: 50,
-						data: KPI_JZC_V
+				            {
+        						name: '日利润-供热收入',
+        						type: 'bar',
+        						//                     symbol:'emptyCircle',
+        						// 		symbolSize:5,
+        						// 		itemStyle: {
+        						// 		    normal: {
+        						// 		        label : {
+        						// 		            show :true,
+        						// 		            position : 'top',
+        						// 		            textStyle:{
+        						// 		                color : 'white'
+        						// 		            }
+        						// 		        }
+        						// 		    }
+        						// 		},
+        						// barWidth : 50,
+            						stack: '发电供热收入',
+            						data: KPI_JZC_V
+                           },
+    					   {
+        						name: '日利润-发电收入',
+        						type: 'bar',
+        						stack: '发电供热收入',
+        						data: KPI_DSR_V
                             }
                         ]
 			};
@@ -637,7 +646,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 // 			// 为echarts对象加载数据 
 // 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitlePowerAndHeatIncome').innerHTML = '浙能电力股份有限公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapPowerAndHeatIncome'));
@@ -740,7 +749,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力股份本部": [119.60, 30.10],
+				// 			"浙能电力股份本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
