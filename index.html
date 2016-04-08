@@ -260,6 +260,13 @@
                 // safeProduceDaysDate = 
                 app.to("idSafeProduceDays","show");
             }
+            
+            // 一二类缺陷总计
+            function toTotalDefectsPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idTotalDefects","show");
+            }
 		</script>
 		<script>
 		    var usrid = "ERPTEST1";
@@ -817,6 +824,13 @@
             		 });
             		 app.addPage(safeProduceDays);
             		 
+            		 // 一二类缺陷总计
+            		 safeProduceDays = sap.ui.view({
+            			id: "idTotalDefects",
+            			viewName: "com.zhenergy.pcbi.view.totalDefects",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(safeProduceDays);
 					 app.placeAt("content");
 				}
 				// if(window.cordova && appContext && !window.sap_webide_companion) {
