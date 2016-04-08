@@ -839,12 +839,12 @@
             		 app.addPage(safeProduceDays);
             		 
             		 // 一二类缺陷总计
-            		 safeProduceDays = sap.ui.view({
+            		 totalDefects = sap.ui.view({
             			id: "idTotalDefects",
             			viewName: "com.zhenergy.pcbi.view.totalDefects",
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
-            		 app.addPage(safeProduceDays);
+            		 app.addPage(totalDefects);
 					 app.placeAt("content");
 				}
 				// if(window.cordova && appContext && !window.sap_webide_companion) {
