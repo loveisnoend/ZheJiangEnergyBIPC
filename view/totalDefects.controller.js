@@ -322,9 +322,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 // 	},
 	// 加载浙能电力-一二类缺陷总计总览
 	loadBaseDataDetail_TotalDefects: function(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2) {
-	    console.log(xData);
-	    console.log(KPI_DEF_1);
-	    console.log(KPI_DEF_2);
 		require(
             [
                 'echarts',
