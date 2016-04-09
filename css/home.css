@@ -440,7 +440,7 @@ progress::-webkit-progress-value  { border-radius: 4px 4px 4px 4px;background: r
     color:#222; 
 } 
 .progressbar_1 .bar { 
-    background-color:#6CAF00; 
+    background-color:green; 
     height:20px; 
     width:0; 
 }
