@@ -9,6 +9,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
+			    var sIdentical = "LabourIncome";
+				//AC-Gates 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
+			    //AC-Gates 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var naviDemo = document.getElementById("navi"+sIdentical);
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+		        //AC-Gates 更改下面的文字和onclick方法
+                                "<b onClick='toMainBusinessPage()' style='cursor:pointer;'>浙能电力主营业务</b> > <b>"+timeLabel+"劳务收入</b>"+
+                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -1302,48 +1314,48 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapLabour'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapLabour'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
 			document.getElementById('powerPlantMainDetailTitleLabour').innerHTML = '浙能电力股份有限公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			var myChart4 = ec.init(document.getElementById('powerPlantMapLabour'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapLabourIncome'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -1592,7 +1604,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapLabour'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapLabourIncome'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -1753,7 +1765,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapLabour'));
+			myChart6 = ec.init(document.getElementById('akesuMapLabourIncome'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -1914,7 +1926,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapLabour'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapLabourIncome'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {

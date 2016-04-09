@@ -53,7 +53,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			//设置数据
 			var dc = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "浙能电力本部" && sRes.results[i].KPI_DESC != "") {
+				if (sRes.results[i].KPI_DESC != "") {// sRes.results[i].KPI_DESC != "浙能电力本部" && 
 					if (dc == null || dc.length == 0) {
 						dc.push(sRes.results[i].KPI_DESC);
 					} else {

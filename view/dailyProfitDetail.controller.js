@@ -194,9 +194,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 日利润
-				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i].KPI_DESC != '浙能电力'&& sRes.results[i].KPI_DESC != '浙能电力本部') {
+				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC != '浙能电力'&& sRes.results[i].KPI_DESC != '浙能电力本部') {
 					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DESC);
+				// 	xData.push(sRes.results[i].KPI_DATE);
+				}
+				// 日利润横坐标
+				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC == '浙能电力本部') {
+					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
@@ -323,68 +327,68 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 					y2: 100
 				},
 				xAxis: [
-					{
-						//show: false,
-						type: 'category',
-						axisLabel: {
-							textStyle: {
-								color: 'white'
-							},
-							formatter: '{value}',
-							show: true,
-							interval: 'auto',
-							inside: false,
-							rotate: 30,
-							margin: 8
-						},
-						data: xData
+        					{
+        						//show: false,
+        						type: 'category',
+        						axisLabel: {
+        							textStyle: {
+        								color: 'white'
+        							},
+        							formatter: '{value}',
+        							show: true,
+        							interval: 'auto',
+        							inside: false,
+        							rotate: 30,
+        							margin: 8
+        						},
+        						data: xData
                             }
                         ],
 				yAxis: [
-					{
-						name: '单位:万元',
-						type: 'value',
-						axisLine: {
-							show: true
-						},
-						axisLabel: {
-							textStyle: {
-								color: 'white'
-							},
-							formatter: '{value}'
-						},
-						// 		splitLine: {
-						// 			show: false
-						// 		},
-						splitLine: {
-							// 			show: false
-							lineStyle: {
-								color: 'rgba(64,64,64,0.5)'
-							}
-						}
-						// 		max: y1,
-						// 		min: y2,
-						// 		splitNumber: n
+        					{
+        						name: '单位:万元',
+        						type: 'value',
+        						axisLine: {
+        							show: true
+        						},
+        						axisLabel: {
+        							textStyle: {
+        								color: 'white'
+        							},
+        							formatter: '{value}'
+        						},
+        						// 		splitLine: {
+        						// 			show: false
+        						// 		},
+        						splitLine: {
+        							// 			show: false
+        							lineStyle: {
+        								color: 'rgba(64,64,64,0.5)'
+        							}
+        						},
+								max: -1000,
+								min: 1000
+								// splitNumber: 8
                             }
                         ],
 				series: [
-					{
-						name: '日利润',
-						type: 'bar',
-						symbol: 'emptyCircle',
-						symbolSize: 5,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true,
-									position: 'top',
-									textStyle: {
-										color: 'white'
-									}
-								}
-							}
-						},
-						data: KPI_XXR_V
+        					{
+        						name: '日利润',
+        						type: 'bar',
+        						symbol: 'emptyCircle',
+        						symbolSize: 5,
+        						itemStyle: {
+        							normal: {
+        								label: {
+        									show: true,
+        									position: 'top',
+        									textStyle: {
+        										color: 'white'
+        									}
+        								}
+        							}
+        						},
+        						data: KPI_XXR_V
                             }
             //                 {
             //                     name:'日利润同比',
@@ -515,24 +519,24 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
                             }
                         ],
 				series: [
-					{
-						name: priceChartName,
-						type: 'bar',
-						symbol: 'emptyCircle',
-						symbolSize: 5,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true,
-									position: 'top',
-									textStyle: {
-										color: 'white'
-									}
-								}
-							}
-						},
-						barWidth: 50,
-						data: KPI_XXR_V
+        					{
+        						name: priceChartName,
+        						type: 'bar',
+        						symbol: 'emptyCircle',
+        						symbolSize: 5,
+        						itemStyle: {
+        							normal: {
+        								label: {
+        									show: true,
+        									position: 'top',
+        									textStyle: {
+        										color: 'white'
+        									}
+        								}
+        							}
+        						},
+        				// 		barWidth: 50,
+        						data: KPI_XXR_V
                             }
                         ]
 			};

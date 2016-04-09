@@ -61,7 +61,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 				    date.push(sRes.results[i].KPI_DATE.substring(4,6)+"/"+sRes.results[i].KPI_DATE.substring(6,8));
 				    data1.push(parseFloat(sRes.results[i].KPI_VALUE));    
 				}
-				if (sRes.results[i].KPI_TYPE == '平均上网电价'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){
+				// 平均上网电价 到 发电收入
+				if (sRes.results[i].KPI_TYPE == '日利润-发电收入'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){
 				    data2.push(parseFloat(sRes.results[i].KPI_VALUE));     
 				}
 				if (sRes.results[i].KPI_TYPE == '燃料成本'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){ 
@@ -75,8 +76,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 				if (sRes.results[i].KPI_TYPE == '日利润-供热收入-供热量'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){ 
 				    KPI_RGL_V.push(parseFloat(sRes.results[i].KPI_VALUE));    
 				}
-		        //日利润-供热收入-单价
-		        if (sRes.results[i].KPI_TYPE == '日利润-供热收入-单价'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){ 
+		        //日利润-供热收入-单价 日利润-供热收入
+		        if (sRes.results[i].KPI_TYPE == '日利润-供热收入'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){ 
 				    KPI_RGJ_V.push(parseFloat(sRes.results[i].KPI_VALUE));    
 				}
 				//供热燃料成本
@@ -127,9 +128,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
                 drawline(e, date01, data5, '上网电量', 'green', 'detail01', data1[data1.length - 1] + '亿千瓦时');
             }*/
 
-            //平均上网电价
+            //平均上网电价 发电收入 供热收入
             function drawpjswdj(e) {
-                drawline(e, date, data2, '平均上网电价', 'green', 'pjswdj', data2[data2.length - 1] + '元/千瓦时', KPI_RGJ_V,'供热单价','orange','auto','auto',0,200);
+                drawline(e, date, data2, '发电收入', 'green', 'pjswdj', data2[data2.length - 1] + '万元', KPI_RGJ_V,'供热收入','orange','auto','auto',0,200);
             }
             //燃料成本
             function drawrlcb(e) {
@@ -552,14 +553,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 		
 		//日利润-供热收入-供热量
 		var KPI_RGL_V_Value = KPI_RGL_V[KPI_RGL_V.length - 1];
-        //日利润-供热收入-单价
+        //日利润-供热收入-单价 供热收入
         var KPI_RGJ_V_Value = KPI_RGJ_V[KPI_RGJ_V.length - 1];
 		// 供热燃料成本
 		var KPI_GRC_V_Value = KPI_GRC_V[KPI_GRC_V.length - 1];
 		var a = 1;
     		
 		//收入数据
-		var sr_data = (swdl_data * pjswdj_data+(KPI_RGL_V_Value*KPI_RGJ_V_Value)/10000).toFixed(2);
+		var sr_data = (pjswdj_data+KPI_RGJ_V_Value).toFixed(2);
 		if (incomeTongbi == undefined) {
 		    incomeTongbi = 0;
 		}
@@ -623,13 +624,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 		document.getElementById('rlr').innerHTML=rlr_innerhtml;
 		// 供热量
 		document.getElementById('gongreliang_span').innerHTML=KPI_RGL_V_Value+'(吨)';
-		// 供热收入-单价
-		document.getElementById('gongreshouru_span').innerHTML=KPI_RGJ_V_Value+'(元/吨)';
+		// 供热收入-单价 供热收入
+		document.getElementById('gongreshouru_span').innerHTML=KPI_RGJ_V_Value+'(万元)';
 		// 供热燃料成本
 		document.getElementById('gongrechengben_span').innerHTML=KPI_GRC_V_Value+'(万元)';
 		
         document.getElementById('swdl_span').innerHTML=swdl_data+'(万千瓦时)';
-        document.getElementById('pjswdj_span').innerHTML=pjswdj_data+'(元/千瓦时)';
+        // 平均上网电价 发电收入
+        document.getElementById('pjswdj_span').innerHTML=pjswdj_data+'(万元)';
         document.getElementById('rlcb_span').innerHTML=rlcb_data+'(万元)';
         document.getElementById('qtcb_span').innerHTML=qtcb_data+'(万元)';
 

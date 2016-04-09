@@ -63,7 +63,7 @@
     margin-left:90px;
     width:25%;
     height:82%;
-    margin-top:50px;
+    margin-top:75px;
     margin-bottom: 0;
     border: 2% solid rgb(47,233,48);
 }
@@ -76,14 +76,14 @@
     margin-bottom: 0;
     border: 2% solid rgb(47,233,48);
     background:url("../img/combination_5-BigBlue.png") no-repeat center center;
-    /*background-size: cover;*/
+    background-size: 75%;
 }
 .mainBusiness_main_content_right{
     float:left;
     margin-left:-3%;
     width:30%;
     height:82%;
-    margin-top:50px;
+    margin-top:75px;
     margin-bottom: 0;
     border: 2% solid rgb(47,233,48);
 }
@@ -162,8 +162,8 @@ width: 18px;
 .MB-main_content_title {
     text-align: left;
     /*TODO pixel*/
-    padding-left: 38%;
-    padding-top: 13%;
+    padding-left: 40%;
+    padding-top: 20%;
     background-color:transparent;
     font-weight: 500;
     font-size:20px;
@@ -172,18 +172,18 @@ width: 18px;
 .MB-main_content_title_1{
     text-align: left;
     /*TODO pixel*/
-    padding-left: 29%;
-    padding-top: 16%;
+    padding-left: 24%;
+    padding-top: 7%;
     background-color:transparent;
     font-weight: 500;
     font-size:18px;
     line-height: 40px; 
 }
-.MB-main_content_title_2{
+ #idMainBusiness .MB-main_content_title_2{
     text-align: left;
     /*TODO pixel*/
-    padding-left: 29%;
-    padding-top: 4%;
+    padding-left: 24%;
+    padding-top: 11%;
     background-color:transparent;
     font-weight: 500;
     font-size:18px;
@@ -195,7 +195,7 @@ width: 18px;
     background-color:transparent;
     color:white;
     vertical-align:top;
-    margin-top:-2%;
+    margin-top:-1%;
 }
 
 .content_img{

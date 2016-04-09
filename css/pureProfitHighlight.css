@@ -179,7 +179,7 @@ width: 18px;
     font-size:18px;
     line-height: 40px; 
 }
-.MB-main_content_title_2{
+ #idPureProfit .MB-main_content_title_2{
     text-align: left;
     /*TODO pixel*/
     padding-left: 29%;
@@ -195,7 +195,7 @@ width: 18px;
     background-color:transparent;
     color:white;
     vertical-align:top;
-    margin-top:-2%;
+    /*margin-top:-2%;*/
 }
 
 .content_img{

@@ -407,15 +407,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
  		}
 		var sr_innerhtml1=
 		'<div class="MB-main_content_title_1"><span>发电收入<span style="font-size:15px;">(亿元)</span></span>'+
-		'<span style="margin-left:120px;">供热收入<span style="font-size:15px;">(亿元)</span></span></div>'+
-		'<div class="MB-main_content_sz" style="font-size:30px;font-weight:bold;color:'+sr_colorR01+'"><span style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">'+ powerIncome +'</b></span><span style="width:50%;height:100%;float:left;text-align:center;font-weight:bold;color:'+cb_colorR01+'"><b style="margin-left:-180px;">'+heatIncome+'</b></span></div>'
-		+'<div class="MB-main_content_sz"><div style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">同比'+sr_prec+'%</b><img src="img/'+powerIncomeImg+'.png" class="content_img"/></div><div style="width:50%;height:100%;text-align:center;float:left;"><b style="margin-left:-180px;">同比'+cb_prec+'%</b><img src="img/'+laborIncomeImg+'.png" class="content_img"/></div></div>';
+		'<span style="margin-left:220px;">供热收入<span style="font-size:15px;">(亿元)</span></span></div>'+
+		'<div class="MB-main_content_sz" style="font-size:30px;font-weight:bold;color:'+sr_colorR01+'"><span style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:80px;">'+ powerIncome +'</b></span><span style="width:50%;height:100%;float:left;text-align:center;font-weight:bold;color:'+cb_colorR01+'"><b style="margin-left:-80px;">'+heatIncome+'</b></span></div>'
+		+'<div class="MB-main_content_sz"><div style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:80px;">同比'+sr_prec+'%</b><img src="img/'+powerIncomeImg+'.png" class="content_img"/></div><div style="width:50%;height:100%;text-align:center;float:left;"><b style="margin-left:-80px;">同比'+cb_prec+'%</b><img src="img/'+laborIncomeImg+'.png" class="content_img"/></div></div>';
 
 		var sr_innerhtml2=
 		'<div class="MB-main_content_title_2">劳务收入<span><span style="font-size:15px;">(万元)</span></span>'+
-		'<span style="margin-left:120px;">其他收入<span style="font-size:15px;">(万元)</span></span></div>'+
-		'<div class="MB-main_content_sz" style="font-size:30px;font-weight:bold;color:'+sr_colorR01+'"><span style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">'+ laborIncome +'</b></span><span style="width:50%;height:100%;float:left;text-align:center;font-weight:bold;color:'+cb_colorR01+'"><b style="margin-left:-180px;">'+othersIncome+'</b></span></div>'
-		+'<div class="MB-main_content_sz"><div style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:180px;">同比'+sr_prec+'%</b><img src="img/'+laborIncomeImg+'.png" class="content_img"/></div><div style="width:50%;height:100%;text-align:center;float:left;"><b style="margin-left:-180px;">同比'+cb_prec+'%</b><img src="img/'+othersIncomeImg+'.png" class="content_img"/></div></div>';
+		'<span style="margin-left:220px;">其他收入<span style="font-size:15px;">(万元)</span></span></div>'+
+		'<div class="MB-main_content_sz" style="font-size:30px;font-weight:bold;color:'+sr_colorR01+'"><span style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:80px;">'+ laborIncome +'</b></span><span style="width:50%;height:100%;float:left;text-align:center;font-weight:bold;color:'+cb_colorR01+'"><b style="margin-left:-80px;">'+othersIncome+'</b></span></div>'
+		+'<div class="MB-main_content_sz"><div style="width:50%;height:100%;float:left;text-align:center;"><b style="margin-left:80px;">同比'+sr_prec+'%</b><img src="img/'+laborIncomeImg+'.png" class="content_img"/></div><div style="width:50%;height:100%;text-align:center;float:left;"><b style="margin-left:-80px;">同比'+cb_prec+'%</b><img src="img/'+othersIncomeImg+'.png" class="content_img"/></div></div>';
 
 		//主营业收入数据
 		var mainBusinessIncome = data5[data5.length - 1];

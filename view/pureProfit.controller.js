@@ -355,7 +355,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfit", {
 	        rlr_colorR01="white";
 	    }
 
-		var rlr_innerhtml01='<div class="PP-main_content_title">净利润<span style="font-size:20px;">(万元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+pureProfitResult+'</div><div class="MB-main_content_sz">同比'+pureProfitResultTongbi+'%<img src="img/'+pureProfitResultImg+'.png" class="content_img"/></div>';
+		var rlr_innerhtml01='<div class="PP-main_content_title"><div style="float:left;">净利润<span style="font-size:20px;">(万元)</span></div><div style="margin-left:0px;margin-top:5px;"><img height="30px" width="30px" src="img/iconfont-right.png"/></div></div><div class="PP-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+pureProfitResult+'</div><div class="PP-main_content_sz">同比'+pureProfitResultTongbi+'%<img src="img/'+pureProfitResultImg+'.png" class="content_img"/></div>';
 		document.getElementById('pureProfitResult').innerHTML=rlr_innerhtml01;
 		
 		// 营业利润
@@ -381,7 +381,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfit", {
 	    } else {
 	        rlr_colorR02="white";
 	    }
-		var rlr_innerhtml02='<div class="PP-main_content_title_1">营业利润<span style="font-size:20px;">(亿元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR02+'">'+businessProfitResult+'</div><div class="MB-main_content_sz">同比'+businessProfitResultTongbi+'%<img src="img/'+businessProfitResultImg+'.png" class="content_img"/></div>';
+		var rlr_innerhtml02='<div class="PP-main_content_title_1"><div style="float:left;">营业利润<span style="font-size:20px;">(亿元)</span></div><div style="margin-left:0px;margin-top:5px;"><img height="30px" width="30px" style="margin-top:5px"; src="img/iconfont-right.png"/></div></div><div class="PP-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR02+'">'+businessProfitResult+'</div><div class="PP-main_content_sz">同比'+businessProfitResultTongbi+'%<img src="img/'+businessProfitResultImg+'.png" class="content_img"/></div>';
 		document.getElementById('businessProfitResult').innerHTML=rlr_innerhtml02;		
 
         document.getElementById('profitSum').innerHTML=profitSum+'万元';
