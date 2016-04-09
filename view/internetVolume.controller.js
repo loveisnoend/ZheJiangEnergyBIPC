@@ -340,7 +340,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			for (var i in sRes.results) {
 				var plantName = sRes.results[i].KPI_DESC.toString().substring(0, 4);
 				if (powerPlantName == '浙能电力') {
-					if (sRes.results[i].KPI_TYPE == '上网电量' && sRes.results[i].KPI_DATE.substring(0, 6) == sRes.results[0].KPI_DATE.substring(0, 6)) {// && plantName != '浙能电力' 
+					if (sRes.results[i].KPI_TYPE == '上网电量' && sRes.results[i].KPI_DATE.substring(0, 6) == sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 6) && plantName != '浙能电力' && plantName != '浙能电力本部') {// && plantName != '浙能电力' 
 						machineGroupDate.push(sRes.results[i].KPI_DESC);
 						machineGroupData.push(sRes.results[i].KPI_VALUE);
 					}
@@ -350,8 +350,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 					}
 				}
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[i]
-						.KPI_DATE.substring(6, 8);
+					dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[i].KPI_DATE.substring(6, 8);
 				}
 			}
 			// 统计于日期

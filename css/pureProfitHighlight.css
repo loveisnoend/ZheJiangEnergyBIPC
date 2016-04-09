@@ -63,7 +63,8 @@
     margin-left:90px;
     width:25%;
     height:82%;
-    margin-top:50px;
+    /*TODO pixel TODO size*/
+    margin-top:200px;
     margin-bottom: 0;
     border: 2% solid rgb(47,233,48);
 }
@@ -75,7 +76,7 @@
     margin-top:50px;
     margin-bottom: 0;
     border: 2% solid rgb(47,233,48);
-    background:url("../img/pureProfitBlue.png") no-repeat center center;
+    background:url("../img/pureProfitBlue-New001.png") no-repeat center center;
     background-size: 90% 100%;
 }
 .pureProfit_main_content_right{
@@ -83,19 +84,21 @@
     margin-left:-3%;
     width:30%;
     height:82%;
-    margin-top:50px;
+    /*TODO size*/
+    margin-top:200px;
     margin-bottom: 0;
     border: 2% solid rgb(47,233,48);
 }
+/*TODO size*/
 #idPureProfit .panel {
-  width: 430px;
+  width: 450px;
   padding: 3px;
-  height: 200px;
+  height: 500px;
   margin-left:40px;
   /*TODO pixel*/
   margin-bottom: 180px;
   background:url("../img/item-bg-Blue.png");
-  background-size: contain;
+  background-size: 450px 300px;
   background-repeat: no-repeat;
 }
 
@@ -114,13 +117,16 @@
 }
 
 #idPureProfit .panel .panel_content {
-    height: 160px;
+    /*height: 160px;*/
+    /*TODO size*/
+    height: 250px;
     background-color:transparent;
 }
 
 #idPureProfit .panel .panel_content > div {
-    width: 430px;
-    height: 160px;
+    /*TODO size*/
+    width: 450px;
+    height: 250px;
 }
 
 #idPureProfit .pureProfit_head .inner_panel{
@@ -163,7 +169,7 @@ width: 18px;
     text-align: left;
     /*TODO pixel*/
     padding-left: 41%;
-    padding-top: 10%;
+    padding-top: 34%;
     background-color:transparent;
     font-weight: 500;
     font-size:20px;

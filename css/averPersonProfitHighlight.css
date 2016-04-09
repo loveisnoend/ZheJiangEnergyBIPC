@@ -78,6 +78,17 @@
     background:url("../img/averPersonProfitBlue.png") no-repeat center center;
     background-size: 140% 140%;
 }
+#idAverPersonProfitReal .averPersonProfit_main_content_center{
+    float:left;
+    /*margin-left:7%;*/
+    width:40%;
+    height:82%;
+    margin-top:50px;
+    margin-bottom: 0;
+    border: 2% solid rgb(47,233,48);
+    background:url("../img/averPersonProfitBlue.png") no-repeat center center;
+    background-size: 140% 140%;
+}
 .averPersonProfit_main_content_right{
     float:left;
     margin-left:-3%;
