@@ -304,6 +304,13 @@
                 // safeProduceDaysDate = 
                 app.to("idTotalDefects","show");
             }
+            
+            // 燃料库存情况
+            function toFuelStoragePage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idFuelStorage","show");
+            }
 		</script>
 		<script>
 		    var usrid = "ERPTEST1";
@@ -957,6 +964,15 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(totalDefects);
+					 app.placeAt("content");
+					 
+            		 // 燃料库存统计
+            		 fuelStorage = sap.ui.view({
+            			id: "idFuelStorage",
+            			viewName: "com.zhenergy.pcbi.view.FuelStorage",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(fuelStorage);
 					 app.placeAt("content");
 				}
 				// if(window.cordova && appContext && !window.sap_webide_companion) {
