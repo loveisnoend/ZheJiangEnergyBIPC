@@ -38,7 +38,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 	// get data by new method of OData
 	_getDataByDifferentDate : function(currentDate){
 	    
-	    var mParameters = "/SCREEN_FXKZ_01_V01.xsodata/PARAMETER(PUR_NAME='"+usrid+"',PUR_DATE='"+currentDate+"')/Results?&$format=json";
+	    var mParameters = "/AT_ZSCREEN_FXKZ_01_V01.xsodata/PARAMETER(PUR_NAME='"+usrid+"',PUR_DATE='"+currentDate+"')/Results?&$format=json";
 
 	    var mResults = makeCorsRequest(mParameters);
 
@@ -156,10 +156,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 				    daytime = sRes.results[i].KPI_DATE;
 				}
 			}
-			var rlr_color="red";
+			var rlr_color="green";
     		if(iTotalDefects>0){
     		    if (skinName == '夜间模式') {
-    		        rlr_color="green";
+    		        rlr_color="red";
     		    } else {
     		        rlr_color="white";
     		    }

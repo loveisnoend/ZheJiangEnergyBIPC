@@ -9,15 +9,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    
-			    
+
 			    //AC-LOUWW 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
 			    var sIdentical = "TotalDefects";
 				//AC-LOUWW 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-LOUWW 页面增加动态的时间日期标签
 				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月" + (myDate.getDate()-1)+'日'; //getMonth 1-12月对应0-11  myDate.getDate()-1
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
@@ -54,217 +53,24 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 		// change the page skin
 		changeTheSkinOfPage();
 	},
-	// 	loadmjChart: function(divId){
-	//         require(
-	//         [
-	//             'echarts',
-	//             'echarts/chart/line',
-	//             'echarts/chart/bar'
-	//         ],
-	// 		draw);
 
-	// 		function draw(e){
-	// 		    document.getElementById('caloriTotalDefectsPlantNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML;
-	// 		    var mychart = e.init(document.getElementById(divId));
-	// 		    var option = {
-	// 		        title:{
-	//             	text:'煤炭价格变化',
-	//             	textStyle:{
-	// 					color:'white',
-	// 					fontFamily:'微软雅黑'
-	// 				},
-	// 				x:'50',
-	// 				y:'10'
-	//             },
-	//   			legend: {
-	//               	orient:'horizontal',
-	//               	x:'350',
-	//               	y:'15',
-	//               	textStyle:{
-	// 					color:'white',
-	// 					fontFamily:'微软雅黑'
-	// 				},
-	//     			data:['实际采购价格','秦港煤价']
-	//   		 	},
-	//   			color: ['#2DE630', '#E52DE6','white'],
-	// 			grid: {
-	//                 y1:100,
-	//                 y2:100
-	// 			},
-	// 			xAxis: [
-	// 				{
-
-	// 					//show: false,
-	// 					type: 'category',
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}'
-	// 					},
-	// 					data: ['7/23', '7/24', '7/25', '7/26', '7/27', '7/28', '7/29', '7/30']
-	//                 }
-	//             ],
-	// 			yAxis: [
-	// 				{
-	// 					name: '',
-	// 					type: 'value',
-	// 					axisLine: {
-	// 						show: false
-	// 					},
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}'
-	// 					},
-	// 					// 		splitLine: {
-	// 					// 			show: false
-	// 					// 		},
-	// 					splitLine: {
-	// 						// 			show: false
-	// 						lineStyle: {
-	// 							color: 'rgba(64,64,64,0.5)'
-	// 						}
-	// 					}
-	//                 },
-	// 				{
-	// 					name: '',
-	// 					type: 'value',
-	// 					axisLine: {
-	// 						show: false
-	// 					},
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}%'
-	// 					},
-	// 					splitLine: {
-	// 						// 			show: false
-	// 						lineStyle: {
-	// 							//color: 'rgba(64,64,64,0.5)',
-	// 						}
-	// 					}
-	//                 }
-	//             ],
-	// 			series: [
-	// 				{
-	// 					name: '实际采购价格',
-	// 					type: 'line',
-	// 					smooth: true,
-	//                  	barGap: '0%',
-	//                   	barCategoryGap: '50%',
-	// 					// itemStyle: {normal: {areaStyle: {type: 'default'}}},
-	// 					data: ['0.50','0.18','0.37','0.18','0.50','0.18','0.50','0.18','0.18','0.37','0.18']
-	//                 },
-	// 				{
-	// 					name: '秦港煤价',
-	// 					type: 'line',
-	// 					smooth: true,
-
-	// 					//itemStyle: {normal: {areaStyle: {type: 'default'}}},
-	// 					data: ['0.30','0.14','0.34','0.13','0.40','0.12','0.40','0.08','0.15','0.27','0.14']
-
-	//                 }
-	//             ]
-	// 		    };
-	// 		    mychart.setOption(option);
-	// 		}
-
-	// 	},
-
-	// 获取浙能电力指标-电厂安全日天数 SCREEN_FZBZ_02_V02
-	// 	loadBase_SupplyTotalDefectsIncome : function (chartDivId, priceChartName) {
-
-	//         // 电厂安全日天数指标
-	//         // 电厂安全日天数
-	//         var KPI_LWS_V = new Array();
-
-	//         // 电厂安全日天数同比
-	//         var KPI_LWS_UP = new Array();
-
-	//         var dataStatisticDate = '';
-	// 	    var mParameters = {};
-	// 		mParameters['async'] = true;
-	// 		mParameters['success'] = jQuery.proxy(function(sRes) {
-
-	// 			// 各个电厂
-	// 			var xData = new Array();
-	// 			for (var i in sRes.results) {
-	// 			    // 电厂安全日天数收入同比
-	// 				if (sRes.results[i].KPI_TYPE == '电厂安全日天数_同比'){ 
-	//                     KPI_LWS_UP.push(sRes.results[i].KPI_VALUE);
-	//                     xData.push(sRes.results[i].KPI_DESC);
-	// 				}
-	// 				// 电厂安全日天数收入
-	// 				if (sRes.results[i].KPI_TYPE == '电厂安全日天数'){ 
-	//                     KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
-	// 				}
-	// 				// 收入统计日期
-	// 				if (dataStatisticDate == '') {
-	// 				    dataStatisticDate = sRes.results[i].KPI_DATE.substring(0,4)+'.'+sRes.results[i].KPI_DATE.substring(4,6);//+"."+sRes.results[i].KPI_DATE.substring(6,8);
-	// 				}
-	// 			}
-	// 			// 统计于日期
-	// 			$('#TotalDefectsIncomeStatisticDate').html(dataStatisticDate);
-	// 			if (priceChartName == '电厂安全日天数') {
-	// 			    this.loadBaseDataDetail_SupplyTotalDefectsIncome(chartDivId, priceChartName,xData,KPI_LWS_V,KPI_LWS_UP);
-	// 			}
-	// 		}, this);
-	// 		mParameters['error'] = jQuery.proxy(function(eRes) {
-	// 			sap.m.MessageToast.show("获取数据失败",{offset:'0 -110'});
-	// 		}, this);
-	// 	    sap.ui.getCore().getModel().read("SCREEN_FZBZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
-	// 	},
-	// 获取个电厂指标-电厂安全日天数 SCREEN_FZBZ_02_V04
-	loadEachPlant_SupplyTotalDefectsIncome: function(chartDivId, priceChartName, powerPlantName) {
+	// 从获取个电厂指标
+	loadEachPlant_TotalDefects: function(chartDivId, priceChartName, powerPlantName) {
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
 		});
 		if (busy) {
 			busy.open();
 		}
-		// 电厂安全日天数指标
-		// 电厂安全日天数
-		var KPI_SPD_V = new Array();
 
-		// 电厂安全日天数同比
-		var KPI_RLC_UP = new Array();
+		// 一类缺陷
+		var KPI_DEF_1 = new Array();
+
+		// 二类缺陷
+		var KPI_DEF_2 = new Array();
 
 		// TODO Wait for the selected date functionality
 		var dataStatisticDate = '';
-
-		// 	    var mParameters = "/SCREEN_FXKZ_01_V01.xsodata/PARAMETER(PUR_NAME='"+usrid+"',PUR_DATE='"+TotalDefectsDate+"')/Results?&$format=json";
-
-		// 	    var mResults = makeCorsRequest(mParameters);
-
-		// 	    if (mResults != '') {
-		//             var sResAll = JSON.parse(mResults);
-		//             var sRes = sResAll.d;
-		// 			// 各个电厂月份指标
-		// 			var xData = new Array();
-		// 			for (var i in sRes.results) {
-		// 			    // 电厂安全日天数收入同比
-		// 				// if (sRes.results[i].KPI_TYPE == '电厂安全日天数_同比'){ 
-		//     //                 KPI_RLC_UP.push(sRes.results[i].KPI_VALUE);
-		// 				// }
-		// 				// 电厂安全日天数收入
-		// 				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC != powerPlantName){ 
-		//                     KPI_SPD_V.push(sRes.results[i].KPI_VALUE);
-		//                     xData.push(sRes.results[i].KPI_DESC);
-		// 				}
-		// 				// 收入统计日期
-		// 				if (dataStatisticDate == '') {
-		// 				    dataStatisticDate = sRes.results[sRes.results.length-1].KPI_DATE.substring(0,4)+'.'+sRes.results[sRes.results.length-1].KPI_DATE.substring(4,6)+"."+sRes.results[i].KPI_DATE.substring(6,8);
-		// 				}
-		// 			}
-		// 			// 统计于日期
-		// 			$('#TotalDefectsIncomeStatisticDate').html(dataStatisticDate);
-		// 			if (priceChartName == '电厂安全日天数') {
-		// 			    this.loadBaseDataDetail_TotalDefectsIncome(chartDivId, priceChartName,xData,KPI_SPD_V,KPI_RLC_UP);
-		// 			}
-		// 	    }
 
 		// TODO original functionality
 		var mParameters = {};
@@ -274,25 +80,27 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 			// 各个电厂月份指标
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 电厂安全日天数收入同比
-				// if (sRes.results[i].KPI_TYPE == '电厂安全日天数_同比'){ 
-				//                 KPI_RLC_UP.push(sRes.results[i].KPI_VALUE);
-				// }
-				// 电厂安全日天数收入
-				if (sRes.results[i].KPI_TYPE == '电厂安全日天数' && sRes.results[i].KPI_DESC != powerPlantName) {
-					KPI_SPD_V.push(sRes.results[i].KPI_VALUE);
+
+				// 一类缺陷总数
+				if (sRes.results[i].KPI_TYPE == '一类缺陷总数' && sRes.results[i].KPI_DESC != powerPlantName && sRes.results[i].KPI_DESC != "浙能电力本部") {
+					KPI_DEF_1.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DESC);
 				}
-				// 收入统计日期
+				// 二类缺陷总数
+				if (sRes.results[i].KPI_TYPE == '二类缺陷总数' && sRes.results[i].KPI_DESC != powerPlantName && sRes.results[i].KPI_DESC != "浙能电力本部") {
+					KPI_DEF_2.push(sRes.results[i].KPI_VALUE);
+				// 	xData.push(sRes.results[i].KPI_DESC);
+				}
+				// 统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+						.substring(4, 6) +"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
 // 			$('#TotalDefectsIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '电厂安全日天数') {
-				this.loadBaseDataDetail_TotalDefectsIncome(chartDivId, priceChartName, xData, KPI_SPD_V, KPI_RLC_UP);
+			if (priceChartName == '一二类缺陷总计') {
+				this.loadBaseDataDetail_TotalDefects(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2);
 			}
 			if (busy) {
 				busy.close();
@@ -303,158 +111,220 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-电厂安全日天数
-	loadBaseDataDetail_SupplyTotalDefectsIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {
-		require(
-            [
-                'echarts',
-                'echarts/chart/line',
-                'echarts/chart/bar'
-            ],
-			draw);
-
-		function draw(e) {
-			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleTotalDefects')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameTotalDefects').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects')
-.innerHTML;
-}
-// 			document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML;
-			var color1 = '#2DE630';
-			var color2 = '#E52DE6';
-			var option = {
-				title: {
-					text: priceChartName,
-					subtext: '',
-					x: 40,
-					y: 5,
-					textStyle: {
-						fontSize: 15,
-						color: 'green'
-					}
-				},
-				legend: {
-					orient: 'horizontal',
-					x: '120',
-					y: '35',
-					textStyle: {
-						color: 'white',
-						fontFamily: '微软雅黑'
-					},
-					data: ['电厂安全日天数']
-				},
-				tooltip: {
-					trigger: 'axis',
-					backgroundColor: 'rgb(234,234,234)',
-					textStyle: {
-						color: 'rgb(0,0,0)',
-						baseline: 'top'
-					},
-					axisPointer: {
-						type: 'none'
-					}
-				},
-				color: specialColorArray,// [color1, color2],
-				grid: {
-					y1: 100,
-					y2: 100
-				},
-				xAxis: [
-					{
-						//show: false,
-						type: 'category',
-						axisLabel: {
-							textStyle: {
-								color: 'white'
-							},
-							formatter: '{value}',
-							show: true,
-							interval: 'auto',
-							inside: false,
-							rotate: 30,
-							margin: 8
-						},
-						data: xData
-                            }
-                        ],
-				yAxis: [
-					{
-						name: '单位:百万元',
-						type: 'value',
-						axisLine: {
-							show: true
-						},
-						axisLabel: {
-							textStyle: {
-								color: color1
-							},
-							formatter: '{value}'
-						},
-						// 		splitLine: {
-						// 			show: false
-						// 		},
-						splitLine: {
-							// 			show: false
-							lineStyle: {
-								color: 'rgba(64,64,64,0.5)'
-							}
-						}
-						// 		max: y1,
-						// 		min: y2,
-						// 		splitNumber: n
-                            }
-                        ],
-				series: [
-					{
-						name: '电厂安全日天数',
-						type: 'bar',
-						symbol: 'emptyCircle',
-						symbolSize: 5,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true,
-									position: 'top',
-									textStyle: {
-										color: 'white'
-									}
-								}
-							}
-						},
-						data: KPI_RJS_V
-                            }
-            //                 {
-            //                     name:'电厂安全日天数同比',
-            //                     type:'line',
-            //                     symbol:'emptyCircle',
-        				// 		symbolSize:5,
-        				// 		itemStyle: {
-        				// 		    normal: {
-        				// 		        label : {
-        				// 		            show :true,
-        				// 		            position : 'top',
-        				// 		            textStyle:{
-        				// 		                color : 'white'
-        				// 		            }
-        				// 		        }
-        				// 		    }
-        				// 		},
-            //                     barWidth : 50,
-            //                     data:KPI_LWS_UP
-            //                 }
-                        ]
-			};
-
-			mychart.setOption(option);
+	
+	// 获取单个电厂指标
+	loadSinglePlant_TotalDefects: function(chartDivId, priceChartName, powerPlantName) {
+		var busy = new sap.m.BusyDialog({
+			close: function(event) {}
+		});
+		if (busy) {
+			busy.open();
 		}
+
+		// 一类缺陷
+		var KPI_DEF_1 = new Array();
+
+		// 二类缺陷
+		var KPI_DEF_2 = new Array();
+
+		// TODO Wait for the selected date functionality
+		var dataStatisticDate = '';
+
+		// TODO original functionality
+		var mParameters = {};
+		mParameters['async'] = true;
+		mParameters['success'] = jQuery.proxy(function(sRes) {
+
+			// 各个电厂月份指标
+			var xData = new Array();
+			console.log(sRes.results);
+			console.log(powerPlantName);
+			for (var i in sRes.results) {
+
+				// 一类缺陷总数
+				if (sRes.results[i].KPI_TYPE == '一类缺陷总数' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_DEF_1.push(sRes.results[i].KPI_VALUE);
+					xData.push(sRes.results[i].KPI_DATE.substring(4,8));
+				}
+				// 二类缺陷总数
+				if (sRes.results[i].KPI_TYPE == '二类缺陷总数' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_DEF_2.push(sRes.results[i].KPI_VALUE);
+				// 	xData.push(sRes.results[i].KPI_DESC);
+				}
+				// 统计日期
+				if (dataStatisticDate == '') {
+					dataStatisticDate =  sRes.results[sRes.results.length - 1].KPI_DATE
+						.substring(4, 6) +"."+sRes.results[i].KPI_DATE.substring(6,8); //sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' +
+				}
+			}
+			// 统计于日期
+// 			$('#TotalDefectsIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '一二类缺陷总计') {
+				this.loadBaseDataDetail_TotalDefects(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2);
+			}
+			if (busy) {
+				busy.close();
+			}
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			sap.m.MessageToast.show("数据分析中,请稍后......", {
+				offset: '0 -110'
+			});
+		}, this);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_03_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-电厂安全日天数指标
-	loadBaseDataDetail_TotalDefectsIncome: function(chartDivId, priceChartName, xData, KPI_RLC_V, KPI_RLC_UP) {
+// 	// 加载浙能电力-一二类缺陷总计
+// 	loadBaseDataDetail_SupplyTotalDefectsIncome: function(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2) {
+// 		require(
+//             [
+//                 'echarts',
+//                 'echarts/chart/line',
+//                 'echarts/chart/bar'
+//             ],
+// 			draw);
+
+// 		function draw(e) {
+// 			var mychart = e.init(document.getElementById(chartDivId));
+// 			if(document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML=="浙能电力"){
+//                   document.getElementById('profitNameTotalDefects').innerHTML="浙能电力股份有限公司";
+//             }else{
+//                 document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML;
+//             }
+// // 			document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML;
+// 			var color1 = '#2DE630';
+// 			var color2 = '#E52DE6';
+// 			var option = {
+// 				title: {
+// 					text: priceChartName,
+// 					subtext: '',
+// 					x: 40,
+// 					y: 5,
+// 					textStyle: {
+// 						fontSize: 15,
+// 						color: 'green'
+// 					}
+// 				},
+// 				legend: {
+// 					orient: 'horizontal',
+// 					x: '120',
+// 					y: '35',
+// 					textStyle: {
+// 						color: 'white',
+// 						fontFamily: '微软雅黑'
+// 					},
+// 					data: ['一类缺陷总数','二类缺陷总数']
+// 				},
+// 				tooltip: {
+// 					trigger: 'axis',
+// 					backgroundColor: 'rgb(234,234,234)',
+// 					textStyle: {
+// 						color: 'rgb(0,0,0)',
+// 						baseline: 'top'
+// 					},
+// 					axisPointer: {
+// 						type: 'none'
+// 					}
+// 				},
+// 				color: specialColorArray,// [color1, color2],
+// 				grid: {
+// 					y1: 100,
+// 					y2: 100
+// 				},
+// 				xAxis: [
+// 					{
+// 						//show: false,
+// 						type: 'category',
+// 						axisLabel: {
+// 							textStyle: {
+// 								color: 'white'
+// 							},
+// 							formatter: '{value}',
+// 							show: true,
+// 							interval: 'auto',
+// 							inside: false,
+// 							rotate: 30,
+// 							margin: 8
+// 						},
+// 						data: xData
+//                             }
+//                         ],
+// 				yAxis: [
+// 					{
+// 						name: '单位:个',
+// 						type: 'value',
+// 						axisLine: {
+// 							show: true
+// 						},
+// 						axisLabel: {
+// 							textStyle: {
+// 								color: color1
+// 							},
+// 							formatter: '{value}'
+// 						},
+// 						// 		splitLine: {
+// 						// 			show: false
+// 						// 		},
+// 						splitLine: {
+// 							// 			show: false
+// 							lineStyle: {
+// 								color: 'rgba(64,64,64,0.5)'
+// 							}
+// 						}
+// 						// 		max: y1,
+// 						// 		min: y2,
+// 						// 		splitNumber: n
+//                             }
+//                         ],
+// 				series: [
+// 					{
+// 						name: '一类缺陷总数',
+// 						type: 'bar',
+// 						symbol: 'emptyCircle',
+// 						symbolSize: 5,
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: true,
+// 									position: 'top',
+// 									textStyle: {
+// 										color: 'white'
+// 									}
+// 								}
+// 							}
+// 						},
+// 						data: KPI_DEF_1
+//                     },
+//                     {
+// 						name: '二类缺陷总数',
+// 						type: 'bar',
+// 						symbol: 'emptyCircle',
+// 						symbolSize: 5,
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: true,
+// 									position: 'top',
+// 									textStyle: {
+// 										color: 'white'
+// 									}
+// 								}
+// 							}
+// 						},
+// 						data: KPI_DEF_2
+//                     }
+//                 ]
+// 			};
+
+// 			mychart.setOption(option);
+// 		}
+// 	},
+	// 加载浙能电力-一二类缺陷总计总览
+	loadBaseDataDetail_TotalDefects: function(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2) {
+	    console.log(xData);
+	    console.log(KPI_DEF_1);
+	    console.log(KPI_DEF_2);
 		require(
             [
                 'echarts',
@@ -465,13 +335,11 @@ document.getElementById('profitNameTotalDefects').innerHTML = document.getElemen
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleTotalDefects')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameTotalDefects').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects')
-.innerHTML;
-}
+			if(document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML=="浙能电力"){
+               document.getElementById('profitNameTotalDefects').innerHTML="浙能电力股份有限公司";
+            }else{
+            document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML;
+            }
 // 			document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
@@ -495,7 +363,7 @@ document.getElementById('profitNameTotalDefects').innerHTML = document.getElemen
 						color: 'white',
 						fontFamily: '微软雅黑'
 					},
-					data: [priceChartName]
+					data: ['一类缺陷总数','二类缺陷总数']
 				},
 				tooltip: {
 					trigger: 'axis',
@@ -533,7 +401,7 @@ document.getElementById('profitNameTotalDefects').innerHTML = document.getElemen
                         ],
 				yAxis: [
 					{
-						name: '单位:天',
+						name: '单位:个',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -575,9 +443,27 @@ document.getElementById('profitNameTotalDefects').innerHTML = document.getElemen
 								}
 							}
 						},
-						data: KPI_RLC_V
-                            }
-                        ]
+						data: KPI_DEF_1
+                    },
+					{
+						name: priceChartName,
+						type: 'bar',
+						symbol: 'emptyCircle',
+						symbolSize: 5,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true,
+									position: 'top',
+									textStyle: {
+										color: 'green'
+									}
+								}
+							}
+						},
+						data: KPI_DEF_2
+                    }
+                ]
 			};
 
 			mychart.setOption(option);
@@ -1545,9 +1431,8 @@ document.getElementById('profitNameTotalDefects').innerHTML = document.getElemen
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
 			document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML = powerPlantName;
-
 			var priceChartId = "priceDetailDivTotalDefects";
-			var priceChartName = "电厂安全日天数";
+			var priceChartName = "一二类缺陷总计";
 			if (powerPlantName == '台二电厂') {
 				powerPlantName = '台二发电';
 			}
@@ -1558,68 +1443,10 @@ document.getElementById('profitNameTotalDefects').innerHTML = document.getElemen
 				powerPlantName = '凤台发电';
 			}
 			if (powerPlantName == '浙能电力') {
-				totalDefects.getController().loadEachPlant_SupplyTotalDefectsIncome(priceChartId, priceChartName, powerPlantName);
+				totalDefects.getController().loadEachPlant_TotalDefects(priceChartId, priceChartName, powerPlantName);
+			}else{
+			    totalDefects.getController().loadSinglePlant_TotalDefects(priceChartId, priceChartName, powerPlantName);
 			}
-			// 	else {
-			// 	   TotalDefects.getController().loadEachPlant_SupplyTotalDefectsIncome(priceChartId, priceChartName, powerPlantName);
-			// 	}
-			//  // 自产蒸汽
-			//  var selfSteamIncomeVal = mapSeries.markPoint.data[dataIndex].selfSteamIncomeVal;
-			//  if (selfSteamIncomeVal != undefined) {
-			//      document.getElementById('travelPriceTotalDefects').innerHTML =  selfSteamIncomeVal;
-			//  } else {
-			//      document.getElementById('travelPriceTotalDefects').innerHTML = 0;
-			//      selfSteamIncomeVal = 0;
-			//  }
-			//  // 外购蒸汽
-			//  var outSteamIncomeVal = mapSeries.markPoint.data[dataIndex].outSteamIncomeVal;
-			//  if (outSteamIncomeVal != undefined) {
-			//      document.getElementById('coalPriceTotalDefects').innerHTML = outSteamIncomeVal;
-			//  } else {
-			//      document.getElementById('coalPriceTotalDefects').innerHTML = 0;
-			//      outSteamIncomeVal = 0;
-			//  }
-			//  // 热水
-			//  var TotalDefectsWaterIncomeVal = mapSeries.markPoint.data[dataIndex].TotalDefectsWaterIncomeVal;
-			//  if (TotalDefectsWaterIncomeVal != undefined) {
-			//      document.getElementById('watt1TotalDefects').innerHTML =  TotalDefectsWaterIncomeVal;
-			//  } else {
-			//      document.getElementById('watt1TotalDefects').innerHTML = 0;
-			//      TotalDefectsWaterIncomeVal = 0;
-			//  }
-			//  // 初装费
-			//  var firstFeeIncomeVal = mapSeries.markPoint.data[dataIndex].firstFeeIncomeVal;
-			//  if (firstFeeIncomeVal != undefined) {
-			//      document.getElementById('factoryUsePV').innerHTML = firstFeeIncomeVal;
-			//  } else {
-			//      document.getElementById('factoryUsePV').innerHTML = 0;
-			//      firstFeeIncomeVal = 0;
-			//  }
-			//  // 供热收入
-			//  var supplyTotalDefectsIncomeVal = mapSeries.markPoint.data[dataIndex].supplyTotalDefectsIncomeVal;
-			//  if (supplyTotalDefectsIncomeVal != undefined) {
-			//      document.getElementById('fuelCostTotalDefects').innerHTML = supplyTotalDefectsIncomeVal;
-			//  } else {
-			//      document.getElementById('fuelCostTotalDefects').innerHTML = 0;
-			//      supplyTotalDefectsIncomeVal = 0;
-			//  }
-			//  // 供热收入同比
-			//  var supplyTotalDefectsIncomeUP = mapSeries.markPoint.data[dataIndex].supplyTotalDefectsIncomeUP;
-			//  if (supplyTotalDefectsIncomeUP != undefined) {
-			//      document.getElementById('fuelDownPercentTotalDefects').innerHTML = supplyTotalDefectsIncomeUP;
-			//  } else {
-			//      document.getElementById('fuelDownPercentTotalDefects').innerHTML = 0;
-			//      supplyTotalDefectsIncomeUP = 0;
-			//  }
-			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + TotalDefectsWaterIncomeVal + firstFeeIncomeVal;
-			//  if (dataAll == 0) {
-			//      dataAll = 10;
-			//  }
-			//  drawpie(ec, supplyTotalDefectsIncomeUP+50, 50, 'detail_pieTotalDefects');
-			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01TotalDefects');
-			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02TotalDefects');
-			//  drawbar(ec, TotalDefectsWaterIncomeVal, dataAll, 'detail_03TotalDefects');
-			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04TotalDefects');
 		}
 	}
 
