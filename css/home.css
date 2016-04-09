@@ -433,7 +433,7 @@ progress::-webkit-progress-value  { border-radius: 4px 4px 4px 4px;background: r
 /*进度条样式AC-LOUWW*/ 
 .progressbar_1{ 
     background-color:#eee; 
-    height:16px; 
+    height:20px; 
     width:150px; 
     border:1px solid #bbb;
     margin:auto;
@@ -441,6 +441,6 @@ progress::-webkit-progress-value  { border-radius: 4px 4px 4px 4px;background: r
 } 
 .progressbar_1 .bar { 
     background-color:#6CAF00; 
-    height:16px; 
+    height:20px; 
     width:0; 
 }
