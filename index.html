@@ -260,6 +260,11 @@
             function toPropertyPercentPage() {
                 app.to("idPropertyPercent","show");
             }
+            // add by qutingyi
+            // 净现金流量
+            function toPureCashFluxPage() {
+                app.to("idPureCashFlux","show");
+            }
             
             // 人均营业收入
             function toAverBusinessPage() {
@@ -268,6 +273,10 @@
             // 人均利润
             function toAverPersonProfitPage() {
                 app.to("idAverPersonProfit","show");
+            }
+            // 人均利润 Real
+            function toAverPersonProfitRealPage() {
+                app.to("idAverPersonProfitReal","show");
             }
             // 员工性质、用工类型
             function toWokerPropertyAndTypePage() {
@@ -354,6 +363,8 @@
 				var isHome08Load = false;
 				// 净利润
 				var isAverPersonProfit = false;
+				// 净利润 Real
+				var isAverPersonProfitReal = false;
 				
 				//宏观 TODO TimLu
 				var isIndustrialAddSpeed = false;
@@ -417,6 +428,8 @@
 				var salesPercent;
 				// 资产现金回收率
 				var propertyPercent;
+				// add by qutingyi
+				var pureCashFlux;
 				
 				var powerIncome;
 				var heatIncome;
@@ -428,6 +441,10 @@
 				var averPersonProfit;
 				var averPersonProfitDetailValue;
 				var averPersonProfitDetailValuePage;
+				
+				// 人均利润 Real
+				var averPersonProfitReal;
+				
                 // 用工性质/员工类型
             	var wokerPropertyAndType;
             	var isWokerPropertyAndType = false;
@@ -836,6 +853,13 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(propertyPercent);
+            		 // 资产现金回收率
+            		 pureCashFlux = sap.ui.view({
+            			id: "idPureCashFlux",
+            			viewName: "com.zhenergy.pcbi.view.propertyPercent",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(pureCashFlux);
             		 
             		 // 发电收入
             		 powerIncome = sap.ui.view({
@@ -884,6 +908,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(averPersonProfit);
+
+            		 // 人均利润 Real
+            		 averPersonProfitReal = sap.ui.view({
+            			id: "idAverPersonProfitReal",
+            			viewName: "com.zhenergy.pcbi.view.averPersonProfitReal",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averPersonProfitReal);
             		 
             		 // 用工性质/员工类型
             		 wokerPropertyAndType = sap.ui.view({

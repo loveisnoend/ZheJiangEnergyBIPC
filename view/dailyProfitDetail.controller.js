@@ -365,9 +365,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
         							lineStyle: {
         								color: 'rgba(64,64,64,0.5)'
         							}
-        						},
-								max: -1000,
-								min: 1000
+        						}
+								// max: -1000,
+								// min: 1000
 								// splitNumber: 8
                             }
                         ],

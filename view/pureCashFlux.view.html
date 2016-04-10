@@ -1,4 +1,4 @@
-<template data-controller-name="com.zhenergy.pcbi.view.businessProfit">
+<template data-controller-name="com.zhenergy.pcbi.view.pureCashFlux">
     <div class="nav_main">
         <div class="main-center">
             <div class="msg_top">
@@ -27,102 +27,102 @@
                     </div>
                     <div class="topToolAll">
                         <div class="userSkinIcon" onmouseover="userHoverOn('userSkinCon')" onmouseout="userHoverOut('userSkinCon')" ></div>
-                        <div class="userSkinCon"><b class="userSkin" onClick="changeSkinCss('businessProfit')">夜间模式</b></div>
+                        <div class="userSkinCon"><b class="userSkin" onClick="changeSkinCss('pureCashFlux')">夜间模式</b></div>
                     </div>
                 </div>
             </div>
             <div class="content_center">
               <div class="powerTop">
-                    <div id="naviBusinessProfit" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;">
-                    <!--<span id="demo" style="height:100%;"><b onClick="toPureProfitPage()" style="cursor:pointer;">浙能电力净利润</b> > <b>营业利润</b></span>-->
-                        
-                    </div>             
+              <!--AC-LOUWW 注释下面一段，上面的ID 更改-->
+                    <div id="naviPureCashFlux" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"></div>
+                    <!--<div id="demo" style="color:white;margin-top:10px;margin-left:40px;font-weight:bold;font-size:20px;"><span id="demo" style="height:100%;"><b onClick="doit3(0)" style="cursor:pointer;">资产情况</b> > <b>浙能电力净现金流量</b></span></div>             -->
               </div>
               <div class="powerBottom">
-                  <div class="powerPlantLeft" id="powerPlantLeftBusinessProfit">
+                  <div class="powerPlantLeft" id="powerPlantLeftPureCashFlux">
+                  <!--// AC-LOUWW 增加ID, 注释下面一段-->
         			  <!--<div class="mapTop">-->
-        			  <!--    <div id="huaiNanMapBusinessProfit" class="huiNanMap"></div>-->
-        			  <!--    <div id="powerPlantMapBusinessProfit" class="powerPlantMap"></div>-->
+        			  <!--    <div id="huaiNanMapPureCashFlux" class="huiNanMap"></div>-->
+        			  <!--    <div id="powerPlantMapPureCashFlux" class="powerPlantMap"></div>-->
         			  <!--</div>-->
         			  <!--<div class="mapBottom">-->
         			  <!--    <div class="chinaMap" style="margin-left:40px;">-->
              <!--                 <div class="chinaMapCon">-->
-            	<!--		          <div id="chinaMapBusinessProfit" style="float:left;height:110px;width:140px;margin-top:15px;margin-left:30px;">-->
+            	<!--		          <div id="chinaMapPureCashFlux" style="float:left;height:110px;width:140px;margin-top:15px;margin-left:30px;">-->
             			              
             	<!--		          </div>-->
-            	<!--		          <div id="akesuMapBusinessProfit" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:250px;"></div>-->
-            	<!--		          <div id="zaoquanMapBusinessProfit" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:450px;"></div>-->
+            	<!--		          <div id="akesuMapPureCashFlux" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:250px;"></div>-->
+            	<!--		          <div id="zaoquanMapPureCashFlux" style="float:left;height:100px;width:100px;margin-top:-90px;margin-left:450px;"></div>-->
         			  <!--        </div>-->
         			  <!--    </div>-->
         			  <!--    <b id="powerName" style="color:#FEFF02;display:none;"></b>-->
         			  <!--</div>-->
                 </div>
                 <div class="powerPlantRight">
-                    <div id="rlcb_detailBusinessProfit" class="detail_02">
+                    <div id="rlcb_detailPureCashFlux" class="detail_02">
                         <div class="detail_02_01">
-                                <div id="powerPlantMainDetailTitleBusinessProfit" style="margin-top:0px;font-size:20px;">浙能电力</div>
+                                <div id="powerPlantMainDetailTitlePureCashFlux" style="margin-top:0px;font-size:20px;">浙能电力股份有限公司</div>
                         </div>
                         <div class="main_content_combition_1">
                             <div class="main_content_combition_1_1">
-                                <div class="detail_02_03" onClick="priceDetailAnotherBusinessProfit('detail001')">
+                                <div class="detail_02_03" onClick="priceDetailAnotherPureCashFlux('detail001')">
                                     <div class="detail_02_font1">自产蒸汽<b>(百万元)</b></div>
-                                    <div class="detail_02_font2" id="travelPriceBusinessProfit"></div>
-                                    <div class="detail_02_img" id="detail_01BusinessProfit"></div>
+                                    <div class="detail_02_font2" id="travelPricePureCashFlux"></div>
+                                    <div class="detail_02_img" id="detail_01PureCashFlux"></div>
                                 </div>
-                                <div class="detail_02_03 detail_position01" onClick="priceDetailAnotherBusinessProfit('detail002')">
+                                <div class="detail_02_03 detail_position01" onClick="priceDetailAnotherPureCashFlux('detail002')">
                                     <div class="detail_02_font1">外购蒸汽<b>(百万元)</b></div>
-                                    <div class="detail_02_font2" id="coalPriceBusinessProfit"></div>
-                                    <div class="detail_02_img" id="detail_02BusinessProfit"></div>
+                                    <div class="detail_02_font2" id="coalPricePureCashFlux"></div>
+                                    <div class="detail_02_img" id="detail_02PureCashFlux"></div>
                                 </div>
                             </div>
                             <div class="main_content_combition_1_2">
-                                <div class="detail_02_04" style="cursor:pointer;" onClick="priceDetailAnotherBusinessProfit('detail006')">
-                                    <div class="detail_001">
-                                        上网电量<b id="internetPV"></b>万千瓦时
-                                    </div>
-                                </div>
+                                <!--<div class="detail_02_04" style="cursor:pointer;" onClick="priceDetailAnotherPureCashFlux('detail006')">-->
+                                <!--    <div class="detail_001">-->
+                                <!--        上网电量<b id="internetPV"></b>万千瓦时-->
+                                <!--    </div>-->
+                                <!--</div>-->
                             </div>
                             <div class="main_content_combition_1_3">
-                                <div class="detail_02_03" onClick="priceDetailAnotherBusinessProfit('detail003')">
-                                    <div class="detail_02_font1">热水<b id="wattVolume1BusinessProfit">(百万元)</b></div>
-                                    <div class="detail_02_font2" id="watt1BusinessProfit"></div>
-                                    <div class="detail_02_img" id="detail_03BusinessProfit"></div>
+                                <div class="detail_02_03" onClick="priceDetailAnotherPureCashFlux('detail003')">
+                                    <div class="detail_02_font1">热水<b id="wattVolume1PureCashFlux">(百万元)</b></div>
+                                    <div class="detail_02_font2" id="watt1PureCashFlux"></div>
+                                    <div class="detail_02_img" id="detail_03PureCashFlux"></div>
                                 </div>
-                                <div class="detail_02_03" onClick="priceDetailAnotherBusinessProfit('detail004')">
-                                    <div class="detail_02_font1">初装费<b id="wattVolume2BusinessProfit">(百万元)</b></div>
+                                <div class="detail_02_03" onClick="priceDetailAnotherPureCashFlux('detail004')">
+                                    <div class="detail_02_font1">初装费<b id="wattVolume2PureCashFlux">(百万元)</b></div>
                                     <div class="detail_02_font2" id="factoryUsePV"></div>
-                                    <div class="detail_02_img" id="detail_04BusinessProfit"></div>
+                                    <div class="detail_02_img" id="detail_04PureCashFlux"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="main_content_combition_2">
-                                <div class="detail_pie" id="detail_pieBusinessProfit" style="cursor:pointer;" onClick="priceDetailAnotherBusinessProfit('detail005')"></div>
-                                <div class="detail_02_02" style="cursor:pointer;" onClick="priceDetailAnotherBusinessProfit('detail005')">
+                                <div class="detail_pie" id="detail_piePureCashFlux" style="cursor:pointer;" onClick="priceDetailAnotherPureCashFlux('detail005')"></div>
+                                <div class="detail_02_02" style="cursor:pointer;" onClick="priceDetailAnotherPureCashFlux('detail005')">
                                     <div class="detail_02_font01">供热收入</div>
-                                    <div class="detail_02_font01 font_size1" id="fuelCostBusinessProfit"></div>
+                                    <div class="detail_02_font01 font_size1" id="fuelCostPureCashFlux"></div>
                                     <div class="detail_02_font01 font_size2">百万元</div>
                                     <div class="detail_02_font01 font_size3">
-                                        <div class="detail_02_font04_01 font_size4"><b id="fuelDownPercentBusinessProfit"></b>%</div>
+                                        <div class="detail_02_font04_01 font_size4"><b id="fuelDownPercentPureCashFlux"></b>%</div>
                                         <div class="detail_02_font04_02"></div>
                                     </div>
                                 </div>
                         </div>
                     </div>
-                    <div class="internetDetail" style="display:none;margin-top:0px;" id="internetDetailBusinessProfit">
+                    <div class="internetDetail" style="display:none;margin-top:0px;" id="internetDetailPureCashFlux">
                         <div class="internetDetailTop" style="font-size:20px;font-family: 微软雅黑;margin-left:10px;">
                            <div style="color:#FFFFFF;margin-top:15px;margin-left:10px;float:left">
-                                <span style="float:left;" id="profitNameBusinessProfit">
+                                <span style="float:left;" id="profitNamePureCashFlux">
                                 浙能电力股份有限公司
                                 </span>
-                                <!--<span onclick="internetbackBusinessProfit()" style="cursor:pointer;margin-left:20px;color:rgb(255,153,0);">返回</span>-->
+                                <!--<span onclick="internetbackPureCashFlux()" style="cursor:pointer;margin-left:20px;color:rgb(255,153,0);">返回</span>-->
                            </div>
                         </div>
-                        <div class="priceDetail_another_01" id="priceDetailDivBusinessProfit">
+                        <div class="priceDetail_another_01" id="priceDetailDivPureCashFlux">
                             
                         </div>
-                        <div class="priceDetail_another_font">
-                            <!--统计于--><br/><b id="businessProfitIncomeStatisticDate"></b>
-                        </div>
+                        <!--<div class="priceDetail_another_font">-->
+                            <!--统计于<br/><b id="pureCashFluxIncomeStatisticDate"></b>-->
+                        <!--</div>-->
                     </div>
                 </div>
                 

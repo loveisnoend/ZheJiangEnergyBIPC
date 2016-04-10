@@ -9,6 +9,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumIncome", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
+			    var sIdentical = "BusinessSumIncome";
+				//AC-Gates 动态插入MAP的div代码
+				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
+			    //AC-Gates 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"+(myDate.getDate()-1)+"日"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var naviDemo = document.getElementById("navi"+sIdentical);
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+		        //AC-Gates 更改下面的文字和onclick方法
+                                "<b onClick='toPureProfitPage()' style='cursor:pointer;'>浙能电力净利润</b> > <b>"+timeLabel+"营业总收入</b>"+
+                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});
@@ -166,13 +178,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.businessSumIncome", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-						if(document.getElementById('powerPlantMainDetailTitleBusinessSumIncome')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameBusinessSumIncome').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameBusinessSumIncome').innerHTML = document.getElementById('powerPlantMainDetailTitleBusinessSumIncome')
-.innerHTML;
-}
+			if(document.getElementById('powerPlantMainDetailTitleBusinessSumIncome').innerHTML=="浙能电力"){
+                document.getElementById('profitNameBusinessSumIncome').innerHTML="浙能电力股份有限公司";
+            }else{
+                document.getElementById('profitNameBusinessSumIncome').innerHTML = document.getElementById('powerPlantMainDetailTitleBusinessSumIncome').innerHTML;
+            }
 // 			document.getElementById('profitNameBusinessSumIncome').innerHTML = document.getElementById('powerPlantMainDetailTitleBusinessSumIncome')
 // 				.innerHTML;
 			var color1 = '#A704CA';
@@ -471,45 +481,45 @@ document.getElementById('profitNameBusinessSumIncome').innerHTML = document.getE
 			// event configure    
 			var ecConfig = require('echarts/config');
 
-			///////////////////////////////////中国地图/////////////////////////////////////			
-			// 基于准备好的dom，初始化echarts图表
-			myChart3 = ec.init(document.getElementById('chinaMapBusinessSumIncome'));
-			option3 = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{b}'
-				},
-				series: [
-					{
-						name: '中国',
-						type: 'map',
-						mapType: 'china',
-						selectedMode: 'multiple',
-						itemStyle: {
-							normal: {
-								label: {
-									show: false
-								}
-							},
-							emphasis: {
-								label: {
-									show: true
-								}
-							}
-						},
-						data: [
-							{
-								name: '浙江',
-								selected: true
-							}
-							]
-						}
-					]
-			};
-			// 为echarts对象加载数据 
-			myChart3.setOption(option3);
+// 			///////////////////////////////////中国地图/////////////////////////////////////			
+// 			// 基于准备好的dom，初始化echarts图表
+// 			myChart3 = ec.init(document.getElementById('chinaMapBusinessSumIncome'));
+// 			option3 = {
+// 				tooltip: {
+// 					trigger: 'item',
+// 					formatter: '{b}'
+// 				},
+// 				series: [
+// 					{
+// 						name: '中国',
+// 						type: 'map',
+// 						mapType: 'china',
+// 						selectedMode: 'multiple',
+// 						itemStyle: {
+// 							normal: {
+// 								label: {
+// 									show: false
+// 								}
+// 							},
+// 							emphasis: {
+// 								label: {
+// 									show: true
+// 								}
+// 							}
+// 						},
+// 						data: [
+// 							{
+// 								name: '浙江',
+// 								selected: true
+// 							}
+// 							]
+// 						}
+// 					]
+// 			};
+// 			// 为echarts对象加载数据 
+// 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleBusinessSumIncome').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleBusinessSumIncome').innerHTML = '浙能电力股份有限公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
 			var myChart4 = ec.init(document.getElementById('powerPlantMapBusinessSumIncome'));

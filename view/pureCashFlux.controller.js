@@ -1,4 +1,4 @@
-sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
+sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 
 	/**
 	 * Called when a controller detail_01 instantiated and its View controls (if available) are already created.
@@ -9,17 +9,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
-			    var sIdentical = "InternetVolume";
-				//AC-Gates 动态插入MAP的div代码
+			    //AC-LOUWW 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
+			    var sIdentical = "PureCashFlux";
+				//AC-LOUWW 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
-			    //AC-Gates 页面增加动态的时间日期标签
+			    //AC-LOUWW 页面增加动态的时间日期标签
 				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"+(myDate.getDate()-1)+"日";//getMonth 1-12月对应0-11  myDate.getDate()-1
+				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
-		        //AC-Gates 更改下面的文字和onclick方法
-                                "<b onClick='dailyProfit()' style='cursor:pointer;'>浙能电力日利润</b> > <b>"+timeLabel+"上网电量</b>"+
+		        //AC-LOUWW 更改下面的文字和onclick方法
+                                "<b onClick='doit3(0)' style='cursor:pointer;'>资产情况</b> > <b>"+timeLabel+"浙能电力净现金流量</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -29,333 +29,203 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 	// eventment before show the page 
 	onAfterShow: function() {
 
-		document.getElementById('internetDetailNet').style.display = "none";
-		document.getElementById('rlcb_detailNet').style.display = "";
+		document.getElementById('internetDetailPureCashFlux').style.display = "";
+		document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
 		// this.loadChart();
 		this._loadData01();
+		var xData = new Array();
+		var KPI_JZC_V = new Array();
+		var KPI_JZC_UP = new Array();
+		this.pureCashFlux("priceDetailDivPureCashFlux", '净现金流量', xData, KPI_JZC_V, KPI_JZC_UP);
 		// 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi, valueGDP, valueCPItongbi, valuePPItongbi, valuePMIproduce, valuePMInonProduce, valueGDPTotal);
 	},
 	// 获取三级页面数据
 	_loadData01: function() {
-		if (isInternetVolumeLoad == false) {
-			busy = new sap.m.BusyDialog({
-				close: function(event) {}
-			});
-			if (busy) {
-				busy.open();
-			}
-		}
+
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
+		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
+		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
+
+		var zhejiang_JsonData = JSON.parse(zhejiang_dataStr)
+		var huaiNan_JsonData = JSON.parse(huaiNan_dataStr);
+		var akesu_JsonData = JSON.parse(akesu_dataStr);
+		var zhaoquan_JsonData = JSON.parse(zhaoquan_dataStr);
+		this.loadChart(zhejiang_JsonData, huaiNan_JsonData, akesu_JsonData, zhaoquan_JsonData);
+		// change the page skin
+		changeTheSkinOfPage();
+	},
+	// 	loadmjChart: function(divId){
+	//         require(
+	//         [
+	//             'echarts',
+	//             'echarts/chart/line',
+	//             'echarts/chart/bar'
+	//         ],
+	// 		draw);
+
+	// 		function draw(e){
+	// 		    document.getElementById('caloriPureCashFluxPlantNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML;
+	// 		    var mychart = e.init(document.getElementById(divId));
+	// 		    var option = {
+	// 		        title:{
+	//             	text:'煤炭价格变化',
+	//             	textStyle:{
+	// 					color:'white',
+	// 					fontFamily:'微软雅黑'
+	// 				},
+	// 				x:'50',
+	// 				y:'10'
+	//             },
+	//   			legend: {
+	//               	orient:'horizontal',
+	//               	x:'350',
+	//               	y:'15',
+	//               	textStyle:{
+	// 					color:'white',
+	// 					fontFamily:'微软雅黑'
+	// 				},
+	//     			data:['实际采购价格','秦港煤价']
+	//   		 	},
+	//   			color: ['#2DE630', '#E52DE6','white'],
+	// 			grid: {
+	//                 y1:100,
+	//                 y2:100
+	// 			},
+	// 			xAxis: [
+	// 				{
+
+	// 					//show: false,
+	// 					type: 'category',
+	// 					axisLabel: {
+	// 						textStyle: {
+	// 							color: 'white'
+	// 						},
+	// 						formatter: '{value}'
+	// 					},
+	// 					data: ['7/23', '7/24', '7/25', '7/26', '7/27', '7/28', '7/29', '7/30']
+	//                 }
+	//             ],
+	// 			yAxis: [
+	// 				{
+	// 					name: '',
+	// 					type: 'value',
+	// 					axisLine: {
+	// 						show: false
+	// 					},
+	// 					axisLabel: {
+	// 						textStyle: {
+	// 							color: 'white'
+	// 						},
+	// 						formatter: '{value}'
+	// 					},
+	// 					// 		splitLine: {
+	// 					// 			show: false
+	// 					// 		},
+	// 					splitLine: {
+	// 						// 			show: false
+	// 						lineStyle: {
+	// 							color: 'rgba(64,64,64,0.5)'
+	// 						}
+	// 					}
+	//                 },
+	// 				{
+	// 					name: '',
+	// 					type: 'value',
+	// 					axisLine: {
+	// 						show: false
+	// 					},
+	// 					axisLabel: {
+	// 						textStyle: {
+	// 							color: 'white'
+	// 						},
+	// 						formatter: '{value}%'
+	// 					},
+	// 					splitLine: {
+	// 						// 			show: false
+	// 						lineStyle: {
+	// 							//color: 'rgba(64,64,64,0.5)',
+	// 						}
+	// 					}
+	//                 }
+	//             ],
+	// 			series: [
+	// 				{
+	// 					name: '实际采购价格',
+	// 					type: 'line',
+	// 					smooth: true,
+	//                  	barGap: '0%',
+	//                   	barCategoryGap: '50%',
+	// 					// itemStyle: {normal: {areaStyle: {type: 'default'}}},
+	// 					data: ['0.50','0.18','0.37','0.18','0.50','0.18','0.50','0.18','0.18','0.37','0.18']
+	//                 },
+	// 				{
+	// 					name: '秦港煤价',
+	// 					type: 'line',
+	// 					smooth: true,
+
+	// 					//itemStyle: {normal: {areaStyle: {type: 'default'}}},
+	// 					data: ['0.30','0.14','0.34','0.13','0.40','0.12','0.40','0.08','0.15','0.27','0.14']
+
+	//                 }
+	//             ]
+	// 		    };
+	// 		    mychart.setOption(option);
+	// 		}
+
+	// 	},
+
+	// 获取浙能电力指标-净现金流量 SCREEN_ZCQK_02_V01
+	loadBase_SupplyPureCashFluxIncome: function(chartDivId, priceChartName) {
+
+// 		var busy = new sap.m.BusyDialog({
+// 			close: function(event) {}
+// 		});
+// 		if (busy) {
+// 			busy.open();
+// 		}
+
+		// 净现金流量指标
+		// 净现金流量
+		var KPI_JZC_V = new Array();
+
+		// 净现金流量同比
+		var KPI_JZC_UP = new Array();
+
+		var dataStatisticDate = '';
 		var mParameters = {};
 		mParameters['async'] = true;
 		mParameters['success'] = jQuery.proxy(function(sRes) {
 
-			//设置数据
-			var dc = new Array();
+			// 各个电厂
+			var xData = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "集团本部" && sRes.results[i].KPI_DESC != "" && sRes.results[i].KPI_DESC != "浙能电力本部") {
-					if (dc == null || dc.length == 0) {
-						dc.push(sRes.results[i].KPI_DESC);
-					} else {
-						if (dc.toString().indexOf(sRes.results[i].KPI_DESC) > -1) {} else {
-							dc.push(sRes.results[i].KPI_DESC);
-						}
-					}
+				// 净现金流量同比
+				if (sRes.results[i].KPI_TYPE == '净现金流量_同比') {
+					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
-			}
-
-			// TODO New Ddded
-			var zhejiang_dataStr = '[';
-			var huaiNan_dataStr = '[';
-			var akesu_dataStr = '[';
-			var zhaoquan_dataStr = '[';
-
-			var isZhejiangDataFirst = true;
-			var isHuaiNanDataFirst = true;
-			var isAkesuDataFirst = true;
-			var isZaoquanDataFirst = true;
-			for (var j in dc) {
-				// get real area name by power plant name
-				var powerPlantName = getRealNameByPowerplantname(dc[j]);
-
-				var tempJsonStrData = '{';
-				tempJsonStrData += '"name":"';
-				tempJsonStrData += powerPlantName;
-				tempJsonStrData += '",';
-				var isFirst = true;
-				for (var i in sRes.results) {
-					if ((sRes.results[i].KPI_TYPE == '各电厂发电量' || sRes.results[i].KPI_TYPE == '集团汇总发电量') && sRes.results[i].KPI_DESC == dc[j]) {
-						if (isFirst != true) {
-							tempJsonStrData += ',';
-						}
-						tempJsonStrData += '"eachPlantPV":';
-						tempJsonStrData += sRes.results[i].KPI_VALUE;
-						isFirst = false;
-					}
-					if (sRes.results[i].KPI_TYPE == '发电量同比' && sRes.results[i].KPI_DESC == dc[j]) {
-						if (isFirst != true) {
-							tempJsonStrData += ',';
-						}
-						tempJsonStrData += '"powerPercentUp":';
-						tempJsonStrData += sRes.results[i].KPI_VALUE;
-						isFirst = false;
-					}
-					if (sRes.results[i].KPI_TYPE == '合约电量' && sRes.results[i].KPI_DESC == dc[j]) {
-						if (isFirst != true) {
-							tempJsonStrData += ',';
-						}
-						tempJsonStrData += '"contractPV":';
-						tempJsonStrData += sRes.results[i].KPI_VALUE;
-						isFirst = false;
-					}
-					if (sRes.results[i].KPI_TYPE == '直供电量' && sRes.results[i].KPI_DESC == dc[j]) {
-						if (isFirst != true) {
-							tempJsonStrData += ',';
-						}
-						tempJsonStrData += '"directlyPV":';
-						tempJsonStrData += sRes.results[i].KPI_VALUE;
-						isFirst = false;
-					}
-					if (sRes.results[i].KPI_TYPE == '厂用电量' && sRes.results[i].KPI_DESC == dc[j]) {
-						if (isFirst != true) {
-							tempJsonStrData += ',';
-						}
-						tempJsonStrData += '"factoryUsePV":';
-						tempJsonStrData += sRes.results[i].KPI_VALUE;
-						isFirst = false;
-					}
-					if (sRes.results[i].KPI_TYPE == '替代电量' && sRes.results[i].KPI_DESC == dc[j]) {
-						if (isFirst != true) {
-							tempJsonStrData += ',';
-						}
-						tempJsonStrData += '"replacePV":';
-						tempJsonStrData += sRes.results[i].KPI_VALUE;
-						isFirst = false;
-					}
-					if (sRes.results[i].KPI_TYPE == '上网电量' && sRes.results[i].KPI_DESC == dc[j]) {
-						if (isFirst != true) {
-							tempJsonStrData += ',';
-						}
-						tempJsonStrData += '"internetPV":';
-						tempJsonStrData += sRes.results[i].KPI_VALUE;
-						isFirst = false;
-					}
+				// 净现金流量
+				if (sRes.results[i].KPI_TYPE == '净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+				        
+				    }else{
+				        
+    					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+				    }
 				}
-				tempJsonStrData += '}';
-
-				if (powerPlantName == '凤台电厂') {
-					if (isHuaiNanDataFirst != true) {
-						huaiNan_dataStr += ',';
-					}
-					huaiNan_dataStr += tempJsonStrData;
-					isHuaiNanDataFirst = false;
-				} else if (powerPlantName == '阿克苏热电') {
-					if (isAkesuDataFirst != true) {
-						akesu_dataStr += ',';
-					}
-					akesu_dataStr += tempJsonStrData
-					isAkesuDataFirst = false;
-				} else if (powerPlantName == '枣泉发电') {
-					if (isZaoquanDataFirst != true) {
-						zhaoquan_dataStr += ',';
-					}
-					zhaoquan_dataStr += tempJsonStrData
-					isZaoquanDataFirst = false;
-				} else {
-					if (isZhejiangDataFirst != true) {
-						zhejiang_dataStr += ',';
-					}
-					zhejiang_dataStr += tempJsonStrData
-					isZhejiangDataFirst = false;
-				}
-			}
-			zhejiang_dataStr += ']';
-			huaiNan_dataStr += ']';
-			akesu_dataStr += ']';
-			zhaoquan_dataStr += ']';
-			var zhejiang_JsonData = JSON.parse(zhejiang_dataStr)
-			var huaiNan_JsonData = JSON.parse(huaiNan_dataStr);
-			var akesu_JsonData = JSON.parse(akesu_dataStr);
-			var zhaoquan_JsonData = JSON.parse(zhaoquan_dataStr);
-			this.loadChart(zhejiang_JsonData, huaiNan_JsonData, akesu_JsonData, zhaoquan_JsonData);
-		}, this);
-		mParameters['error'] = jQuery.proxy(function(eRes) {
-			sap.m.MessageToast.show("获取数据失败", {
-				offset: '0 -110'
-			});
-		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V04/?$filter=(BNAME eq '" + usrid + "')", mParameters);
-	},
-	loadmjChart: function(divId) {
-		require(
-        [
-            'echarts',
-            'echarts/chart/line',
-            'echarts/chart/bar'
-        ],
-			draw);
-
-		function draw(e) {
-			document.getElementById('caloriPowerPlantNameNet').innerHTML = document.getElementById('powerPlantMainDetailTitleNet').innerHTML;
-			var mychart = e.init(document.getElementById(divId));
-			var option = {
-				title: {
-					text: '煤炭价格变化',
-					textStyle: {
-						color: 'white',
-						fontFamily: '微软雅黑'
-					},
-					x: '20',
-					y: '20'
-				},
-				legend: {
-					orient: 'horizontal',
-					x: '250',
-					y: '30',
-					textStyle: {
-						color: 'white',
-						fontFamily: '微软雅黑'
-					},
-					data: ['实际采购价格', '秦港煤价']
-				},
-				color: ['#2DE630', '#E52DE6', 'white'],
-				grid: {
-					x: 60,
-					y: 70
-				},
-				xAxis: [
-					{
-
-						//show: false,
-						type: 'category',
-						axisLabel: {
-							textStyle: {
-								color: 'white'
-							},
-							formatter: '{value}'
-						},
-						data: ['7/23', '7/24', '7/25', '7/26', '7/27', '7/28', '7/29', '7/30']
-                }
-            ],
-				yAxis: [
-					{
-						name: '',
-						type: 'value',
-						axisLine: {
-							show: false
-						},
-						axisLabel: {
-							textStyle: {
-								color: 'white'
-							},
-							formatter: '{value}'
-						},
-						// 		splitLine: {
-						// 			show: false
-						// 		},
-						splitLine: {
-							// 			show: false
-							lineStyle: {
-								color: 'rgba(64,64,64,0.5)'
-							}
-						}
-                },
-					{
-						name: '',
-						type: 'value',
-						axisLine: {
-							show: false
-						},
-						axisLabel: {
-							textStyle: {
-								color: 'white'
-							},
-							formatter: '{value}%'
-						},
-						splitLine: {
-							// 			show: false
-							lineStyle: {
-								//color: 'rgba(64,64,64,0.5)',
-							}
-						}
-                }
-            ],
-				series: [
-					{
-						name: '实际采购价格',
-						type: 'line',
-						smooth: true,
-						barGap: '0%',
-						barCategoryGap: '50%',
-						// itemStyle: {normal: {areaStyle: {type: 'default'}}},
-						data: ['0.50', '0.18', '0.37', '0.18', '0.50', '0.18', '0.50', '0.18', '0.18', '0.37', '0.18']
-                },
-					{
-						name: '秦港煤价',
-						type: 'line',
-						smooth: true,
-
-						//itemStyle: {normal: {areaStyle: {type: 'default'}}},
-						data: ['0.30', '0.14', '0.34', '0.13', '0.40', '0.12', '0.40', '0.08', '0.15', '0.27', '0.14']
-
-                }
-            ]
-			};
-			mychart.setOption(option);
-		}
-
-	},
-	// 获取厂用电量
-	loadFactoryUseData: function(chartDivId, priceChartName) {
-
-		var busy = new sap.m.BusyDialog({
-			close: function(event) {}
-		});
-		if (busy) {
-			busy.open();
-		}
-
-		var powerPlantName = document.getElementById('powerPlantMainDetailTitleNet').innerHTML;
-		if (powerPlantName == '台二电厂') {
-			powerPlantName = '台二发电';
-		}
-		if (powerPlantName == '兰溪电厂') {
-			powerPlantName = '兰溪发电';
-		}
-		if (powerPlantName == '凤台电厂') {
-			powerPlantName = '凤台发电';
-		}
-		if (powerPlantName == '浙能电力股份有限公司') {
-			powerPlantName = '浙能电力';
-		}
-		var mParameters = {};
-		mParameters['async'] = true;
-		mParameters['success'] = jQuery.proxy(function(sRes) {
-
-			//设置数据
-			var machineGroupData = new Array();
-			// 数据日期
-			var machineGroupDate = new Array();
-			var dataStatisticDate = '';
-			for (var i in sRes.results) {
-				var plantName = sRes.results[i].KPI_DESC.toString().substring(0, 4);
-				if (powerPlantName == '浙能电力') {
-					if (sRes.results[i].KPI_TYPE == '上网电量' && sRes.results[i].KPI_DATE.substring(0, 6) == sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 6) && plantName != '浙能电力' && plantName != '浙能电力本部') {// && plantName != '浙能电力' 
-						machineGroupDate.push(sRes.results[i].KPI_DESC);
-						machineGroupData.push(sRes.results[i].KPI_VALUE);
-					}
-				} else {
-					if (sRes.results[i].KPI_TYPE == '机组上网电量' && plantName == powerPlantName) {
-						machineGroupData.push(sRes.results[i].KPI_VALUE);
-					}
-				}
+				// 收入统计日期
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[i].KPI_DATE.substring(6, 8);
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
+						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
-// 			$('#internetVolumeStatisticDate').html(dataStatisticDate);
-			this.loadPriceChartdetail(chartDivId, priceChartName, machineGroupData, machineGroupDate);
+// 			$('#pureCashFluxIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '净现金流量') {
+				this.pureCashFlux(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
+			}
 			if (busy) {
 				busy.close();
 			}
@@ -365,10 +235,69 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("AT_ZJEY_CL_JYYJ_04_VFDL/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		// TODO qutingyi 数据过来以后放开
+		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 电价详细Chart
-	loadPriceChartdetail: function(chartDivId, priceChartName, machineGroupData, machineGroupDate) {
+	// 获取个电厂指标-净现金流量 SCREEN_ZCQK_02_V01
+	loadEachPlant_SupplyPureCashFluxIncome: function(chartDivId, priceChartName, powerPlantName) {
+// TODO qutingyi 有数据后放开
+// 		var busy = new sap.m.BusyDialog({
+// 			close: function(event) {}
+// 		});
+// 		if (busy) {
+// 			busy.open();
+// 		}
+
+		// 净现金流量指标
+		// 净现金流量
+		var KPI_JZC_V = new Array();
+
+		// 净现金流量同比
+		var KPI_JZC_UP = new Array();
+
+		var dataStatisticDate = '';
+		var mParameters = {};
+		mParameters['async'] = true;
+		mParameters['success'] = jQuery.proxy(function(sRes) {
+
+			// 各个电厂月份指标
+			var xData = new Array();
+			for (var i in sRes.results) {
+				// 净现金流量同比
+				if (sRes.results[i].KPI_TYPE == '净现金流量_同比') {
+					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
+				}
+				// 净现金流量
+				if (sRes.results[i].KPI_TYPE == '净现金流量' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+					xData.push(sRes.results[i].KPI_DATE);
+				}
+				// 收入统计日期
+				if (dataStatisticDate == '') {
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
+						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				}
+			}
+			// 统计于日期
+// 			$('#pureCashFluxIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '净现金流量') {
+				this.loadBaseDataDetail_PureCashFluxIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
+			}
+			if (busy) {
+				busy.close();
+			}
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			sap.m.MessageToast.show("获取数据失败", {
+				offset: '0 -110'
+			});
+		}, this);
+		// TODO qutingyi 新数据过来以后 放开
+		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	},
+	// 加载浙能电力-净现金流量
+	pureCashFlux: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+
 		require(
             [
                 'echarts',
@@ -379,51 +308,66 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-// 			if(document.getElementById('powerPlantMainDetailTitleNet')
-// .innerHTML=="集团"){
-//   document.getElementById('profitNameNet').innerHTML="电力股份公司";
-// }else{
-// document.getElementById('profitNameNet').innerHTML = document.getElementById('powerPlantMainDetailTitleNet')
-// .innerHTML;
-// }
-			document.getElementById('profitNameNet').innerHTML = document.getElementById('powerPlantMainDetailTitleNet').innerHTML;
-			var fuelXaxisName = '';
-			if (document.getElementById('powerPlantMainDetailTitleNet').innerHTML == '浙能电力股份有限公司') {
-				//   fuelXaxisName = ['兰溪发电', '台二发电', '凤台发电'];
-				fuelXaxisName = machineGroupDate;
+			if (document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNamePureCashFlux').innerHTML = "浙能电力股份有限公司";
 			} else {
-				fuelXaxisName = ['机组1', '机组2', '机组3', '机组4'];
+				document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+					.innerHTML;
 			}
-
+			//document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML;
+			var color1 = '#A704CA';
+			var color2 = '#E52DE6';
+			// mockdata start
+			// 电厂
+			xData = ['萧山发电','台州发电','兰溪发电','台二发电','凤台发电','嘉兴发电','长兴发电','滨海发电','镇海发电','温州发电','乐清发电','舟山煤电','阿克苏热电','枣泉发电','镇海联合','金华燃机','常山燃气','温州燃机','嘉华发电','北仑发电','镇海燃气','镇海燃热','温特发电','钱清发电','绍兴滨海热力'];
+			// 经营活动
+			var KPI_JYHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+			// 投资活动
+			var KPI_TZHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+			// 筹资活动
+			var KPI_CZHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+			// mockdata end
 			var option = {
 				title: {
 					text: priceChartName,
+					subtext: '',
+					x: 40,
+					y: 5,
 					textStyle: {
-						color: 'white',
-						fontFamily: '微软雅黑'
-					},
-					x: '50',
-					y: '10'
+						fontSize: 15,
+						color: 'green'
+					}
 				},
 				legend: {
-					show: false,
 					orient: 'horizontal',
-					x: '400',
-					y: '20',
+					show: false,
+					x: '120',
+					y: '35',
 					textStyle: {
 						color: 'white',
 						fontFamily: '微软雅黑'
 					},
-					data: ['当年']
+					data: ['经营活动', '投资活动', '筹资活动']
 				},
-				color: specialColorArray,
+				tooltip: {
+					trigger: 'axis',
+					backgroundColor: 'rgb(234,234,234)',
+					textStyle: {
+						color: 'rgb(0,0,0)',
+						baseline: 'top'
+					},
+					axisPointer: {
+						type: 'none'
+					}
+				},
+				color: specialColorArray,// [color1,color2]
 				grid: {
 					y1: 100,
 					y2: 100
 				},
 				xAxis: [
 					{
-
 						//show: false,
 						type: 'category',
 						axisLabel: {
@@ -437,15 +381,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 							rotate: 30,
 							margin: 8
 						},
-						data: fuelXaxisName
-                    }
-                ],
+						data: xData
+                            }
+                        ],
 				yAxis: [
 					{
-						name: '万千瓦时',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
-							show: false
+							show: true
 						},
 						axisLabel: {
 							textStyle: {
@@ -462,18 +406,166 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 								color: 'rgba(64,64,64,0.5)'
 							}
 						}
-                    }
-                ],
+						// 		max: y1,
+						// 		min: y2,
+						// 		splitNumber: n
+                            }
+                        ],
+				series: [
+				// 	{
+				// 		name: '经营活动',
+				// 		type: 'bar',
+				// 		symbol: 'emptyCircle',
+				// 		symbolSize: 5,
+				// 		itemStyle: {
+				// 			normal: {
+				// 				label: {
+				// 					show: true,
+				// 					position: 'top',
+				// 					textStyle: {
+				// 						color: 'white'
+				// 					}
+				// 				}
+				// 			}
+				// 		},
+				// 		data: KPI_JZC_V
+    //                 },
+                  {
+						name: '经营活动',
+						type: 'bar',
+						stack: '净现金流量',
+						data: KPI_JYHD_V
+                  },{
+						name: '投资活动',
+						type: 'bar',
+						stack: '净现金流量',
+						data: KPI_TZHD_V
+                  },{
+						name: '筹资活动',
+						type: 'bar',
+						stack: '净现金流量',
+						data: KPI_CZHD_V
+                  }
+                        ]
+			};
+
+			mychart.setOption(option);
+		}
+	},
+	// 加载浙能电力-净现金流量指标
+	loadBaseDataDetail_PureCashFluxIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+		require(
+            [
+                'echarts',
+                'echarts/chart/line',
+                'echarts/chart/bar'
+            ],
+			draw);
+
+		function draw(e) {
+			var mychart = e.init(document.getElementById(chartDivId));
+			if (document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+				.innerHTML == "浙能电力") {
+				document.getElementById('profitNamePureCashFlux').innerHTML = "浙能电力股份有限公司";
+			} else {
+				document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+					.innerHTML;
+			}
+			//	document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML;
+			var color1 = '#A704CA';
+			var color2 = '#E52DE6';
+			if(document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+				.innerHTML == "浙能电力"){
+			    // TODO 堆积柱状图
+			}else{
+			    // TODO 折线图
+			}
+			var option = {
+				title: {
+					text: priceChartName,
+					subtext: '',
+					x: 40,
+					y: 5,
+					textStyle: {
+						fontSize: 15,
+						color: 'green'
+					}
+				},
+				legend: {
+					orient: 'horizontal',
+					show: false,
+					x: '120',
+					y: '35',
+					textStyle: {
+						color: 'white',
+						fontFamily: '微软雅黑'
+					},
+					data: [priceChartName]
+				},
+				tooltip: {
+					trigger: 'axis',
+					backgroundColor: 'rgb(234,234,234)',
+					textStyle: {
+						color: 'rgb(0,0,0)',
+						baseline: 'top'
+					},
+					axisPointer: {
+						type: 'none'
+					}
+				},
+				color: [color1, color2],
+				grid: {
+					y1: 100,
+					y2: 100
+				},
+				xAxis: [
+					{
+						//show: false,
+						type: 'category',
+						axisLabel: {
+							textStyle: {
+								color: 'white'
+							},
+							formatter: '{value}'
+						},
+						data: xData
+                            }
+                        ],
+				yAxis: [
+					{
+						name: '单位:万元',
+						type: 'value',
+						axisLine: {
+							show: true
+						},
+						axisLabel: {
+							textStyle: {
+								color: 'white'
+							},
+							formatter: '{value}'
+						},
+						// 		splitLine: {
+						// 			show: false
+						// 		},
+						splitLine: {
+							// 			show: false
+							lineStyle: {
+								color: 'rgba(64,64,64,0.5)'
+							}
+						},
+						// 		max: y1,
+						// 		min: y2,
+						// 		splitNumber: n
+                            }
+                        ],
 				series: [
 					{
-						name: '当年',
+						name: priceChartName,
 						type: 'bar',
-						smooth: true,
-						barGap: '0%',
-						barCategoryGap: '50%',
+						symbol: 'emptyCircle',
+						symbolSize: 5,
 						itemStyle: {
 							normal: {
-								//  color: 'green',
 								label: {
 									show: true,
 									position: 'top',
@@ -481,13 +573,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 										color: 'white'
 									}
 								}
-								//  areaStyle: {type: 'default'}
 							}
 						},
-						data: machineGroupData
-                    }
-                ]
+						barWidth: 50,
+						data: KPI_JZC_V
+                            }
+                        ]
 			};
+
 			mychart.setOption(option);
 		}
 	},
@@ -517,7 +610,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			draw);
 
 		function draw(e) {
-			drawPowerDistribution(e);
+			drawPureCashFluxDistribution(e);
 
 			//   drawpie01(e);
 			// 			drawbar01(e);
@@ -526,14 +619,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			// 			drawbar04(e);
 		}
 
-		function drawPowerDistribution(ec) {
+		function drawPureCashFluxDistribution(ec) {
 
 			// event configure    
 			var ecConfig = require('echarts/config');
 
 			///////////////////////////////////中国地图/////////////////////////////////////			
 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMap2'));
+// 			myChart3 = ec.init(document.getElementById('chinaMapPureCashFlux'));
 // 			option3 = {
 // 				tooltip: {
 // 					trigger: 'item',
@@ -569,10 +662,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 // 			// 为echarts对象加载数据 
 // 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleNet').innerHTML = '浙能电力股份有限公司'
+			document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML = '浙能电力';
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			var myChart4 = ec.init(document.getElementById('powerPlantMapInternetVolume'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapPureCashFlux'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -672,7 +765,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-				// 			"浙能电力股份本部": [119.60, 30.10],
+							"浙能电力本部": [119.60, 30.10],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],
@@ -757,8 +850,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			};
 			myChart4.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailNet').style.display = "none";
-				document.getElementById('rlcb_detailNet').style.display = "";
+				document.getElementById('internetDetailPureCashFlux').style.display = "";
+				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
 
 				var mapSeries = option4.series[0];
 
@@ -802,7 +895,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认集团数据显示
+			// 默认浙能电力数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -821,7 +914,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapInternetVolume'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapPureCashFlux'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -934,8 +1027,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			};
 			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailNet').style.display = "none";
-				document.getElementById('rlcb_detailNet').style.display = "";
+				document.getElementById('internetDetailPureCashFlux').style.display = "";
+				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
 
 				var mapSeries = option5.series[0];
 
@@ -982,7 +1075,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapInternetVolume'));
+			myChart6 = ec.init(document.getElementById('akesuMapPureCashFlux'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -1006,7 +1099,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 									textStyle: {
 										color: '#00FF00',
 										fontSize: 12
-									},
+									}
 								},
 								areaStyle: {
 									color: skinColor,
@@ -1019,7 +1112,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 								label: {
 									show: true
 								}
-							},
+							}
 						},
 						name: '新疆',
 						type: 'map',
@@ -1062,7 +1155,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 							"阿克苏热电": [80.22, 41.17],
 							"上海": [3000, 3000]
 						}
-					},
+						},
 					{
 						name: 'Top3',
 						type: 'map',
@@ -1095,8 +1188,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			};
 			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailNet').style.display = "none";
-				document.getElementById('rlcb_detailNet').style.display = "";
+				document.getElementById('internetDetailPureCashFlux').style.display = "";
+				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
 
 				var mapSeries = option6.series[0];
 
@@ -1143,7 +1236,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapInternetVolume'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapPureCashFlux'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {
@@ -1167,7 +1260,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 									textStyle: {
 										color: '#00FF00',
 										fontSize: 12
-									},
+									}
 								},
 								areaStyle: {
 									color: skinColor,
@@ -1180,7 +1273,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 								label: {
 									show: true
 								}
-							},
+							}
 						},
 						name: '宁夏',
 						type: 'map',
@@ -1223,7 +1316,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 							"枣泉发电": [106.27, 38.47],
 							"上海": [3000, 3000]
 						}
-					},
+						},
 					{
 						name: 'Top3',
 						type: 'map',
@@ -1256,8 +1349,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			};
 			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailNet').style.display = "none";
-				document.getElementById('rlcb_detailNet').style.display = "";
+				document.getElementById('internetDetailPureCashFlux').style.display = "";
+				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
 
 				var mapSeries = option7.series[0];
 
@@ -1301,14 +1394,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			};
 			// 为echarts对象加载数据 
 			myChart7.setOption(option7);
-
-			if (isInternetVolumeLoad == false) {
-				if (busy) {
-					busy.close();
-				}
-				changeTheSkinOfPage();
-				isInternetVolumeLoad = true;
-			}
 		}
 
 		function drawpie(e, data1, data2, id) {
@@ -1331,7 +1416,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 						name: '1',
 						type: 'pie',
 						// 		center: ['31%','36%'],
-						radius: [175, 180],
+						radius: [135, 139],
 						startAngle: 0,
 						itemStyle: {
 							normal: {
@@ -1436,100 +1521,107 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			mychart.setOption(option);
 		}
 
-		function drawpie01(dataShow) {
-			drawpie(e, dataShow, 100, 'detail_pieNet');
+		function drawpie01(e) {
+			drawpie(e, 3, 4, 'detail_piePureCashFlux');
 		}
 
 		function drawbar01(e) {
-			drawbar(e, 4, 6, 'detail_01Net');
+			drawbar(e, 4, 6, 'detail_01PureCashFlux');
 		}
 
 		function drawbar02(e) {
-			drawbar(e, 7, 3, 'detail_02Net');
+			drawbar(e, 7, 3, 'detail_02PureCashFlux');
 		}
 
 		function drawbar03(e) {
-			drawbar(e, 3, 7, 'detail_03Net');
+			drawbar(e, 3, 7, 'detail_03PureCashFlux');
 		}
 
 		function drawbar04(e) {
-			drawbar(e, 8, 2, 'detail_04Net');
+			drawbar(e, 8, 2, 'detail_04PureCashFlux');
 		}
 		// 设置Chart的数据
 		function setChartData(ec, mapSeries, dataIndex) {
 
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			
+			document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML = powerPlantName;
+
+			var priceChartId = "priceDetailDivPureCashFlux";
+			var priceChartName = "净现金流量";
+			if (powerPlantName == '台二电厂') {
+				powerPlantName = '台二发电';
+			}
+			if (powerPlantName == '兰溪电厂') {
+				powerPlantName = '兰溪发电';
+			}
+			if (powerPlantName == '凤台电厂') {
+				powerPlantName = '凤台发电';
+			}
 			if (powerPlantName == '浙能电力') {
-			    document.getElementById('powerPlantMainDetailTitleNet').innerHTML="浙能电力股份有限公司";
-				document.getElementById('internetVolumeArrow').style.display = "";
+				// TODO
+				pureCashFlux.getController().loadBase_SupplyPureCashFluxIncome(priceChartId, priceChartName);
+				//pureCashFlux.getController().loadEachPlant_SupplyPureCashFluxIncome(priceChartId, priceChartName, powerPlantName);
 			} else {
-			    document.getElementById('powerPlantMainDetailTitleNet').innerHTML = powerPlantName;
-				document.getElementById('internetVolumeArrow').style.display = "none";
+				pureCashFlux.getController().loadEachPlant_SupplyPureCashFluxIncome(priceChartId, priceChartName, powerPlantName);
 			}
-			// 发电量
-			var eachPlantPV = mapSeries.markPoint.data[dataIndex].eachPlantPV;
-			if (eachPlantPV != undefined) {
-				document.getElementById('fuelCostNet').innerHTML = eachPlantPV;
-			} else {
-				document.getElementById('fuelCostNet').innerHTML = 0;
-			}
-			// 发电量同比变化
-			var powerPercentUp = mapSeries.markPoint.data[dataIndex].powerPercentUp;
-			if (powerPercentUp != undefined) {
-				document.getElementById('fuelDownPercentNet').innerHTML = powerPercentUp;
-			} else {
-				document.getElementById('fuelDownPercentNet').innerHTML = 0;
-			}
-			// 合约电量
-			var contractPV = mapSeries.markPoint.data[dataIndex].contractPV;
-			if (contractPV != undefined) {
-				document.getElementById('travelPriceNet').innerHTML = contractPV;
-			} else {
-				document.getElementById('travelPriceNet').innerHTML = 0;
-				contractPV = 0;
-			}
-			// 直供电量
-			var directlyPV = mapSeries.markPoint.data[dataIndex].directlyPV;
-			if (directlyPV != undefined) {
-				document.getElementById('coalPriceNet').innerHTML = directlyPV;
-			} else {
-				document.getElementById('coalPriceNet').innerHTML = 0;
-				directlyPV = 0;
-			}
-			// 厂用电量
-			var factoryUsePV = mapSeries.markPoint.data[dataIndex].factoryUsePV;
-			if (factoryUsePV != undefined) {
-				document.getElementById('factoryUsePV').innerHTML = factoryUsePV;
-			} else {
-				document.getElementById('factoryUsePV').innerHTML = 0;
-			}
-			// 替代电量
-			var replacePV = mapSeries.markPoint.data[dataIndex].replacePV;
-			if (replacePV != undefined) {
-				document.getElementById('watt1Net').innerHTML = replacePV;
-			} else {
-				document.getElementById('watt1Net').innerHTML = 0;
-				replacePV = 0;
-			}
-			// 上网电量
-			var internetPV = mapSeries.markPoint.data[dataIndex].internetPV;
-			if (internetPV != undefined) {
-				document.getElementById('internetPV').innerHTML = internetPV;
-			} else {
-				document.getElementById('internetPV').innerHTML = 0;
-			}
-
-			var dataAll = contractPV + directlyPV + replacePV;
-			if (dataAll == 0) {
-				dataAll = 10;
-			}
-
-			drawpie(ec, powerPercentUp + 50, 50, 'detail_pieNet');
-			drawbar(ec, contractPV, dataAll, 'detail_01Net');
-			drawbar(ec, directlyPV, dataAll, 'detail_02Net');
-			drawbar(ec, replacePV, dataAll, 'detail_03Net');
+			//  // 自产蒸汽
+			//  var selfSteamIncomeVal = mapSeries.markPoint.data[dataIndex].selfSteamIncomeVal;
+			//  if (selfSteamIncomeVal != undefined) {
+			//      document.getElementById('travelPricePureCashFlux').innerHTML =  selfSteamIncomeVal;
+			//  } else {
+			//      document.getElementById('travelPricePureCashFlux').innerHTML = 0;
+			//      selfSteamIncomeVal = 0;
+			//  }
+			//  // 外购蒸汽
+			//  var outSteamIncomeVal = mapSeries.markPoint.data[dataIndex].outSteamIncomeVal;
+			//  if (outSteamIncomeVal != undefined) {
+			//      document.getElementById('coalPricePureCashFlux').innerHTML = outSteamIncomeVal;
+			//  } else {
+			//      document.getElementById('coalPricePureCashFlux').innerHTML = 0;
+			//      outSteamIncomeVal = 0;
+			//  }
+			//  // 热水
+			//  var pureCashFluxWaterIncomeVal = mapSeries.markPoint.data[dataIndex].pureCashFluxWaterIncomeVal;
+			//  if (pureCashFluxWaterIncomeVal != undefined) {
+			//      document.getElementById('watt1PureCashFlux').innerHTML =  pureCashFluxWaterIncomeVal;
+			//  } else {
+			//      document.getElementById('watt1PureCashFlux').innerHTML = 0;
+			//      pureCashFluxWaterIncomeVal = 0;
+			//  }
+			//  // 初装费
+			//  var firstFeeIncomeVal = mapSeries.markPoint.data[dataIndex].firstFeeIncomeVal;
+			//  if (firstFeeIncomeVal != undefined) {
+			//      document.getElementById('factoryUsePV').innerHTML = firstFeeIncomeVal;
+			//  } else {
+			//      document.getElementById('factoryUsePV').innerHTML = 0;
+			//      firstFeeIncomeVal = 0;
+			//  }
+			//  // 供热收入
+			//  var supplyPureCashFluxIncomeVal = mapSeries.markPoint.data[dataIndex].supplyPureCashFluxIncomeVal;
+			//  if (supplyPureCashFluxIncomeVal != undefined) {
+			//      document.getElementById('fuelCostPureCashFlux').innerHTML = supplyPureCashFluxIncomeVal;
+			//  } else {
+			//      document.getElementById('fuelCostPureCashFlux').innerHTML = 0;
+			//      supplyPureCashFluxIncomeVal = 0;
+			//  }
+			//  // 供热收入同比
+			//  var supplyPureCashFluxIncomeUP = mapSeries.markPoint.data[dataIndex].supplyPureCashFluxIncomeUP;
+			//  if (supplyPureCashFluxIncomeUP != undefined) {
+			//      document.getElementById('fuelDownPercentPureCashFlux').innerHTML = supplyPureCashFluxIncomeUP;
+			//  } else {
+			//      document.getElementById('fuelDownPercentPureCashFlux').innerHTML = 0;
+			//      supplyPureCashFluxIncomeUP = 0;
+			//  }
+			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + pureCashFluxWaterIncomeVal + firstFeeIncomeVal;
+			//  if (dataAll == 0) {
+			//      dataAll = 10;
+			//  }
+			//  drawpie(ec, supplyPureCashFluxIncomeUP+50, 50, 'detail_piePureCashFlux');
+			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01PureCashFlux');
+			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02PureCashFlux');
+			//  drawbar(ec, pureCashFluxWaterIncomeVal, dataAll, 'detail_03PureCashFlux');
+			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04PureCashFlux');
 		}
 	}
 });

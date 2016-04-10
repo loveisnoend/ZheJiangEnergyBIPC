@@ -1,4 +1,4 @@
-sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
+sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfitReal", {
 	onInit: function() {
         this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
@@ -14,11 +14,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		});
 	},
     onBeforeShow: function(evt) {
-        if (isAverPersonProfit == false) {
+        if (isAverPersonProfitReal == false) {
             this._loadData01();
             this._loadData02();
             this._loadData03(); 
-            isAverPersonProfit = true;
+            isAverPersonProfitReal = true;
         }
 	},
 	onAfterShow: function(evt) {
@@ -80,7 +80,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		if (busy) {
 			busy.open();
 		} 
-// 	    if (isAverPersonProfit == false) {
+// 	    if (isAverPersonProfitReal == false) {
 //             busy = new sap.m.BusyDialog({
 // 				close: function(event) {}
 // 			});
@@ -253,7 +253,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
             function drawswdl(e) {
                 var dataName = ['公司领导正职人数','公司领导副职人数','中层正职人数','中层副职人数','普通员工人数'];
                 if (employeeTypeDataContent != '') {
-                    drawpie(e,'employeeTypeChart',dataName,employeeTypeDataContent);
+                    // drawpie(e,'employeeTypeChart',dataName,employeeTypeDataContent);
                 }
             }
             //营业收入
@@ -272,7 +272,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
             function drawqtcb(e) {
                 var dataName = ['定编人数','在岗职工','借用人员','劳务派遣工','退休返聘员工','不在岗职工','其他人员'];
                 if (workerPropertyDataContent != '') {
-                    drawpie(e,'workerPropertyChart',dataName,workerPropertyDataContent);
+                    // drawpie(e,'workerPropertyChart',dataName,workerPropertyDataContent);
                 }
             }
 
@@ -454,12 +454,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
                 color : ['#FF7F50','#87CEFA', '#DA70D6', '#32CD32', '#6495ED','#781D10',  '#241672']
             };
             mychart.setOption(option);
-        //     if (isAverPersonProfit == false) {
+        //     if (isAverPersonProfitRealReal == false) {
         //         if (busy) {
         // 			busy.close();
         // 		} 
         // 		changeTheSkinOfPage();
-        // 		isAverPersonProfit = true;
+        // 		isAverPersonProfitReal = true;
         //     }
         }
 	},
@@ -475,21 +475,21 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 		var workerProperty = '';//data4[data4.length - 1];
 		
 		//净利润
-		var averPersonProfitResult = averPersonProfitDetailValue;
-		var averPersonProfitResultImg="horizontal-green";
-		var averPersonProfitResultTongbi = KPI_JLR_T;
- 		if(averPersonProfitResultTongbi>0){
- 		    averPersonProfitResultImg="arrow-green2";
+		var averPersonProfitRealResult = averPersonProfitDetailValue;
+		var averPersonProfitRealResultImg="horizontal-green";
+		var averPersonProfitRealResultTongbi = KPI_JLR_T;
+ 		if(averPersonProfitRealResultTongbi>0){
+ 		    averPersonProfitRealResultImg="arrow-green2";
  		} else {
- 		    if (averPersonProfitResultTongbi == 0) {
- 		        averPersonProfitResultImg="horizontal-green";
+ 		    if (averPersonProfitRealResultTongbi == 0) {
+ 		        averPersonProfitRealResultImg="horizontal-green";
  		    } else {
- 		        averPersonProfitResultImg="arrow-red2";
+ 		        averPersonProfitRealResultImg="arrow-red2";
  		    }
  		}
  	
-		if (averPersonProfitResultTongbi == undefined) {
-		    averPersonProfitResultTongbi = 0;
+		if (averPersonProfitRealResultTongbi == undefined) {
+		    averPersonProfitRealResultTongbi = 0;
 		}
 		var rlr_color="red";
 		var rlr_colorR01 = "";
@@ -499,13 +499,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 	        rlr_colorR01="white";
 	    }
 
-		var rlr_innerhtml01='<div class="AP-main_content_title">人均利润<span style="font-size:20px;">(万元)</span></div><div class="AP-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+averPersonProfitResult+'</div><div class="AP-main_content_sz">同比'+averPersonProfitResultTongbi+'%<img src="img/'+averPersonProfitResultImg+'.png" class="content_img"/></div>';
-		document.getElementById('averPersonProfitResult').innerHTML=rlr_innerhtml01;
+		var rlr_innerhtml01='<div class="AP-main_content_title" style="color:white;">人均利润<span style="font-size:20px;">(万元)</span></div><div class="AP-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+averPersonProfitRealResult+'</div><div class="AP-main_content_sz">同比'+averPersonProfitRealResultTongbi+'%<img src="img/'+averPersonProfitRealResultImg+'.png" class="content_img"/></div>';
+		document.getElementById('averPersonProfitRealResult').innerHTML=rlr_innerhtml01;
 		
-        document.getElementById('employeeType').innerHTML=employeeType;
+        // document.getElementById('employeeType').innerHTML=employeeType;
         document.getElementById('businessIncome').innerHTML=businessIncome+'万元';
         document.getElementById('averSalary').innerHTML=averSalary+'万元';
-        document.getElementById('workerProperty').innerHTML=workerProperty;
+        // document.getElementById('workerProperty').innerHTML=workerProperty;
 
 
 // 		document.getElementById('cb').innerHTML = cb_innerhtml;
