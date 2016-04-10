@@ -368,14 +368,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			var AverBusinessIncomeValue=0;
 
 			// 人均利润同比值
-            var averPersonProfitTongBi = '';
+            var averPersonProfitTongBi = 0;
             // 人均利润环比值
             var averPersonProfitHuanBi = '';
 			// 人均利润值
 			var averPersonProfit=0;
 			
 			// 单位万千瓦员工数同比值
-            var workerCountsPerKWTongBi = '';
+            var workerCountsPerKWTongBi = 0;
             // 单位万千瓦员工数环比值
             var workerCountsPerKWHuanBi = '';
             // 统计日期
@@ -384,7 +384,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			var workerCountsPerKW=0;
 			
 			// 发电生产率同比值
-            var workerCountsPerKWHourTongBi = '';
+            var workerCountsPerKWHourTongBi = 0;
             // 发电生产率环比值
             var workerCountsPerKWHourHuanBi = '';
             // 统计日期
@@ -393,7 +393,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			var workerCountsPerKWHour=0;
 			
 			// 单位万千瓦人工成本同比值
-            var workerCostPerKWTongBi = '';
+            var workerCostPerKWTongBi = 0;
             // 单位万千瓦人工成本环比值
             var workerCostPerKWHuanBi = '';
             // 统计日期
@@ -402,7 +402,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			var workerCostPerKW=0;
 			
 			// 单位万千瓦时人工成本同比值
-            var workerCostPerKWHourTongBi = '';
+            var workerCostPerKWHourTongBi = 0;
             // 单位万千瓦时人工成本环比值
             var workerCostPerKWHourHuanBi = '';
             // 统计日期

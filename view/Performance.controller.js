@@ -10,6 +10,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
+			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
+			    var sIdentical = "Performance";
+			    //AC-Gates 页面增加动态的时间日期标签
+				var myDate=new Date() ;
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月"+(myDate.getDate()-1)+"日"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var naviDemo = document.getElementById("navi"+sIdentical);
+		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
+		        //AC-Gates 更改下面的文字和onclick方法
+                                "<b onClick='doit2(0)' style='cursor:pointer;'>经营业绩</b> > <b>"+timeLabel+"浙能电力日利润</b>"+
+                                "</span>";
 				this.onAfterShow(evt);
 			}, this)
 		});

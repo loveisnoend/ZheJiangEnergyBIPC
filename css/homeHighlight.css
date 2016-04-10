@@ -330,6 +330,7 @@ width:11%;
 	vertical-align:top;
 	text-align:left;
 	color:white;
+	margin-left:-12px;
 }
 progress {
 	text-align:center;
