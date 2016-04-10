@@ -85,7 +85,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.profitSum", {
 				// 利润总额
 				if (sRes.results[i].KPI_TYPE == '利润总额' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
 					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DESC);
+					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+						xData.push(sRes.results[i].KPI_DESC);
+					}
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {

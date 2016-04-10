@@ -372,7 +372,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				// 合约电量收入同比
 				if (sRes.results[i].KPI_TYPE == '合约电量收入_同比') {
 					KPI_HYS_UP.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DESC);
+					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+						xData.push(sRes.results[i].KPI_DESC);
+					}
 				}
 				// 合约电量收入
 				if (sRes.results[i].KPI_TYPE == '合约电量收入') {
@@ -435,8 +437,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-						.substring(4, 6) + "." + sRes.results[sRes.results.length - 1].KPI_DATE.substring(6, 8);
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE.substring(4, 6) + "." + sRes.results[sRes.results.length - 1].KPI_DATE.substring(6, 8);
 				}
 			}
 			// 统计于日期
@@ -803,7 +804,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				// 可再生补贴收入同比
 				if (sRes.results[i].KPI_TYPE == '可再生补贴收入_同比') {
 					KPI_ZSS_UP.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DESC);
+					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+						xData.push(sRes.results[i].KPI_DESC);
+					}
 				}
 				// 可再生补贴收入
 				if (sRes.results[i].KPI_TYPE == '可再生补贴收入') {
@@ -1183,7 +1186,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				// 辅助服务收入同比
 				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比') {
 					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DESC);
+					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+						xData.push(sRes.results[i].KPI_DESC);
+					}
 				}
 				// 辅助服务收入
 				if (sRes.results[i].KPI_TYPE == '辅助服务收入') {
@@ -1437,7 +1442,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 				// 发电收入同比
 				if (sRes.results[i].KPI_TYPE == '发电收入_同比') {
 					KPI_FDS_UP.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DESC);
+					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+						xData.push(sRes.results[i].KPI_DESC);
+					}
 				}
 				// 发电收入
 				if (sRes.results[i].KPI_TYPE == '发电收入') {
@@ -2890,8 +2897,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			if(powerPlantName=="浙能电力"){
 			    document.getElementById('powerPlantMainDetailTitlePower').innerHTML = "浙能电力股份有限公司";
 			}else{
-			document.getElementById('powerPlantMainDetailTitlePower').innerHTML = powerPlantName;
-}
+            	document.getElementById('powerPlantMainDetailTitlePower').innerHTML = powerPlantName;
+            }
 			// 售电收入
 			var salesIncomeValue = mapSeries.markPoint.data[dataIndex].salesIncomeValue;
 			if (salesIncomeValue != undefined) {

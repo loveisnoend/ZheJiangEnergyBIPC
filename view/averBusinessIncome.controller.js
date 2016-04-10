@@ -198,7 +198,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 
-				if (sRes.results[i].KPI_DESC != "浙能电力") {
+				if (sRes.results[i].KPI_DESC != "浙能电力" && sRes.results[i].KPI_DESC != "浙能电力本部") {
 					if (sRes.results[i].KPI_TYPE == '人均营业收入') {
 						counta = 0;
 						for (var a in xData) {
