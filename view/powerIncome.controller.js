@@ -1729,7 +1729,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 						type: 'bar',
 						stack: '发电收入',
 						data: KPI_FZS_V
-                            },
+                            }
                         ]
 			};
 
