@@ -101,7 +101,40 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
 		}, this);
 	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_02_V02?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	
+	_loadRunningStateData : function(){
+	    var KPI_INC_V;
+	    var KPI_INC_UP;
+		var mParameters = {};
+		mParameters['async'] = true;
+	    
+		mParameters['success'] = jQuery.proxy(function(sRes) {
+			//设置数据
+			var date=new Date();
+            var year=date.getFullYear(); 
+            var month=date.getMonth()+1;
+            var day = date.getDate() - 1;
+            if(day == 0){
+                var lastday = new Date(getCurrentMonthFirst().setDate(getCurrentMonthFirst().getDate()-1));
+                day = lastday;
+                month = month - 1;
+            }
+            month =(month<10 ? "0"+month:month); 
+            day = (day<10 ? "0"+day:day); 
+            var mydate = (year.toString()+month.toString() + day.toString());
+			for (var i in sRes.results) {
+				if (sRes.results[i].KPI_TYPE == '装机容量' && sRes.results[i].KPI_DESC == '浙能电力'){
+				    KPI_INC_V = sRes.results[i].KPI_VALUE;
+				}
+			}
+			document.getElementById('runningStateDate').innerHTML = year.toString() + '年' + month.toString() + '月' + day.toString() + '日';
+			document.getElementById('runningState').innerHTML = KPI_INC_V;
+// 			this._loadDataInitial(daytime,weather,temperature,place);
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			alert("数据分析中,请稍后......");
+		}, this);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_YWQK_01_V01?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	},
 	_loadDataInitial : function(daytime,weather,temperature,place){
 	    var daytime01;
 	    var daytime02;
@@ -245,6 +278,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
         this._loadData();
         this._loadData_top();
         this._loadDailyPowerOutputData();
+        this._loadRunningStateData();
         // 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi,valueGDP,valueCPItongbi,valuePPItongbi,valuePMIproduce,valuePMInonProduce,valueGDPTotal);  
 	},

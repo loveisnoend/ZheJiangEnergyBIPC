@@ -324,6 +324,19 @@
                 // safeProduceDaysDate = 
                 app.to("idFuelStorage","show");
             }
+            // add by qutingyi
+            // 发电量完成情况
+            function toPowerOutputFinishPage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idPowerOutputFinish","show");
+            }
+            // 发电量完成情况
+            function toRunningStatePage() {
+                // TODO wait for the selected date functionality
+                // safeProduceDaysDate = 
+                app.to("idRunningState","show");
+            }
 		</script>
 		<script>
 		    var usrid = "ERPTEST1";
@@ -338,7 +351,7 @@
 				var dailyProfitDetail;
 				var internetPowerVolume;
 				// 发电和供热收入
-				var powerAndHeatIncome
+				var powerAndHeatIncome;
 				// wait event
 				// 日利润
 				var isInternetPowerVolumeLoad = false;
@@ -473,7 +486,11 @@
 				
 				//业务情况
 				var tab;
-				
+				// add by qutingyi
+				// 发电量完成情况
+				var powerOutputFinish;
+				// 运行情况
+				var runningState;
 				// 经营业绩
 				var home;
 				// 宏观环境
@@ -860,7 +877,7 @@
             		 // 资产现金回收率
             		 pureCashFlux = sap.ui.view({
             			id: "idPureCashFlux",
-            			viewName: "com.zhenergy.pcbi.view.propertyPercent",
+            			viewName: "com.zhenergy.pcbi.view.pureCashFlux",
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(pureCashFlux);
@@ -1000,8 +1017,21 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(totalDefects);
-					 app.placeAt("content");
-					 
+            		 // add by qutingyi
+					 // 发电量完成情况
+            		 powerOutputFinish = sap.ui.view({
+            			id: "idPowerOutputFinish",
+            			viewName: "com.zhenergy.pcbi.view.powerOutputFinish",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(powerOutputFinish);
+            		 // 运行情况
+            		 runningState = sap.ui.view({
+            			id: "idRunningState",
+            			viewName: "com.zhenergy.pcbi.view.runningState",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(runningState);
             		 // 燃料库存统计
             		 fuelStorage = sap.ui.view({
             			id: "idFuelStorage",

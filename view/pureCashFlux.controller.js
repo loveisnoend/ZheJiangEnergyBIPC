@@ -429,7 +429,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 				},
 				legend: {
 					orient: 'horizontal',
-					show: false,
+					show: true,
 					x: '120',
 					y: '35',
 					textStyle: {
