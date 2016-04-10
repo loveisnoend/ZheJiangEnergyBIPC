@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b style='cursor:pointer;'>资产负债情况</b> > <b>"+timeLabel+"浙能电力资产负债情况</b>"+
+                                "<b onClick='doit7(2)' style='cursor:pointer;'>资产负债情况</b> > <b>"+timeLabel+"浙能电力资产负债情况</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)

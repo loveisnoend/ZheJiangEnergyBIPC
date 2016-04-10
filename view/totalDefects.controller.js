@@ -40,7 +40,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 	// 获取三级页面数据
 	_loadData01: function() {
 
-		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangNoHomeBase');
 		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
 		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
@@ -93,8 +93,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 				}
 				// 统计日期
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-						.substring(4, 6) +"."+sRes.results[i].KPI_DATE.substring(6,8);
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE.substring(4, 6) +"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
@@ -339,7 +338,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
             }
 // 			document.getElementById('profitNameTotalDefects').innerHTML = document.getElementById('powerPlantMainDetailTitleTotalDefects').innerHTML;
 			var color1 = '#A704CA';
-			var color2 = '#E52DE6';
+			var color2 = '#CA8622';
 			var option = {
 				title: {
 					text: priceChartName,
@@ -352,8 +351,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 					}
 				},
 				legend: {
+				    show : true,
 					orient: 'horizontal',
-					show: false,
 					x: '120',
 					y: '35',
 					textStyle: {
@@ -425,7 +424,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
                         ],
 				series: [
 					{
-						name: priceChartName,
+						name: '一类缺陷总数',
 						type: 'bar',
 						symbol: 'emptyCircle',
 						symbolSize: 5,
@@ -435,7 +434,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 									show: true,
 									position: 'top',
 									textStyle: {
-										color: 'white'
+										color: '#A704CA'
 									}
 								}
 							}
@@ -443,7 +442,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 						data: KPI_DEF_1
                     },
 					{
-						name: priceChartName,
+						name: '二类缺陷总数',
 						type: 'bar',
 						symbol: 'emptyCircle',
 						symbolSize: 5,
@@ -453,7 +452,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 									show: true,
 									position: 'top',
 									textStyle: {
-										color: 'green'
+										color: '#CA8622'
 									}
 								}
 							}

@@ -39,7 +39,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 	// 获取三级页面数据
 	_loadData01: function() {
 
-		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangNoHomeBase');
 		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
 		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
@@ -196,7 +196,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCountPerHour", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 
-				if (sRes.results[i].KPI_DESC != "浙能电力") {
+				if (sRes.results[i].KPI_DESC != "浙能电力" && sRes.results[i].KPI_DESC != "浙能电力本部") {
 					if (sRes.results[i].KPI_TYPE == '发电生产率') {
 						counta = 0;
 						for (var a in xData) {

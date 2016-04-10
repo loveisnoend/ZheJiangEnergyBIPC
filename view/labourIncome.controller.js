@@ -352,17 +352,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.labourIncome", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 劳务收入收入同比
-				if (sRes.results[i].KPI_TYPE == '劳务收入_同比') {
-					KPI_LWS_UP.push(sRes.results[i].KPI_VALUE);
-					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
-					    xData.push(sRes.results[i].KPI_DESC);  
-					}
-				}
-				// 劳务收入收入
-				if (sRes.results[i].KPI_TYPE == '劳务收入') {
-					KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
-				}
+			    if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+    				// 劳务收入收入同比
+    				if (sRes.results[i].KPI_TYPE == '劳务收入_同比') {
+    					KPI_LWS_UP.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);  
+    				}
+    				// 劳务收入收入
+    				if (sRes.results[i].KPI_TYPE == '劳务收入') {
+    					KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+			    }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE

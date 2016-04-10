@@ -57,6 +57,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
             var currentMonthUp = 0;
             //累计
             var industryUpSum = 0;
+
+            // 浙能电力每股收益
+            //当月
+            var KPI_EPS_M_MGSY = 0;
+            //累计
+            var KPI_EPS_M_MGSYUP = 0;
             
             // 全社会用电量-浙江省
             // 省-社会用电量(当月)
@@ -111,6 +117,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
             // 统计日期
             var daytime = null;
 			for (var i in sRes.results) {
+			    
+			    // 浙能电力每股收益(当月)
+				if (sRes.results[i].KPI_ID == 'KPI_EPS_M_MGSY'){  
+				    KPI_EPS_M_MGSY = sRes.results[i].KPI_VALUE;
+				}
+				// 浙能电力每股收益(年度累计)
+				if (sRes.results[i].KPI_ID == 'KPI_EPS_M_MGSY_UP'){  
+				    KPI_EPS_M_MGSY_UP = (sRes.results[i].KPI_VALUE*100).toFixed(2);
+				}
+				
 			    // 工业增加值(当月)
 				if (sRes.results[i].KPI_ID == 'KPI_IAV_M_0000'){  
 				    currentMonthUp = (sRes.results[i].KPI_VALUE*100).toFixed(2);
@@ -175,21 +191,22 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
 				    KPI_FDL_YT_TOTA = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
 				
+				// Change to 浙江省煤电利用小时
 				// 全国平均利用小时
-				// 全国平均利用小时(当月) 
-				if (sRes.results[i].KPI_ID == 'KPI_LYH_M_TOTA'){  
+				// 全国平均利用小时(当月)  浙江省煤电利用小时(当月)
+				if (sRes.results[i].KPI_ID == 'KPI_LYH_M_ZJMD'){  
 				    KPI_LYH_M_TOTA = sRes.results[i].KPI_VALUE;
 				}
-				// 全国平均利用小时同比(当月)
-				if (sRes.results[i].KPI_ID == 'KPI_LYH_MT_TOTA'){  
+				// 全国平均利用小时同比(当月) 浙江省煤电利用小时(当月)同比
+				if (sRes.results[i].KPI_ID == 'KPI_LYH_MT_ZJMD'){  
 				    KPI_LYH_MT_TOTA = sRes.results[i].KPI_VALUE;
 				}
-				// 全国平均利用小时(年度累计)
-				if (sRes.results[i].KPI_ID == 'KPI_LYH_Y_TOTA'){  
+				// 全国平均利用小时(年度累计) 浙江省煤电利用小时(年度累计)
+				if (sRes.results[i].KPI_ID == 'KPI_LYH_Y_ZJMD'){  
 				    KPI_LYH_Y_TOTA = sRes.results[i].KPI_VALUE
 				}
-				// 全国平均利用小时同比(年度累计)
-				if (sRes.results[i].KPI_ID == 'KPI_LYH_YT_TOTA'){  
+				// 全国平均利用小时同比(年度累计) 浙江省煤电利用小时(年度累计)同比
+				if (sRes.results[i].KPI_ID == 'KPI_LYH_YT_ZJMD'){  
 				    KPI_LYH_YT_TOTA = sRes.results[i].KPI_VALUE;
 				}
 				
@@ -215,10 +232,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
 			$('#currentMonthUp').html(currentMonthUp);
 			// 工业增加值(年度累计)
 			$('#industryUpSum').html(industryUpSum+'%');
+
+			// 浙能电力每股收益(当月)
+			$('#KPI_EPS_M_MGSY').html(KPI_EPS_M_MGSY);
+			// 浙能电力每股收益(年度累计)
+			$('#tongbiKPI_EPS_M_MGSYUp').html(0+'%');
 			
 			// 全社会用电量-浙江省
 			// 省-社会用电量(当月)
-			$('#socialPowerVolumeMonthUp').html(KPI_TEC_M_0000);
+			$('#socialPowerVolumeMonthUp001').html(KPI_TEC_M_0000);
+			
 			// 省-社会用电量同比(当月)
 			$('#tongbiSocialPowerVolumeMonthUp').html(KPI_TEC_MT_0000);
 			if (KPI_TEC_MT_0000 < 0) {
@@ -287,7 +310,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
 
 			// 全国平均利用小时
 			// 全国平均利用小时(当月) 
-			$('#averUsePerHourMonthUp').html(KPI_LYH_M_TOTA);
+			$('#averUsePerHourMonthUp001').html(KPI_LYH_M_TOTA);
 			// 全国平均利用小时同比(当月)
 			$('#tongbiAverUsePerHourMonthUp').html(KPI_LYH_MT_TOTA);
 			if (KPI_LYH_MT_TOTA < 0) {
@@ -326,10 +349,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
     	       daytime02 = daytime.substring(4,6);
     	       daytime03 = daytime.substring(6,8); 
     	    }
+    	    // 浙能电力每股收益
+	        $('#KPI_EPS_M_MGSYDate').html(daytime01 + "年" + daytime02 + "月");
             // 全国工业增加值增长速度
 	        $('#industryUpSumDate').html(daytime01 + "年" + daytime02 + "月");
 	        // 全社会用电量-浙江省
-	        $('#socialPowerVolumeDate').html(daytime01 + "年" + daytime02 + "月");
+	        $('#socialPowerVolumeDate001').html(daytime01 + "年" + daytime02 + "月");
 	        // 全社会用电量-所有产业
 	        $('#allIndustryDate').html(daytime01 + "年" + daytime02 + "月");
 	        // 全国发电量

@@ -78,17 +78,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureProfitDetail", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 净利润同比
-				if (sRes.results[i].KPI_TYPE == '净利润_同比') {
-					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 净利润
-				if (sRes.results[i].KPI_TYPE == '净利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
-					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
-					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
-						xData.push(sRes.results[i].KPI_DESC);
-					}
-				}
+			    if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+    				// 净利润同比
+    				if (sRes.results[i].KPI_TYPE == '净利润_同比') {
+    					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 净利润
+    				if (sRes.results[i].KPI_TYPE == '净利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+    					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+			    }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE

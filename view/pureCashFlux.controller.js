@@ -43,7 +43,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 	// 获取三级页面数据
 	_loadData01: function() {
 
-		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangNoHomeBase');
 		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
 		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
@@ -208,56 +208,58 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 净现金流量同比
-				// if (sRes.results[i].KPI_TYPE == '净现金流量_同比') {
-				// 	KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
-				// }
-				// // 净现金流量
-				// if (sRes.results[i].KPI_TYPE == '净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
-				//     if(sRes.results[i].KPI_DESC == '浙能电力本部'){
-				        
-				//     }else{
-				        
-    // 					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
-    // 					xData.push(sRes.results[i].KPI_DESC);
-				//     }
-				// }
-				// add by qutingyi
-				// 经营活动净现金流量
-				if (sRes.results[i].KPI_TYPE == '经营活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
-				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
-				        
-				    }else{
-				        if(xData.indexOf(sRes.results[i].KPI_DESC) == -1){
-				            
-    					    xData.push(sRes.results[i].KPI_DESC);
-				        }
-				        KPI_JYHD_V.push(sRes.results[i].KPI_VALUE);
-				    }
-				}
-				// 筹资活动净现金流量
-				if (sRes.results[i].KPI_TYPE == '筹资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
-				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
-				        
-				    }else{
-				        
-    				    if(xData.indexOf(sRes.results[i].KPI_DESC) == -1){
-    					    xData.push(sRes.results[i].KPI_DESC);
-				        }
-				        KPI_CZHD_V.push(sRes.results[i].KPI_VALUE);
-				    }
-				}
-				//  投资活动净现金流量
-				if (sRes.results[i].KPI_TYPE == '投资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
-				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
-				        
-				    }else{
-				        if(xData.indexOf(sRes.results[i].KPI_DESC) == -1){
-        					xData.push(sRes.results[i].KPI_DESC);
-				        }
-    				    KPI_TZHD_V.push(sRes.results[i].KPI_VALUE);
-				    }
-				}
+			    if(sRes.results[i].KPI_DESC != '浙能电力'){
+    				// 净现金流量同比
+    				// if (sRes.results[i].KPI_TYPE == '净现金流量_同比') {
+    				// 	KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
+    				// }
+    				// // 净现金流量
+    				// if (sRes.results[i].KPI_TYPE == '净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+    				//     if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+    				        
+    				//     }else{
+    				        
+        // 					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+        // 					xData.push(sRes.results[i].KPI_DESC);
+    				//     }
+    				// }
+    				// add by qutingyi
+    				// 经营活动净现金流量
+    				if (sRes.results[i].KPI_TYPE == '经营活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+    				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+    				        
+    				    }else{
+    				        if(xData.indexOf(sRes.results[i].KPI_DESC) == -1){
+    				            
+        					    xData.push(sRes.results[i].KPI_DESC);
+    				        }
+    				        KPI_JYHD_V.push(sRes.results[i].KPI_VALUE);
+    				    }
+    				}
+    				// 筹资活动净现金流量
+    				if (sRes.results[i].KPI_TYPE == '筹资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+    				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+    				        
+    				    }else{
+    				        
+        				    if(xData.indexOf(sRes.results[i].KPI_DESC) == -1){
+        					    xData.push(sRes.results[i].KPI_DESC);
+    				        }
+    				        KPI_CZHD_V.push(sRes.results[i].KPI_VALUE);
+    				    }
+    				}
+    				//  投资活动净现金流量
+    				if (sRes.results[i].KPI_TYPE == '投资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+    				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+    				        
+    				    }else{
+    				        if(xData.indexOf(sRes.results[i].KPI_DESC) == -1){
+            					xData.push(sRes.results[i].KPI_DESC);
+    				        }
+        				    KPI_TZHD_V.push(sRes.results[i].KPI_VALUE);
+    				    }
+    				}
+			    }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE

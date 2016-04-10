@@ -1,4 +1,4 @@
-sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
+sap.ui.controller("com.zhenergy.pcbi.view.mainBusinessDetail", {
 
 	/**
 	 * Called when a controller detail_01 instantiated and its View controls (if available) are already created.
@@ -10,7 +10,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
 			    //AC-Gates 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
-			    var sIdentical = "WorkerCostPerHour";
+			    var sIdentical = "MainBusinessDetail";
 				//AC-Gates 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-Gates 页面增加动态的时间日期标签
@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-Gates 更改下面的文字和onclick方法
-                                "<b onClick='doit2(8)' style='cursor:pointer;'>经营业绩</b> > <b>"+timeLabel+"浙能电力单位产出成本</b>"+
+                                "<b onClick='toMainBusinessPage()' style='cursor:pointer;'>浙能电力主营业务收入</b> > <b>"+timeLabel+"主营业务收入详细</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -29,8 +29,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 	// eventment before show the page 
 	onAfterShow: function() {
 
-		document.getElementById('internetDetailWorkerCostPerHour').style.display = "";
-		document.getElementById('rlcb_detailWorkerCostPerHour').style.display = "none";
+		document.getElementById('internetDetailMainBusinessDetail').style.display = "";
+		document.getElementById('rlcb_detailMainBusinessDetail').style.display = "none";
 		// this.loadChart();
 		this._loadData01();
 		// 设定头部跑马灯信息 common.js
@@ -52,140 +52,23 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 		// change the page skin
 		changeTheSkinOfPage();
 	},
-	// 	loadmjChart: function(divId){
-	//         require(
-	//         [
-	//             'echarts',
-	//             'echarts/chart/line',
-	//             'echarts/chart/bar'
-	//         ],
-	// 		draw);
 
-	// 		function draw(e){
-	// 		    document.getElementById('caloriWorkerCostPerHourPlantNameWorkerCostPerHour').innerHTML = document.getElementById('powerPlantMainDetailTitleWorkerCostPerHour').innerHTML;
-	// 		    var mychart = e.init(document.getElementById(divId));
-	// 		    var option = {
-	// 		        title:{
-	//             	text:'煤炭价格变化',
-	//             	textStyle:{
-	// 					color:'white',
-	// 					fontFamily:'微软雅黑'
-	// 				},
-	// 				x:'50',
-	// 				y:'10'
-	//             },
-	//   			legend: {
-	//               	orient:'horizontal',
-	//               	x:'350',
-	//               	y:'15',
-	//               	textStyle:{
-	// 					color:'white',
-	// 					fontFamily:'微软雅黑'
-	// 				},
-	//     			data:['实际采购价格','秦港煤价']
-	//   		 	},
-	//   			color: ['#2DE630', '#E52DE6','white'],
-	// 			grid: {
-	//                 y1:100,
-	//                 y2:100
-	// 			},
-	// 			xAxis: [
-	// 				{
+	// 获取浙能电力指标-主营业务收入 SCREEN_ZCQK_02_V01
+	loadBase_SupplyMainBusinessDetailIncome: function(chartDivId, priceChartName) {
 
-	// 					//show: false,
-	// 					type: 'category',
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}'
-	// 					},
-	// 					data: ['7/23', '7/24', '7/25', '7/26', '7/27', '7/28', '7/29', '7/30']
-	//                 }
-	//             ],
-	// 			yAxis: [
-	// 				{
-	// 					name: '',
-	// 					type: 'value',
-	// 					axisLine: {
-	// 						show: false
-	// 					},
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}'
-	// 					},
-	// 					// 		splitLine: {
-	// 					// 			show: false
-	// 					// 		},
-	// 					splitLine: {
-	// 						// 			show: false
-	// 						lineStyle: {
-	// 							color: 'rgba(64,64,64,0.5)'
-	// 						}
-	// 					}
-	//                 },
-	// 				{
-	// 					name: '',
-	// 					type: 'value',
-	// 					axisLine: {
-	// 						show: false
-	// 					},
-	// 					axisLabel: {
-	// 						textStyle: {
-	// 							color: 'white'
-	// 						},
-	// 						formatter: '{value}%'
-	// 					},
-	// 					splitLine: {
-	// 						// 			show: false
-	// 						lineStyle: {
-	// 							//color: 'rgba(64,64,64,0.5)',
-	// 						}
-	// 					}
-	//                 }
-	//             ],
-	// 			series: [
-	// 				{
-	// 					name: '实际采购价格',
-	// 					type: 'line',
-	// 					smooth: true,
-	//                  	barGap: '0%',
-	//                   	barCategoryGap: '50%',
-	// 					// itemStyle: {normal: {areaStyle: {type: 'default'}}},
-	// 					data: ['0.50','0.18','0.37','0.18','0.50','0.18','0.50','0.18','0.18','0.37','0.18']
-	//                 },
-	// 				{
-	// 					name: '秦港煤价',
-	// 					type: 'line',
-	// 					smooth: true,
-
-	// 					//itemStyle: {normal: {areaStyle: {type: 'default'}}},
-	// 					data: ['0.30','0.14','0.34','0.13','0.40','0.12','0.40','0.08','0.15','0.27','0.14']
-
-	//                 }
-	//             ]
-	// 		    };
-	// 		    mychart.setOption(option);
-	// 		}
-
-	// 	},
-
-	// 获取浙能电力指标-单位万千瓦时人工成本 SCREEN_FZBZ_02_V02
-	loadBase_SupplyWorkerCostPerHourIncome: function(chartDivId, priceChartName) {
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
 		});
 		if (busy) {
 			busy.open();
 		}
-		// 单位万千瓦时人工成本指标
-		// 单位万千瓦时人工成本
-		var KPI_LWS_V = new Array();
 
-		// 单位万千瓦时人工成本同比
-		var KPI_LWS_UP = new Array();
+		// 主营业务收入指标
+		// 主营业务收入
+		var KPI_JZC_V = new Array();
+
+		// 主营业务收入同比
+		var KPI_JZC_UP = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -195,92 +78,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-
-				if (sRes.results[i].KPI_DESC != "浙能电力" && sRes.results[i].KPI_DESC != "浙能电力本部") {
-					if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本') {
-						counta = 0;
-						for (var a in xData) {
-							if (sRes.results[i].KPI_DESC == xData[a]) {
-								KPI_LWS_V[a] = sRes.results[i].KPI_VALUE;
-								// 收入统计日期
-								dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6);
-								counta++;
-							}
-						}
-						if (counta == 0) {
-							KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
-							xData.push(sRes.results[i].KPI_DESC);
-						}
+				// 主营业务收入同比
+				if (sRes.results[i].KPI_TYPE == '主营业务收入_同比') {
+					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
+				}
+				// 主营业务收入
+				if (sRes.results[i].KPI_TYPE == '主营业务收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+					if (sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DESC != '浙能电力') {
+					    KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+						xData.push(sRes.results[i].KPI_DESC);
 					}
-				}
-			}
-			// 			for (var i in sRes.results) {
-			// 				// 单位万千瓦时人工成本收入同比
-			// 				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本_同比') {
-			// 					KPI_LWS_UP.push(sRes.results[i].KPI_VALUE);
-			// 					xData.push(sRes.results[i].KPI_DESC);
-			// 				}
-			// 				// 单位万千瓦时人工成本收入
-			// 				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本') {
-			// 					KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
-			// 				}
-			// 				// 收入统计日期
-			// 				if (dataStatisticDate == '') {
-			// 					dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
-			// 				}
-			// 			}
-			// 统计于日期
-// 			$('#workerCostPerHourIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '单位产出成本') {
-				this.loadBaseDataDetail_SupplyWorkerCostPerHourIncome(chartDivId, priceChartName, xData, KPI_LWS_V, KPI_LWS_UP);
-			}
-			if (busy) {
-				busy.close();
-			}
-		}, this);
-		mParameters['error'] = jQuery.proxy(function(eRes) {
-			sap.m.MessageToast.show("获取数据失败", {
-				offset: '0 -110'
-			});
-			if (busy) {
-				busy.close();
-			}
-		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V05/?$filter=(BNAME eq '" + usrid + "')", mParameters);
-	},
-	// 获取个电厂指标-单位万千瓦时人工成本 SCREEN_FZBZ_02_V05
-	loadEachPlant_SupplyWorkerCostPerHourIncome: function(chartDivId, priceChartName, powerPlantName) {
-
-		var busy = new sap.m.BusyDialog({
-			close: function(event) {}
-		});
-		if (busy) {
-			busy.open();
-		}
-
-		// 单位万千瓦时人工成本指标
-		// 单位万千瓦时人工成本
-		var KPI_DLC_V = new Array();
-
-		// 单位万千瓦时人工成本同比
-		var KPI_DLC_UP = new Array();
-
-		var dataStatisticDate = '';
-		var mParameters = {};
-		mParameters['async'] = true;
-		mParameters['success'] = jQuery.proxy(function(sRes) {
-
-			// 各个电厂月份指标
-			var xData = new Array();
-			for (var i in sRes.results) {
-				// 单位万千瓦时人工成本收入同比
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本_同比') {
-					KPI_DLC_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 单位万千瓦时人工成本收入
-				if (sRes.results[i].KPI_TYPE == '单位万千瓦时人工成本' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_DLC_V.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
@@ -289,9 +96,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 				}
 			}
 			// 统计于日期
-// 			$('#workerCostPerHourIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '单位产出成本') {
-				this.loadBaseDataDetail_WorkerCostPerHourIncome(chartDivId, priceChartName, xData, KPI_DLC_V, KPI_DLC_UP);
+// 			$('#mainBusinessDetailIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '主营业务收入') {
+				this.mainBusinessDetail(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
 			if (busy) {
 				busy.close();
@@ -302,30 +109,86 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V05/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V10/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-单位万千瓦时人工成本
-	loadBaseDataDetail_SupplyWorkerCostPerHourIncome: function(chartDivId, priceChartName, xData, KPI_RJS_V, KPI_RJS_UP) {
+	// 获取个电厂指标-主营业务收入 SCREEN_ZCQK_02_V01
+	loadEachPlant_SupplyMainBusinessDetailIncome: function(chartDivId, priceChartName, powerPlantName) {
+
+		var busy = new sap.m.BusyDialog({
+			close: function(event) {}
+		});
+		if (busy) {
+			busy.open();
+		}
+
+		// 主营业务收入指标
+		// 主营业务收入
+		var KPI_JZC_V = new Array();
+
+		// 主营业务收入同比
+		var KPI_JZC_UP = new Array();
+
+		var dataStatisticDate = '';
+		var mParameters = {};
+		mParameters['async'] = true;
+		mParameters['success'] = jQuery.proxy(function(sRes) {
+
+			// 各个电厂月份指标
+			var xData = new Array();
+			for (var i in sRes.results) {
+				// 主营业务收入同比
+				if (sRes.results[i].KPI_TYPE == '主营业务收入_同比') {
+					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
+				}
+				// 主营业务收入
+				if (sRes.results[i].KPI_TYPE == '主营业务收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+					xData.push(sRes.results[i].KPI_DATE);
+				}
+				// 收入统计日期
+				if (dataStatisticDate == '') {
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
+						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				}
+			}
+			// 统计于日期
+// 			$('#mainBusinessDetailIncomeStatisticDate').html(dataStatisticDate);
+			if (priceChartName == '主营业务收入') {
+				this.loadBaseDataDetail_MainBusinessDetailIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
+			}
+			if (busy) {
+				busy.close();
+			}
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			sap.m.MessageToast.show("数据分析中,请稍后......", {
+				offset: '0 -110'
+			});
+		}, this);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V10/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+	},
+	// 加载浙能电力-主营业务收入
+	mainBusinessDetail: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+
 		require(
-	            [
-	                'echarts',
-	                'echarts/chart/line',
-	                'echarts/chart/bar'
-	            ],
+            [
+                'echarts',
+                'echarts/chart/line',
+                'echarts/chart/bar'
+            ],
 			draw);
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitleWorkerCostPerHour')
-				.innerHTML == "浙能电力") {
-				document.getElementById('profitNameWorkerCostPerHour').innerHTML = "浙能电力股份有限公司";
-			} else {
-				document.getElementById('profitNameWorkerCostPerHour').innerHTML = document.getElementById(
-					'powerPlantMainDetailTitleWorkerCostPerHour')
-					.innerHTML;
-			}
-			// document.getElementById('profitNameWorkerCostPerHour').innerHTML = document.getElementById('powerPlantMainDetailTitleWorkerCostPerHour').innerHTML;
-			var color1 = '#2DE630';
+			if(document.getElementById('powerPlantMainDetailTitleMainBusinessDetail')
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameMainBusinessDetail').innerHTML="浙能电力股份有限公司";
+}else{
+document.getElementById('profitNameMainBusinessDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleMainBusinessDetail')
+.innerHTML;
+}
+// 			document.getElementById('profitNameMainBusinessDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleMainBusinessDetail').innerHTML;
+			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {
 				title: {
@@ -340,13 +203,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 				},
 				legend: {
 					orient: 'horizontal',
+					show: false,
 					x: '120',
 					y: '35',
 					textStyle: {
 						color: 'white',
 						fontFamily: '微软雅黑'
 					},
-					data: [priceChartName]
+					data: ['主营业务收入']
 				},
 				tooltip: {
 					trigger: 'axis',
@@ -359,7 +223,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 						type: 'none'
 					}
 				},
-				color: specialColorArray,//[color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -384,7 +248,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
                         ],
 				yAxis: [
 					{
-						name: '单位:元/千瓦时',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -395,23 +259,23 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 							},
 							formatter: '{value}'
 						},
-						// splitLine: {
-						// show: false
-						// },
+						// 		splitLine: {
+						// 			show: false
+						// 		},
 						splitLine: {
-							// show: false
+							// 			show: false
 							lineStyle: {
 								color: 'rgba(64,64,64,0.5)'
 							}
 						}
-						// max: y1,
-						// min: y2,
-						// splitNumber: n
+						// 		max: y1,
+						// 		min: y2,
+						// 		splitNumber: n
                             }
                         ],
 				series: [
 					{
-						name: priceChartName,
+						name: '主营业务收入',
 						type: 'bar',
 						symbol: 'emptyCircle',
 						symbolSize: 5,
@@ -426,15 +290,35 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 								}
 							}
 						},
-						data: KPI_RJS_V
+						data: KPI_JZC_V
                             }
+            //                 {
+            //                     name:'主营业务收入同比',
+            //                     type:'line',
+            //                     symbol:'emptyCircle',
+        				// 		symbolSize:5,
+        				// 		itemStyle: {
+        				// 		    normal: {
+        				// 		        label : {
+        				// 		            show :true,
+        				// 		            position : 'top',
+        				// 		            textStyle:{
+        				// 		                color : 'white'
+        				// 		            }
+        				// 		        }
+        				// 		    }
+        				// 		},
+            //                     barWidth : 50,
+            //                     data:KPI_LWS_UP
+            //                 }
                         ]
 			};
+
 			mychart.setOption(option);
 		}
 	},
-	// 加载浙能电力-单位万千瓦时人工成本指标
-	loadBaseDataDetail_WorkerCostPerHourIncome: function(chartDivId, priceChartName, xData, KPI_DLC_V, KPI_DLC_UP) {
+	// 加载浙能电力-主营业务收入指标
+	loadBaseDataDetail_MainBusinessDetailIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 		require(
             [
                 'echarts',
@@ -445,14 +329,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitleWorkerCostPerHour')
-				.innerHTML == "浙能电力") {
-				document.getElementById('profitNameWorkerCostPerHour').innerHTML = "浙能电力股份有限公司";
-			} else {
-				document.getElementById('profitNameWorkerCostPerHour').innerHTML = document.getElementById(
-					'powerPlantMainDetailTitleWorkerCostPerHour')
-					.innerHTML;
-			}
+			if(document.getElementById('powerPlantMainDetailTitleMainBusinessDetail')
+.innerHTML=="浙能电力"){
+   document.getElementById('profitNameMainBusinessDetail').innerHTML="浙能电力股份有限公司";
+}else{
+document.getElementById('profitNameMainBusinessDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleMainBusinessDetail')
+.innerHTML;
+}
+// 			document.getElementById('profitNameMainBusinessDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleMainBusinessDetail').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {
@@ -488,7 +372,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -501,19 +385,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 							textStyle: {
 								color: 'white'
 							},
-							formatter: '{value}',
-							show: true,
-							interval: 'auto',
-							inside: false,
-							rotate: 30,
-							margin: 8
+							formatter: '{value}'
 						},
 						data: xData
                             }
                         ],
 				yAxis: [
 					{
-						name: '单位:元/千瓦时',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -556,7 +435,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 							}
 						},
 						barWidth: 50,
-						data: KPI_DLC_V
+						data: KPI_JZC_V
                             }
                         ]
 			};
@@ -590,7 +469,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			draw);
 
 		function draw(e) {
-			drawWorkerCostPerHourDistribution(e);
+			drawMainBusinessDetailDistribution(e);
 
 			//   drawpie01(e);
 			// 			drawbar01(e);
@@ -599,14 +478,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			// 			drawbar04(e);
 		}
 
-		function drawWorkerCostPerHourDistribution(ec) {
+		function drawMainBusinessDetailDistribution(ec) {
 
 			// event configure    
 			var ecConfig = require('echarts/config');
 
 // 			///////////////////////////////////中国地图/////////////////////////////////////			
 // 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapWorkerCostPerHour'));
+// 			myChart3 = ec.init(document.getElementById('chinaMapMainBusinessDetail'));
 // 			option3 = {
 // 				tooltip: {
 // 					trigger: 'item',
@@ -642,10 +521,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 // 			// 为echarts对象加载数据 
 // 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleWorkerCostPerHour').innerHTML = '浙能电力股份有限公司';
+			document.getElementById('powerPlantMainDetailTitleMainBusinessDetail').innerHTML = '浙能电力股份有限公司'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			myChart4 = ec.init(document.getElementById('powerPlantMapWorkerCostPerHour'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapMainBusinessDetail'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -830,8 +709,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			};
 			myChart4.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWorkerCostPerHour').style.display = "";
-				document.getElementById('rlcb_detailWorkerCostPerHour').style.display = "none";
+				document.getElementById('internetDetailMainBusinessDetail').style.display = "";
+				document.getElementById('rlcb_detailMainBusinessDetail').style.display = "none";
 
 				var mapSeries = option4.series[0];
 
@@ -894,7 +773,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapWorkerCostPerHour'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapMainBusinessDetail'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -1007,8 +886,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			};
 			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWorkerCostPerHour').style.display = "";
-				document.getElementById('rlcb_detailWorkerCostPerHour').style.display = "none";
+				document.getElementById('internetDetailMainBusinessDetail').style.display = "";
+				document.getElementById('rlcb_detailMainBusinessDetail').style.display = "none";
 
 				var mapSeries = option5.series[0];
 
@@ -1055,7 +934,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapWorkerCostPerHour'));
+			myChart6 = ec.init(document.getElementById('akesuMapMainBusinessDetail'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -1168,8 +1047,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			};
 			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWorkerCostPerHour').style.display = "";
-				document.getElementById('rlcb_detailWorkerCostPerHour').style.display = "none";
+				document.getElementById('internetDetailMainBusinessDetail').style.display = "";
+				document.getElementById('rlcb_detailMainBusinessDetail').style.display = "none";
 
 				var mapSeries = option6.series[0];
 
@@ -1216,7 +1095,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapWorkerCostPerHour'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapMainBusinessDetail'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {
@@ -1329,8 +1208,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			};
 			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWorkerCostPerHour').style.display = "";
-				document.getElementById('rlcb_detailWorkerCostPerHour').style.display = "none";
+				document.getElementById('internetDetailMainBusinessDetail').style.display = "";
+				document.getElementById('rlcb_detailMainBusinessDetail').style.display = "none";
 
 				var mapSeries = option7.series[0];
 
@@ -1502,33 +1381,33 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 		}
 
 		function drawpie01(e) {
-			drawpie(e, 3, 4, 'detail_pieWorkerCostPerHour');
+			drawpie(e, 3, 4, 'detail_pieMainBusinessDetail');
 		}
 
 		function drawbar01(e) {
-			drawbar(e, 4, 6, 'detail_01WorkerCostPerHour');
+			drawbar(e, 4, 6, 'detail_01MainBusinessDetail');
 		}
 
 		function drawbar02(e) {
-			drawbar(e, 7, 3, 'detail_02WorkerCostPerHour');
+			drawbar(e, 7, 3, 'detail_02MainBusinessDetail');
 		}
 
 		function drawbar03(e) {
-			drawbar(e, 3, 7, 'detail_03WorkerCostPerHour');
+			drawbar(e, 3, 7, 'detail_03MainBusinessDetail');
 		}
 
 		function drawbar04(e) {
-			drawbar(e, 8, 2, 'detail_04WorkerCostPerHour');
+			drawbar(e, 8, 2, 'detail_04MainBusinessDetail');
 		}
 		// 设置Chart的数据
 		function setChartData(ec, mapSeries, dataIndex) {
 
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			document.getElementById('powerPlantMainDetailTitleWorkerCostPerHour').innerHTML = powerPlantName;
+			document.getElementById('powerPlantMainDetailTitleMainBusinessDetail').innerHTML = powerPlantName;
 
-			var priceChartId = "priceDetailDivWorkerCostPerHour";
-			var priceChartName = "单位产出成本";
+			var priceChartId = "priceDetailDivMainBusinessDetail";
+			var priceChartName = "主营业务收入";
 			if (powerPlantName == '台二电厂') {
 				powerPlantName = '台二发电';
 			}
@@ -1540,34 +1419,34 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			}
 			if (powerPlantName == '浙能电力') {
 				// TODO
-				workerCostPerHour.getController().loadBase_SupplyWorkerCostPerHourIncome(priceChartId, priceChartName);
-				// workerCostPerHour.getController().loadEachPlant_SupplyWorkerCostPerHourIncome(priceChartId, priceChartName, powerPlantName);
+				mainBusinessDetail.getController().loadBase_SupplyMainBusinessDetailIncome(priceChartId, priceChartName);
+				//mainBusinessDetail.getController().loadEachPlant_SupplyMainBusinessDetailIncome(priceChartId, priceChartName, powerPlantName);
 			} else {
-				workerCostPerHour.getController().loadEachPlant_SupplyWorkerCostPerHourIncome(priceChartId, priceChartName, powerPlantName);
+				mainBusinessDetail.getController().loadEachPlant_SupplyMainBusinessDetailIncome(priceChartId, priceChartName, powerPlantName);
 			}
 			//  // 自产蒸汽
 			//  var selfSteamIncomeVal = mapSeries.markPoint.data[dataIndex].selfSteamIncomeVal;
 			//  if (selfSteamIncomeVal != undefined) {
-			//      document.getElementById('travelPriceWorkerCostPerHour').innerHTML =  selfSteamIncomeVal;
+			//      document.getElementById('travelPriceMainBusinessDetail').innerHTML =  selfSteamIncomeVal;
 			//  } else {
-			//      document.getElementById('travelPriceWorkerCostPerHour').innerHTML = 0;
+			//      document.getElementById('travelPriceMainBusinessDetail').innerHTML = 0;
 			//      selfSteamIncomeVal = 0;
 			//  }
 			//  // 外购蒸汽
 			//  var outSteamIncomeVal = mapSeries.markPoint.data[dataIndex].outSteamIncomeVal;
 			//  if (outSteamIncomeVal != undefined) {
-			//      document.getElementById('coalPriceWorkerCostPerHour').innerHTML = outSteamIncomeVal;
+			//      document.getElementById('coalPriceMainBusinessDetail').innerHTML = outSteamIncomeVal;
 			//  } else {
-			//      document.getElementById('coalPriceWorkerCostPerHour').innerHTML = 0;
+			//      document.getElementById('coalPriceMainBusinessDetail').innerHTML = 0;
 			//      outSteamIncomeVal = 0;
 			//  }
 			//  // 热水
-			//  var workerCostPerHourWaterIncomeVal = mapSeries.markPoint.data[dataIndex].workerCostPerHourWaterIncomeVal;
-			//  if (workerCostPerHourWaterIncomeVal != undefined) {
-			//      document.getElementById('watt1WorkerCostPerHour').innerHTML =  workerCostPerHourWaterIncomeVal;
+			//  var mainBusinessDetailWaterIncomeVal = mapSeries.markPoint.data[dataIndex].mainBusinessDetailWaterIncomeVal;
+			//  if (mainBusinessDetailWaterIncomeVal != undefined) {
+			//      document.getElementById('watt1MainBusinessDetail').innerHTML =  mainBusinessDetailWaterIncomeVal;
 			//  } else {
-			//      document.getElementById('watt1WorkerCostPerHour').innerHTML = 0;
-			//      workerCostPerHourWaterIncomeVal = 0;
+			//      document.getElementById('watt1MainBusinessDetail').innerHTML = 0;
+			//      mainBusinessDetailWaterIncomeVal = 0;
 			//  }
 			//  // 初装费
 			//  var firstFeeIncomeVal = mapSeries.markPoint.data[dataIndex].firstFeeIncomeVal;
@@ -1578,30 +1457,30 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 			//      firstFeeIncomeVal = 0;
 			//  }
 			//  // 供热收入
-			//  var supplyWorkerCostPerHourIncomeVal = mapSeries.markPoint.data[dataIndex].supplyWorkerCostPerHourIncomeVal;
-			//  if (supplyWorkerCostPerHourIncomeVal != undefined) {
-			//      document.getElementById('fuelCostWorkerCostPerHour').innerHTML = supplyWorkerCostPerHourIncomeVal;
+			//  var supplyMainBusinessDetailIncomeVal = mapSeries.markPoint.data[dataIndex].supplyMainBusinessDetailIncomeVal;
+			//  if (supplyMainBusinessDetailIncomeVal != undefined) {
+			//      document.getElementById('fuelCostMainBusinessDetail').innerHTML = supplyMainBusinessDetailIncomeVal;
 			//  } else {
-			//      document.getElementById('fuelCostWorkerCostPerHour').innerHTML = 0;
-			//      supplyWorkerCostPerHourIncomeVal = 0;
+			//      document.getElementById('fuelCostMainBusinessDetail').innerHTML = 0;
+			//      supplyMainBusinessDetailIncomeVal = 0;
 			//  }
 			//  // 供热收入同比
-			//  var supplyWorkerCostPerHourIncomeUP = mapSeries.markPoint.data[dataIndex].supplyWorkerCostPerHourIncomeUP;
-			//  if (supplyWorkerCostPerHourIncomeUP != undefined) {
-			//      document.getElementById('fuelDownPercentWorkerCostPerHour').innerHTML = supplyWorkerCostPerHourIncomeUP;
+			//  var supplyMainBusinessDetailIncomeUP = mapSeries.markPoint.data[dataIndex].supplyMainBusinessDetailIncomeUP;
+			//  if (supplyMainBusinessDetailIncomeUP != undefined) {
+			//      document.getElementById('fuelDownPercentMainBusinessDetail').innerHTML = supplyMainBusinessDetailIncomeUP;
 			//  } else {
-			//      document.getElementById('fuelDownPercentWorkerCostPerHour').innerHTML = 0;
-			//      supplyWorkerCostPerHourIncomeUP = 0;
+			//      document.getElementById('fuelDownPercentMainBusinessDetail').innerHTML = 0;
+			//      supplyMainBusinessDetailIncomeUP = 0;
 			//  }
-			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + workerCostPerHourWaterIncomeVal + firstFeeIncomeVal;
+			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + mainBusinessDetailWaterIncomeVal + firstFeeIncomeVal;
 			//  if (dataAll == 0) {
 			//      dataAll = 10;
 			//  }
-			//  drawpie(ec, supplyWorkerCostPerHourIncomeUP+50, 50, 'detail_pieWorkerCostPerHour');
-			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01WorkerCostPerHour');
-			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02WorkerCostPerHour');
-			//  drawbar(ec, workerCostPerHourWaterIncomeVal, dataAll, 'detail_03WorkerCostPerHour');
-			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04WorkerCostPerHour');
+			//  drawpie(ec, supplyMainBusinessDetailIncomeUP+50, 50, 'detail_pieMainBusinessDetail');
+			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01MainBusinessDetail');
+			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02MainBusinessDetail');
+			//  drawbar(ec, mainBusinessDetailWaterIncomeVal, dataAll, 'detail_03MainBusinessDetail');
+			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04MainBusinessDetail');
 		}
 	}
 });

@@ -53,7 +53,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 			//设置数据
 			var dc = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "") {// sRes.results[i].KPI_DESC != "浙能电力本部" && 
+				if (sRes.results[i].KPI_DESC != "浙能电力本部" && sRes.results[i].KPI_DESC != "") {//  
 					if (dc == null || dc.length == 0) {
 						dc.push(sRes.results[i].KPI_DESC);
 					} else {
@@ -365,45 +365,44 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 自产蒸汽收入同比
-				if (sRes.results[i].KPI_TYPE == '自产蒸汽收入_同比') {
-					KPI_ZZS_UP.push(sRes.results[i].KPI_VALUE);
-					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
-						xData.push(sRes.results[i].KPI_DESC);
-					}
-				}
-				// 自产蒸汽收入
-				if (sRes.results[i].KPI_TYPE == '自产蒸汽收入') {
-					KPI_ZZS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 外购蒸汽收入同比
-				if (sRes.results[i].KPI_TYPE == '外购蒸汽收入_同比') {
-					KPI_WZS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 外购蒸汽收入
-				if (sRes.results[i].KPI_TYPE == '外购蒸汽收入') {
-					KPI_WZS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 热水收入同比
-				if (sRes.results[i].KPI_TYPE == '热水收入_同比') {
-					KPI_RSS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 热水收入
-				if (sRes.results[i].KPI_TYPE == '热水收入') {
-					KPI_RSS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 初装费收入同比
-				if (sRes.results[i].KPI_TYPE == '初装费收入_同比') {
-					KPI_CZS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 初装费收入
-				if (sRes.results[i].KPI_TYPE == '初装费收入') {
-					KPI_CZS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
+			    if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+    				// 自产蒸汽收入同比
+    				if (sRes.results[i].KPI_TYPE == '自产蒸汽收入_同比') {
+    					KPI_ZZS_UP.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+    				// 自产蒸汽收入
+    				if (sRes.results[i].KPI_TYPE == '自产蒸汽收入') {
+    					KPI_ZZS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 外购蒸汽收入同比
+    				if (sRes.results[i].KPI_TYPE == '外购蒸汽收入_同比') {
+    					KPI_WZS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 外购蒸汽收入
+    				if (sRes.results[i].KPI_TYPE == '外购蒸汽收入') {
+    					KPI_WZS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 热水收入同比
+    				if (sRes.results[i].KPI_TYPE == '热水收入_同比') {
+    					KPI_RSS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 热水收入
+    				if (sRes.results[i].KPI_TYPE == '热水收入') {
+    					KPI_RSS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 初装费收入同比
+    				if (sRes.results[i].KPI_TYPE == '初装费收入_同比') {
+    					KPI_CZS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 初装费收入
+    				if (sRes.results[i].KPI_TYPE == '初装费收入') {
+    					KPI_CZS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+                }
 				// 日利润
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE

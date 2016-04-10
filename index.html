@@ -113,6 +113,9 @@
 		        if (detailName == "其他收入") {
 		            app.to("idOthersIncome", "show");
 		        }
+		        if (detailName == "主营业务详细") {
+		            app.to("idMainBusinessDetail", "show");
+		        }
 		        
 		        // 净利润
 		        if (detailName == "净利润") {
@@ -416,6 +419,8 @@
 				var helpPage;
 				// 主营业务
 				var mainBusiness;
+				// 主营业务详细
+				var mainBusinessDetail;
 				// 净利润
 				var pureProfit;
 				
@@ -776,6 +781,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(mainBusiness);
+            		 
+            		 // 主营业务详细
+            		 mainBusinessDetail = sap.ui.view({
+            			id: "idMainBusinessDetail",
+            			viewName: "com.zhenergy.pcbi.view.mainBusinessDetail",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(mainBusinessDetail);
             		 
             		 // 净利润
             		 pureProfit = sap.ui.view({

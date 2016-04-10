@@ -53,7 +53,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			//设置数据
 			var dc = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "") {// sRes.results[i].KPI_DESC != "浙能电力本部" && 
+				if (sRes.results[i].KPI_DESC != "浙能电力本部" && sRes.results[i].KPI_DESC != "") {//  
 					if (dc == null || dc.length == 0) {
 						dc.push(sRes.results[i].KPI_DESC);
 					} else {
@@ -369,72 +369,71 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 合约电量收入同比
-				if (sRes.results[i].KPI_TYPE == '合约电量收入_同比') {
-					KPI_HYS_UP.push(sRes.results[i].KPI_VALUE);
-					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
-						xData.push(sRes.results[i].KPI_DESC);
-					}
-				}
-				// 合约电量收入
-				if (sRes.results[i].KPI_TYPE == '合约电量收入') {
-					KPI_HYS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 直销电量收入同比
-				if (sRes.results[i].KPI_TYPE == '直销电量收入_同比') {
-					KPI_ZGS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 直销电量收入
-				if (sRes.results[i].KPI_TYPE == '直销电量收入') {
-					KPI_ZGS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 替发电量收入同比
-				if (sRes.results[i].KPI_TYPE == '替发电量收入_同比') {
-					KPI_TDS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 替发电量收入
-				if (sRes.results[i].KPI_TYPE == '替发电量收入') {
-					KPI_TDS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 竞价电量收入同比
-				if (sRes.results[i].KPI_TYPE == '竞价电量收入_同比') {
-					KPI_JJS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 竞价电量收入
-				if (sRes.results[i].KPI_TYPE == '竞价电量收入') {
-					KPI_JJS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 其他电量收入同比
-				if (sRes.results[i].KPI_TYPE == '其他电量收入_同比') {
-					KPI_OES_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 其他电量收入
-				if (sRes.results[i].KPI_TYPE == '其他电量收入') {
-					KPI_OES_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 容量电费收入同比
-				if (sRes.results[i].KPI_TYPE == '容量电费收入_同比') {
-					KPI_RLS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 容量电费收入
-				if (sRes.results[i].KPI_TYPE == '容量电费收入') {
-					KPI_RLS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 转发电量收入同比
-				if (sRes.results[i].KPI_TYPE == '转发电量收入_同比') {
-					KPI_ZFS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 转发电量收入
-				if (sRes.results[i].KPI_TYPE == '') {
-					KPI_ZFS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
+			    if (sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DESC != '浙能电力') {
+    				// 合约电量收入同比
+    				if (sRes.results[i].KPI_TYPE == '合约电量收入_同比') {
+    					KPI_HYS_UP.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+    				// 合约电量收入
+    				if (sRes.results[i].KPI_TYPE == '合约电量收入') {
+    					KPI_HYS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 直销电量收入同比
+    				if (sRes.results[i].KPI_TYPE == '直销电量收入_同比') {
+    					KPI_ZGS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 直销电量收入
+    				if (sRes.results[i].KPI_TYPE == '直销电量收入') {
+    					KPI_ZGS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 替发电量收入同比
+    				if (sRes.results[i].KPI_TYPE == '替发电量收入_同比') {
+    					KPI_TDS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 替发电量收入
+    				if (sRes.results[i].KPI_TYPE == '替发电量收入') {
+    					KPI_TDS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 竞价电量收入同比
+    				if (sRes.results[i].KPI_TYPE == '竞价电量收入_同比') {
+    					KPI_JJS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 竞价电量收入
+    				if (sRes.results[i].KPI_TYPE == '竞价电量收入') {
+    					KPI_JJS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 其他电量收入同比
+    				if (sRes.results[i].KPI_TYPE == '其他电量收入_同比') {
+    					KPI_OES_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 其他电量收入
+    				if (sRes.results[i].KPI_TYPE == '其他电量收入') {
+    					KPI_OES_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 容量电费收入同比
+    				if (sRes.results[i].KPI_TYPE == '容量电费收入_同比') {
+    					KPI_RLS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 容量电费收入
+    				if (sRes.results[i].KPI_TYPE == '容量电费收入') {
+    					KPI_RLS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 转发电量收入同比
+    				if (sRes.results[i].KPI_TYPE == '转发电量收入_同比') {
+    					KPI_ZFS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 转发电量收入
+    				if (sRes.results[i].KPI_TYPE == '') {
+    					KPI_ZFS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+			    }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE.substring(4, 6) + "." + sRes.results[sRes.results.length - 1].KPI_DATE.substring(6, 8);
@@ -801,63 +800,62 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 可再生补贴收入同比
-				if (sRes.results[i].KPI_TYPE == '可再生补贴收入_同比') {
-					KPI_ZSS_UP.push(sRes.results[i].KPI_VALUE);
-					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
-						xData.push(sRes.results[i].KPI_DESC);
-					}
-				}
-				// 可再生补贴收入
-				if (sRes.results[i].KPI_TYPE == '可再生补贴收入') {
-					KPI_ZSS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 脱硫补助收入同比
-				if (sRes.results[i].KPI_TYPE == '脱硫补助收入_同比') {
-					KPI_TLS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 脱硫补助收入
-				if (sRes.results[i].KPI_TYPE == '脱硫补助收入') {
-					KPI_TLS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 脱硝补助收入同比
-				if (sRes.results[i].KPI_TYPE == '脱硝补助收入_同比') {
-					KPI_TXS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 脱硝补助收入
-				if (sRes.results[i].KPI_TYPE == '脱硝补助收入') {
-					KPI_TXS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 除尘补助收入同比
-				if (sRes.results[i].KPI_TYPE == '除尘补助收入_同比') {
-					KPI_CCS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 除尘补助收入
-				if (sRes.results[i].KPI_TYPE == '除尘补助收入') {
-					KPI_CCS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 超低排放补助收入同比
-				if (sRes.results[i].KPI_TYPE == '超低排放补助收入_同比') {
-					KPI_DPS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 超低排放补助收入
-				if (sRes.results[i].KPI_TYPE == '超低排放补助收入') {
-					KPI_DPS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
-				// 考核补偿电费收入同比
-				if (sRes.results[i].KPI_TYPE == '考核补偿电费收入_同比') {
-					KPI_KHS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 考核补偿电费收入
-				if (sRes.results[i].KPI_TYPE == '考核补偿电费收入') {
-					KPI_KHS_V.push(sRes.results[i].KPI_VALUE);
-				}
-
+				if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+    				// 可再生补贴收入同比
+    				if (sRes.results[i].KPI_TYPE == '可再生补贴收入_同比') {
+    					KPI_ZSS_UP.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+    				// 可再生补贴收入
+    				if (sRes.results[i].KPI_TYPE == '可再生补贴收入') {
+    					KPI_ZSS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 脱硫补助收入同比
+    				if (sRes.results[i].KPI_TYPE == '脱硫补助收入_同比') {
+    					KPI_TLS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 脱硫补助收入
+    				if (sRes.results[i].KPI_TYPE == '脱硫补助收入') {
+    					KPI_TLS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 脱硝补助收入同比
+    				if (sRes.results[i].KPI_TYPE == '脱硝补助收入_同比') {
+    					KPI_TXS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 脱硝补助收入
+    				if (sRes.results[i].KPI_TYPE == '脱硝补助收入') {
+    					KPI_TXS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 除尘补助收入同比
+    				if (sRes.results[i].KPI_TYPE == '除尘补助收入_同比') {
+    					KPI_CCS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 除尘补助收入
+    				if (sRes.results[i].KPI_TYPE == '除尘补助收入') {
+    					KPI_CCS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 超低排放补助收入同比
+    				if (sRes.results[i].KPI_TYPE == '超低排放补助收入_同比') {
+    					KPI_DPS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 超低排放补助收入
+    				if (sRes.results[i].KPI_TYPE == '超低排放补助收入') {
+    					KPI_DPS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    
+    				// 考核补偿电费收入同比
+    				if (sRes.results[i].KPI_TYPE == '考核补偿电费收入_同比') {
+    					KPI_KHS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 考核补偿电费收入
+    				if (sRes.results[i].KPI_TYPE == '考核补偿电费收入') {
+    					KPI_KHS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+                }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
@@ -1183,17 +1181,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 辅助服务收入同比
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比') {
-					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
-					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
-						xData.push(sRes.results[i].KPI_DESC);
-					}
-				}
-				// 辅助服务收入
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入') {
-					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
-				}
+			    if (sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DESC != '浙能电力') {
+    				// 辅助服务收入同比
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比') {
+    					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+    				// 辅助服务收入
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入') {
+    					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+			    }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
@@ -1237,15 +1235,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			// 各个指标月份
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 辅助服务收入同比
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 辅助服务收入
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DATE);
-				}
+			    if (sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DESC != '浙能电力') {
+    				// 辅助服务收入同比
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比' && sRes.results[i].KPI_DESC == powerPlantName) {
+    					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 辅助服务收入
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+    					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DATE);
+    				}
+			    }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
@@ -1438,42 +1438,41 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-
-				// 发电收入同比
-				if (sRes.results[i].KPI_TYPE == '发电收入_同比') {
-					KPI_FDS_UP.push(sRes.results[i].KPI_VALUE);
-					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
-						xData.push(sRes.results[i].KPI_DESC);
-					}
-				}
-				// 发电收入
-				if (sRes.results[i].KPI_TYPE == '发电收入') {
-					KPI_FDS_V.push(sRes.results[i].KPI_VALUE);
-				}
-				// 售电收入同比
-				if (sRes.results[i].KPI_TYPE == '售电收入_同比') {
-					KPI_SDS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 售电收入
-				if (sRes.results[i].KPI_TYPE == '售电收入') {
-					KPI_SDS_V.push(sRes.results[i].KPI_VALUE);
-				}
-				// 补贴收入同比
-				if (sRes.results[i].KPI_TYPE == '补贴收入_同比') {
-					KPI_BTS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 补贴收入
-				if (sRes.results[i].KPI_TYPE == '补贴收入') {
-					KPI_BTS_V.push(sRes.results[i].KPI_VALUE);
-				}
-				// 辅助服务收入同比
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比') {
-					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 辅助服务收入
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入') {
-					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
-				}
+                if (sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DESC != '浙能电力') {
+    				// 发电收入同比
+    				if (sRes.results[i].KPI_TYPE == '发电收入_同比') {
+    					KPI_FDS_UP.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+    				// 发电收入
+    				if (sRes.results[i].KPI_TYPE == '发电收入') {
+    					KPI_FDS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 售电收入同比
+    				if (sRes.results[i].KPI_TYPE == '售电收入_同比') {
+    					KPI_SDS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 售电收入
+    				if (sRes.results[i].KPI_TYPE == '售电收入') {
+    					KPI_SDS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 补贴收入同比
+    				if (sRes.results[i].KPI_TYPE == '补贴收入_同比') {
+    					KPI_BTS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 补贴收入
+    				if (sRes.results[i].KPI_TYPE == '补贴收入') {
+    					KPI_BTS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 辅助服务收入同比
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比') {
+    					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 辅助服务收入
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入') {
+    					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+                }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE

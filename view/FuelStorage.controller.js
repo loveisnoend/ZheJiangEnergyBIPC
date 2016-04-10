@@ -40,7 +40,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.FuelStorage", {
 	// 获取三级页面数据
 	_loadData01: function() {
 
-		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangNoHomeBase');
 		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
 		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';

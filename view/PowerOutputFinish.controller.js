@@ -15,11 +15,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerOutputFinish", {
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-LOUWW 页面增加动态的时间日期标签
 				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月" + (myDate.getDate()-1) +"日"; //getMonth 1-12月对应0-11  myDate.getDate()-1
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit3(0)' style='cursor:pointer;'>业务情况</b> > <b>"+timeLabel+"浙能电力日发电量</b>"+
+                                "<b onClick='doit4(2)' style='cursor:pointer;'>业务情况</b> > <b>"+timeLabel+"浙能电力日发电量</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)

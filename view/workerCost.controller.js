@@ -39,7 +39,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 	// 获取三级页面数据
 	_loadData01: function() {
 
-		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiang');
+		var zhejiang_dataStr = returnDefualtPowerPlant('zhejiangNoHomeBase');
 		var huaiNan_dataStr = '[{"name":"凤台电厂","inputPlanValue":""}]';
 		var akesu_dataStr = '[{"name":"阿克苏热电","inputPlanValue":""}]';
 		var zhaoquan_dataStr = '[{"name":"枣泉发电","inputPlanValue":""}]';
@@ -196,7 +196,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 
-				if (sRes.results[i].KPI_DESC != "浙能电力") {
+				if (sRes.results[i].KPI_DESC != "浙能电力" && sRes.results[i].KPI_DESC != "浙能电力本部") {
 					if (sRes.results[i].KPI_TYPE == '单位万千瓦人工成本') {
 						counta = 0;
 						for (var a in xData) {
@@ -383,7 +383,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
                         ],
 				yAxis: [
 					{
-						name: '单位:元',
+						name: '单位:元/万千瓦时',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -512,7 +512,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCost", {
                         ],
 				yAxis: [
 					{
-						name: '单位:元',
+						name: '单位:元/万千瓦时',
 						type: 'value',
 						axisLine: {
 							show: true

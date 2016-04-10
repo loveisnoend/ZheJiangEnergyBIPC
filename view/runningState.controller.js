@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.runningState", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit3(0)' style='cursor:pointer;'>业务情况</b> > <b>"+timeLabel+"浙能电力运行情况</b>"+
+                                "<b onClick='doit4(3)' style='cursor:pointer;'>业务情况</b> > <b>"+timeLabel+"浙能电力运行情况</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
