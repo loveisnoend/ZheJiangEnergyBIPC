@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averBusinessIncome", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit8(0)' style='cursor:pointer;'>发展保障</b> > <b>"+timeLabel+"浙能电力人均营业收入</b>"+
+                                "<b onClick='doit2(4)' style='cursor:pointer;'>经营业绩</b> > <b>"+timeLabel+"浙能电力人均营业收入</b>"+
                                 "</span>";
 			    
 			    

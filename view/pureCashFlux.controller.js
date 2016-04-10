@@ -33,10 +33,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 		document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
 		// this.loadChart();
 		this._loadData01();
-		var xData = new Array();
-		var KPI_JZC_V = new Array();
-		var KPI_JZC_UP = new Array();
-		this.pureCashFlux("priceDetailDivPureCashFlux", '净现金流量', xData, KPI_JZC_V, KPI_JZC_UP);
+// 		var xData = new Array();
+// 		var KPI_JZC_V = new Array();
+// 		var KPI_JZC_UP = new Array();
+// 		this.pureCashFlux("priceDetailDivPureCashFlux", '净现金流量', xData, KPI_JZC_V, KPI_JZC_UP);
 		// 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi, valueGDP, valueCPItongbi, valuePPItongbi, valuePMIproduce, valuePMInonProduce, valueGDPTotal);
 	},
@@ -179,12 +179,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 	// 获取浙能电力指标-净现金流量 SCREEN_ZCQK_02_V01
 	loadBase_SupplyPureCashFluxIncome: function(chartDivId, priceChartName) {
 
-// 		var busy = new sap.m.BusyDialog({
-// 			close: function(event) {}
-// 		});
-// 		if (busy) {
-// 			busy.open();
-// 		}
+		var busy = new sap.m.BusyDialog({
+			close: function(event) {}
+		});
+		if (busy) {
+			busy.open();
+		}
 
 		// 净现金流量指标
 		// 净现金流量
@@ -192,6 +192,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 
 		// 净现金流量同比
 		var KPI_JZC_UP = new Array();
+		
+		// 经营活动
+		var KPI_JYHD_V = new Array();
+		// 投资活动
+		var KPI_TZHD_V = new Array();
+		// 筹资活动
+		var KPI_CZHD_V = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -215,6 +222,37 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
     					xData.push(sRes.results[i].KPI_DESC);
 				    }
 				}
+				// add by qutingyi
+				// 经营活动净现金流量
+				if (sRes.results[i].KPI_TYPE == '经营活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+				        
+				    }else{
+				        
+    					KPI_JYHD_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+				    }
+				}
+				// 筹资活动净现金流量
+				if (sRes.results[i].KPI_TYPE == '筹资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+				        
+				    }else{
+				        
+    					KPI_CZHD_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+				    }
+				}
+				//  投资活动净现金流量
+				if (sRes.results[i].KPI_TYPE == ' 投资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+				        
+				    }else{
+				        
+    					KPI_TZHD_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+				    }
+				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
@@ -224,7 +262,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			// 统计于日期
 // 			$('#pureCashFluxIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净现金流量') {
-				this.pureCashFlux(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
+				this.pureCashFlux(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,true);
 			}
 			if (busy) {
 				busy.close();
@@ -235,18 +273,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 				offset: '0 -110'
 			});
 		}, this);
-		// TODO qutingyi 数据过来以后放开
-		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-净现金流量 SCREEN_ZCQK_02_V01
 	loadEachPlant_SupplyPureCashFluxIncome: function(chartDivId, priceChartName, powerPlantName) {
-// TODO qutingyi 有数据后放开
-// 		var busy = new sap.m.BusyDialog({
-// 			close: function(event) {}
-// 		});
-// 		if (busy) {
-// 			busy.open();
-// 		}
+		var busy = new sap.m.BusyDialog({
+			close: function(event) {}
+		});
+		if (busy) {
+			busy.open();
+		}
 
 		// 净现金流量指标
 		// 净现金流量
@@ -254,6 +290,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 
 		// 净现金流量同比
 		var KPI_JZC_UP = new Array();
+		// add by qutingyi
+		// 经营活动
+		var KPI_JYHD_V = new Array();
+		// 投资活动
+		var KPI_TZHD_V = new Array();
+		// 筹资活动
+		var KPI_CZHD_V = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -277,11 +320,47 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
 						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
+								// add by qutingyi
+				// 经营活动净现金流量
+				if (sRes.results[i].KPI_TYPE == '经营活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+				        
+				    }else{
+				        
+    					KPI_JYHD_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+				    }
+				}
+				// 筹资活动净现金流量
+				if (sRes.results[i].KPI_TYPE == '筹资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+				        
+				    }else{
+				        
+    					KPI_CZHD_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+				    }
+				}
+				//  投资活动净现金流量
+				if (sRes.results[i].KPI_TYPE == ' 投资活动净现金流量' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				    if(sRes.results[i].KPI_DESC == '浙能电力本部'){
+				        
+				    }else{
+				        
+    					KPI_TZHD_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+				    }
+				}
+				// 收入统计日期
+				if (dataStatisticDate == '') {
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
+						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+				}
 			}
 			// 统计于日期
 // 			$('#pureCashFluxIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净现金流量') {
-				this.loadBaseDataDetail_PureCashFluxIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
+				this.pureCashFlux(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,false);
 			}
 			if (busy) {
 				busy.close();
@@ -293,10 +372,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			});
 		}, this);
 		// TODO qutingyi 新数据过来以后 放开
-		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-净现金流量
-	pureCashFlux: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+	pureCashFlux: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,isBase) {
 
 		require(
             [
@@ -320,15 +399,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			var color2 = '#E52DE6';
 			// mockdata start
 			// 电厂
-			xData = ['萧山发电','台州发电','兰溪发电','台二发电','凤台发电','嘉兴发电','长兴发电','滨海发电','镇海发电','温州发电','乐清发电','舟山煤电','阿克苏热电','枣泉发电','镇海联合','金华燃机','常山燃气','温州燃机','嘉华发电','北仑发电','镇海燃气','镇海燃热','温特发电','钱清发电','绍兴滨海热力'];
-			// 经营活动
-			var KPI_JYHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
-			// 投资活动
-			var KPI_TZHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
-			// 筹资活动
-			var KPI_CZHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+// 			xData = ['萧山发电','台州发电','兰溪发电','台二发电','凤台发电','嘉兴发电','长兴发电','滨海发电','镇海发电','温州发电','乐清发电','舟山煤电','阿克苏热电','枣泉发电','镇海联合','金华燃机','常山燃气','温州燃机','嘉华发电','北仑发电','镇海燃气','镇海燃热','温特发电','钱清发电','绍兴滨海热力'];
+// 			// 经营活动
+// 			var KPI_JYHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+// 			// 投资活动
+// 			var KPI_TZHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+// 			// 筹资活动
+// 			var KPI_CZHD_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
 			// mockdata end
-			var option = {
+			if(isBase){
+			    var option = {
 				title: {
 					text: priceChartName,
 					subtext: '',
@@ -450,6 +530,131 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			};
 
 			mychart.setOption(option);
+			}else{
+			    var option = {
+				title: {
+					text: priceChartName,
+					subtext: '',
+					x: 40,
+					y: 5,
+					textStyle: {
+						fontSize: 15,
+						color: 'green'
+					}
+				},
+				legend: {
+					orient: 'horizontal',
+					show: false,
+					x: '120',
+					y: '35',
+					textStyle: {
+						color: 'white',
+						fontFamily: '微软雅黑'
+					},
+					data: ['经营活动', '投资活动', '筹资活动']
+				},
+				tooltip: {
+					trigger: 'axis',
+					backgroundColor: 'rgb(234,234,234)',
+					textStyle: {
+						color: 'rgb(0,0,0)',
+						baseline: 'top'
+					},
+					axisPointer: {
+						type: 'none'
+					}
+				},
+				color: specialColorArray,// [color1,color2]
+				grid: {
+					y1: 100,
+					y2: 100
+				},
+				xAxis: [
+					{
+						//show: false,
+						type: 'category',
+						axisLabel: {
+							textStyle: {
+								color: 'white'
+							},
+							formatter: '{value}',
+							show: true,
+							interval: 'auto',
+							inside: false,
+							rotate: 30,
+							margin: 8
+						},
+						data: xData
+                            }
+                        ],
+				yAxis: [
+					{
+						name: '单位:万元',
+						type: 'value',
+						axisLine: {
+							show: true
+						},
+						axisLabel: {
+							textStyle: {
+								color: 'white'
+							},
+							formatter: '{value}'
+						},
+						// 		splitLine: {
+						// 			show: false
+						// 		},
+						splitLine: {
+							// 			show: false
+							lineStyle: {
+								color: 'rgba(64,64,64,0.5)'
+							}
+						}
+						// 		max: y1,
+						// 		min: y2,
+						// 		splitNumber: n
+                            }
+                        ],
+				series: [
+				// 	{
+				// 		name: '经营活动',
+				// 		type: 'bar',
+				// 		symbol: 'emptyCircle',
+				// 		symbolSize: 5,
+				// 		itemStyle: {
+				// 			normal: {
+				// 				label: {
+				// 					show: true,
+				// 					position: 'top',
+				// 					textStyle: {
+				// 						color: 'white'
+				// 					}
+				// 				}
+				// 			}
+				// 		},
+				// 		data: KPI_JZC_V
+    //                 },
+                  {
+						name: '经营活动',
+						type: 'line',
+						stack: '净现金流量',
+						data: KPI_JYHD_V
+                  },{
+						name: '投资活动',
+						type: 'line',
+						stack: '净现金流量',
+						data: KPI_TZHD_V
+                  },{
+						name: '筹资活动',
+						type: 'line',
+						stack: '净现金流量',
+						data: KPI_CZHD_V
+                  }
+                        ]
+			};
+
+			mychart.setOption(option);
+			}
+			
 		}
 	},
 	// 加载浙能电力-净现金流量指标
