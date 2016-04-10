@@ -233,7 +233,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V08/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V09/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-日利润-供热收入 SCREEN_ZCQK_02_V01
 	loadEachPlant_SupplyPowerAndHeatIncomeIncome: function(chartDivId, priceChartName, powerPlantName) {
@@ -296,7 +296,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V08/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_V09/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载集团-日利润-供热收入
 	powerAndHeatIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP, KPI_DSR_V) {

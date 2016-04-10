@@ -368,7 +368,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.heatIncome", {
 				// 自产蒸汽收入同比
 				if (sRes.results[i].KPI_TYPE == '自产蒸汽收入_同比') {
 					KPI_ZZS_UP.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DESC);
+					if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+						xData.push(sRes.results[i].KPI_DESC);
+					}
 				}
 				// 自产蒸汽收入
 				if (sRes.results[i].KPI_TYPE == '自产蒸汽收入') {

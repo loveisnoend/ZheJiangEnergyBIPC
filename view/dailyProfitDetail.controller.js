@@ -194,18 +194,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
 					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 日利润
-				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC != '浙能电力'&& sRes.results[i].KPI_DESC != '浙能电力本部') {
+				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC == '浙能电力') {
 					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
-				// 	xData.push(sRes.results[i].KPI_DATE);
-				}
-				// 日利润横坐标
-				if (sRes.results[i].KPI_TYPE == '日利润' && sRes.results[i].KPI_DESC == '浙能电力本部') {
 					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-						.substring(4, 6) + "." + sRes.results[sRes.results.length - 1].KPI_DATE.substring(6, 8);
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE.substring(4, 6) + "." + sRes.results[sRes.results.length - 1].KPI_DATE.substring(6, 8);
 				}
 			}
 			// 统计于日期
@@ -438,6 +433,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.dailyProfitDetail", {
             }
 // 			document.getElementById('profitNameDailyProfitDetail').innerHTML = document.getElementById('powerPlantMainDetailTitleDailyProfitDetail')
 // 				.innerHTML;
+
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {

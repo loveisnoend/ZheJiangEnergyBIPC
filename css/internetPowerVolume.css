@@ -109,10 +109,11 @@
     background-size:cover;
     background-image: url(../img/equalsImg.png);
 }
+/*TODO change the width of chart*/
 .priceDetail_another_01
 {
     /*TODO pixel*/
-    width: 960px;
+    width: 1050px;
     height: 630px;
     margin-top:20px;
     float:left;
