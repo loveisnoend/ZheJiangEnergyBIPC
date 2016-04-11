@@ -198,7 +198,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 					if(sRes.results[i].KPI_DESC == '浙能电力本部'){
 					    
 					}else{
-    					KPI_XXR_V.push((sRes.results[i].KPI_VALUE * 100).toFixed(3));
+    					KPI_XXR_V.push((sRes.results[i].KPI_VALUE * 100).toFixed(2));
     					xData.push(sRes.results[i].KPI_DESC);
 					}
 				}
@@ -245,7 +245,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				}
 				// 销售现金比率
 				if (sRes.results[i].KPI_TYPE == '销售现金比率' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_XXR_V.push((sRes.results[i].KPI_VALUE * 100).toFixed(3));
+					KPI_XXR_V.push((sRes.results[i].KPI_VALUE * 100).toFixed(2));
 					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期
