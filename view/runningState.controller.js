@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.runningState", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit4(3)' style='cursor:pointer;'>业务情况</b> > <b>"+timeLabel+"浙能电力运行情况</b>"+
+                                "<b onClick='doit4(2)' style='cursor:pointer;'>业务情况</b> > <b>"+timeLabel+"浙能电力运行情况</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -676,18 +676,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.runningState", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitleRunningState')
-				.innerHTML == "浙能电力") {
+			if (document.getElementById('powerPlantMainDetailTitleRunningState').innerHTML == "浙能电力") {
 				document.getElementById('profitNameRunningState').innerHTML = "浙能电力股份有限公司";
 			} else {
-				document.getElementById('profitNameRunningState').innerHTML = document.getElementById('powerPlantMainDetailTitleRunningState')
-					.innerHTML;
+				document.getElementById('profitNameRunningState').innerHTML = document.getElementById('powerPlantMainDetailTitleRunningState').innerHTML;
 			}
 			//	document.getElementById('profitNameRunningState').innerHTML = document.getElementById('powerPlantMainDetailTitleRunningState').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
-			if(document.getElementById('powerPlantMainDetailTitleRunningState')
-				.innerHTML == "浙能电力"){
+			if(document.getElementById('powerPlantMainDetailTitleRunningState').innerHTML == "浙能电力"){
 			    // TODO 堆积柱状图
 			}else{
 			    // TODO 折线图
@@ -771,24 +768,24 @@ sap.ui.controller("com.zhenergy.pcbi.view.runningState", {
                             }
                         ],
 				series: [
-					{
-						name: priceChartName,
-						type: 'bar',
-						symbol: 'emptyCircle',
-						symbolSize: 5,
-						itemStyle: {
-							normal: {
-								label: {
-									show: true,
-									position: 'top',
-									textStyle: {
-										color: 'white'
-									}
-								}
-							}
-						},
-						barWidth: 50,
-						data: KPI_JZC_V
+        					{
+        						name: priceChartName,
+        						type: 'bar',
+        						symbol: 'emptyCircle',
+        						symbolSize: 5,
+        						itemStyle: {
+        							normal: {
+        								label: {
+        									show: true,
+        									position: 'top',
+        									textStyle: {
+        										color: 'white'
+        									}
+        								}
+        							}
+        						},
+        						barWidth: 50,
+        						data: KPI_JZC_V
                             }
                         ]
 			};
@@ -1237,47 +1234,47 @@ sap.ui.controller("com.zhenergy.pcbi.view.runningState", {
 						}
 					]
 			};
-			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
+// 			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailRunningState').style.display = "";
-				document.getElementById('rlcb_detailRunningState').style.display = "none";
+// 				document.getElementById('internetDetailRunningState').style.display = "";
+// 				document.getElementById('rlcb_detailRunningState').style.display = "none";
 
-				var mapSeries = option5.series[0];
+// 				var mapSeries = option5.series[0];
 
-				var selectedData = {
-					name: mapSeries.markPoint.data[param.dataIndex].name,
-					value: mapSeries.markPoint.data[param.dataIndex].inputPlanValue
-				};
-				option5.series[1].markPoint.data[0] = selectedData;
-				myChart5.setOption(option5);
+// 				var selectedData = {
+// 					name: mapSeries.markPoint.data[param.dataIndex].name,
+// 					value: mapSeries.markPoint.data[param.dataIndex].inputPlanValue
+// 				};
+// 				option5.series[1].markPoint.data[0] = selectedData;
+// 				myChart5.setOption(option5);
 
-				option4.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				option4.series[1].markPoint.data[1] = {
-					name: '上海',
-					value: 0
-				};
-				option4.series[1].markPoint.data[2] = {
-					name: '上海',
-					value: 0
-				};
-				myChart4.setOption(option4);
+// 				option4.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				option4.series[1].markPoint.data[1] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				option4.series[1].markPoint.data[2] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart4.setOption(option4);
 
-				option6.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				myChart6.setOption(option6);
+// 				option6.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart6.setOption(option6);
 
-				option7.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				myChart7.setOption(option7);
-				setChartData(ec, mapSeries, param.dataIndex);
-			});
+// 				option7.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart7.setOption(option7);
+// 				setChartData(ec, mapSeries, param.dataIndex);
+// 			});
 			option5.series[1].markPoint.data[0] = {
 				name: '上海',
 				value: 0
@@ -1398,47 +1395,47 @@ sap.ui.controller("com.zhenergy.pcbi.view.runningState", {
 						}
 					]
 			};
-			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
+// 			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailRunningState').style.display = "";
-				document.getElementById('rlcb_detailRunningState').style.display = "none";
+// 				document.getElementById('internetDetailRunningState').style.display = "";
+// 				document.getElementById('rlcb_detailRunningState').style.display = "none";
 
-				var mapSeries = option6.series[0];
+// 				var mapSeries = option6.series[0];
 
-				var selectedData = {
-					name: mapSeries.markPoint.data[param.dataIndex].name,
-					value: mapSeries.markPoint.data[param.dataIndex].inputPlanValue
-				};
-				option6.series[1].markPoint.data[0] = selectedData;
-				myChart6.setOption(option6);
+// 				var selectedData = {
+// 					name: mapSeries.markPoint.data[param.dataIndex].name,
+// 					value: mapSeries.markPoint.data[param.dataIndex].inputPlanValue
+// 				};
+// 				option6.series[1].markPoint.data[0] = selectedData;
+// 				myChart6.setOption(option6);
 
-				option4.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				option4.series[1].markPoint.data[1] = {
-					name: '上海',
-					value: 0
-				};
-				option4.series[1].markPoint.data[2] = {
-					name: '上海',
-					value: 0
-				};
-				myChart4.setOption(option4);
+// 				option4.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				option4.series[1].markPoint.data[1] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				option4.series[1].markPoint.data[2] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart4.setOption(option4);
 
-				option5.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				myChart5.setOption(option5);
+// 				option5.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart5.setOption(option5);
 
-				option7.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				myChart7.setOption(option7);
-				setChartData(ec, mapSeries, param.dataIndex);
-			});
+// 				option7.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart7.setOption(option7);
+// 				setChartData(ec, mapSeries, param.dataIndex);
+// 			});
 			option6.series[1].markPoint.data[0] = {
 				name: '上海',
 				value: 0
@@ -1559,47 +1556,47 @@ sap.ui.controller("com.zhenergy.pcbi.view.runningState", {
 						}
 					]
 			};
-			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
+// 			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailRunningState').style.display = "";
-				document.getElementById('rlcb_detailRunningState').style.display = "none";
+// 				document.getElementById('internetDetailRunningState').style.display = "";
+// 				document.getElementById('rlcb_detailRunningState').style.display = "none";
 
-				var mapSeries = option7.series[0];
+// 				var mapSeries = option7.series[0];
 
-				var selectedData = {
-					name: mapSeries.markPoint.data[param.dataIndex].name,
-					value: mapSeries.markPoint.data[param.dataIndex].inputPlanValue
-				};
-				option7.series[1].markPoint.data[0] = selectedData;
-				myChart7.setOption(option7);
+// 				var selectedData = {
+// 					name: mapSeries.markPoint.data[param.dataIndex].name,
+// 					value: mapSeries.markPoint.data[param.dataIndex].inputPlanValue
+// 				};
+// 				option7.series[1].markPoint.data[0] = selectedData;
+// 				myChart7.setOption(option7);
 
-				option4.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				option4.series[1].markPoint.data[1] = {
-					name: '上海',
-					value: 0
-				};
-				option4.series[1].markPoint.data[2] = {
-					name: '上海',
-					value: 0
-				};
-				myChart4.setOption(option4);
+// 				option4.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				option4.series[1].markPoint.data[1] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				option4.series[1].markPoint.data[2] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart4.setOption(option4);
 
-				option5.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				myChart5.setOption(option5);
+// 				option5.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart5.setOption(option5);
 
-				option6.series[1].markPoint.data[0] = {
-					name: '上海',
-					value: 0
-				};
-				myChart6.setOption(option6);
-				setChartData(ec, mapSeries, param.dataIndex);
-			});
+// 				option6.series[1].markPoint.data[0] = {
+// 					name: '上海',
+// 					value: 0
+// 				};
+// 				myChart6.setOption(option6);
+// 				setChartData(ec, mapSeries, param.dataIndex);
+// 			});
 			option7.series[1].markPoint.data[0] = {
 				name: '上海',
 				value: 0

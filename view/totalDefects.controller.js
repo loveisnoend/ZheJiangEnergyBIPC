@@ -20,7 +20,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.totalDefects", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit7(1)' style='cursor:pointer;'>风险控制</b> > <b>"+timeLabel+"一二类缺陷总计</b>"+
+                                "<b onClick='doit7(0)' style='cursor:pointer;'>风险控制</b> > <b>"+timeLabel+"一二类缺陷总计</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
