@@ -150,6 +150,10 @@
 		        if (detailName == "人均利润") {
 		            app.to("idAverPersonProfitDetailValue", "show");
 		        }
+		        // 人均利润 Real 主营业务
+		        if (detailName == "人均利润原始") {
+		            app.to("idAverPersonProfitRealDetailValue", "show");
+		        }
 		        // 人均营业收入记录
 		        if (detailName == "人均营业收入记录") {
 		            app.to("idAverPersonProfitRecord", "show");
@@ -254,6 +258,10 @@
             //资产负债率页面
             function toLiabilityPropertyPage() {
                 app.to("idLiabilityProperty","show");
+            }
+            //资产负债率页面 Real
+            function toLiabilityPropertyRealPage() {
+                app.to("idLiabilityPropertyReal","show");
             }
             // 资金情况
             // 销售现金比率
@@ -397,12 +405,16 @@
                 var isEleLoad = false;
                 var isGenerationLoad = false;
                 */
+                // 浙江省煤电利用小时
+                var coalUtilizationHour;
                 //全国工业增加值增长速度
 				var industrialAddSpeed;
 				//全社会用电量-浙江省
 				var socialEleCons;
 				//浙江省煤电利用小时
 				var coalUtilizationHour;
+                // 燃料库存统计
+            	var fuelStorage;
 				/*暂时不用
 				//累计统调外购电量
                var purchasingPower;
@@ -445,6 +457,8 @@
 				var sumProperty;
 				// 资产负债情况
 				var liabilityProperty;
+				// 资产负债情况 Real
+				var liabilityPropertyReal;
 				
 				// 资金情况
 				// 销售现金比率
@@ -464,6 +478,9 @@
 				var averPersonProfit;
 				var averPersonProfitDetailValue;
 				var averPersonProfitDetailValuePage;
+				// 人均利润 Real
+				var averPersonProfitRealDetailValue;
+				var averPersonProfitRealDetailValuePage;
 				
 				// 人均利润 Real
 				var averPersonProfitReal;
@@ -615,8 +632,8 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		});
             		app.addPage(socialEleCons);
-				//浙江省煤电利用小时
-				var coalUtilizationHour = sap.ui.view({
+				    //浙江省煤电利用小时
+				    coalUtilizationHour = sap.ui.view({
             			id: "idcoalUtilizationHour",
             			viewName: "com.zhenergy.pcbi.view.CoalUtilizationHour",
             			type: sap.ui.core.mvc.ViewType.HTML
@@ -874,6 +891,14 @@
             		 });
             		 app.addPage(liabilityProperty);
             		 
+            		 // 资产负债率 Real
+            		 liabilityPropertyReal = sap.ui.view({
+            			id: "idLiabilityPropertyReal",
+            			viewName: "com.zhenergy.pcbi.view.liabilityPropertyReal",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(liabilityPropertyReal);
+            		 
             		 // 资金情况
             		 // 销售现金比率
             		 salesPercent = sap.ui.view({
@@ -985,6 +1010,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(averPersonProfitDetailValuePage);
+
+            		 // 人均利润详细页面 Real
+            		 averPersonProfitRealDetailValuePage = sap.ui.view({
+            			id: "idAverPersonProfitRealDetailValue",
+            			viewName: "com.zhenergy.pcbi.view.averPersonProfitRealDetailValue",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(averPersonProfitRealDetailValuePage);
             		 
             		 // 单位万千瓦员工数
             		 workerCount = sap.ui.view({

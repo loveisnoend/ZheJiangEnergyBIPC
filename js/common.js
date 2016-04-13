@@ -453,6 +453,15 @@ function changeSkinCss(pageName) {
     if (pageName == 'averPersonProfit') {
         changeTheSkinOfPage();
     }
+    // 人均利润详细
+    if (pageName == 'averPersonProfitDetailValue') {
+        averPersonProfitDetailValuePage.getController()._loadData01(); 
+    }
+    // 人均利润详细原始
+    if (pageName == 'averPersonProfitRealDetailValue') {
+        averPersonProfitRealDetailValuePage.getController()._loadData01(); 
+    }
+    
     // 员工类型、用工性质
     if (pageName == 'wokerPropertyAndType') {
         wokerPropertyAndType.getController()._loadData01();
@@ -466,8 +475,38 @@ function changeSkinCss(pageName) {
         averPersonSalary.getController()._loadData01();
     }
     
-    
-    
+    // 主营业务详细
+    if (pageName == 'mainBusinessDetail') {
+        mainBusinessDetail.getController()._loadData01(); 
+    } 
+    // 浙江省煤电利用小时
+    if (pageName == 'CoalUtilizationHour') {
+        coalUtilizationHour.getController()._loadData01(); 
+    } 
+    // 燃料库存情况
+    if (pageName == 'FuelStorage') {
+        fuelStorage.getController()._loadData01(); 
+    }  
+    // 电力日发电量
+    if (pageName == 'PowerOutputFinish') {
+        powerOutputFinish.getController()._loadData01(); 
+    } 
+    // 电力日发电量
+    if (pageName == 'RunningState') {
+        runningState.getController()._loadData01(); 
+    } 
+    // 净现金流量
+    if (pageName == 'PureCashFlux') {
+        pureCashFlux.getController()._loadData01(); 
+    } 
+    // 资产负债率
+    if (pageName == 'LiabilityProperty') {
+        liabilityProperty.getController()._loadData01(); 
+    } 
+    // 资产负债率 Real
+    if (pageName == 'LiabilityPropertyReal') {
+        liabilityPropertyReal.getController()._loadData01(); 
+    } 
 }
 // change the skin of the page
 function changeTheSkinOfPage() {

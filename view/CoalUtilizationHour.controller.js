@@ -8,15 +8,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.CoalUtilizationHour", {
 		});
 	},
 	_loadData01: function() {
-
-		if (isCoalUtilizationHour == false) {
-			busy = new sap.m.BusyDialog({
-				close: function(event) {}
-			});
-			if (busy) {
-				busy.open();
-			}
-		}
+	    
+	    // 改变颜色
+        changeTheSkinOfPage();
+        
+// 		if (isCoalUtilizationHour == false) {
+// 			busy = new sap.m.BusyDialog({
+// 				close: function(event) {}
+// 			});
+// 			if (busy) {
+// 				busy.open();
+// 			}
+// 		}
 
 		var mParameters = {};
 
@@ -203,13 +206,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.CoalUtilizationHour", {
 			mychart.setOption(option);
 		}
 
-		if (isCoalUtilizationHour == false) {
-			if (busy) {
-				busy.close();
-			}
-			changeTheSkinOfPage();
-			isCoalUtilizationHour = true;
-		}
+// 		if (isCoalUtilizationHour == false) {
+// 			if (busy) {
+// 				busy.close();
+// 			}
+// 			changeTheSkinOfPage();
+// 			isCoalUtilizationHour = true;
+// 		}
 
 	}
 

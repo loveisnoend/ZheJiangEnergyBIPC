@@ -302,12 +302,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitleliabilityProperty')
-				.innerHTML == "浙能电力") {
+			if (document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML == "浙能电力") {
 				document.getElementById('profitNameliabilityProperty').innerHTML = "浙能电力股份有限公司";
 			} else {
-				document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty')
-					.innerHTML;
+				document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML;
 			}
 			//document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML;
 			var color1 = '#A704CA';
@@ -458,12 +456,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitleliabilityProperty')
-				.innerHTML == "浙能电力") {
+			if (document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML == "浙能电力") {
 				document.getElementById('profitNameliabilityProperty').innerHTML = "浙能电力股份有限公司";
 			} else {
-				document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty')
-					.innerHTML;
+				document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML;
 			}
 			//	document.getElementById('profitNameliabilityProperty').innerHTML = document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML;
 			var color1 = '#A704CA';

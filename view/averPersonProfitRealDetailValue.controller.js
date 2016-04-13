@@ -1,18 +1,11 @@
-sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
+sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfitRealDetailValue", {
 
-	/**
-	 * Called when a controller detail_01 instantiated and its View controls (if available) are already created.
-	 * Can be used to modify thdetail_01e View before it is displayed, to bind event handlers and do other one-time initialization.
-	 * @memberOf com.zhenergy.bi.view.powerPlantMap
-	 */
-	onInit: function() {
+onInit: function() {
 		this.getView().addEventDelegate({
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
-			    
-			    
 			    //AC-LOUWW 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
-			    var sIdentical = "WokerPropertyAndType";
+			    var sIdentical = "averPersonProfitRealDetailValue";
 				//AC-LOUWW 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-LOUWW 页面增加动态的时间日期标签
@@ -21,7 +14,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='toAverPersonProfitPage()' style='cursor:pointer;'>浙能电力人员构成分析</b> > <b>"+timeLabel+"员工类型/用工性质</b>"+
+                                "<b onClick='toAverPersonProfitRealPage()' style='cursor:pointer;'>浙能电力人均利润</b> > <b>"+timeLabel+"人均利润</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -30,15 +23,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 
 	// eventment before show the page 
 	onAfterShow: function() {
-		document.getElementById('internetDetailWokerPropertyAndType').style.display = "";
-		document.getElementById('rlcb_detailWokerPropertyAndType').style.display = "none";
-// 		if (isWokerPropertyAndType == false) {
-			// this.loadChart();
-			this._loadData01();
-			// 设定头部跑马灯信息 common.js
-			_loadData03(valueCPIhuanbi, valueGDP, valueCPItongbi, valuePPItongbi, valuePMIproduce, valuePMInonProduce, valueGDPTotal);
-// 			isWokerPropertyAndType = true;
-// 		}
+
+		document.getElementById('internetDetailaverPersonProfitRealDetailValue').style.display = "";
+		document.getElementById('rlcb_detailaverPersonProfitRealDetailValue').style.display = "none";
+		// this.loadChart();
+		this._loadData01();
+		// 设定头部跑马灯信息 common.js
+		_loadData03(valueCPIhuanbi, valueGDP, valueCPItongbi, valuePPItongbi, valuePMIproduce, valuePMInonProduce, valueGDPTotal);
 	},
 	// 获取三级页面数据
 	_loadData01: function() {
@@ -53,69 +44,19 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 		var akesu_JsonData = JSON.parse(akesu_dataStr);
 		var zhaoquan_JsonData = JSON.parse(zhaoquan_dataStr);
 		this.loadChart(zhejiang_JsonData, huaiNan_JsonData, akesu_JsonData, zhaoquan_JsonData);
-		// change the page skin
 		changeTheSkinOfPage();
 	},
 
-	// 员工类型/用工性质 SCREEN_FZBZ_02_V06
-	loadBase_SupplyWokerPropertyAndTypeIncome: function(chartDivId, priceChartName, powerPlantName) {
 
-		var busy = new sap.m.BusyDialog({
-			close: function(event) {}
-		});
-		if (busy) {
-			busy.open();
-		}
+	// 获取集团指标-人均利润 SCREEN_FZBZ_01_V01
+	loadBase_SupplyaverPersonProfitRealDetailValueIncome: function(chartDivId, priceChartName) {
 
-		// 男性人数
-		var maleCount;
-		// 女性人数
-		var femaleCount;
+		// 人均利润指标
+		// 人均利润
+		var KPI_XXR_V = new Array();
 
-		// 年龄
-		// 小于30
-		var less30;
-		// 31-40
-		var between31And40;
-		// 41-50
-		var between41And50;
-		// 51-55
-		var between51And55;
-		// 大于56
-		var more56;
-
-		// 工龄≤9
-		var workeLess9;
-		// 工龄10-19
-		var workBetween10And19;
-		// 工龄≥20
-		var workMore20;
-
-		// 学历比例
-		// 高中及以下
-		var KPI_GZJYX_V;
-		// 中专中技
-		var KPI_ZZZJ_V;
-		// 大专
-		var KPI_DZ_V;
-		// 本科
-		var KPI_BK_V;
-		// 硕士研究生
-		var KPI_SS_V;
-		// 博士研究生
-		var KPI_BS_V;
-
-		// 技能比例
-		// 高级技术
-		var KPI_SLEVEL1_V;
-		// 技师
-		var KPI_SLEVEL2_V;
-		// 高级工
-		var KPI_SLEVEL3_V;
-		// 中级工
-		var KPI_SLEVEL4_V;
-		// 初级工
-		var KPI_SLEVEL5_V;
+		// 人均利润同比
+		var KPI_XXR_UP = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -125,95 +66,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 男性人数
-				if (sRes.results[i].KPI_TYPE == '男性人数' && sRes.results[i].KPI_DESC == powerPlantName) {
-					maleCount = sRes.results[i].KPI_VALUE;
-				}
-				// 女性人数
-				if (sRes.results[i].KPI_TYPE == '女性人数' && sRes.results[i].KPI_DESC == powerPlantName) {
-					femaleCount = sRes.results[i].KPI_VALUE;
-				}
-
-				// 小于30
-				if (sRes.results[i].KPI_TYPE == '≤ 30' && sRes.results[i].KPI_DESC == powerPlantName) {
-					less30 = sRes.results[i].KPI_VALUE;
-				}
-				// 31-40
-				if (sRes.results[i].KPI_TYPE == '31-40' && sRes.results[i].KPI_DESC == powerPlantName) {
-					between31And40 = sRes.results[i].KPI_VALUE;
-				}
-				// 41-50
-				if (sRes.results[i].KPI_TYPE == '41-50' && sRes.results[i].KPI_DESC == powerPlantName) {
-					between41And50 = sRes.results[i].KPI_VALUE;
-				}
-				// 51-55
-				if (sRes.results[i].KPI_TYPE == '51-55' && sRes.results[i].KPI_DESC == powerPlantName) {
-					between51And55 = sRes.results[i].KPI_VALUE;
-				}
-				// 大于56
-				if (sRes.results[i].KPI_TYPE == '≥56' && sRes.results[i].KPI_DESC == powerPlantName) {
-					more56 = sRes.results[i].KPI_VALUE;
-				}
-
-				// 工龄≤9
-				if (sRes.results[i].KPI_TYPE == '工龄≤9' && sRes.results[i].KPI_DESC == powerPlantName) {
-					workeLess9 = sRes.results[i].KPI_VALUE;
-				}
-				// 工龄10-19
-				if (sRes.results[i].KPI_TYPE == '工龄10-19' && sRes.results[i].KPI_DESC == powerPlantName) {
-					workBetween10And19 = sRes.results[i].KPI_VALUE;
-				}
-				// 工龄≥20
-				if (sRes.results[i].KPI_TYPE == '工龄≥20' && sRes.results[i].KPI_DESC == powerPlantName) {
-					workMore20 = sRes.results[i].KPI_VALUE;
-				}
-
-				// 高中及以下
-				if (sRes.results[i].KPI_TYPE == '高中及以下' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_GZJYX_V = sRes.results[i].KPI_VALUE;
-				}
-				// 中专中技
-				if (sRes.results[i].KPI_TYPE == '中专中技' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_ZZZJ_V = sRes.results[i].KPI_VALUE;
-				}
-				// 大专
-				if (sRes.results[i].KPI_TYPE == '大专' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_DZ_V = sRes.results[i].KPI_VALUE;
-				}
-				// 本科
-				if (sRes.results[i].KPI_TYPE == '本科' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_BK_V = sRes.results[i].KPI_VALUE;
-				}
-				// 硕士研究生
-				if (sRes.results[i].KPI_TYPE == '硕士研究生' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_SS_V = sRes.results[i].KPI_VALUE;
-				}
-				// 博士研究生
-				if (sRes.results[i].KPI_TYPE == '博士研究生' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_BS_V = sRes.results[i].KPI_VALUE;
-				}
-
-				// 技能比例
-				// 高级技术
-				if (sRes.results[i].KPI_TYPE == '高级技术' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_SLEVEL1_V = sRes.results[i].KPI_VALUE;
-				}
-				// 技师
-				if (sRes.results[i].KPI_TYPE == '技师' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_SLEVEL2_V = sRes.results[i].KPI_VALUE;
-				}
-				// 高级工
-				if (sRes.results[i].KPI_TYPE == '高级工' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_SLEVEL3_V = sRes.results[i].KPI_VALUE;
-				}
-				// 中级工
-				if (sRes.results[i].KPI_TYPE == '中级工' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_SLEVEL4_V = sRes.results[i].KPI_VALUE;
-				}
-				// 初级工
-				if (sRes.results[i].KPI_TYPE == '初级工' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_SLEVEL5_V = sRes.results[i].KPI_VALUE;
-				}
+			    if (sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部') {
+    				// 人均利润同比
+    				if (sRes.results[i].KPI_TYPE == '人均利润同比') {
+    					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 人均利润
+    				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+    					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+    			}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
@@ -221,118 +84,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				}
 			}
 			// 统计于日期
-// 			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
-			// 年龄 ≤ 30 31-40 41-50 51-55 ≥56
-			var ageChart = 'ageChart';
-			var ageChartData = [
-				{
-					value: less30,
-					name: '年龄≤ 30'
-				},
-				{
-					value: between31And40,
-					name: '年龄31-40'
-				},
-				{
-					value: between41And50,
-					name: '年龄41-50'
-				},
-				{
-					value: between51And55,
-					name: '年龄51-55'
-				},
-				{
-					value: more56,
-					name: '年龄≥56'
-				}
-            ];
-			// 性别
-			var sexChart = 'sexChart';
-			var sexChartData = [
-				{
-					value: maleCount,
-					name: '男性人数'
-				},
-				{
-					value: femaleCount,
-					name: '女性人数'
-				}
-            ];
-			// 工龄
-			var workAgeChart = 'workAgeChart';
-			var workAgeChartData = [
-				{
-					value: workeLess9,
-					name: '工龄≤9'
-				},
-				{
-					value: workBetween10And19,
-					name: '工龄10-19'
-				},
-				{
-					value: workMore20,
-					name: '工龄≥20'
-				}
-            ];
-
-			// 学历比例
-			// 高中及以下(KPI_GZJYX_V)、中专中技（KPI_ZZZJ_V）、大专（KPI_DZ_V）、本科（KPI_BK_V）、硕士研究生(KPI_SS_V)、博士研究生(KPI_BS_V)
-			var educationChartData = [
-				{
-					value: KPI_GZJYX_V,
-					name: '高中及以下'
-				},
-				{
-					value: KPI_ZZZJ_V,
-					name: '中专中技'
-				},
-				{
-					value: KPI_DZ_V,
-					name: '大专'
-				},
-				{
-					value: KPI_BK_V,
-					name: '本科'
-				},
-				{
-					value: KPI_SS_V,
-					name: '硕士研究生'
-				},
-				{
-					value: KPI_BS_V,
-					name: '博士研究生'
-				}
-            ];
-			// 技能比例
-			// 高级技术(KPI_SLEVEL1_V)、技师(KPI_SLEVEL2_V)、高级工(KPI_SLEVEL3_V)、中级工(KPI_SLEVEL4_V)、初级工(KPI_SLEVEL5_V)
-			var skillChartData = [
-				{
-					value: KPI_SLEVEL1_V,
-					name: '高级技术'
-				},
-				{
-					value: KPI_SLEVEL2_V,
-					name: '技师'
-				},
-				{
-					value: KPI_SLEVEL3_V,
-					name: '高级工'
-				},
-				{
-					value: KPI_SLEVEL4_V,
-					name: '中级工'
-				},
-				{
-					value: KPI_SLEVEL5_V,
-					name: '初级工'
-				}
-            ];
-
+// 			$('#averPersonProfitRealDetailValueIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
-				this.wokerPropertyAndTypePie(sexChartData, ageChartData, workAgeChartData, educationChartData, skillChartData);
-			}
-			if (busy) {
-				busy.close();
+				this.loadBaseDataDetail_SupplyaverPersonProfitRealDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
 		}, this);
 		mParameters['error'] = jQuery.proxy(function(eRes) {
@@ -340,24 +94,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_02_V06/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_01_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 获取个电厂指标-人均利润 SCREEN_ZCQK_02_V01
-	loadEachPlant_SupplyWokerPropertyAndTypeIncome: function(chartDivId, priceChartName, powerPlantName) {
+	// 获取个电厂指标-人均利润 SCREEN_FZBZ_03_RJLR
+	loadEachPlant_SupplyaverPersonProfitRealDetailValueIncome: function(chartDivId, priceChartName, powerPlantName) {
 
-		var busy = new sap.m.BusyDialog({
-			close: function(event) {}
-		});
-		if (busy) {
-			busy.open();
-		}
+		// 销售现金比率指标
+		// 销售现金比率
+		var KPI_XXR_V = new Array();
 
-		// 人均利润指标
-		// 人均利润
-		var KPI_JZC_V = new Array();
-
-		// 人均利润同比
-		var KPI_JZC_UP = new Array();
+		// 销售现金比率同比
+		var KPI_XXR_UP = new Array();
 
 		var dataStatisticDate = '';
 		var mParameters = {};
@@ -367,13 +114,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 			// 各个电厂月份指标
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 人均利润同比
-				if (sRes.results[i].KPI_TYPE == '人均利润_同比') {
-					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
+				// 销售现金比率同比
+				if (sRes.results[i].KPI_TYPE == '人均利润同比') {
+					KPI_XXR_UP.push(sRes.results[i].KPI_VALUE);
 				}
-				// 人均利润
+				// 销售现金比率
 				if (sRes.results[i].KPI_TYPE == '人均利润' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+					KPI_XXR_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期
@@ -383,12 +130,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				}
 			}
 			// 统计于日期
-// 			$('#wokerPropertyAndTypeIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#averPersonProfitRealDetailValueIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '人均利润') {
-				this.loadBaseDataDetail_WokerPropertyAndTypeIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
-			}
-			if (busy) {
-				busy.close();
+				this.loadBaseDataDetail_averPersonProfitRealDetailValueIncome(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP);
 			}
 		}, this);
 		mParameters['error'] = jQuery.proxy(function(eRes) {
@@ -396,118 +140,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 				offset: '0 -110'
 			});
 		}, this);
-		sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_03_LRZE/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_FZBZ_03_RJLR/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-员工类型 用工性质
-	wokerPropertyAndTypePie: function(sexChartData, ageChartData, workAgeChartData, educationChartData, skillChartData) {
-		require(
-                [
-                    'echarts',
-                    'echarts/chart/line',
-                    'echarts/chart/pie'
-                ],
-			draw);
-
-		function draw(e) {
-// 			drawswdl(e);
-			drawpjswdj(e);
-			drawrlcb(e);
-			drawxl(e);
-			drawjn(e);
-		}
-
-// 		// 性别比例
-// 		function drawswdl(e) {
-// 			var dataName = ['男性人数', '女性人数'];
-// 			if (sexChartData != '') {
-// 				drawpie(e, 'sexChart', dataName, sexChartData);
-// 			}
-// 		}
-		// 年龄分布
-		function drawpjswdj(e) {
-			var dataName = ['年龄≤ 30', '年龄31-40', '年龄41-50', '年龄51-55', '年龄≥56'];
-			if (ageChartData != '') {
-				drawpie(e, 'ageChart', dataName, ageChartData);
-			}
-		}
-		// 工作年龄
-		function drawrlcb(e) {
-			var dataName = ['工龄≤9', '工龄10-19', '工龄≥20'];
-			if (workAgeChartData != '') {
-				drawpie(e, 'workAgeChart', dataName, workAgeChartData);
-			}
-		}
-		// 学历比例
-		function drawxl(e) {
-			var dataName = ['高中及以下', '中专中技', '大专', '本科', '硕士研究生', '博士研究生'];
-			if (educationChartData != '') {
-				drawpie(e, 'educationChart', dataName, educationChartData);
-			}
-		}
-		// 技能比例
-		function drawjn(e) {
-			var dataName = ['高级技术', '技师', '高级工', '中级工', '初级工'];
-			if (skillChartData != '') {
-				drawpie(e, 'skillChart', dataName, skillChartData);
-			}
-		}
-
-		function drawpie(e, id, dataName, dataContent) {
-			mychart = e.init(document.getElementById(id));
-			var option = {
-				tooltip: {
-					show: true,
-					trigger: 'item',
-					formatter: "{a} <br/>{b}: {c} ({d}%)",
-					textStyle: {
-						color: '#ffffff',
-						fontSize: 16
-					}
-				},
-				legend: {
-					orient: 'vertical',
-					selectedMode: 'multiple',
-					textStyle: {
-						color: 'white',
-						fontSize:16
-					},
-					x: 'left',
-					data: dataName
-				},
-				series: [
-					{
-						name: '',
-						type: 'pie',
-						radius: ['50%', '70%'],
-						avoidLabelOverlap: false,
-						label: {
-							normal: {
-								show: false,
-								position: 'center'
-							},
-							emphasis: {
-								show: true,
-								textStyle: {
-									fontSize: '30',
-									fontWeight: 'bold'
-								}
-							}
-						},
-						labelLine: {
-							normal: {
-								show: false
-							}
-						},
-						data: dataContent
-                    }
-                ]
-			};
-			mychart.setOption(option);
-		}
-	},
-
-	// 加载浙能电力-员工类型 用工性质
-	wokerPropertyAndType: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+	// 加载集团-人均利润 
+	loadBaseDataDetail_SupplyaverPersonProfitRealDetailValueIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
 
 		require(
             [
@@ -519,15 +155,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-				if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
+				if(document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue')
 .innerHTML=="浙能电力"){
-   document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
+   document.getElementById('profitNameaverPersonProfitRealDetailValue').innerHTML="浙能电力股份有限公司";
 }else{
-document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
+document.getElementById('profitNameaverPersonProfitRealDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue')
 .innerHTML;
 }
-// 			document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById(
-// 				'powerPlantMainDetailTitleWokerPropertyAndType').innerHTML;
+// 			document.getElementById('profitNameaverPersonProfitRealDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {
@@ -543,7 +178,6 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 				},
 				legend: {
 					orient: 'horizontal',
-					show: false,
 					x: '120',
 					y: '35',
 					textStyle: {
@@ -563,7 +197,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -576,14 +210,19 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 							textStyle: {
 								color: 'white'
 							},
-							formatter: '{value}'
+							formatter: '{value}',
+							show: true,
+							interval: 'auto',
+							inside: false,
+							rotate: 30,
+							margin: 8
 						},
 						data: xData
                             }
                         ],
 				yAxis: [
 					{
-						name: '单位:千万元',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -602,7 +241,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 							lineStyle: {
 								color: 'rgba(64,64,64,0.5)'
 							}
-						},
+						}
 						// 		max: y1,
 						// 		min: y2,
 						// 		splitNumber: n
@@ -625,36 +264,20 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 								}
 							}
 						},
-						barWidth: 50,
-						data: KPI_JZC_V
+						data: KPI_XXR_V
                             }
-            //                 {
-            //                     name:'人均利润同比',
-            //                     type:'line',
-            //                     symbol:'emptyCircle',
-        				// 		symbolSize:5,
-        				// 		itemStyle: {
-        				// 		    normal: {
-        				// 		        label : {
-        				// 		            show :true,
-        				// 		            position : 'top',
-        				// 		            textStyle:{
-        				// 		                color : 'white'
-        				// 		            }
-        				// 		        }
-        				// 		    }
-        				// 		},
-            //                     barWidth : 50,
-            //                     data:KPI_LWS_UP
-            //                 }
                         ]
 			};
 
 			mychart.setOption(option);
+			// 关闭加载事件
+			if (busy) {
+				busy.close();
+			}
 		}
 	},
-	// 加载浙能电力-人均利润指标
-	loadBaseDataDetail_WokerPropertyAndTypeIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+	// 加载集团-人均利润
+	loadBaseDataDetail_averPersonProfitRealDetailValueIncome: function(chartDivId, priceChartName, xData, KPI_XXR_V, KPI_XXR_UP) {
 		require(
             [
                 'echarts',
@@ -665,15 +288,14 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
+			if(document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue')
 .innerHTML=="浙能电力"){
-   document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
+   document.getElementById('profitNameaverPersonProfitRealDetailValue').innerHTML="浙能电力股份有限公司";
 }else{
-document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
+document.getElementById('profitNameaverPersonProfitRealDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue')
 .innerHTML;
 }
-// 			document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById(
-// 				'powerPlantMainDetailTitleWokerPropertyAndType').innerHTML;
+// 			document.getElementById('profitNameaverPersonProfitRealDetailValue').innerHTML = document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			var option = {
@@ -709,7 +331,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 						type: 'none'
 					}
 				},
-				color: [color1, color2],
+				color: specialColorArray,
 				grid: {
 					y1: 100,
 					y2: 100
@@ -729,7 +351,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
                         ],
 				yAxis: [
 					{
-						name: '单位:千万元',
+						name: '单位:万元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -772,12 +394,17 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 							}
 						},
 						barWidth: 50,
-						data: KPI_JZC_V
+						data: KPI_XXR_V
                             }
                         ]
 			};
 
 			mychart.setOption(option);
+
+			// 关闭加载事件
+			if (busy) {
+				busy.close();
+			}
 		}
 	},
 	//load the chart map
@@ -806,7 +433,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			draw);
 
 		function draw(e) {
-			drawWokerPropertyAndTypeDistribution(e);
+			drawaverPersonProfitRealDetailValueDistribution(e);
 
 			//   drawpie01(e);
 			// 			drawbar01(e);
@@ -815,14 +442,14 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			// 			drawbar04(e);
 		}
 
-		function drawWokerPropertyAndTypeDistribution(ec) {
+		function drawaverPersonProfitRealDetailValueDistribution(ec) {
 
 			// event configure    
 			var ecConfig = require('echarts/config');
 
 // 			///////////////////////////////////中国地图/////////////////////////////////////			
 // 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapWokerPropertyAndType'));
+// 			myChart3 = ec.init(document.getElementById('chinaMapaverPersonProfitRealDetailValue'));
 // 			option3 = {
 // 				tooltip: {
 // 					trigger: 'item',
@@ -858,10 +485,10 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 // 			// 为echarts对象加载数据 
 // 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML = '浙能电力'
+			document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue').innerHTML = '浙能电力'
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			myChart4 = ec.init(document.getElementById('powerPlantMapWokerPropertyAndType'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapaverPersonProfitRealDetailValue'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -1046,8 +673,8 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			};
 			myChart4.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWokerPropertyAndType').style.display = "";
-				document.getElementById('rlcb_detailWokerPropertyAndType').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitRealDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitRealDetailValue').style.display = "none";
 
 				var mapSeries = option4.series[0];
 
@@ -1091,7 +718,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			var mapSeries = option4.series[0];
 			setChartData(ec, mapSeries, 0);
 
-			// 默认浙能电力数据显示
+			// 默认集团数据显示
 			var selectedData = {
 				name: mapSeries.markPoint.data[0].name,
 				value: mapSeries.markPoint.data[0].inputPlanValue
@@ -1110,7 +737,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapWokerPropertyAndType'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapaverPersonProfitRealDetailValue'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -1223,8 +850,8 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			};
 			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWokerPropertyAndType').style.display = "";
-				document.getElementById('rlcb_detailWokerPropertyAndType').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitRealDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitRealDetailValue').style.display = "none";
 
 				var mapSeries = option5.series[0];
 
@@ -1271,7 +898,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapWokerPropertyAndType'));
+			myChart6 = ec.init(document.getElementById('akesuMapaverPersonProfitRealDetailValue'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -1384,8 +1011,8 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			};
 			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWokerPropertyAndType').style.display = "";
-				document.getElementById('rlcb_detailWokerPropertyAndType').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitRealDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitRealDetailValue').style.display = "none";
 
 				var mapSeries = option6.series[0];
 
@@ -1432,7 +1059,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapWokerPropertyAndType'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapaverPersonProfitRealDetailValue'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {
@@ -1545,8 +1172,8 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			};
 			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailWokerPropertyAndType').style.display = "";
-				document.getElementById('rlcb_detailWokerPropertyAndType').style.display = "none";
+				document.getElementById('internetDetailaverPersonProfitRealDetailValue').style.display = "";
+				document.getElementById('rlcb_detailaverPersonProfitRealDetailValue').style.display = "none";
 
 				var mapSeries = option7.series[0];
 
@@ -1718,31 +1345,40 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 		}
 
 		function drawpie01(e) {
-			drawpie(e, 3, 4, 'detail_pieWokerPropertyAndType');
+			drawpie(e, 3, 4, 'detail_pieaverPersonProfitRealDetailValue');
 		}
 
 		function drawbar01(e) {
-			drawbar(e, 4, 6, 'detail_01WokerPropertyAndType');
+			drawbar(e, 4, 6, 'detail_01averPersonProfitRealDetailValue');
 		}
 
 		function drawbar02(e) {
-			drawbar(e, 7, 3, 'detail_02WokerPropertyAndType');
+			drawbar(e, 7, 3, 'detail_02averPersonProfitRealDetailValue');
 		}
 
 		function drawbar03(e) {
-			drawbar(e, 3, 7, 'detail_03WokerPropertyAndType');
+			drawbar(e, 3, 7, 'detail_03averPersonProfitRealDetailValue');
 		}
 
 		function drawbar04(e) {
-			drawbar(e, 8, 2, 'detail_04WokerPropertyAndType');
+			drawbar(e, 8, 2, 'detail_04averPersonProfitRealDetailValue');
 		}
 		// 设置Chart的数据
 		function setChartData(ec, mapSeries, dataIndex) {
+
+			// 加载等待事件
+			busy = new sap.m.BusyDialog({
+				close: function(event) {}
+			});
+			if (busy) {
+				busy.open();
+			}
+
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML = powerPlantName;
+			document.getElementById('powerPlantMainDetailTitleaverPersonProfitRealDetailValue').innerHTML = powerPlantName;
 
-			var priceChartId = "priceDetailDivWokerPropertyAndType";
+			var priceChartId = "priceDetailDivaverPersonProfitRealDetailValue";
 			var priceChartName = "人均利润";
 			if (powerPlantName == '台二电厂') {
 				powerPlantName = '台二发电';
@@ -1753,7 +1389,15 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 			if (powerPlantName == '凤台电厂') {
 				powerPlantName = '凤台发电';
 			}
-			wokerPropertyAndType.getController().loadBase_SupplyWokerPropertyAndTypeIncome(priceChartId, priceChartName, powerPlantName);
+			if (powerPlantName == '浙能电力') {
+				// TODO
+				averPersonProfitRealDetailValuePage.getController().loadBase_SupplyaverPersonProfitRealDetailValueIncome(priceChartId, priceChartName);
+				//averPersonProfitRealDetailValue.getController().loadEachPlant_SupplyaverPersonProfitRealDetailValueIncome(priceChartId, priceChartName, powerPlantName);
+			} else {
+				averPersonProfitRealDetailValuePage.getController().loadEachPlant_SupplyaverPersonProfitRealDetailValueIncome(priceChartId, priceChartName, powerPlantName);
+			}
+			
 		}
 	}
+
 });
