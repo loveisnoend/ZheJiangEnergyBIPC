@@ -277,6 +277,11 @@
             function toPureCashFluxPage() {
                 app.to("idPureCashFlux","show");
             }
+            // add by qutingyi Real
+            // 净现金流量 Real
+            function toPureCashFluxRealPage() {
+                app.to("idPureCashFluxReal","show");
+            }
             
             // 人均营业收入
             function toAverBusinessPage() {
@@ -467,6 +472,8 @@
 				var propertyPercent;
 				// add by qutingyi
 				var pureCashFlux;
+				// add by qutingyi Real
+				var pureCashFluxReal;
 				
 				var powerIncome;
 				var heatIncome;
@@ -481,7 +488,10 @@
 				// 人均利润 Real
 				var averPersonProfitRealDetailValue;
 				var averPersonProfitRealDetailValuePage;
-				
+
+        		// 一二类缺陷总计
+        		var totalDefects;
+            		 
 				// 人均利润 Real
 				var averPersonProfitReal;
 				
@@ -922,6 +932,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(pureCashFlux);
+
+            		 // 净现金流量
+            		 pureCashFluxReal = sap.ui.view({
+            			id: "idPureCashFluxReal",
+            			viewName: "com.zhenergy.pcbi.view.pureCashFluxReal",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(pureCashFluxReal);
             		 
             		 // 发电收入
             		 powerIncome = sap.ui.view({

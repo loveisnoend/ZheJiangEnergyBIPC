@@ -18,7 +18,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-Gates 更改下面的文字和onclick方法
-                                "<b onClick='doit2(1)' style='cursor:pointer;'>经营业绩</b> > <b>"+timeLabel+"浙能电力主营业务</b>"+
+                                "<b onClick='doit2(1)' style='cursor:pointer;'>经营业绩</b> > <b>"+timeLabel+"浙能电力主营业务(合并)</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -458,7 +458,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
 		} else {
 		    rlr_color = "red";
 		}
-		var rlr_innerhtml='<div class="MB-main_content_title">主营业务收入<span style="font-size:20px;">(亿元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+mainBusinessIncome+'</div><div class="MB-main_content_sz">同比'+rlr_prec+'%<img src="img/'+mainBusinessIncomeImg+'.png" class="content_img"/></div>';
+		var rlr_innerhtml='<div class="MB-main_content_title">主营业务收入(合并)<span style="font-size:20px;">(亿元)</span></div><div class="MB-main_content_sz" style="font-size:60px;font-weight:bold;color:'+rlr_colorR01+'">'+mainBusinessIncome+'</div><div class="MB-main_content_sz">同比'+rlr_prec+'%<img src="img/'+mainBusinessIncomeImg+'.png" class="content_img"/></div>';
                
 		document.getElementById('srMB1').innerHTML = sr_innerhtml1;
 		document.getElementById('srMB2').innerHTML = sr_innerhtml2;

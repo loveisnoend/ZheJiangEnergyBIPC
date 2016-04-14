@@ -66,6 +66,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.home06", {
 			//设置数据
 			var propertyCashBackRateValue=0;
 			
+			// 净现金流量同比
+            var pureCashFluxRateTongBi = 0;
+            // 净现金流量环比
+            var pureCashFluxRateHuanBi = '';
+            // 统计日期
+            var daytimePureCashFlux = null;
+			//设置数据
+			var pureCashFluxRateValue=0;
+			
 			for (var i in sRes.results) {
 			    // 销售现金比率
 				if (sRes.results[i].KPI_TYPE == '销售现金比率' && sRes.results[i].KPI_DESC == '浙能电力'){  
@@ -88,6 +97,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.home06", {
 				}
 				if (sRes.results[i].KPI_TYPE == '资产现金回收率_同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    propertyCashBackRateTongBi = sRes.results[i].KPI_VALUE*100;
+				}
+				
+				// 净现金流量
+				if (sRes.results[i].KPI_TYPE == '净现金流量' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    pureCashFluxRateValue = sRes.results[i].KPI_VALUE*100;
+				    daytimePureCashFlux = sRes.results[i].KPI_DATE;
+				}
+				if (sRes.results[i].KPI_TYPE == '净现金流量环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    pureCashFluxRateHuanBi = sRes.results[i].KPI_VALUE*100;
+				}
+				if (sRes.results[i].KPI_TYPE == '净现金流量_同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    pureCashFluxRateTongBi = sRes.results[i].KPI_VALUE*100;
 				}
 			}
 			// 销售现金比率
@@ -159,6 +180,43 @@ sap.ui.controller("com.zhenergy.pcbi.view.home06", {
     	    }
             // 资产现金回收率统计日期
 	        $('#propertyCashBackRateDate').html(daytime01Sum + "年" + daytime02Sum + "月");//  + daytime03Sum + "日"
+
+
+	        // 净现金流量
+			var pureCashFlux_color="red";
+    		if(pureCashFluxRateValue>0){
+    		    if (skinName == '夜间模式') {
+    		        pureCashFlux_color="green";
+    		    } else {
+    		        pureCashFlux_color="white";
+    		    }
+    		}
+    		$('#pureCashFlux').css('color',pureCashFlux_color);
+    		$('#pureCashFlux').css('font-size','65px');
+			$('#pureCashFlux').html(pureCashFluxRateValue);
+            if (pureCashFluxRateTongBi != undefined) {
+                $('#tongbiPureCashFlux').html(pureCashFluxRateTongBi);    
+            }
+            if (pureCashFluxRateTongBi > 0) {
+                $("#tongbiPureCashFluxImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (pureCashFluxRateTongBi < 0) {
+                    $("#tongbiPureCashFluxImg").attr("src","img/arrow-red2.png");
+                } else {
+                    $("#tongbiPureCashFluxImg").attr("src","img/horizontal-green.png");
+                }
+            }
+            var daytime01PureCashFlux;
+    	    var daytime02PureCashFlux;
+    	    var daytime03PureCashFlux;
+    	    if (daytimePureCashFlux != null) {
+    	       daytime01PureCashFlux = daytimePureCashFlux.substring(0,4);
+    	       daytime02PureCashFlux = daytimePureCashFlux.substring(4,6);
+    	       daytime03PureCashFlux = daytimePureCashFlux.substring(6,8); 
+    	    }
+            // 资产现金回收率统计日期
+	        $('#pureCashFluxDate').html(daytime01PureCashFlux + "年" + daytime02PureCashFlux + "月");//  + daytime03Sum + "日"
+	        
 	        if (isHome06Load == false) {
                 if (busy) {
         			busy.close();

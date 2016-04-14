@@ -1,4 +1,4 @@
-sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
+sap.ui.controller("com.zhenergy.pcbi.view.pureCashFluxReal", {
 
 	/**
 	 * Called when a controller detail_01 instantiated and its View controls (if available) are already created.
@@ -10,7 +10,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
 			    //AC-LOUWW 更改 唯一标识，可以搜索chinaMap 找到后半部分字符串
-			    var sIdentical = "PureCashFlux";
+			    var sIdentical = "PureCashFluxReal";
 				//AC-LOUWW 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-LOUWW 页面增加动态的时间日期标签
@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
-                                "<b onClick='doit6(2)' style='cursor:pointer;'>资金情况</b> > <b>"+timeLabel+"浙能电力净现金流量</b>"+
+                                "<b onClick='doit7(2)' style='cursor:pointer;'>风险控制</b> > <b>"+timeLabel+"浙能电力净现金流量</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -29,14 +29,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 	// eventment before show the page 
 	onAfterShow: function() {
 
-		document.getElementById('internetDetailPureCashFlux').style.display = "";
-		document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
+		document.getElementById('internetDetailPureCashFluxReal').style.display = "";
+		document.getElementById('rlcb_detailPureCashFluxReal').style.display = "none";
 		// this.loadChart();
 		this._loadData01();
 // 		var xData = new Array();
 // 		var KPI_JZC_V = new Array();
 // 		var KPI_JZC_UP = new Array();
-// 		this.pureCashFlux("priceDetailDivPureCashFlux", '净现金流量', xData, KPI_JZC_V, KPI_JZC_UP);
+// 		this.pureCashFluxReal("priceDetailDivPureCashFluxReal", '净现金流量', xData, KPI_JZC_V, KPI_JZC_UP);
 		// 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi, valueGDP, valueCPItongbi, valuePPItongbi, valuePMIproduce, valuePMInonProduce, valueGDPTotal);
 	},
@@ -66,7 +66,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 	// 		draw);
 
 	// 		function draw(e){
-	// 		    document.getElementById('caloriPureCashFluxPlantNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML;
+	// 		    document.getElementById('caloriPureCashFluxRealPlantNamePureCashFluxReal').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFluxReal').innerHTML;
 	// 		    var mychart = e.init(document.getElementById(divId));
 	// 		    var option = {
 	// 		        title:{
@@ -177,7 +177,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 	// 	},
 
 	// 获取浙能电力指标-净现金流量 SCREEN_ZCQK_02_V01
-	loadBase_SupplyPureCashFluxIncome: function(chartDivId, priceChartName) {
+	loadBase_SupplyPureCashFluxRealIncome: function(chartDivId, priceChartName) {
 
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
@@ -267,9 +267,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 				}
 			}
 			// 统计于日期
-// 			$('#pureCashFluxIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#pureCashFluxRealRealIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净现金流量') {
-				this.pureCashFlux(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,true);
+				this.pureCashFluxReal(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,true);
 			}
 			if (busy) {
 				busy.close();
@@ -283,7 +283,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZJQK_02_V03/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 获取个电厂指标-净现金流量 SCREEN_ZCQK_02_V01
-	loadEachPlant_SupplyPureCashFluxIncome: function(chartDivId, priceChartName, powerPlantName) {
+	loadEachPlant_SupplyPureCashFluxRealIncome: function(chartDivId, priceChartName, powerPlantName) {
 		var busy = new sap.m.BusyDialog({
 			close: function(event) {}
 		});
@@ -368,9 +368,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 				}
 			}
 			// 统计于日期
-// 			$('#pureCashFluxIncomeStatisticDate').html(dataStatisticDate);
+// 			$('#pureCashFluxRealIncomeStatisticDate').html(dataStatisticDate);
 			if (priceChartName == '净现金流量') {
-				this.pureCashFlux(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,false);
+				this.pureCashFluxReal(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,false);
 			}
 			if (busy) {
 				busy.close();
@@ -385,7 +385,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZJQK_02_V03/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	// 加载浙能电力-净现金流量
-	pureCashFlux: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,isBase) {
+	pureCashFluxReal: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP,KPI_JYHD_V,KPI_TZHD_V,KPI_CZHD_V,isBase) {
 
 		require(
             [
@@ -397,14 +397,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+			if (document.getElementById('powerPlantMainDetailTitlePureCashFluxReal')
 				.innerHTML == "浙能电力") {
-				document.getElementById('profitNamePureCashFlux').innerHTML = "浙能电力股份有限公司";
+				document.getElementById('profitNamePureCashFluxReal').innerHTML = "浙能电力股份有限公司";
 			} else {
-				document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+				document.getElementById('profitNamePureCashFluxReal').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFluxReal')
 					.innerHTML;
 			}
-			//document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML;
+			//document.getElementById('profitNamePureCashFluxReal').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFluxReal').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
 			// mockdata start
@@ -668,7 +668,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 		}
 	},
 	// 加载浙能电力-净现金流量指标
-	loadBaseDataDetail_PureCashFluxIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
+	loadBaseDataDetail_PureCashFluxRealIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 		require(
             [
                 'echarts',
@@ -679,17 +679,17 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if (document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+			if (document.getElementById('powerPlantMainDetailTitlePureCashFluxReal')
 				.innerHTML == "浙能电力") {
-				document.getElementById('profitNamePureCashFlux').innerHTML = "浙能电力股份有限公司";
+				document.getElementById('profitNamePureCashFluxReal').innerHTML = "浙能电力股份有限公司";
 			} else {
-				document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+				document.getElementById('profitNamePureCashFluxReal').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFluxReal')
 					.innerHTML;
 			}
-			//	document.getElementById('profitNamePureCashFlux').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML;
+			//	document.getElementById('profitNamePureCashFluxReal').innerHTML = document.getElementById('powerPlantMainDetailTitlePureCashFluxReal').innerHTML;
 			var color1 = '#A704CA';
 			var color2 = '#E52DE6';
-			if(document.getElementById('powerPlantMainDetailTitlePureCashFlux')
+			if(document.getElementById('powerPlantMainDetailTitlePureCashFluxReal')
 				.innerHTML == "浙能电力"){
 			    // TODO 堆积柱状图
 			}else{
@@ -825,7 +825,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			draw);
 
 		function draw(e) {
-			drawPureCashFluxDistribution(e);
+			drawPureCashFluxRealDistribution(e);
 
 			//   drawpie01(e);
 			// 			drawbar01(e);
@@ -834,14 +834,14 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			// 			drawbar04(e);
 		}
 
-		function drawPureCashFluxDistribution(ec) {
+		function drawPureCashFluxRealDistribution(ec) {
 
 			// event configure    
 			var ecConfig = require('echarts/config');
 
 			///////////////////////////////////中国地图/////////////////////////////////////			
 			// 基于准备好的dom，初始化echarts图表
-// 			myChart3 = ec.init(document.getElementById('chinaMapPureCashFlux'));
+// 			myChart3 = ec.init(document.getElementById('chinaMapPureCashFluxReal'));
 // 			option3 = {
 // 				tooltip: {
 // 					trigger: 'item',
@@ -877,10 +877,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 // 			// 为echarts对象加载数据 
 // 			myChart3.setOption(option3);
 
-			document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML = '浙能电力';
+			document.getElementById('powerPlantMainDetailTitlePureCashFluxReal').innerHTML = '浙能电力';
 			//////////////////////////////////浙江省地图//////////////////////////////////////////////////////////		
 			// 基于准备好的dom，初始化echarts图表
-			var myChart4 = ec.init(document.getElementById('powerPlantMapPureCashFlux'));
+			var myChart4 = ec.init(document.getElementById('powerPlantMapPureCashFluxReal'));
 			var allPowerData = map1Data;
 			var option4 = {
 
@@ -1065,8 +1065,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			};
 			myChart4.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailPureCashFlux').style.display = "";
-				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
+				document.getElementById('internetDetailPureCashFluxReal').style.display = "";
+				document.getElementById('rlcb_detailPureCashFluxReal').style.display = "none";
 
 				var mapSeries = option4.series[0];
 
@@ -1129,7 +1129,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			myChart4.setOption(option4);
 			///////////////////////////////安徽淮南市地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart5 = ec.init(document.getElementById('huaiNanMapPureCashFlux'));
+			myChart5 = ec.init(document.getElementById('huaiNanMapPureCashFluxReal'));
 
 			var allPowerData2 = map2Data;
 			var option5 = {
@@ -1242,8 +1242,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			};
 			myChart5.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailPureCashFlux').style.display = "";
-				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
+				document.getElementById('internetDetailPureCashFluxReal').style.display = "";
+				document.getElementById('rlcb_detailPureCashFluxReal').style.display = "none";
 
 				var mapSeries = option5.series[0];
 
@@ -1290,7 +1290,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 
 			///////////////////////////////新疆阿克苏地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart6 = ec.init(document.getElementById('akesuMapPureCashFlux'));
+			myChart6 = ec.init(document.getElementById('akesuMapPureCashFluxReal'));
 			var allPowerData3 = map3Data;
 			var option6 = {
 				title: {
@@ -1403,8 +1403,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			};
 			myChart6.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailPureCashFlux').style.display = "";
-				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
+				document.getElementById('internetDetailPureCashFluxReal').style.display = "";
+				document.getElementById('rlcb_detailPureCashFluxReal').style.display = "none";
 
 				var mapSeries = option6.series[0];
 
@@ -1451,7 +1451,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 
 			///////////////////////////////宁夏枣泉地图////////////////////////////////////////////
 			// 基于准备好的dom，初始化echarts图表
-			myChart7 = ec.init(document.getElementById('zaoquanMapPureCashFlux'));
+			myChart7 = ec.init(document.getElementById('zaoquanMapPureCashFluxReal'));
 			var allPowerData4 = map4Data;
 			var option7 = {
 				title: {
@@ -1564,8 +1564,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			};
 			myChart7.on(ecConfig.EVENT.CLICK, function(param) {
 
-				document.getElementById('internetDetailPureCashFlux').style.display = "";
-				document.getElementById('rlcb_detailPureCashFlux').style.display = "none";
+				document.getElementById('internetDetailPureCashFluxReal').style.display = "";
+				document.getElementById('rlcb_detailPureCashFluxReal').style.display = "none";
 
 				var mapSeries = option7.series[0];
 
@@ -1737,32 +1737,32 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 		}
 
 		function drawpie01(e) {
-			drawpie(e, 3, 4, 'detail_piePureCashFlux');
+			drawpie(e, 3, 4, 'detail_piePureCashFluxReal');
 		}
 
 		function drawbar01(e) {
-			drawbar(e, 4, 6, 'detail_01PureCashFlux');
+			drawbar(e, 4, 6, 'detail_01PureCashFluxReal');
 		}
 
 		function drawbar02(e) {
-			drawbar(e, 7, 3, 'detail_02PureCashFlux');
+			drawbar(e, 7, 3, 'detail_02PureCashFluxReal');
 		}
 
 		function drawbar03(e) {
-			drawbar(e, 3, 7, 'detail_03PureCashFlux');
+			drawbar(e, 3, 7, 'detail_03PureCashFluxReal');
 		}
 
 		function drawbar04(e) {
-			drawbar(e, 8, 2, 'detail_04PureCashFlux');
+			drawbar(e, 8, 2, 'detail_04PureCashFluxReal');
 		}
 		// 设置Chart的数据
 		function setChartData(ec, mapSeries, dataIndex) {
 
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			document.getElementById('powerPlantMainDetailTitlePureCashFlux').innerHTML = powerPlantName;
+			document.getElementById('powerPlantMainDetailTitlePureCashFluxReal').innerHTML = powerPlantName;
 
-			var priceChartId = "priceDetailDivPureCashFlux";
+			var priceChartId = "priceDetailDivPureCashFluxReal";
 			var priceChartName = "净现金流量";
 			if (powerPlantName == '台二电厂') {
 				powerPlantName = '台二发电';
@@ -1775,34 +1775,34 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			}
 			if (powerPlantName == '浙能电力') {
 				// TODO
-				pureCashFlux.getController().loadBase_SupplyPureCashFluxIncome(priceChartId, priceChartName);
-				//pureCashFlux.getController().loadEachPlant_SupplyPureCashFluxIncome(priceChartId, priceChartName, powerPlantName);
+				pureCashFluxReal.getController().loadBase_SupplyPureCashFluxRealIncome(priceChartId, priceChartName);
+				//pureCashFluxReal.getController().loadEachPlant_SupplyPureCashFluxRealIncome(priceChartId, priceChartName, powerPlantName);
 			} else {
-				pureCashFlux.getController().loadEachPlant_SupplyPureCashFluxIncome(priceChartId, priceChartName, powerPlantName);
+				pureCashFluxReal.getController().loadEachPlant_SupplyPureCashFluxRealIncome(priceChartId, priceChartName, powerPlantName);
 			}
 			//  // 自产蒸汽
 			//  var selfSteamIncomeVal = mapSeries.markPoint.data[dataIndex].selfSteamIncomeVal;
 			//  if (selfSteamIncomeVal != undefined) {
-			//      document.getElementById('travelPricePureCashFlux').innerHTML =  selfSteamIncomeVal;
+			//      document.getElementById('travelPricePureCashFluxReal').innerHTML =  selfSteamIncomeVal;
 			//  } else {
-			//      document.getElementById('travelPricePureCashFlux').innerHTML = 0;
+			//      document.getElementById('travelPricePureCashFluxReal').innerHTML = 0;
 			//      selfSteamIncomeVal = 0;
 			//  }
 			//  // 外购蒸汽
 			//  var outSteamIncomeVal = mapSeries.markPoint.data[dataIndex].outSteamIncomeVal;
 			//  if (outSteamIncomeVal != undefined) {
-			//      document.getElementById('coalPricePureCashFlux').innerHTML = outSteamIncomeVal;
+			//      document.getElementById('coalPricePureCashFluxReal').innerHTML = outSteamIncomeVal;
 			//  } else {
-			//      document.getElementById('coalPricePureCashFlux').innerHTML = 0;
+			//      document.getElementById('coalPricePureCashFluxReal').innerHTML = 0;
 			//      outSteamIncomeVal = 0;
 			//  }
 			//  // 热水
-			//  var pureCashFluxWaterIncomeVal = mapSeries.markPoint.data[dataIndex].pureCashFluxWaterIncomeVal;
-			//  if (pureCashFluxWaterIncomeVal != undefined) {
-			//      document.getElementById('watt1PureCashFlux').innerHTML =  pureCashFluxWaterIncomeVal;
+			//  var pureCashFluxRealWaterIncomeVal = mapSeries.markPoint.data[dataIndex].pureCashFluxRealWaterIncomeVal;
+			//  if (pureCashFluxRealWaterIncomeVal != undefined) {
+			//      document.getElementById('watt1PureCashFluxReal').innerHTML =  pureCashFluxRealWaterIncomeVal;
 			//  } else {
-			//      document.getElementById('watt1PureCashFlux').innerHTML = 0;
-			//      pureCashFluxWaterIncomeVal = 0;
+			//      document.getElementById('watt1PureCashFluxReal').innerHTML = 0;
+			//      pureCashFluxRealWaterIncomeVal = 0;
 			//  }
 			//  // 初装费
 			//  var firstFeeIncomeVal = mapSeries.markPoint.data[dataIndex].firstFeeIncomeVal;
@@ -1813,30 +1813,30 @@ sap.ui.controller("com.zhenergy.pcbi.view.pureCashFlux", {
 			//      firstFeeIncomeVal = 0;
 			//  }
 			//  // 供热收入
-			//  var supplyPureCashFluxIncomeVal = mapSeries.markPoint.data[dataIndex].supplyPureCashFluxIncomeVal;
-			//  if (supplyPureCashFluxIncomeVal != undefined) {
-			//      document.getElementById('fuelCostPureCashFlux').innerHTML = supplyPureCashFluxIncomeVal;
+			//  var supplyPureCashFluxRealIncomeVal = mapSeries.markPoint.data[dataIndex].supplyPureCashFluxRealIncomeVal;
+			//  if (supplyPureCashFluxRealIncomeVal != undefined) {
+			//      document.getElementById('fuelCostPureCashFluxReal').innerHTML = supplyPureCashFluxRealIncomeVal;
 			//  } else {
-			//      document.getElementById('fuelCostPureCashFlux').innerHTML = 0;
-			//      supplyPureCashFluxIncomeVal = 0;
+			//      document.getElementById('fuelCostPureCashFluxReal').innerHTML = 0;
+			//      supplyPureCashFluxRealIncomeVal = 0;
 			//  }
 			//  // 供热收入同比
-			//  var supplyPureCashFluxIncomeUP = mapSeries.markPoint.data[dataIndex].supplyPureCashFluxIncomeUP;
-			//  if (supplyPureCashFluxIncomeUP != undefined) {
-			//      document.getElementById('fuelDownPercentPureCashFlux').innerHTML = supplyPureCashFluxIncomeUP;
+			//  var supplyPureCashFluxRealIncomeUP = mapSeries.markPoint.data[dataIndex].supplyPureCashFluxRealIncomeUP;
+			//  if (supplyPureCashFluxRealIncomeUP != undefined) {
+			//      document.getElementById('fuelDownPercentPureCashFluxReal').innerHTML = supplyPureCashFluxRealIncomeUP;
 			//  } else {
-			//      document.getElementById('fuelDownPercentPureCashFlux').innerHTML = 0;
-			//      supplyPureCashFluxIncomeUP = 0;
+			//      document.getElementById('fuelDownPercentPureCashFluxReal').innerHTML = 0;
+			//      supplyPureCashFluxRealIncomeUP = 0;
 			//  }
-			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + pureCashFluxWaterIncomeVal + firstFeeIncomeVal;
+			//  var dataAll = selfSteamIncomeVal + outSteamIncomeVal + pureCashFluxRealWaterIncomeVal + firstFeeIncomeVal;
 			//  if (dataAll == 0) {
 			//      dataAll = 10;
 			//  }
-			//  drawpie(ec, supplyPureCashFluxIncomeUP+50, 50, 'detail_piePureCashFlux');
-			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01PureCashFlux');
-			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02PureCashFlux');
-			//  drawbar(ec, pureCashFluxWaterIncomeVal, dataAll, 'detail_03PureCashFlux');
-			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04PureCashFlux');
+			//  drawpie(ec, supplyPureCashFluxRealIncomeUP+50, 50, 'detail_piePureCashFluxReal');
+			//  drawbar(ec, selfSteamIncomeVal, dataAll, 'detail_01PureCashFluxReal');
+			//  drawbar(ec, outSteamIncomeVal, dataAll, 'detail_02PureCashFluxReal');
+			//  drawbar(ec, pureCashFluxRealWaterIncomeVal, dataAll, 'detail_03PureCashFluxReal');
+			//  drawbar(ec, firstFeeIncomeVal, dataAll, 'detail_04PureCashFluxReal');
 		}
 	}
 });

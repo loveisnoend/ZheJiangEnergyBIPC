@@ -144,12 +144,12 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
             }
             //燃料成本
             function drawrlcb(e) {
-                drawline(e, date, data3, '燃料成本', 'green', 'rlcb', data3[data3.length - 1] + '亿元', KPI_GRC_V,'供热燃料成本','orange','auto','auto','auto','auto');
+                drawline(e, date, data3, '燃料成本', 'green', 'rlcb', data3[data3.length - 1] + '万元', KPI_GRC_V,'供热燃料成本','orange','auto','auto','auto','auto');
             }
 
             //其他成本
             function drawqtcb(e) {
-                drawline(e, date, data4, '其他成本', 'green', 'qtcb', data4[data4.length - 1] + '亿元', '','','orange','auto','auto','auto','auto');
+                drawlineSecond(e, date, data4, '其他成本', 'green', 'qtcb', data4[data4.length - 1] + '万元', '','','orange','auto','auto','auto','auto');
             }
 
 	    //折线通用
@@ -502,7 +502,257 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
         		isPerformaneceLoad = true;
             }
         }
-        
+ 	    //折线通用 second
+        function drawlineSecond(e, date, data1, title01, color01, id, value) {
+            mychart = e.init(document.getElementById(id));
+            var w = document.getElementById(id).clientWidth;
+            var h = document.getElementById(id).clientHeight;
+            var option = {
+                title: {
+                    show: false,
+                    text: value,
+                    padding: 10,
+                    x: 'center',
+                    textStyle: {
+                        color: '#FFF',
+                        fontFamily: 'hiragino',
+                        fontSize: 18,
+                        fontStyle: 'normal',
+                        fontWeight: 'bold'
+                    }
+                },
+                legend: {
+                    show: true,
+                    textStyle:{
+                        color:'white'
+                    },
+                    selected: {
+                        title01: true
+                    },
+                    data: [title01]
+                },
+                itemStyle : {
+                    normal : {
+                        label : {
+                            show : true,
+                            position : 'top'
+                        }
+                    }  
+                },
+                tooltip:{
+                   show: true,
+			       trigger:'axis' ,
+			       alwaysShowContent : true,
+			       backgroundColor:'rgb(234,234,234)',
+			       textStyle:{
+			           color:'rgb(0,0,0)',
+			           fontSize : 12
+			       },
+			       axisPointer:{
+			           type: 'none'
+			       }
+			    },
+                grid: {
+                    x: '50px',
+                    y: '30px',
+                    x2: '40px',
+                    y2: '40px'
+                },
+                color: ['#FFB300', '#31536f'],
+                xAxis: [
+                    {
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#FFF'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: '#31536f',
+                                width: 1
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: '#31536f'
+                            }
+                        },
+                        type: 'category',
+                        boundaryGap: false,
+                        data: date,
+                        splitNumber : 6
+                    }
+                ],
+                yAxis: [
+                    {
+                        name : title01,
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value} ',
+                            margin:2,
+                            textStyle: {
+                                color: color01
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: '#31536f',
+                                width: 1
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: '#31536f'
+                            }
+                        }
+				// 		max: maxy1,
+				// 		min: miny1,
+				// 		splitNumber: 4
+                    }
+                ],
+                series: [
+				    {
+                		name: title01,
+                		type: 'line',
+                		smooth: true,
+        		        itemStyle: {
+                            normal: {
+                                color: color01,
+                                lineStyle: {
+                                    color: color01
+                                },
+                                label : {
+    					            show :false,
+    					            position : 'top',
+    					            textStyle:{
+    					                color : color01
+    					            }
+    					        }
+                            }
+                        },
+                		data: data1
+                    }
+                    ]
+            };
+//             var option = {
+//                 color:['#ffb300','#33FF32'],
+// 				title: {
+// 					show: false,
+// 					text: value,
+// 					padding: 10,
+// 					x: 'center',
+// 					textStyle: {
+// 						color: '#FFF',
+// 						fontFamily: 'hiragino',
+// 						fontSize: 18,
+// 						fontStyle: 'normal',
+// 						fontWeight: 'bold'
+// 					}
+// 				},
+// 				tooltip: {
+// 				    show:false,
+// 					trigger: 'axis'
+// 				},
+// 				legend: {
+// 					show: false,
+// 					data: [title]
+// 				},
+// 				grid: {
+// 					x: '30px',
+// 					y: '20px',
+// 					x2: '30px',
+// 					y2: '40px'
+// 				},
+// 				xAxis: [
+// 					{
+// 						axisLabel: {
+// 							textStyle: {
+// 								color: '#FFF'
+// 							}
+// 						},
+// 						axisLine: {
+// 							lineStyle: {
+// 								color: '#31536f',
+// 								width: 1
+// 							}
+// 						},
+// 						splitLine: {
+// 							lineStyle: {
+// 								color: '#31536f'
+// 							}
+// 						},
+// 						type: 'category',
+// 						data: date //['7/21', '7/22', '7/23', '7/24', '7/25', '7/26', '7/27']
+//                     }
+//                 ],
+// 				yAxis: [
+// 					{
+// 						splitNumber: 5,
+// 						type: 'value',
+// 						axisLine: {
+// 							show: false
+// 						},
+// 						axisLabel: {
+// 							textStyle: {
+// 								color: '#FFB300'
+// 							},
+// 							formatter: '{value}'
+// 						},
+
+// 						splitLine: {
+// 							lineStyle: {
+// 								color: 'rgba(64,64,64,0.5)'
+// 							}
+// 						}
+//                     },
+// 					{
+// 						name: '',
+// 						splitNumber: 5,
+// 						type: 'value',
+// 						axisLine: {
+// 							show: false
+// 						},
+// 						axisLabel: {
+// 							textStyle: {
+// 								color: '#33FF32'
+// 							},
+// 							formatter: '{value}'
+// 						},
+// 						splitLine: {
+// 							lineStyle: {
+// 								color: 'rgba(64,64,64,0.5)'
+// 							}
+// 						}
+//                     }
+//                     ],
+// 				series: [
+// 				    {
+//                 		name: '上网电量',
+//                 		type: 'line',
+//                 		smooth: true,
+//                 		data: data1
+//                     },
+//                 	{
+//                 		name: '供热量',
+//                 		type: 'line',
+//                 		smooth: true,
+//                 		yAxisIndex: 1,
+//                 		data: data2
+//                     }
+// 				]
+// 			};
+            mychart.setOption(option);
+            if (isPerformaneceLoad == false) {
+                if (busy) {
+        			busy.close();
+        		} 
+        		changeTheSkinOfPage();
+        		isPerformaneceLoad = true;
+            }
+        }       
         function drawpie(e){
             // mychart=e.init(document.getElementById('rlr_circle'));
             // var option = {

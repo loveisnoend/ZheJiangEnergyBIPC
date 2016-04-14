@@ -622,7 +622,7 @@ document.getElementById('profitNameBusinessSumIncome').innerHTML = document.getE
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力本部": [119.80, 30],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],

@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.mainBusinessDetail", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-Gates 更改下面的文字和onclick方法
-                                "<b onClick='toMainBusinessPage()' style='cursor:pointer;'>浙能电力主营业务收入</b> > <b>"+timeLabel+"主营业务收入详细</b>"+
+                                "<b onClick='toMainBusinessPage()' style='cursor:pointer;'>浙能电力主营业务收入(合并)</b> > <b>"+timeLabel+"主营业务收入(合并)详细</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)
@@ -624,7 +624,7 @@ document.getElementById('profitNameMainBusinessDetail').innerHTML = document.get
 						geoCoord: {
 							// 杭州
 							"萧山发电厂": [119.50, 29.63],
-							"浙能电力本部": [119.60, 30.10],
+							"浙能电力本部": [119.80, 30],
 							"浙能电力股份有限公司": [119.50, 30],
 							// 嘉兴
 							"浙江浙能嘉兴发电有限公司": [120.58, 30.60],

@@ -499,6 +499,10 @@ function changeSkinCss(pageName) {
     if (pageName == 'PureCashFlux') {
         pureCashFlux.getController()._loadData01(); 
     } 
+    // 净现金流量 Real
+    if (pageName == 'PureCashFluxReal') {
+        pureCashFluxReal.getController()._loadData01(); 
+    } 
     // 资产负债率
     if (pageName == 'LiabilityProperty') {
         liabilityProperty.getController()._loadData01(); 
@@ -506,6 +510,10 @@ function changeSkinCss(pageName) {
     // 资产负债率 Real
     if (pageName == 'LiabilityPropertyReal') {
         liabilityPropertyReal.getController()._loadData01(); 
+    } 
+    // 一二类缺陷总计
+    if (pageName == 'TotalDefects') {
+        totalDefects.getController()._loadData01(); 
     } 
 }
 // change the skin of the page
