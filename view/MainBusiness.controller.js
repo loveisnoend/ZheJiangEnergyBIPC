@@ -82,7 +82,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.MainBusiness", {
 				if (sRes.results[i].KPI_TYPE == '主营业务收入其他'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){ 
 				    data4.push(parseFloat(sRes.results[i].KPI_VALUE));    
 				}
-				if (sRes.results[i].KPI_TYPE == '主营业务收入'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){ 
+				if (sRes.results[i].KPI_TYPE == '营业收入'&&sRes.results[i].KPI_DESC == sRes.results[0].KPI_DESC){ 
 				    data5.push(parseFloat(sRes.results[i].KPI_VALUE));    
 				}
 			}

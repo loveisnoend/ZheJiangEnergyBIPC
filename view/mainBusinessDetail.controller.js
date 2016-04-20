@@ -79,11 +79,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.mainBusinessDetail", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 				// 主营业务收入同比
-				if (sRes.results[i].KPI_TYPE == '主营业务收入_同比') {
+				if (sRes.results[i].KPI_TYPE == '营业收入_同比') {
 					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 主营业务收入
-				if (sRes.results[i].KPI_TYPE == '主营业务收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				if (sRes.results[i].KPI_TYPE == '营业收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
 					if (sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DESC != '浙能电力') {
 					    KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
 						xData.push(sRes.results[i].KPI_DESC);
@@ -137,11 +137,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.mainBusinessDetail", {
 			var xData = new Array();
 			for (var i in sRes.results) {
 				// 主营业务收入同比
-				if (sRes.results[i].KPI_TYPE == '主营业务收入_同比') {
+				if (sRes.results[i].KPI_TYPE == '营业收入_同比') {
 					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 主营业务收入
-				if (sRes.results[i].KPI_TYPE == '主营业务收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+				if (sRes.results[i].KPI_TYPE == '营业收入' && sRes.results[i].KPI_DESC == powerPlantName) {
 					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
 					xData.push(sRes.results[i].KPI_DATE);
 				}

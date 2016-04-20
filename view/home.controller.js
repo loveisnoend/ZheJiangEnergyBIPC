@@ -215,16 +215,22 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
             var daytimeNO1 = null;
 			// 净利润值
 			var pureProfit=0;
+			
+			// 净利润累计
+			var pureProfitSum = 34;
+		    // 年度累计完成度
+		    var pureProfitSumPercentValue = 10;
+		    
 			for (var i in sRes.results) {
 			    // 主营业务
-				if (sRes.results[i].KPI_TYPE == '主营业务收入' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '营业收入' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    mainBusinessValue = mainBusinessValue+parseFloat(sRes.results[i].KPI_VALUE);
 				    daytime = sRes.results[i].KPI_DATE;
 				}
-				if (sRes.results[i].KPI_TYPE == '主营业务收入环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '营业收入环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    mainBusinessHuanBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
-				if (sRes.results[i].KPI_TYPE == '主营业务收入同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				if (sRes.results[i].KPI_TYPE == '营业收入同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    mainBusinessTongBi = sRes.results[i].KPI_VALUE;
 				}
 				
@@ -239,7 +245,26 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 				if (sRes.results[i].KPI_TYPE == '净利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    pureProfitTongBi = sRes.results[i].KPI_VALUE;
 				}
+				
+				// 净利润累计
+				if (sRes.results[i].KPI_TYPE == '年累计净利润' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    pureProfitSum = sRes.results[i].KPI_VALUE;
+				}
+				// 净利润累计完成度
+				if (sRes.results[i].KPI_TYPE == '年累计净利润完成度' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    pureProfitSumPercentValue = sRes.results[i].KPI_VALUE;
+				}
 			}
+			
+			// 净利润累计
+			$('#pureProfitSum').html(pureProfitSum);
+			
+			var pureProfitSumPercentValue = pureProfitSumPercentValue+'%';
+			// 净利润累计完成度
+			$('#pureProfitSumPercentValue').html(pureProfitSumPercentValue);
+			// 净利润累计完进度条百分比
+			$('#pureProfitSumPercentWidth').css('width',pureProfitSumPercentValue);
+			
 			var rlr_color="red";
     		if(mainBusinessValue>0){
     		    if (skinName == '夜间模式') {

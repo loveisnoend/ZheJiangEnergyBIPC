@@ -519,13 +519,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.wokerPropertyAndType", {
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-				if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
-.innerHTML;
-}
+				if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML=="浙能电力"){
+                    document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
+                }else{
+                    document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML;
+                }
 // 			document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById(
 // 				'powerPlantMainDetailTitleWokerPropertyAndType').innerHTML;
 			var color1 = '#A704CA';
@@ -665,13 +663,11 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 
 		function draw(e) {
 			var mychart = e.init(document.getElementById(chartDivId));
-			if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
-.innerHTML=="浙能电力"){
-   document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
-}else{
-document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType')
-.innerHTML;
-}
+			if(document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML=="浙能电力"){
+                document.getElementById('profitNameWokerPropertyAndType').innerHTML="浙能电力股份有限公司";
+            }else{
+                document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML;
+            }
 // 			document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.getElementById(
 // 				'powerPlantMainDetailTitleWokerPropertyAndType').innerHTML;
 			var color1 = '#A704CA';
@@ -1740,7 +1736,7 @@ document.getElementById('profitNameWokerPropertyAndType').innerHTML = document.g
 		function setChartData(ec, mapSeries, dataIndex) {
 			// get powerplantname by real name
 			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
-			document.getElementById('powerPlantMainDetailTitleWokerPropertyAndType').innerHTML = powerPlantName;
+			document.getElementById('profitNameWokerPropertyAndType').innerHTML = powerPlantName;
 
 			var priceChartId = "priceDetailDivWokerPropertyAndType";
 			var priceChartName = "人均利润";
