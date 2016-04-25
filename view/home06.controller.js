@@ -101,7 +101,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home06", {
 				
 				// 净现金流量
 				if (sRes.results[i].KPI_TYPE == '净现金流量' && sRes.results[i].KPI_DESC == '浙能电力'){  
-				    pureCashFluxRateValue = sRes.results[i].KPI_VALUE*100;
+				    pureCashFluxRateValue = sRes.results[i].KPI_VALUE;
 				    daytimePureCashFlux = sRes.results[i].KPI_DATE;
 				}
 				if (sRes.results[i].KPI_TYPE == '净现金流量环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
