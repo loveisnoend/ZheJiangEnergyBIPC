@@ -249,6 +249,80 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 		}, this);
 	    sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_01_V01?$filter=(BNAME eq '" +usrid+ "')", mParameters);
 	},
+	// 获取净资产负债率
+	_loadPurePerportyPercent : function(){
+	    var mParameters = {};
+		mParameters['async'] = true;
+		mParameters['success'] = jQuery.proxy(function(sRes) {
+            // 统计日期
+            var daytime = null;
+            
+			// 资产负债率同比
+            var purePerportyPercentRateTongBi = 0;
+            // 资产负债率环比
+            var purePerportyPercentRateHuanBi = '';
+            // 统计日期
+            var daytimepurePerportyPercent = null;
+			//设置数据
+			var purePerportyPercentRateValue=0;
+
+			for (var i in sRes.results) {
+				
+				// 资产负债率 Real
+				if (sRes.results[i].KPI_TYPE == '资产负债率' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    purePerportyPercentRateValue = sRes.results[i].KPI_VALUE*100;
+				    daytimepurePerportyPercent = sRes.results[i].KPI_DATE;
+				}
+				if (sRes.results[i].KPI_TYPE == '资产负债率环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    purePerportyPercentRateHuanBi = sRes.results[i].KPI_VALUE*100;
+				}
+				if (sRes.results[i].KPI_TYPE == '资产负债率_同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    purePerportyPercentRateTongBi = sRes.results[i].KPI_VALUE*100;
+				}
+			}
+	        
+	        // 资产负债率
+			var purePerportyPercent_color="red";
+    		if(purePerportyPercentRateValue>0){
+    		    if (skinName == '夜间模式') {
+    		        purePerportyPercent_color="green";
+    		    } else {
+    		        purePerportyPercent_color="white";
+    		    }
+    		}
+    		$('#purePerportyPercent').css('color',purePerportyPercent_color);
+    		$('#purePerportyPercent').css('font-size','65px');
+			$('#purePerportyPercent').html(purePerportyPercentRateValue);
+            if (purePerportyPercentRateTongBi != undefined) {
+                $('#tongbipurePerportyPercent').html(purePerportyPercentRateTongBi);    
+            }
+            if (purePerportyPercentRateTongBi > 0) {
+                $("#tongbipurePerportyPercentImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (purePerportyPercentRateTongBi < 0) {
+                    $("#tongbipurePerportyPercentImg").attr("src","img/arrow-red2.png");
+                } else {
+                    $("#tongbipurePerportyPercentImg").attr("src","img/horizontal-green.png");
+                }
+            }
+            var daytime01purePerportyPercent;
+    	    var daytime02purePerportyPercent;
+    	    var daytime03purePerportyPercent;
+    	    if (daytimepurePerportyPercent != null) {
+    	       daytime01purePerportyPercent = daytimepurePerportyPercent.substring(0,4);
+    	       daytime02purePerportyPercent = daytimepurePerportyPercent.substring(4,6);
+    	       daytime03purePerportyPercent = daytimepurePerportyPercent.substring(6,8); 
+    	    }
+            // 资产现金回收率统计日期
+	        $('#purePerportyPercentDate').html(daytime01purePerportyPercent + "年" + daytime02purePerportyPercent + "月");//  + daytime03Sum + "日"
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			sap.m.MessageToast.show("网络连接失败，请重试", {
+				offset: '0 -110'
+			});
+		}, this);
+	    sap.ui.getCore().getModel().read("AT_ZSCREEN_ZCQK_01_V01?$filter=(BNAME eq '" +usrid+ "')", mParameters);
+	},
 	// 获取二级页面数据
 	_loadData01 : function (currentDate) {
 	    
@@ -269,7 +343,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.home07", {
 	    
 		this._drawSwiper();
 	   // this._loadSafeProduceDays();
+	   // 加载一二类缺陷及净现金流量数据
 	    this._loadTotalDefects();
+	    // 加载净资产负债率数据
+	    this._loadPurePerportyPercent();
 		// 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi,valueGDP,valueCPItongbi,valuePPItongbi,valuePMIproduce,valuePMInonProduce,valueGDPTotal);
 	},

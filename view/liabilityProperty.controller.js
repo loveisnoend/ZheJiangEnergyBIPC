@@ -32,10 +32,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 		document.getElementById('internetDetailliabilityProperty').style.display = "";
 		document.getElementById('rlcb_detailliabilityProperty').style.display = "none";
 		// this.loadChart();
-		var xData = new Array();
-		var KPI_JZC_V = new Array();
-		var KPI_JZC_UP = new Array();
-		this.liabilityProperty('priceDetailDivliabilityProperty', '资产负债率', xData, KPI_JZC_V, KPI_JZC_UP);
+// 		var xData = new Array();
+// 		var KPI_JZC_V = new Array();
+// 		var KPI_JZC_UP = new Array();
+// 		this.liabilityProperty('priceDetailDivliabilityProperty', '资产负债率', xData, KPI_JZC_V, KPI_JZC_UP);
 		this._loadData01();
 		// 设定头部跑马灯信息 common.js
 		_loadData03(valueCPIhuanbi, valueGDP, valueCPItongbi, valuePPItongbi, valuePMIproduce, valuePMInonProduce, valueGDPTotal);
@@ -176,7 +176,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 
 	// 	},
 
-	// 获取浙能电力指标-净资产 SCREEN_ZCQK_02_V01
+	// 获取浙能电力指标-净资产负债率 SCREEN_ZCQK_02_V01
 	loadBase_SupplyliabilityPropertyIncome: function(chartDivId, priceChartName) {
 // TODO 真实数据放开busy
 // 		var busy = new sap.m.BusyDialog({
@@ -186,11 +186,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 // 			busy.open();
 // 		}
 
-		// 净资产指标
-		// 净资产
+		// 净资产负债率指标
+		// 净资产负债率
 		var KPI_JZC_V = new Array();
 
-		// 净资产同比
+		// 净资产负债率负债率同比
 		var KPI_JZC_UP = new Array();
 
 		var dataStatisticDate = '';
@@ -201,24 +201,23 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 净资产同比
-				if (sRes.results[i].KPI_TYPE == '净资产_同比') {
+				// 净资产负债率同比
+				if (sRes.results[i].KPI_TYPE == '资产负债率_同比') {
 					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
-				// 净资产
-				if (sRes.results[i].KPI_TYPE == '净资产' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
-					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+				// 净资产负债率
+				if (sRes.results[i].KPI_TYPE == '资产负债率') {
+					KPI_JZC_V.push((sRes.results[i].KPI_VALUE*100).toFixed(2));
 					xData.push(sRes.results[i].KPI_DESC);
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
 // 			$('#liabilityPropertyIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '资产负债率') {
+			if (priceChartName == '净资产负债率') {
 				this.liabilityProperty(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
 			if (busy) {
@@ -231,9 +230,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 			});
 		}, this);
 		// TODO 数据请求
-		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 获取个电厂指标-净资产 SCREEN_ZCQK_02_V01
+	// 获取个电厂指标-净资产负债率 SCREEN_ZCQK_02_V01
 	loadEachPlant_SupplyliabilityPropertyIncome: function(chartDivId, priceChartName, powerPlantName) {
 	    // TODO 真实数据放开busy
 // 		var busy = new sap.m.BusyDialog({
@@ -243,11 +242,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 // 			busy.open();
 // 		}
 
-		// 净资产指标
-		// 净资产
+		// 净资产负债率指标
+		// 净资产负债率
 		var KPI_JZC_V = new Array();
 
-		// 净资产同比
+		// 净资产负债率同比
 		var KPI_JZC_UP = new Array();
 
 		var dataStatisticDate = '';
@@ -258,24 +257,23 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 			// 各个电厂月份指标
 			var xData = new Array();
 			for (var i in sRes.results) {
-				// 净资产同比
-				if (sRes.results[i].KPI_TYPE == '净资产_同比') {
+				// 净资产负债率同比
+				if (sRes.results[i].KPI_TYPE == '资产负债率_同比') {
 					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
-				// 净资产
-				if (sRes.results[i].KPI_TYPE == '净资产' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+				// 净资产负债率
+				if (sRes.results[i].KPI_TYPE == '资产负债率' && sRes.results[i].KPI_DESC == powerPlantName) {
+					KPI_JZC_V.push((sRes.results[i].KPI_VALUE*100).toFixed(2));
 					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期
 				if (dataStatisticDate == '') {
-					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-						.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
+					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE.substring(4, 6); //+"."+sRes.results[i].KPI_DATE.substring(6,8);
 				}
 			}
 			// 统计于日期
 // 			$('#liabilityPropertyIncomeStatisticDate').html(dataStatisticDate);
-			if (priceChartName == '净资产') {
+			if (priceChartName == '净资产负债率') {
 				this.loadBaseDataDetail_liabilityPropertyIncome(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP);
 			}
 			if (busy) {
@@ -287,9 +285,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 				offset: '0 -110'
 			});
 		}, this);
-		//sap.ui.getCore().getModel().read("SCREEN_ZCQK_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_ZCQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	// 加载浙能电力-净资产
+	// 加载浙能电力-净资产负债率
 	liabilityProperty: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 
 		require(
@@ -313,9 +311,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 			
 			// mockdata start
 			// 电厂
-			xData = ['萧山发电','台州发电','兰溪发电','台二发电','凤台发电','嘉兴发电','长兴发电','滨海发电','镇海发电','温州发电','乐清发电','舟山煤电','阿克苏热电','枣泉发电','镇海联合','金华燃机','常山燃气','温州燃机','嘉华发电','北仑发电','镇海燃气','镇海燃热','温特发电','钱清发电','绍兴滨海热力'];
+// 			xData = ['萧山发电','台州发电','兰溪发电','台二发电','凤台发电','嘉兴发电','长兴发电','滨海发电','镇海发电','温州发电','乐清发电','舟山煤电','阿克苏热电','枣泉发电','镇海联合','金华燃机','常山燃气','温州燃机','嘉华发电','北仑发电','镇海燃气','镇海燃热','温特发电','钱清发电','绍兴滨海热力'];
 			// 资产负债率
-			KPI_JZC_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
+// 			KPI_JZC_V =[43.24,42.85,44.95,41.61,41.09,40.9,45.93,45.14,46.17,43.24,44.46,41.29,46,43.24,40.81,43.02,42.5,41.04,45.42,41.17,46.42,41.55,43.37,43.44,43.12];
 			// mockdata end
 			var option = {
 				title: {
@@ -420,7 +418,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 						data: KPI_JZC_V
                             }
             //                 {
-            //                     name:'净资产同比',
+            //                     name:'净资产负债率同比',
             //                     type:'line',
             //                     symbol:'emptyCircle',
         				// 		symbolSize:5,
@@ -444,7 +442,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 			mychart.setOption(option);
 		}
 	},
-	// 加载浙能电力-净资产指标
+	// 加载浙能电力-净资产负债率指标
 	loadBaseDataDetail_liabilityPropertyIncome: function(chartDivId, priceChartName, xData, KPI_JZC_V, KPI_JZC_UP) {
 		require(
             [
@@ -517,7 +515,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
                         ],
 				yAxis: [
 					{
-						name: '单位:亿元',
+						name: '单位:%',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -1532,7 +1530,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityProperty", {
 			document.getElementById('powerPlantMainDetailTitleliabilityProperty').innerHTML = powerPlantName;
 
 			var priceChartId = "priceDetailDivliabilityProperty";
-			var priceChartName = "净资产";
+			var priceChartName = "净资产负债率";
 			if (powerPlantName == '台二电厂') {
 				powerPlantName = '台二发电';
 			}

@@ -29,7 +29,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.IndustrialAddSpeed", {
 
 				if (sRes.results[i].KPI_TYPE == '工业增加值(当月)' && sRes.results[i].KPI_DESC == '全国') {
 					edate.push(sRes.results[i].KPI_DATE);
-					edata.push(parseFloat(sRes.results[i].KPI_VALUE));
+					edata.push((sRes.results[i].KPI_VALUE*100).toFixed(2));
 				}
 			}
 			this.loadChart(edate, edata);
@@ -89,8 +89,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.IndustrialAddSpeed", {
 				tooltip: {
 					show: true,
 					formatter: function(param, a, b) {
-						return param[0].seriesName + "</br>" + param[0].name.substring(0, 4) + "年" + param[0].name.substring(4, 6) + "月" + "</br>" + param[
-							0].value;
+						return param[0].seriesName + "</br>" + param[0].name.substring(0, 4) + "年" + param[0].name.substring(4, 6) + "月" + "</br>" + param[0].value;
 					},
 					trigger: 'axis',
 					alwaysShowContent: true,
@@ -118,11 +117,11 @@ sap.ui.controller("com.zhenergy.pcbi.view.IndustrialAddSpeed", {
 						},
 						axisLabel: {
 						    interval:0,
-							formatter: function(val, index) {
-								if (parseInt(val.substring(4, 6)) % 3 == 0) {
-									return val.substring(0, 4) + "年第" + parseInt(val.substring(4, 6)) / 3 + "季度";
+                            formatter: function(val, index) {
+								if ((parseInt(val.substring(4, 6))+2) % 3 == 0) {
+									return val.substring(0, 4) + "年第" + (parseInt(val.substring(4, 6))+2) / 3 + "季度";
 								} else {
-									return "";
+									return " ";
 								}
 							},
 							textStyle: {
@@ -150,7 +149,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.IndustrialAddSpeed", {
                 ],
 				yAxis: [
 					{
-						// name: '全国工业增加值增长速度',
+						name: '单位:%',
 						// nameTextStyle:{
 						//  fontSize:24  
 						// },

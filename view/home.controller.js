@@ -221,6 +221,15 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 		    // 年度累计完成度
 		    var pureProfitSumPercentValue = 10;
 		    
+		    // 归属母公司净利润
+            var motherComTongBi = '';
+            // 归属母公司净利润
+            var motherComHuanBi = '';
+            // 归属母公司净利润
+            var motherComDaytime = null;
+			// 归属母公司净利润
+			var motherComValue=0;
+		    
 			for (var i in sRes.results) {
 			    // 主营业务
 				if (sRes.results[i].KPI_TYPE == '营业收入' && sRes.results[i].KPI_DESC == '浙能电力'){  
@@ -253,6 +262,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 				// 净利润累计完成度
 				if (sRes.results[i].KPI_TYPE == '年累计净利润完成度' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    pureProfitSumPercentValue = sRes.results[i].KPI_VALUE;
+				}
+				
+				// 归属母公司净利润
+				if (sRes.results[i].KPI_TYPE == '归属母公司净利润' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    motherComValue = motherComValue+parseFloat(sRes.results[i].KPI_VALUE);
+				    motherComDaytime = sRes.results[i].KPI_DATE;
+				}
+				if (sRes.results[i].KPI_TYPE == '归属母公司净利润环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    motherComHuanBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
+				}
+				if (sRes.results[i].KPI_TYPE == '归属母公司净利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    motherComTongBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
 			}
 			
@@ -363,6 +384,58 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
     	    }
             // 净利润统计日期
 	        $('#pureProfitDate').html(daytime01NO1 + "年" + daytime02NO1 + "月");//  + daytime03NO1 + "日"
+	        
+	        
+	        // 归属母公司净利润
+			var motherComPureProfit_color="red";
+    		if(motherComValue>0){
+    		    if (skinName == '夜间模式') {
+    		        motherComPureProfit_color="green";
+    		    } else {
+    		        motherComPureProfit_color="white";
+    		    }
+    		}
+    		$('#motherComPureProfit').css('color',motherComPureProfit_color);
+    		$('#motherComPureProfit').css('font-size','65px');
+			$('#motherComPureProfit').html(motherComValue);
+			
+			// 同比值
+            if (motherComTongBi != undefined) {
+                $('#tongbimotherComPureProfit').html(motherComTongBi);    
+            }
+            if (motherComTongBi > 0) {
+                $("#tongbimotherComPureProfitImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (motherComTongBi == 0) {
+                    $("#tongbimotherComPureProfitImg").attr("src","img/horizontal-green.png");  
+                } else {
+                    $("#tongbimotherComPureProfitImg").attr("src","img/arrow-red2.png");
+                }
+            }
+            
+            // // 环比值
+            // if (motherComPureProfitHuanBi != undefined) {
+            //     $('#huanbimotherComPureProfit').html(motherComPureProfitHuanBi);    
+            // }
+            // if (motherComPureProfitHuanBi > 0) {
+            //     $("#huanbimotherComPureProfitImg").attr("src","img/arrow-green2.png");
+            // } else {
+            //     if (motherComPureProfitHuanBi == 0) {
+            //         $("#huanbimotherComPureProfitImg").attr("src","img/horizontal-green.png");
+            //     } else {
+            //         $("#huanbimotherComPureProfitImg").attr("src","img/arrow-red2.png");
+            //     }
+            // }
+            var daytime01NO2;
+    	    var daytime02NO2;
+    	    var daytime03NO2;
+    	    if (daytimeNO1 != null) {
+    	       daytime01NO2 = motherComDaytime.substring(0,4);
+    	       daytime02NO2 = motherComDaytime.substring(4,6);
+    	       daytime03NO2 = motherComDaytime.substring(6,8); 
+    	    }
+            // 净利润统计日期
+	        $('#motherComPureProfitDate').html(daytime01NO2 + "年" + daytime02NO2 + "月");//  + daytime03NO1 + "日"
 		}, this);
 		mParameters['error'] = jQuery.proxy(function(eRes) {
 			alert("数据分析中,请稍后......");

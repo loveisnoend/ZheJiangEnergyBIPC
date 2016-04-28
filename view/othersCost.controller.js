@@ -453,14 +453,13 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 
 			for (var i in sRes.results) {
 				if (sRes.results[i].KPI_DESC != "浙能电力" && sRes.results[i].KPI_DESC != "浙能电力本部") {
-					if (sRes.results[i].KPI_TYPE == priceChartName) {
+					if (sRes.results[i].KPI_TYPE == priceChartName && sRes.results[i].KPI_DATE == sRes.results[0].KPI_DATE) {
 						var tempCost = sRes.results[i].KPI_VALUE; //10000).toFixed(2);
 						eachCostData.push(tempCost);
 						eachPowerPlantName.push(sRes.results[i].KPI_DESC);
 					}
 					if (dataStatisticDate == '') {
-						dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[
-							i].KPI_DATE.substring(6, 8);
+						dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6) + "." + sRes.results[i].KPI_DATE.substring(6, 8);
 					}
 				}
 			}
@@ -617,7 +616,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.othersCost", {
 
 			for (var i in sRes.results) {
 				if (sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部') {
-					if (sRes.results[i].KPI_TYPE == priceChartName) {
+					if (sRes.results[i].KPI_TYPE == priceChartName && sRes.results[i].KPI_DATE == sRes.results[0].KPI_DATE) {
 						dataThisYear.push(sRes.results[i].KPI_VALUE); ///10000).toFixed(2));
 						powerPlantName.push(sRes.results[i].KPI_DESC);
 					}
