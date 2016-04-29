@@ -274,7 +274,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerAndHeatIncome", {
 					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 日利润-发电收入
-				if (sRes.results[i].KPI_TYPE == '日利润-发电收入' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i].KPI_DESC != '浙能电力本部') {
+				if (sRes.results[i].KPI_TYPE == '日利润-发电收入' && sRes.results[i].KPI_DESC == powerPlantName && sRes.results[i].KPI_DESC != '浙能电力本部') {
 					KPI_DSR_V.push(sRes.results[i].KPI_VALUE);
 				}
 				// 收入统计日期

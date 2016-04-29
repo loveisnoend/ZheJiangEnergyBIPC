@@ -127,7 +127,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 				    daytime = sRes.results[i].KPI_DATE;
 				}
 				if (sRes.results[i].KPI_TYPE == '日利润环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
-				    dailyProfitHuanBi = sRes.results[i].KPI_VALUE;
+				    dailyProfitHuanBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
 				if (sRes.results[i].KPI_TYPE == '日利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    dailyProfitTongBi = sRes.results[i].KPI_VALUE;

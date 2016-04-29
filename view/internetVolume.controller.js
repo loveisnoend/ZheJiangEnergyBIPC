@@ -442,10 +442,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
                 ],
 				yAxis: [
 					{
-						name: '万千瓦时',
+						name: '单位:万千瓦时',
 						type: 'value',
 						axisLine: {
-							show: false
+							show: true
 						},
 						axisLabel: {
 							textStyle: {

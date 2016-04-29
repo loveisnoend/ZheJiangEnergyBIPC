@@ -202,7 +202,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityPropertyReal", {
 					KPI_JZC_UP.push(sRes.results[i].KPI_VALUE);
 				}
 				// 净资产负债率
-				if (sRes.results[i].KPI_TYPE == '资产负债率' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
+				if (sRes.results[i].KPI_TYPE == '资产负债率' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE && sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部') {
 					KPI_JZC_V.push((sRes.results[i].KPI_VALUE*100).toFixed(2));
 					xData.push(sRes.results[i].KPI_DESC);
 				}
