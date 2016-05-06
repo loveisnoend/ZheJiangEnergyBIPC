@@ -76,7 +76,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonSalary", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != "浙能电力") {
+				if (sRes.results[i].KPI_DESC != "浙能电力" && sRes.results[i].KPI_DESC != "浙能电力本部") {
 					if (sRes.results[i].KPI_TYPE == '人均工资') {
 						counta = 0;
 						for (var a in xData) {

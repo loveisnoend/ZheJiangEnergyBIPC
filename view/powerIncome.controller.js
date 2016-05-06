@@ -800,7 +800,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			// 各个电厂
 			var xData = new Array();
 			for (var i in sRes.results) {
-				if (sRes.results[i].KPI_DESC != '浙能电力本部') {
+				if (sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部') {
     				// 可再生补贴收入同比
     				if (sRes.results[i].KPI_TYPE == '可再生补贴收入_同比') {
     					KPI_ZSS_UP.push(sRes.results[i].KPI_VALUE);
@@ -1530,40 +1530,41 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerIncome", {
 			// 各个电厂月记录
 			var xData = new Array();
 			for (var i in sRes.results) {
-
-				// 发电收入同比
-				if (sRes.results[i].KPI_TYPE == '发电收入_同比') {
-					KPI_FDS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 发电收入
-				if (sRes.results[i].KPI_TYPE == '发电收入' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_FDS_V.push(sRes.results[i].KPI_VALUE);
-					xData.push(sRes.results[i].KPI_DATE);
-				}
-				// 售电收入同比
-				if (sRes.results[i].KPI_TYPE == '售电收入_同比') {
-					KPI_SDS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 售电收入
-				if (sRes.results[i].KPI_TYPE == '售电收入' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_SDS_V.push(sRes.results[i].KPI_VALUE);
-				}
-				// 补贴收入同比
-				if (sRes.results[i].KPI_TYPE == '补贴收入_同比') {
-					KPI_BTS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 补贴收入
-				if (sRes.results[i].KPI_TYPE == '补贴收入' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_BTS_V.push(sRes.results[i].KPI_VALUE);
-				}
-				// 辅助服务收入同比
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比') {
-					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
-				}
-				// 辅助服务收入
-				if (sRes.results[i].KPI_TYPE == '辅助服务收入' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
-				}
+                if (sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DESC != '浙能电力') {
+    				// 发电收入同比
+    				if (sRes.results[i].KPI_TYPE == '发电收入_同比') {
+    					KPI_FDS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 发电收入
+    				if (sRes.results[i].KPI_TYPE == '发电收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+    					KPI_FDS_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DATE);
+    				}
+    				// 售电收入同比
+    				if (sRes.results[i].KPI_TYPE == '售电收入_同比') {
+    					KPI_SDS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 售电收入
+    				if (sRes.results[i].KPI_TYPE == '售电收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+    					KPI_SDS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 补贴收入同比
+    				if (sRes.results[i].KPI_TYPE == '补贴收入_同比') {
+    					KPI_BTS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 补贴收入
+    				if (sRes.results[i].KPI_TYPE == '补贴收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+    					KPI_BTS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 辅助服务收入同比
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入_同比') {
+    					KPI_FZS_UP.push(sRes.results[i].KPI_VALUE);
+    				}
+    				// 辅助服务收入
+    				if (sRes.results[i].KPI_TYPE == '辅助服务收入' && sRes.results[i].KPI_DESC == powerPlantName) {
+    					KPI_FZS_V.push(sRes.results[i].KPI_VALUE);
+    				}
+                }
 				// 收入统计日期
 				if (dataStatisticDate == '') {
 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE

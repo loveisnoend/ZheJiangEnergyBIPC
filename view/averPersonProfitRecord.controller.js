@@ -204,22 +204,22 @@ var busy = new sap.m.BusyDialog({
 
 				// }
 				// 人均营业收入收入
-if (sRes.results[i].KPI_DESC != "浙能电力") {
-				if (sRes.results[i].KPI_TYPE == '人均营业收入') {
-					counta = 0;
-					for (var a in xData) {
-						if (sRes.results[i].KPI_DESC == xData[a]) {
-							KPI_LWS_V[a] = sRes.results[i].KPI_VALUE;
-							// 收入统计日期
-							dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6);
-							counta++;
-						}
-					}
-					if (counta == 0) {
-						KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
-						xData.push(sRes.results[i].KPI_DESC);
-					}
-}
+                if (sRes.results[i].KPI_DESC != "浙能电力" && sRes.results[i].KPI_DESC != "浙能电力本部") {
+    				if (sRes.results[i].KPI_TYPE == '人均营业收入') {
+    					counta = 0;
+    					for (var a in xData) {
+    						if (sRes.results[i].KPI_DESC == xData[a]) {
+    							KPI_LWS_V[a] = sRes.results[i].KPI_VALUE;
+    							// 收入统计日期
+    							dataStatisticDate = sRes.results[i].KPI_DATE.substring(0, 4) + '.' + sRes.results[i].KPI_DATE.substring(4, 6);
+    							counta++;
+    						}
+    					}
+    					if (counta == 0) {
+    						KPI_LWS_V.push(sRes.results[i].KPI_VALUE);
+    						xData.push(sRes.results[i].KPI_DESC);
+    					}
+                    }
 				}
 				// 收入统计日期
 				// if (dataStatisticDate == '') {

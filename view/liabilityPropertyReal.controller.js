@@ -259,7 +259,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.liabilityPropertyReal", {
 				}
 				// 净资产负债率
 				if (sRes.results[i].KPI_TYPE == '资产负债率' && sRes.results[i].KPI_DESC == powerPlantName) {
-					KPI_JZC_V.push(sRes.results[i].KPI_VALUE);
+					KPI_JZC_V.push((sRes.results[i].KPI_VALUE*100).toFixed(2));
 					xData.push(sRes.results[i].KPI_DATE);
 				}
 				// 收入统计日期

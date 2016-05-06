@@ -217,9 +217,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			var pureProfit=0;
 			
 			// 净利润累计
-			var pureProfitSum = 34;
+			var pureProfitSum = 0;
 		    // 年度累计完成度
-		    var pureProfitSumPercentValue = 10;
+		    var pureProfitSumPercentValue = 0;
 		    
 		    // 归属母公司净利润
             var motherComTongBi = '';
