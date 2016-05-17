@@ -760,3 +760,24 @@ function returnDefualtPowerPlant(areaName){
         return zhejiang_dataStr;
     }
 }
+
+// date treament add days
+function addDays(addDays) {
+    
+    var currentDate=new Date();
+    var addSeconds = addDays * 24 * 60 * 60 * 1000;
+    var currentSeconds = currentDate.getTime() + addSeconds;
+    return new Date(currentSeconds);
+}
+
+// date treament add months
+function addMonths(addMonths) {
+    
+    var currentDate=new Date();
+    var addSeconds = 30 * addMonths * 24 * 60 * 60 * 1000;
+    var currentSeconds = currentDate.getTime() + addSeconds;
+    return new Date(currentSeconds);
+}
+
+
+

@@ -14,8 +14,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.salesPercent", {
 				//AC-LOUWW 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var myDate= addMonths(-1);
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1)  +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法

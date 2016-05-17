@@ -102,32 +102,125 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
 	    sap.ui.getCore().getModel().read("AT_ZSCREEN_JYYJ_02_V02?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
 	_loadRunningStateData : function(){
+	    
+	    // 装机容量
 	    var KPI_INC_V;
+	    // 装机容量同比
 	    var KPI_INC_UP;
+	    // 时间
+	    var runningStateDaytime;
+	    
+	    // 燃料库存情况
+	    // 燃料库存-燃煤
+	    var KPI_RMC_V_1000;
+	    // 燃料库存-燃煤同比
+	    var KPI_RMC_T_1000;
+	    // 燃料库存-燃煤环比
+	    var KPI_RMC_H_1000;
+	    // 时间
+	    var fuleStorageDaytime;
+	    
 		var mParameters = {};
 		mParameters['async'] = true;
-	    
 		mParameters['success'] = jQuery.proxy(function(sRes) {
-			//设置数据
-			var date=new Date();
-            var year=date.getFullYear(); 
-            var month=date.getMonth()+1;
-            var day = date.getDate() - 1;
-            if(day == 0){
-                var lastday = new Date(getCurrentMonthFirst().setDate(getCurrentMonthFirst().getDate()-1));
-                day = lastday;
-                month = month - 1;
-            }
-            month =(month<10 ? "0"+month:month); 
-            day = (day<10 ? "0"+day:day); 
-            var mydate = (year.toString()+month.toString() + day.toString());
+
 			for (var i in sRes.results) {
 				if (sRes.results[i].KPI_TYPE == '装机容量' && sRes.results[i].KPI_DESC == '浙能电力'){
 				    KPI_INC_V = sRes.results[i].KPI_VALUE;
+				    runningStateDaytime = sRes.results[i].KPI_DATE;
+				}
+				if (sRes.results[i].KPI_TYPE == '装机容量同比' && sRes.results[i].KPI_DESC == '浙能电力'){
+				    KPI_INC_UP = sRes.results[i].KPI_VALUE;
+				}
+				
+				if (sRes.results[i].KPI_TYPE == '燃料库存-燃煤' && sRes.results[i].KPI_DESC == '浙能电力'){
+				    fuleStorageDaytime = sRes.results[i].KPI_DATE;
+				    KPI_RMC_V_1000 = sRes.results[i].KPI_VALUE;
+				}
+				if (sRes.results[i].KPI_TYPE == '燃料库存-燃煤同比' && sRes.results[i].KPI_DESC == '浙能电力'){
+				    KPI_RMC_T_1000 = sRes.results[i].KPI_VALUE;
+				}
+				if (sRes.results[i].KPI_TYPE == '燃料库存-燃煤环比' && sRes.results[i].KPI_DESC == '浙能电力'){
+				    KPI_RMC_H_1000 = sRes.results[i].KPI_VALUE;
 				}
 			}
-			document.getElementById('runningStateDate').innerHTML = year.toString() + '年' + month.toString() + '月' + day.toString() + '日';
-			document.getElementById('runningState').innerHTML = KPI_INC_V;
+
+            var runningStatedaytime01;
+    	    var runningStatedaytime02;
+    	    var runningStatedaytime03;
+    	    if (runningStateDaytime != null) {
+    	       runningStatedaytime01 = runningStateDaytime.substring(0,4);
+    	       runningStatedaytime02 = runningStateDaytime.substring(4,6);
+    	       runningStatedaytime03 = runningStateDaytime.substring(6,8); 
+    	    }
+            // 装机容量时间
+	        $('#runningStateDate').html(runningStatedaytime01 + "年" + runningStatedaytime02 + "月"+ runningStatedaytime03 + "日");
+	        
+	        $('#runningState').html(KPI_INC_V);
+			// 同比值
+            if (KPI_INC_UP != undefined) {
+                $('#tongbiRunningStateValue').html(KPI_INC_UP);    
+            }
+            if (KPI_INC_UP > 0) {
+                $("#tongbirunningStateDateImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (KPI_INC_UP == 0) {
+                    $("#tongbirunningStateDateImg").attr("src","img/horizontal-green.png");  
+                } else {
+                    $("#tongbirunningStateDateImg").attr("src","img/arrow-red2.png");
+                }
+            }
+			
+			// 燃料库存情况
+			var fuleStorage_color="red";
+    		if(KPI_RMC_V_1000>0){
+    		    if (skinName == '夜间模式') {
+    		        fuleStorage_color="green";
+    		    } else {
+    		        fuleStorage_color="white";
+    		    }
+    		}
+    		$('#FuelStorageValue').css('color',fuleStorage_color);
+    		$('#FuelStorageValue').css('font-size','65px');
+			$('#FuelStorageValue').html(KPI_RMC_V_1000);
+			
+			// 同比值
+            if (KPI_RMC_T_1000 != undefined) {
+                $('#tongbiFuelStorageValue').html(KPI_RMC_T_1000);    
+            }
+            if (KPI_RMC_T_1000 > 0) {
+                $("#tongbiFuelStorageImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (KPI_RMC_T_1000 == 0) {
+                    $("#tongbiFuelStorageImg").attr("src","img/horizontal-green.png");  
+                } else {
+                    $("#tongbiFuelStorageImg").attr("src","img/arrow-red2.png");
+                }
+            }
+            
+            // 环比值
+            if (KPI_RMC_H_1000 != undefined) {
+                $('#huanbiFuelStorageValue').html(KPI_RMC_H_1000);    
+            }
+            if (KPI_RMC_H_1000 > 0) {
+                $("#huanbiFuelStorageValueImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (KPI_RMC_H_1000 == 0) {
+                    $("#huanbiFuelStorageValueImg").attr("src","img/horizontal-green.png");
+                } else {
+                    $("#huanbiFuelStorageValueImg").attr("src","img/arrow-red2.png");
+                }
+            }
+            var daytime01;
+    	    var daytime02;
+    	    var daytime03;
+    	    if (fuleStorageDaytime != null) {
+    	       daytime01 = fuleStorageDaytime.substring(0,4);
+    	       daytime02 = fuleStorageDaytime.substring(4,6);
+    	       daytime03 = fuleStorageDaytime.substring(6,8); 
+    	    }
+            // 主营业务日期
+	        $('#FuelStorageDate').html(daytime01 + "年" + daytime02 + "月"+ daytime03 + "日");
 // 			this._loadDataInitial(daytime,weather,temperature,place);
 		}, this);
 		mParameters['error'] = jQuery.proxy(function(eRes) {

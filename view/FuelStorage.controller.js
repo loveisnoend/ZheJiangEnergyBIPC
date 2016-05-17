@@ -15,8 +15,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.FuelStorage", {
 				//AC-LOUWW 动态插入MAP的div代码
 				sap.ui.controller("com.zhenergy.pcbi.view.templates.dymcontents").onInsertMap(document,sIdentical);
 			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月" + (myDate.getDate()-1)+'日'; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var myDate = addDays(-1);
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1) +"月" + myDate.getDate()+'日'; //getMonth 1-12月对应0-11  myDate.getDate()-1
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-LOUWW 更改下面的文字和onclick方法
@@ -53,278 +53,117 @@ sap.ui.controller("com.zhenergy.pcbi.view.FuelStorage", {
 		// change the page skin
 		changeTheSkinOfPage();
 	},
-
-	// 从获取个电厂指标
+	// 获取个电厂指标-燃料库存-燃煤
 	loadEachPlant_FuelStorage: function(chartDivId, priceChartName, powerPlantName) {
-//假数据AC-LOUWW
+	    // TODO 真实数据放开busy
+		var busy = new sap.m.BusyDialog({
+			close: function(event) {}
+		});
+		if (busy) {
+			busy.open();
+		}
+		// 燃料库存-燃煤
+		var KPI_RMC_V = new Array();
 
-var xData = ["萧山发电", "台州发电", "兰溪发电", "台二发电", "凤台发电", "嘉兴发电", "长兴发电", "滨海发电", "镇海发电", "温州发电", "乐清发电", "舟山煤电", "阿克苏热电", "枣泉发电", "镇海联合", "金华燃机", "常山燃气", "温州燃机", "嘉华发电", "北仑发电", "镇海燃气", "镇海燃热", "温特发电", "钱清发电", "绍兴滨海热力"];
-var KPI_FUEL_1 = [0,71.94,197.47,222.96,210.39,23.5,72.72,62.53,44.7,160.35,196.38,170.7,0,0,0,,35.15,22.15,304.87,180.07,29.9,0,30.74,0,0];
-this.loadBaseDataDetail_FuelStorage(chartDivId, priceChartName, xData, KPI_FUEL_1);
-//真数据
-// 		var busy = new sap.m.BusyDialog({
-// 			close: function(event) {}
-// 		});
-// 		if (busy) {
-// 			busy.open();
-// 		}
+		var dataStatisticDate = '';
+		var mParameters = {};
+		mParameters['async'] = true;
+		mParameters['success'] = jQuery.proxy(function(sRes) {
 
-// 		// 一类缺陷
-// 		var KPI_DEF_1 = new Array();
-
-// 		// 二类缺陷
-// 		var KPI_DEF_2 = new Array();
-
-// 		// TODO Wait for the selected date functionality
-// 		var dataStatisticDate = '';
-
-// 		// TODO original functionality
-// 		var mParameters = {};
-// 		mParameters['async'] = true;
-// 		mParameters['success'] = jQuery.proxy(function(sRes) {
-
-// 			// 各个电厂月份指标
-// 			var xData = new Array();
-// 			for (var i in sRes.results) {
-
-// 				// 一类缺陷总数
-// 				if (sRes.results[i].KPI_TYPE == '一类缺陷总数' && sRes.results[i].KPI_DESC != powerPlantName && sRes.results[i].KPI_DESC != "浙能电力本部") {
-// 					KPI_DEF_1.push(sRes.results[i].KPI_VALUE);
-// 					xData.push(sRes.results[i].KPI_DESC);
-// 				}
-// 				// 二类缺陷总数
-// 				if (sRes.results[i].KPI_TYPE == '二类缺陷总数' && sRes.results[i].KPI_DESC != powerPlantName && sRes.results[i].KPI_DESC != "浙能电力本部") {
-// 					KPI_DEF_2.push(sRes.results[i].KPI_VALUE);
-// 				// 	xData.push(sRes.results[i].KPI_DESC);
-// 				}
-// 				// 统计日期
-// 				if (dataStatisticDate == '') {
-// 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
-// 						.substring(4, 6) +"."+sRes.results[i].KPI_DATE.substring(6,8);
-// 				}
-// 			}
-// 			// 统计于日期
-// // 			$('#FuelStorageIncomeStatisticDate').html(dataStatisticDate);
-// 			if (priceChartName == '一二类缺陷总计') {
-// 				this.loadBaseDataDetail_FuelStorage(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2);
-// 			}
-// 			if (busy) {
-// 				busy.close();
-// 			}
-// 		}, this);
-// 		mParameters['error'] = jQuery.proxy(function(eRes) {
-// 			sap.m.MessageToast.show("数据分析中,请稍后......", {
-// 				offset: '0 -110'
-// 			});
-// 		}, this);
-// 		sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
+			// 各个电厂月份指标
+			var xData = new Array();
+			for (var i in sRes.results) {
+			    
+			    if (powerPlantName == '浙能电力股份有限公司') {
+			        // 燃料库存-燃煤
+    				if (sRes.results[i].KPI_TYPE == '燃料库存-燃煤' && sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部') {
+    					KPI_RMC_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DESC);
+    				}
+			    } else {
+    				// 燃料库存-燃煤 各个电厂
+    				if (sRes.results[i].KPI_TYPE == '燃料库存-燃煤' && sRes.results[i].KPI_DESC == powerPlantName) {
+    					KPI_RMC_V.push(sRes.results[i].KPI_VALUE);
+    					xData.push(sRes.results[i].KPI_DATE);
+    				} 
+			    }
+			}
+			this.loadBaseDataDetail_FuelStorage(chartDivId, powerPlantName, xData, KPI_RMC_V);
+			if (busy) {
+				busy.close();
+			}
+		}, this);
+		mParameters['error'] = jQuery.proxy(function(eRes) {
+			sap.m.MessageToast.show("获取数据失败", {
+				offset: '0 -110'
+			});
+		}, this);
+		sap.ui.getCore().getModel().read("AT_ZSCREEN_YWQK_02_V02/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 	},
-	
-// 	// 获取单个电厂指标
-// 	loadSinglePlant_FuelStorage: function(chartDivId, priceChartName, powerPlantName) {
-// 		var busy = new sap.m.BusyDialog({
-// 			close: function(event) {}
-// 		});
-// 		if (busy) {
-// 			busy.open();
-// 		}
+	// 从获取个电厂指标
+// 	loadEachPlant_FuelStorage: function(chartDivId, priceChartName, powerPlantName) {
+// //假数据AC-LOUWW
 
-// 		// 一类缺陷
-// 		var KPI_DEF_1 = new Array();
+// var xData = ["萧山发电", "台州发电", "兰溪发电", "台二发电", "凤台发电", "嘉兴发电", "长兴发电", "滨海发电", "镇海发电", "温州发电", "乐清发电", "舟山煤电", "阿克苏热电", "枣泉发电", "镇海联合", "金华燃机", "常山燃气", "温州燃机", "嘉华发电", "北仑发电", "镇海燃气", "镇海燃热", "温特发电", "钱清发电", "绍兴滨海热力"];
+// var KPI_FUEL_1 = [0,71.94,197.47,222.96,210.39,23.5,72.72,62.53,44.7,160.35,196.38,170.7,0,0,0,,35.15,22.15,304.87,180.07,29.9,0,30.74,0,0];
+// this.loadBaseDataDetail_FuelStorage(chartDivId, priceChartName, xData, KPI_FUEL_1);
+// //真数据
+// // 		var busy = new sap.m.BusyDialog({
+// // 			close: function(event) {}
+// // 		});
+// // 		if (busy) {
+// // 			busy.open();
+// // 		}
 
-// 		// 二类缺陷
-// 		var KPI_DEF_2 = new Array();
+// // 		// 一类缺陷
+// // 		var KPI_DEF_1 = new Array();
 
-// 		// TODO Wait for the selected date functionality
-// 		var dataStatisticDate = '';
+// // 		// 二类缺陷
+// // 		var KPI_DEF_2 = new Array();
 
-// 		// TODO original functionality
-// 		var mParameters = {};
-// 		mParameters['async'] = true;
-// 		mParameters['success'] = jQuery.proxy(function(sRes) {
+// // 		// TODO Wait for the selected date functionality
+// // 		var dataStatisticDate = '';
 
-// 			// 各个电厂月份指标
-// 			var xData = new Array();
-// 			console.log(sRes.results);
-// 			console.log(powerPlantName);
-// 			for (var i in sRes.results) {
+// // 		// TODO original functionality
+// // 		var mParameters = {};
+// // 		mParameters['async'] = true;
+// // 		mParameters['success'] = jQuery.proxy(function(sRes) {
 
-// 				// 一类缺陷总数
-// 				if (sRes.results[i].KPI_TYPE == '一类缺陷总数' && sRes.results[i].KPI_DESC == powerPlantName) {
-// 					KPI_DEF_1.push(sRes.results[i].KPI_VALUE);
-// 					xData.push(sRes.results[i].KPI_DATE.substring(4,8));
-// 				}
-// 				// 二类缺陷总数
-// 				if (sRes.results[i].KPI_TYPE == '二类缺陷总数' && sRes.results[i].KPI_DESC == powerPlantName) {
-// 					KPI_DEF_2.push(sRes.results[i].KPI_VALUE);
-// 				// 	xData.push(sRes.results[i].KPI_DESC);
-// 				}
-// 				// 统计日期
-// 				if (dataStatisticDate == '') {
-// 					dataStatisticDate =  sRes.results[sRes.results.length - 1].KPI_DATE
-// 						.substring(4, 6) +"."+sRes.results[i].KPI_DATE.substring(6,8); //sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' +
-// 				}
-// 			}
-// 			// 统计于日期
-// // 			$('#FuelStorageIncomeStatisticDate').html(dataStatisticDate);
-// 			if (priceChartName == '一二类缺陷总计') {
-// 				this.loadBaseDataDetail_FuelStorage(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2);
-// 			}
-// 			if (busy) {
-// 				busy.close();
-// 			}
-// 		}, this);
-// 		mParameters['error'] = jQuery.proxy(function(eRes) {
-// 			sap.m.MessageToast.show("数据分析中,请稍后......", {
-// 				offset: '0 -110'
-// 			});
-// 		}, this);
-// 		sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_03_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
-// 	},
-// 	// 加载浙能电力-一二类缺陷总计
-// 	loadBaseDataDetail_SupplyFuelStorageIncome: function(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2) {
-// 		require(
-//             [
-//                 'echarts',
-//                 'echarts/chart/line',
-//                 'echarts/chart/bar'
-//             ],
-// 			draw);
+// // 			// 各个电厂月份指标
+// // 			var xData = new Array();
+// // 			for (var i in sRes.results) {
 
-// 		function draw(e) {
-// 			var mychart = e.init(document.getElementById(chartDivId));
-// 			if(document.getElementById('powerPlantMainDetailTitleFuelStorage').innerHTML=="浙能电力"){
-//                   document.getElementById('profitNameFuelStorage').innerHTML="浙能电力股份有限公司";
-//             }else{
-//                 document.getElementById('profitNameFuelStorage').innerHTML = document.getElementById('powerPlantMainDetailTitleFuelStorage').innerHTML;
-//             }
-// // 			document.getElementById('profitNameFuelStorage').innerHTML = document.getElementById('powerPlantMainDetailTitleFuelStorage').innerHTML;
-// 			var color1 = '#2DE630';
-// 			var color2 = '#E52DE6';
-// 			var option = {
-// 				title: {
-// 					text: priceChartName,
-// 					subtext: '',
-// 					x: 40,
-// 					y: 5,
-// 					textStyle: {
-// 						fontSize: 15,
-// 						color: 'green'
-// 					}
-// 				},
-// 				legend: {
-// 					orient: 'horizontal',
-// 					x: '120',
-// 					y: '35',
-// 					textStyle: {
-// 						color: 'white',
-// 						fontFamily: '微软雅黑'
-// 					},
-// 					data: ['一类缺陷总数','二类缺陷总数']
-// 				},
-// 				tooltip: {
-// 					trigger: 'axis',
-// 					backgroundColor: 'rgb(234,234,234)',
-// 					textStyle: {
-// 						color: 'rgb(0,0,0)',
-// 						baseline: 'top'
-// 					},
-// 					axisPointer: {
-// 						type: 'none'
-// 					}
-// 				},
-// 				color: specialColorArray,// [color1, color2],
-// 				grid: {
-// 					y1: 100,
-// 					y2: 100
-// 				},
-// 				xAxis: [
-// 					{
-// 						//show: false,
-// 						type: 'category',
-// 						axisLabel: {
-// 							textStyle: {
-// 								color: 'white'
-// 							},
-// 							formatter: '{value}',
-// 							show: true,
-// 							interval: 'auto',
-// 							inside: false,
-// 							rotate: 30,
-// 							margin: 8
-// 						},
-// 						data: xData
-//                             }
-//                         ],
-// 				yAxis: [
-// 					{
-// 						name: '单位:个',
-// 						type: 'value',
-// 						axisLine: {
-// 							show: true
-// 						},
-// 						axisLabel: {
-// 							textStyle: {
-// 								color: color1
-// 							},
-// 							formatter: '{value}'
-// 						},
-// 						// 		splitLine: {
-// 						// 			show: false
-// 						// 		},
-// 						splitLine: {
-// 							// 			show: false
-// 							lineStyle: {
-// 								color: 'rgba(64,64,64,0.5)'
-// 							}
-// 						}
-// 						// 		max: y1,
-// 						// 		min: y2,
-// 						// 		splitNumber: n
-//                             }
-//                         ],
-// 				series: [
-// 					{
-// 						name: '一类缺陷总数',
-// 						type: 'bar',
-// 						symbol: 'emptyCircle',
-// 						symbolSize: 5,
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: true,
-// 									position: 'top',
-// 									textStyle: {
-// 										color: 'white'
-// 									}
-// 								}
-// 							}
-// 						},
-// 						data: KPI_DEF_1
-//                     },
-//                     {
-// 						name: '二类缺陷总数',
-// 						type: 'bar',
-// 						symbol: 'emptyCircle',
-// 						symbolSize: 5,
-// 						itemStyle: {
-// 							normal: {
-// 								label: {
-// 									show: true,
-// 									position: 'top',
-// 									textStyle: {
-// 										color: 'white'
-// 									}
-// 								}
-// 							}
-// 						},
-// 						data: KPI_DEF_2
-//                     }
-//                 ]
-// 			};
-
-// 			mychart.setOption(option);
-// 		}
+// // 				// 一类缺陷总数
+// // 				if (sRes.results[i].KPI_TYPE == '一类缺陷总数' && sRes.results[i].KPI_DESC != powerPlantName && sRes.results[i].KPI_DESC != "浙能电力本部") {
+// // 					KPI_DEF_1.push(sRes.results[i].KPI_VALUE);
+// // 					xData.push(sRes.results[i].KPI_DESC);
+// // 				}
+// // 				// 二类缺陷总数
+// // 				if (sRes.results[i].KPI_TYPE == '二类缺陷总数' && sRes.results[i].KPI_DESC != powerPlantName && sRes.results[i].KPI_DESC != "浙能电力本部") {
+// // 					KPI_DEF_2.push(sRes.results[i].KPI_VALUE);
+// // 				// 	xData.push(sRes.results[i].KPI_DESC);
+// // 				}
+// // 				// 统计日期
+// // 				if (dataStatisticDate == '') {
+// // 					dataStatisticDate = sRes.results[sRes.results.length - 1].KPI_DATE.substring(0, 4) + '.' + sRes.results[sRes.results.length - 1].KPI_DATE
+// // 						.substring(4, 6) +"."+sRes.results[i].KPI_DATE.substring(6,8);
+// // 				}
+// // 			}
+// // 			// 统计于日期
+// // // 			$('#FuelStorageIncomeStatisticDate').html(dataStatisticDate);
+// // 			if (priceChartName == '一二类缺陷总计') {
+// // 				this.loadBaseDataDetail_FuelStorage(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2);
+// // 			}
+// // 			if (busy) {
+// // 				busy.close();
+// // 			}
+// // 		}, this);
+// // 		mParameters['error'] = jQuery.proxy(function(eRes) {
+// // 			sap.m.MessageToast.show("数据分析中,请稍后......", {
+// // 				offset: '0 -110'
+// // 			});
+// // 		}, this);
+// // 		sap.ui.getCore().getModel().read("AT_ZSCREEN_FXKZ_02_V01/?$filter=(BNAME eq '" + usrid + "')", mParameters);
 // 	},
 	// 加载浙能电力-燃料库存情况
 	loadBaseDataDetail_FuelStorage: function(chartDivId, priceChartName, xData, KPI_DEF_1, KPI_DEF_2) {
@@ -1432,23 +1271,24 @@ this.loadBaseDataDetail_FuelStorage(chartDivId, priceChartName, xData, KPI_FUEL_
 		function setChartData(ec, mapSeries, dataIndex) {
 
 			// get powerplantname by real name
-			var powerPlantName = getPowerplantnameByRealName(mapSeries.markPoint.data[dataIndex].name);
+			var powerPlantName = mapSeries.markPoint.data[dataIndex].name;
 			document.getElementById('powerPlantMainDetailTitleFuelStorage').innerHTML = powerPlantName;
 			var priceChartId = "priceDetailDivFuelStorage";
 			var priceChartName = "燃料库存情况";
-			if (powerPlantName == '台二电厂') {
-				powerPlantName = '台二发电';
-			}
-			if (powerPlantName == '兰溪电厂') {
-				powerPlantName = '兰溪发电';
-			}
-			if (powerPlantName == '凤台电厂') {
-				powerPlantName = '凤台发电';
-			}
-			if (powerPlantName == '浙能电力') {
+			if (powerPlantName == '浙能电力股份有限公司') {
 				fuelStorage.getController().loadEachPlant_FuelStorage(priceChartId, priceChartName, powerPlantName);
-// 			}else{
-			 //   FuelStorage.getController().loadSinglePlant_FuelStorage(priceChartId, priceChartName, powerPlantName);
+			}else{
+			    powerPlantName = getPowerplantnameByRealName(powerPlantName);
+    			if (powerPlantName == '台二电厂') {
+    				powerPlantName = '台二发电';
+    			}
+    			if (powerPlantName == '兰溪电厂') {
+    				powerPlantName = '兰溪发电';
+    			}
+    			if (powerPlantName == '凤台电厂') {
+    				powerPlantName = '凤台发电';
+    			}
+			    fuelStorage.getController().loadEachPlant_FuelStorage(priceChartId, priceChartName, powerPlantName);
 			}
 		}
 	}

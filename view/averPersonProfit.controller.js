@@ -10,8 +10,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.averPersonProfit", {
 			// not added the controller as delegate to avoid controller functions with similar names as the events
 			onAfterShow: jQuery.proxy(function(evt) {
 			    //AC-LOUWW 页面增加动态的时间日期标签
-				var myDate=new Date() ;
-				var timeLabel = myDate.getFullYear() + "年" + myDate.getMonth() +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
+				var myDate= addMonths(-1);
+				var timeLabel = myDate.getFullYear() + "年" + (myDate.getMonth()+1)  +"月"; //getMonth 1-12月对应0-11  myDate.getDate()-1
 				var naviDemo = document.getElementById("idTimeLabelCenter");
 		        naviDemo.innerHTML =  "<b>"+timeLabel+"</b>";
 		        
