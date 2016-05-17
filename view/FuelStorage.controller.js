@@ -76,7 +76,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.FuelStorage", {
 			    
 			    if (powerPlantName == '浙能电力股份有限公司') {
 			        // 燃料库存-燃煤
-    				if (sRes.results[i].KPI_TYPE == '燃料库存-燃煤' && sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部') {
+    				if (sRes.results[i].KPI_TYPE == '燃料库存-燃煤' && sRes.results[i].KPI_DESC != '浙能电力' && sRes.results[i].KPI_DESC != '浙能电力本部' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE) {
     					KPI_RMC_V.push(sRes.results[i].KPI_VALUE);
     					xData.push(sRes.results[i].KPI_DESC);
     				}
