@@ -279,7 +279,6 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 			
 			// 净利润累计
 			$('#pureProfitSum').html(pureProfitSum);
-			
 			var pureProfitSumPercentValue = pureProfitSumPercentValue+'%';
 			// 净利润累计完成度
 			$('#pureProfitSumPercentValue').html(pureProfitSumPercentValue);

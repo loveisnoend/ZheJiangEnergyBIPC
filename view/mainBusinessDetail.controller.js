@@ -248,7 +248,7 @@ document.getElementById('profitNameMainBusinessDetail').innerHTML = document.get
                         ],
 				yAxis: [
 					{
-						name: '单位:万元',
+						name: '单位:亿元',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -392,7 +392,7 @@ document.getElementById('profitNameMainBusinessDetail').innerHTML = document.get
                         ],
 				yAxis: [
 					{
-						name: '单位:万元',
+						name: '单位:亿元',
 						type: 'value',
 						axisLine: {
 							show: true

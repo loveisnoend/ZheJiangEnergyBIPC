@@ -384,7 +384,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
                         ],
 				yAxis: [
 					{
-						name: '单位:元/千瓦时',
+						name: '单位:元/万千瓦时',
 						type: 'value',
 						axisLine: {
 							show: true
@@ -513,7 +513,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
                         ],
 				yAxis: [
 					{
-						name: '单位:元/千瓦时',
+						name: '单位:元/万千瓦时',
 						type: 'value',
 						axisLine: {
 							show: true

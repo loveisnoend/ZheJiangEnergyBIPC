@@ -144,7 +144,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
             }
             //燃料成本
             function drawrlcb(e) {
-                drawline(e, date, data3, '燃料成本', 'green', 'rlcb', data3[data3.length - 1] + '万元', KPI_GRC_V,'供热燃料成本','orange','auto','auto','auto','auto');
+                drawline(e, date, data3, '发电燃料成本', 'green', 'rlcb', data3[data3.length - 1] + '万元', KPI_GRC_V,'供热燃料成本','orange','auto','auto','auto','auto');
             }
 
             //其他成本
