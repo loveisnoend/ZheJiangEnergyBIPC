@@ -140,7 +140,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 
             //平均上网电价 发电收入 供热收入
             function drawpjswdj(e) {
-                drawline(e, date, data2, '发电收入', 'green', 'pjswdj', data2[data2.length - 1] + '万元', KPI_RGJ_V,'供热收入','orange','auto','auto',0,200);
+                drawline(e, date, data2, '发电收入', 'green', 'pjswdj', data2[data2.length - 1] + '万元', KPI_RGJ_V,'供热收入','orange','auto','auto',0,1000);
             }
             //燃料成本
             function drawrlcb(e) {
@@ -149,7 +149,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
 
             //其他成本
             function drawqtcb(e) {
-                drawlineSecond(e, date, data4, '其他成本', 'green', 'qtcb', data4[data4.length - 1] + '万元', '','','orange','auto','auto','auto','auto');
+                drawlineSecond(e, date, data4, '其他成本', 'green', 'qtcb', data4[data4.length - 1] + '万元',10000,0);
             }
 
 	    //折线通用
@@ -503,7 +503,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
             }
         }
  	    //折线通用 second
-        function drawlineSecond(e, date, data1, title01, color01, id, value) {
+        function drawlineSecond(e, date, data1, title01, color01, id, value, maxy1,miny1) {
             mychart = e.init(document.getElementById(id));
             var w = document.getElementById(id).clientWidth;
             var h = document.getElementById(id).clientHeight;
@@ -607,10 +607,10 @@ sap.ui.controller("com.zhenergy.pcbi.view.Performance", {
                             lineStyle: {
                                 color: '#31536f'
                             }
-                        }
-				// 		max: maxy1,
-				// 		min: miny1,
-				// 		splitNumber: 4
+                        },
+						max: maxy1,
+						min: miny1,
+						splitNumber: 4
                     }
                 ],
                 series: [
