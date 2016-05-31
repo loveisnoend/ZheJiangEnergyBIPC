@@ -774,10 +774,15 @@ function addDays(addDays) {
 function addMonths(addMonths) {
     
     var currentDate=new Date();
-    var addSeconds = 30 * addMonths * 24 * 60 * 60 * 1000;
+    var addNumbers = 30;
+    var currentMonth = currentDate.getMonth()+1;
+    if (currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7 || currentMonth == 12) {
+        addNumbers = 31;
+    }
+    if (addNumbers == 2) {
+        addNumbers = 29;
+    }
+    var addSeconds = addNumbers * addMonths * 24 * 60 * 60 * 1000;
     var currentSeconds = currentDate.getTime() + addSeconds;
     return new Date(currentSeconds);
 }
-
-
-
