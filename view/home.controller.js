@@ -229,7 +229,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
             var motherComDaytime = null;
 			// 归属母公司净利润
 			var motherComValue=0;
-		    
+
+			// 度电成本同比值
+            var powerCostTongBi = '';
+            // 度电成本环比值
+            var powerCostHuanBi = '';
+            // 统计日期
+            var daytimeNO2 = null;
+			// 度电成本值
+			var powerCost=0;
+			
 			for (var i in sRes.results) {
 			    // 主营业务
 				if (sRes.results[i].KPI_TYPE == '营业收入' && sRes.results[i].KPI_DESC == '浙能电力'){  
@@ -253,6 +262,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
 				}
 				if (sRes.results[i].KPI_TYPE == '净利润同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
 				    pureProfitTongBi = sRes.results[i].KPI_VALUE;
+				}
+
+				// 度电成本
+				if (sRes.results[i].KPI_TYPE == '度电成本' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    powerCost = powerCost+parseFloat(sRes.results[i].KPI_VALUE);
+				    daytimeNO2 = sRes.results[i].KPI_DATE;
+				}
+				if (sRes.results[i].KPI_TYPE == '度电成本环比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    powerCostHuanBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
+				}
+				if (sRes.results[i].KPI_TYPE == '度电成本同比' && sRes.results[i].KPI_DESC == '浙能电力'){  
+				    powerCostTongBi = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
 				
 				// 净利润累计
@@ -383,7 +404,57 @@ sap.ui.controller("com.zhenergy.pcbi.view.home", {
     	    }
             // 净利润统计日期
 	        $('#pureProfitDate').html(daytime01NO1 + "年" + daytime02NO1 + "月");//  + daytime03NO1 + "日"
-	        
+
+	        // 度电成本
+			var powerCost_color="red";
+    		if(powerCost>0){
+    		    if (skinName == '夜间模式') {
+    		        powerCost_color="green";
+    		    } else {
+    		        powerCost_color="white";
+    		    }
+    		}
+    		$('#powerCost').css('color',powerCost_color);
+    		$('#powerCost').css('font-size','65px');
+			$('#powerCost').html(powerCost);
+			
+			// 同比值
+            if (powerCostTongBi != undefined) {
+                $('#tongbipowerCost').html(powerCostTongBi);    
+            }
+            if (powerCostTongBi > 0) {
+                $("#tongbipowerCostImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (powerCostTongBi == 0) {
+                    $("#tongbipowerCostImg").attr("src","img/horizontal-green.png");  
+                } else {
+                    $("#tongbipowerCostImg").attr("src","img/arrow-red2.png");
+                }
+            }
+            
+            // 环比值
+            if (powerCostHuanBi != undefined) {
+                $('#huanbipowerCost').html(powerCostHuanBi);    
+            }
+            if (powerCostHuanBi > 0) {
+                $("#huanbipowerCostImg").attr("src","img/arrow-green2.png");
+            } else {
+                if (powerCostHuanBi == 0) {
+                    $("#huanbipowerCostImg").attr("src","img/horizontal-green.png");
+                } else {
+                    $("#huanbipowerCostImg").attr("src","img/arrow-red2.png");
+                }
+            }
+            var daytime01NO2;
+    	    var daytime02NO2;
+    	    var daytime03NO2;
+    	    if (daytimeNO2 != null) {
+    	       daytime01NO2 = daytimeNO2.substring(0,4);
+    	       daytime02NO2 = daytimeNO2.substring(4,6);
+    	       daytime03NO2 = daytimeNO2.substring(6,8); 
+    	    }
+            // 度电成本统计日期
+	        $('#powerCostDate').html(daytime01NO2 + "年" + daytime02NO2 + "月");//  + daytime03NO1 + "日"
 	        
 	        // 归属母公司净利润
 			var motherComPureProfit_color="red";

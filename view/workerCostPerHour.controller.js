@@ -19,7 +19,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.workerCostPerHour", {
 				var naviDemo = document.getElementById("navi"+sIdentical);
 		        naviDemo.innerHTML =  "<span id='demo' style='height:100%;'>"+
 		        //AC-Gates 更改下面的文字和onclick方法
-                                "<b onClick='doit2(8)' style='cursor:pointer;'>经营业绩</b> > <b>"+timeLabel+"浙能电力单位产出成本</b>"+
+                                "<b onClick='doit2(9)' style='cursor:pointer;'>经营业绩</b> > <b>"+timeLabel+"浙能电力单位产出成本</b>"+
                                 "</span>";
 				this.onAfterShow(evt);
 			}, this)

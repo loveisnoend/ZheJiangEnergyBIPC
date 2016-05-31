@@ -246,6 +246,10 @@
             function toPureProfitPage() {
                 app.to("idPureProfit","show");
             }
+            // 度电成本
+            function toPowerCostPage() {
+                app.to("idPowerCost","show");
+            }
             //资产情况
             //净资产页面
             function toPurePropertyPage() {
@@ -491,7 +495,10 @@
 
         		// 一二类缺陷总计
         		var totalDefects;
-            		 
+            	
+            	// 度电成本
+            	var powerCost;
+            	
 				// 人均利润 Real
 				var averPersonProfitReal;
 				
@@ -827,6 +834,14 @@
             			type: sap.ui.core.mvc.ViewType.HTML
             		 });
             		 app.addPage(pureProfit);
+
+            		 // 度电成本
+            		 powerCost = sap.ui.view({
+            			id: "idPowerCost",
+            			viewName: "com.zhenergy.pcbi.view.powerCost",
+            			type: sap.ui.core.mvc.ViewType.HTML
+            		 });
+            		 app.addPage(powerCost);
             		 
             		 // 净利润详细
             		 pureProfitDetail = sap.ui.view({

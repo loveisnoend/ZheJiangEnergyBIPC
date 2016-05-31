@@ -94,7 +94,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
 				}
 				// 年累计发电量完成度
 				if (sRes.results[i].KPI_TYPE == '年度上网电量累计完成度' && sRes.results[i].KPI_DESC == '浙能电力'){  
-				    yearPowerOutputFinishValue = sRes.results[i].KPI_VALUE*100;
+				    yearPowerOutputFinishValue = (sRes.results[i].KPI_VALUE*100).toFixed(2);
 				}
 			}
 			if (yearPowerOutputFinishValue == undefined) {
