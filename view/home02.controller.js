@@ -118,6 +118,8 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
             var daytime = null;
             // 所有产业合计
             var daytimeAllIndustryDate;
+            // 
+            var daytimeIndustryUpSumDate;
 			for (var i in sRes.results) {
 			    
 			    // 浙能电力每股收益(当月)

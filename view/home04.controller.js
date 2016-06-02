@@ -68,29 +68,35 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
 	    var KPI_DAY_V;
 	    // 年度累计发电量完成度
 	    var yearPowerOutputFinishValue;
+	    
+	    // 年度累计发完成度日期
+	    var yearPowerOutputFinishDate;
 		var mParameters = {};
 		mParameters['async'] = true;
 	    
 		mParameters['success'] = jQuery.proxy(function(sRes) {
-			//设置数据
-			var date=new Date();
-            var year=date.getFullYear(); 
-            var month=date.getMonth()+1;
-            var day = date.getDate() - 1;
-            if(day == 0){
-                var lastday = new Date(getCurrentMonthFirst().setDate(getCurrentMonthFirst().getDate()-1));
-                day = lastday;
-                month = month - 1;
-            }
-            month =(month<10 ? "0"+month:month); 
-            day = (day<10 ? "0"+day:day); 
-            var mydate = (year.toString()+month.toString() + day.toString());
+		    
+// 			//设置数据 TODO what the hell
+// 			var date=new Date();
+//             var year=date.getFullYear(); 
+//             var month=date.getMonth()+1;
+//             var day = date.getDate() - 1;
+//             if(day == 0){
+//                 var lastday = new Date(getCurrentMonthFirst().setDate(getCurrentMonthFirst().getDate()-1));
+//                 day = lastday;
+//                 month = month - 1;
+//             }
+//             month =(month<10 ? "0"+month:month); 
+//             day = (day<10 ? "0"+day:day); 
+//             var mydate = (year.toString()+month.toString() + day.toString());
+            
 			for (var i in sRes.results) {
 				if (sRes.results[i].KPI_TYPE == '年累计发电量' && sRes.results[i].KPI_DESC == '浙能电力'){
 				    KPI_YEAR_V = sRes.results[i].KPI_VALUE;
 				}
-				if (sRes.results[i].KPI_TYPE == '日发电量' && sRes.results[i].KPI_DESC == '浙能电力' && sRes.results[i].KPI_DATE == mydate){  
+				if (sRes.results[i].KPI_TYPE == '日发电量' && sRes.results[i].KPI_DESC == '浙能电力' && sRes.results[i].KPI_DATE == sRes.results[sRes.results.length - 1].KPI_DATE){  
 				    KPI_DAY_V = sRes.results[i].KPI_VALUE;
+				    yearPowerOutputFinishDate = sRes.results[i].KPI_DATE;
 				}
 				// 年累计发电量完成度
 				if (sRes.results[i].KPI_TYPE == '年度上网电量累计完成度' && sRes.results[i].KPI_DESC == '浙能电力'){  
@@ -105,8 +111,18 @@ sap.ui.controller("com.zhenergy.pcbi.view.home04", {
 			$('#yearPowerOutputFinishValue').html(yearPowerOutputFinishValue);
 			// 年度累计完成度完进度条百分比
 			$('#yearPowerOutputFinishWidth').css('width',yearPowerOutputFinishValue);
+
+            var daytime01;
+    	    var daytime02;
+    	    var daytime03;
+    	    if (yearPowerOutputFinishDate != null) {
+    	       daytime01 = yearPowerOutputFinishDate.substring(0,4);
+    	       daytime02 = yearPowerOutputFinishDate.substring(4,6);
+    	       daytime03 = yearPowerOutputFinishDate.substring(6,8); 
+    	    }
+            // 年度累计完成度日期
+	        $('#PowerOutputFinishDate').html(daytime01 + "年" + daytime02 + "月"+ daytime03 + "日");
 			
-			document.getElementById('PowerOutputFinishDate').innerHTML = year.toString() + '年' + month.toString() + '月' + day.toString() + '日';
 			document.getElementById('powerOutputFinish').innerHTML = KPI_DAY_V;
 			document.getElementById('yearPowerOutputFinish').innerHTML = '年度累计发电量:' + KPI_YEAR_V + '万千瓦时';
 // 			this._loadDataInitial(daytime,weather,temperature,place);

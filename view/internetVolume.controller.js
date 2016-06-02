@@ -1516,9 +1516,9 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			// 上网电量
 			var internetPV = mapSeries.markPoint.data[dataIndex].internetPV;
 			if (internetPV != undefined) {
-				document.getElementById('internetPV').innerHTML = internetPV;
+				document.getElementById('internetPowerVolumeValue').innerHTML = internetPV;
 			} else {
-				document.getElementById('internetPV').innerHTML = 0;
+				document.getElementById('internetPowerVolumeValue').innerHTML = 0;
 			}
 
 			var dataAll = contractPV + directlyPV + replacePV;
