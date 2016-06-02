@@ -125,7 +125,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
 			    // 浙能电力每股收益(当月)
 				if (sRes.results[i].KPI_ID == 'KPI_EPS_M_MGSY'){  
 				    KPI_EPS_M_MGSY = sRes.results[i].KPI_VALUE;
-				    daytimeIndustryUpSumDate = sRes.results[i].KPI_DATE;
+				    daytime = sRes.results[i].KPI_DATE;
 				}
 				// 浙能电力每股收益(年度累计)
 				if (sRes.results[i].KPI_ID == 'KPI_EPS_M_MGSY_UP'){  
@@ -135,7 +135,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
 			    // 工业增加值(当月)
 				if (sRes.results[i].KPI_ID == 'KPI_IAV_M_0000'){  
 				    currentMonthUp = (sRes.results[i].KPI_VALUE*100).toFixed(2);
-				    daytime = sRes.results[i].KPI_DATE;
+				    daytimeIndustryUpSumDate = sRes.results[i].KPI_DATE;
 				}
 				// 工业增加值(年度累计)
 				if (sRes.results[i].KPI_ID == 'KPI_IAV_Y_0000'){  
@@ -359,13 +359,16 @@ sap.ui.controller("com.zhenergy.pcbi.view.home02", {
     	    // 浙能电力每股收益
 	        $('#KPI_EPS_M_MGSYDate').html(daytime01 + "年" + daytime02 + "月");
 	        
+	        var daytimeIndustryUpSum01;
+	        var daytimeIndustryUpSum02;
+	        var daytimeIndustryUpSum03;
             // 全国工业增加值增长速度
     	    if (daytimeIndustryUpSumDate != null) {
-    	       daytime01 = daytimeIndustryUpSumDate.substring(0,4);
-    	       daytime02 = daytimeIndustryUpSumDate.substring(4,6);
-    	       daytime03 = daytimeIndustryUpSumDate.substring(6,8); 
+    	       daytimeIndustryUpSum01 = daytimeIndustryUpSumDate.substring(0,4);
+    	       daytimeIndustryUpSum02 = daytimeIndustryUpSumDate.substring(4,6);
+    	       daytimeIndustryUpSum03 = daytimeIndustryUpSumDate.substring(6,8); 
     	    }
-	        $('#industryUpSumDate').html(daytime01 + "年" + daytime02 + "月");
+	        $('#industryUpSumDate').html(daytimeIndustryUpSum01 + "年" + daytimeIndustryUpSum02 + "月");
 	        
 	        // 全社会用电量-浙江省
     	    if (daytimeSocialPowerVolumeDate001 != null) {
