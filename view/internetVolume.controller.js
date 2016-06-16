@@ -173,6 +173,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.internetVolume", {
 			huaiNan_dataStr += ']';
 			akesu_dataStr += ']';
 			zhaoquan_dataStr += ']';
+// 			alert('-------'+zhejiang_dataStr);
 			var zhejiang_JsonData = JSON.parse(zhejiang_dataStr)
 			var huaiNan_JsonData = JSON.parse(huaiNan_dataStr);
 			var akesu_JsonData = JSON.parse(akesu_dataStr);
