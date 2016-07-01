@@ -1807,7 +1807,7 @@ sap.ui.controller("com.zhenergy.pcbi.view.powerPlantMap", {
 			// 60万kw
 			var coalCost600 = mapSeries.markPoint.data[dataIndex].coalCost600;
 			if (coalCost600 != undefined) {
-				document.getElementById('watt2').innerHTML = coalCost600.toString().substring(0, coalCost600.toString().indexOf(".") + 3);
+				document.getElementById('watt2').innerHTML = coalCost600.toString();//.substring(0, coalCost600.toString().indexOf(".") + 3);
 			} else {
 				document.getElementById('watt2').innerHTML = 0;
 			}
